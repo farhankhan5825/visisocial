@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-<%= nonce %>' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - VisiSocial</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+    <style nonce="<%= nonce %>">
+        :root {
+            --primary: #7c6cff;
+            --primary-dark: #5b4fe0;
+            --primary-light: #9d7bff;
+            --secondary: #9d7bff;
+            --accent: #34e3ff;
+            --success: #2dd4a8;
+            --warning: #f6b24a;
+            --danger: #ff5d6c;
+            --info: #34e3ff;
+            --dark: #0a0a16;
+            --darker: #06060e;
+            --light: #ECECF6;
+            --muted: #9a9ab6;
+            --gradient-primary: linear-gradient(118deg, #9d7bff 0%, #7c6cff 45%, #34e3ff 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-hover: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255,255,255,0.09);
+            --shadow-lg: 0 25px 80px -20px rgba(99, 102, 241, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--darker);
+        }
+
+        .bg-animated .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .bg-animated .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            top: -250px;
+            right: -250px;
+        }
+
+        .bg-animated .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -60px) scale(1.1); }
+            50% { transform: translate(-40px, 40px) scale(0.9); }
+            75% { transform: translate(-60px, -40px) scale(1.05); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-back {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: var(--primary-light);
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 32px;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .page-title i {
+            color: var(--accent);
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Controls Bar */
+        .controls-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 48px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--light);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--light);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        select.filter-btn {
+            appearance: none;
+            padding-right: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        /* Logs List */
+        .logs-list {
+            padding: 24px;
+        }
+
+        .log-entry {
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .log-entry:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--primary);
+        }
+
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .log-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .log-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .log-icon-info {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+        }
+
+        .log-icon-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .log-icon-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .log-icon-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .log-time {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .log-details {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .log-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .log-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-user {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-light);
+        }
+
+        .badge-ip {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent);
+        }
+
+        .badge-event {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--secondary);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            color: var(--muted);
+            margin-bottom: 24px;
+            opacity: 0.5;
+        }
+
+        .empty-title {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--light);
+        }
+
+        .empty-text {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .page-btn {
+            min-width: 44px;
+            height: 44px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .page-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .container {
+                padding: 24px 16px;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .controls-bar {
+                flex-direction: column;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+
+            .filter-group {
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            .logs-list {
+                padding: 16px;
+            }
+
+            .log-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <a href="/admin" class="logo">VisiSocial</a>
+                <div class="admin-badge">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Activity Logs</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <a href="/admin" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="fas fa-list"></i>
+                Activity <span class="gradient-text">Logs</span>
+            </h1>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search logs..." 
+                       value="<%= search %>" onchange="applyFilters()">
+            </div>
+
+            <div class="filter-group">
+                <button class="filter-btn <%= level === 'all' ? 'active' : '' %>" 
+                        onclick="setLevel('all')">
+                    All
+                </button>
+                <button class="filter-btn <%= level === 'info' ? 'active' : '' %>" 
+                        onclick="setLevel('info')">
+                    Info
+                </button>
+                <button class="filter-btn <%= level === 'success' ? 'active' : '' %>" 
+                        onclick="setLevel('success')">
+                    Success
+                </button>
+                <button class="filter-btn <%= level === 'warning' ? 'active' : '' %>" 
+                        onclick="setLevel('warning')">
+                    Warning
+                </button>
+                <button class="filter-btn <%= level === 'error' ? 'active' : '' %>" 
+                        onclick="setLevel('error')">
+                    Error
+                </button>
+            </div>
+        </div>
+
+        <!-- Logs List -->
+        <div class="glass-card logs-list">
+            <% if (logs && logs.length > 0) { %>
+                <% logs.forEach(log => { 
+                    const logLevel = log.level || 'info';
+                    const logIcon = {
+                        info: 'fa-info-circle',
+                        success: 'fa-check-circle',
+                        warning: 'fa-exclamation-triangle',
+                        error: 'fa-times-circle'
+                    }[logLevel] || 'fa-info-circle';
+                %>
+                <div class="log-entry">
+                    <div class="log-header">
+                        <div class="log-title">
+                            <div class="log-icon log-icon-<%= logLevel %>">
+                                <i class="fas <%= logIcon %>"></i>
+                            </div>
+                            <span><%= log.event || log.action || 'System Event' %></span>
+                        </div>
+                        <div class="log-time">
+                            <%= new Date(log.timestamp || log.createdAt).toLocaleString() %>
+                        </div>
+                    </div>
+
+                    <% if (log.description || log.message) { %>
+                    <div class="log-details">
+                        <%= log.description || log.message %>
+                    </div>
+                    <% } %>
+
+                    <div class="log-meta">
+                        <% if (log.userId || log.adminId) { %>
+                        <span class="log-badge badge-user">
+                            <i class="fas fa-user"></i>
+                            <%= log.userId || log.adminId %>
+                        </span>
+                        <% } %>
+
+                        <% if (log.ipAddress) { %>
+                        <span class="log-badge badge-ip">
+                            <i class="fas fa-network-wired"></i>
+                            <%= log.ipAddress %>
+                        </span>
+                        <% } %>
+
+                        <% if (log.eventType) { %>
+                        <span class="log-badge badge-event">
+                            <i class="fas fa-tag"></i>
+                            <%= log.eventType %>
+                        </span>
+                        <% } %>
+                    </div>
+                </div>
+                <% }); %>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <% if (pagination.page > 1) { %>
+                    <a href="?page=<%= pagination.page - 1 %>&level=<%= level %>&search=<%= search %>" 
+                       class="page-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    <% } else { %>
+                    <button class="page-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <% } %>
+
+                    <% 
+                    const maxPages = Math.min(pagination.pages, 7);
+                    let startPage = Math.max(1, pagination.page - 3);
+                    let endPage = Math.min(pagination.pages, startPage + maxPages - 1);
+                    
+                    if (endPage - startPage < maxPages - 1) {
+                        startPage = Math.max(1, endPage - maxPages + 1);
+                    }
+
+                    for (let i = startPage; i <= endPage; i++) { 
+                    %>
+                    <a href="?page=<%= i %>&level=<%= level %>&search=<%= search %>" 
+                       class="page-btn <%= pagination.page === i ? 'active' : '' %>">
+                        <%= i %>
+                    </a>
+                    <% } %>
+
+                    <% if (pagination.page < pagination.pages) { %>
+                    <a href="?page=<%= pagination.page + 1 %>&level=<%= level %>&search=<%= search %>" 
+                       class="page-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <% } else { %>
+                    <button class="page-btn" disabled>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <% } %>
+                </div>
+
+            <% } else { %>
+                <!-- Empty State -->
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    <h3 class="empty-title">No Logs Found</h3>
+                    <p class="empty-text">
+                        <% if (search || level !== 'all') { %>
+                        Try adjusting your filters to see more results
+                        <% } else { %>
+                        Activity logs will appear here once events are recorded
+                        <% } %>
+                    </p>
+                </div>
+            <% } %>
+        </div>
+
+    </div>
+
+    <script nonce="<%= nonce %>">
+        function setLevel(level) {
+            const url = new URL(window.location);
+            url.searchParams.set('level', level);
+            url.searchParams.set('page', '1');
+            window.location.href = url.toString();
+        }
+
+        function applyFilters() {
+            const searchInput = document.querySelector('.search-input');
+            const url = new URL(window.location);
+            url.searchParams.set('search', searchInput.value);
+            url.searchParams.set('page', '1');
+            window.location.href = url.toString();
+        }
+
+        // Search on Enter key
+        document.querySelector('.search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                applyFilters();
+            }
+        });
+
+        // Auto-refresh every 30 seconds
+        setTimeout(() => {
+            window.location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

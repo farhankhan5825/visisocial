@@ -1,0 +1,641 @@
+<!-- views/internetSearch/dashboard.ejs -->
+<!-- OSINT Intelligence Console — VisiSocial design system v3 -->
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <meta name="description" content="OSINT search across the open internet, with privacy by default.">
+    <meta name="keywords" content="OSINT, privacy, internet search, AI analysis, digital footprint">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+    <link href="/stylesheets/visisocial.css" rel="stylesheet">
+
+    <style nonce="<%= nonce %>">
+        #particles-js { position: fixed; inset: 0; z-index: -1; opacity: .5; }
+        .os { padding: 26px 0 40px; }
+
+        /* Header */
+        .os-head { text-align: center; max-width: 820px; margin: 0 auto 14px; }
+        .os-title { font-size: clamp(1.9rem, 4.6vw, 3rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; margin: 12px 0 14px; }
+        .os-sub { color: var(--vs-muted); font-size: 1rem; line-height: 1.65; max-width: 60ch; margin: 0 auto; }
+        .os-privacy { display: inline-flex; align-items: center; gap: 9px; margin-top: 18px; padding: 9px 16px; border-radius: var(--vs-r-pill); border: 1px solid rgba(45,212,168,.3); background: rgba(45,212,168,.06); color: var(--vs-ok); font-family: var(--vs-mono); font-size: .72rem; letter-spacing: .08em; }
+        .os-privacy i { font-size: .85rem; }
+
+        /* Capabilities row */
+        .cap-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 6px; }
+        @media (max-width: 860px) { .cap-row { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 460px) { .cap-row { grid-template-columns: 1fr; } }
+        .cap-item { padding: 20px; }
+        .cap-item i { font-size: 1.2rem; color: var(--vs-violet-soft); margin-bottom: 12px; }
+        .cap-item h4 { font-size: .98rem; margin: 0 0 6px; }
+        .cap-item p { color: var(--vs-muted); font-size: .82rem; line-height: 1.55; margin: 0; }
+
+        /* KPI bento */
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        @media (max-width: 860px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 460px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+        /* Section header inside cards */
+        .os-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+
+        /* ---- SEARCH (DOM hooks preserved: search-tabs/.search-tab/.search-form/.search-btn) ---- */
+        .search-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+        .search-tab { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: var(--vs-r-sm); cursor: pointer;
+            font-size: .88rem; font-weight: 500; color: var(--vs-muted); border: 1px solid var(--vs-line); background: rgba(255,255,255,.02);
+            transition: color .25s var(--vs-ease), border-color .25s var(--vs-ease), background .25s var(--vs-ease); }
+        .search-tab i { font-size: .9rem; }
+        .search-tab:hover { color: var(--vs-ink); border-color: var(--vs-line-2); }
+        .search-tab.active { color: #0a0a16; background: var(--vs-grad); border-color: transparent; box-shadow: 0 10px 26px -14px rgba(124,108,255,.8); }
+
+        .search-form { display: none; animation: osfade .35s var(--vs-ease); }
+        .search-form.active { display: block; }
+        @keyframes osfade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+        .form-group { margin-bottom: 18px; }
+        .form-label { display: flex; align-items: center; gap: 9px; font-family: var(--vs-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--vs-muted); margin-bottom: 10px; }
+        .form-label i { color: var(--vs-cyan); }
+        .form-input { width: 100%; padding: 15px 18px; border-radius: var(--vs-r-sm); border: 1px solid var(--vs-line-2); background: var(--vs-bg-2); color: var(--vs-ink);
+            font-family: var(--vs-body); font-size: 1rem; transition: border-color .25s var(--vs-ease), box-shadow .25s var(--vs-ease); }
+        .form-input::placeholder { color: var(--vs-faint); }
+        .form-input:focus { outline: none; border-color: var(--vs-violet); box-shadow: 0 0 0 3px rgba(124,108,255,.18); }
+
+        .search-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px 22px; cursor: pointer;
+            font-family: var(--vs-body); font-size: .96rem; font-weight: 600; color: #0a0a16; border: 0; border-radius: var(--vs-r-sm);
+            background: var(--vs-grad); box-shadow: 0 16px 38px -16px rgba(124,108,255,.8); transition: transform .25s var(--vs-ease), box-shadow .3s var(--vs-ease); }
+        .search-btn:hover { transform: translateY(-2px); box-shadow: 0 22px 50px -16px rgba(124,108,255,.95); }
+        .search-btn:disabled { opacity: .8; cursor: wait; transform: none; }
+        .search-btn .spinner { width: 18px; height: 18px; border: 2px solid rgba(10,10,22,.35); border-top-color: #0a0a16; border-radius: 50%; animation: osrot .7s linear infinite; }
+        @keyframes osrot { to { transform: rotate(360deg); } }
+
+        /* Image upload */
+        .image-upload-area { border: 1px dashed var(--vs-line-2); border-radius: var(--vs-r); padding: 34px 22px; text-align: center; transition: border-color .25s var(--vs-ease), background .25s var(--vs-ease); }
+        .image-upload-area:hover { border-color: var(--vs-violet); background: rgba(124,108,255,.04); }
+        .upload-icon { font-size: 2.2rem; color: var(--vs-violet-soft); margin-bottom: 12px; }
+        .upload-text h3 { font-size: 1.05rem; margin: 0 0 5px; }
+        .upload-text p { color: var(--vs-muted); font-size: .82rem; margin: 0 0 16px; }
+        .upload-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: var(--vs-r-sm); cursor: pointer;
+            color: var(--vs-ink); background: rgba(255,255,255,.04); border: 1px solid var(--vs-line-2); font-weight: 500; font-size: .88rem; transition: border-color .25s, background .25s; }
+        .upload-button:hover { border-color: var(--vs-violet); background: rgba(124,108,255,.1); }
+        .upload-input { display: none; }
+        .or-divider { display: flex; align-items: center; gap: 14px; margin: 20px 0; color: var(--vs-faint); font-family: var(--vs-mono); font-size: .66rem; letter-spacing: .14em; }
+        .or-divider::before, .or-divider::after { content: ""; flex: 1; height: 1px; background: var(--vs-line); }
+
+        /* Analytics lists */
+        .ana-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        @media (max-width: 820px) { .ana-grid { grid-template-columns: 1fr; } }
+        .ana-list { list-style: none; padding: 0; margin: 0; }
+        .ana-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--vs-line); }
+        .ana-item:last-child { border-bottom: 0; }
+        .ana-label { color: var(--vs-muted); font-size: .88rem; }
+        .ana-value { font-family: var(--vs-mono); font-weight: 600; font-size: .92rem; color: var(--vs-ink); }
+
+        /* Alerts (JS hooks: .alert-container/.alert/.alert-*/.show) */
+        .alert-container { position: fixed; top: 86px; right: 22px; z-index: 9998; display: flex; flex-direction: column; gap: 12px; max-width: 360px; }
+        .alert { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: var(--vs-r-sm); background: var(--vs-raised); border: 1px solid var(--vs-line-2);
+            box-shadow: var(--vs-shadow-lg); transform: translateX(140%); transition: transform .4s var(--vs-ease); }
+        .alert.show { transform: none; }
+        .alert-icon { font-size: 1.05rem; margin-top: 2px; }
+        .alert-success .alert-icon { color: var(--vs-ok); }
+        .alert-error .alert-icon { color: var(--vs-alert); }
+        .alert-warning .alert-icon { color: var(--vs-warn); }
+        .alert-info .alert-icon { color: var(--vs-cyan); }
+        .alert-content { flex: 1; }
+        .alert-title { font-weight: 600; font-size: .92rem; margin-bottom: 3px; }
+        .alert-message { color: var(--vs-muted); font-size: .84rem; line-height: 1.5; }
+        .alert-close { background: none; border: 0; color: var(--vs-faint); cursor: pointer; font-size: .9rem; padding: 2px; transition: color .2s; }
+        .alert-close:hover { color: var(--vs-ink); }
+        @media (max-width: 520px) { .alert-container { left: 16px; right: 16px; max-width: none; } }
+
+        .back-to-top.visible { display: inline-flex; }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <% if (includeNavbar) { %>
+    <%- include('../partials/navbar') %>
+    <% } %>
+
+    <div class="alert-container"></div>
+
+    <main class="os">
+        <div class="vs-shell">
+
+            <!-- Header -->
+            <header class="os-head vs-reveal">
+                <span class="vs-eyebrow">OSINT Intelligence</span>
+                <h1 class="os-title">Search the open internet, <span class="vs-grad-text">privately</span>.</h1>
+                <p class="os-sub">Check search engines, social networks and breach databases at once, then pull what they hold on a person into a single digital-footprint profile.</p>
+                <div class="os-privacy"><i class="fas fa-shield-halved"></i> 100% private · auto-deleted after 24 hours</div>
+            </header>
+
+            <!-- Search (primary action) -->
+            <section class="vs-section vs-reveal" style="padding-block: 18px 8px;">
+                <div class="vs-card vs-card--pad">
+                    <div class="os-sec-head">
+                        <h2 class="vs-section-title" style="margin:0;"><span class="vs-tick"></span>Run a search</h2>
+                        <button class="vs-btn vs-btn--ghost" id="refreshBtn"><i class="fas fa-sync-alt"></i>Refresh</button>
+                    </div>
+
+                    <div class="search-tabs">
+                        <div class="search-tab active" data-tab="email"><i class="fas fa-envelope"></i><span>Email</span></div>
+                        <div class="search-tab" data-tab="name"><i class="fas fa-user-tie"></i><span>Name</span></div>
+                        <div class="search-tab" data-tab="username"><i class="fas fa-at"></i><span>Username</span></div>
+                        <div class="search-tab" data-tab="phone"><i class="fas fa-phone"></i><span>Phone</span></div>
+                        <div class="search-tab" data-tab="image"><i class="fas fa-camera"></i><span>Image</span></div>
+                    </div>
+
+                    <!-- Email Form -->
+                    <form class="search-form active" id="emailForm" data-type="email">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-envelope"></i> Email address</label>
+                            <input type="email" class="form-input" name="searchValue" placeholder="person@example.com" value="<%= prefill && prefill.email ? prefill.email : '' %>" autocomplete="email" required>
+                        </div>
+                        <button type="submit" class="search-btn" id="emailBtn"><i class="fas fa-search"></i><span>Search 50+ sources</span></button>
+                    </form>
+
+                    <!-- Name Form -->
+                    <form class="search-form" id="nameForm" data-type="name">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-user-tie"></i> Full name</label>
+                            <input type="text" class="form-input" name="searchValue" placeholder="John Smith" value="<%= prefill && prefill.name ? prefill.name : '' %>" autocomplete="name" required>
+                        </div>
+                        <button type="submit" class="search-btn" id="nameBtn"><i class="fas fa-search"></i><span>Search every platform for this name</span></button>
+                    </form>
+
+                    <!-- Username Form -->
+                    <form class="search-form" id="usernameForm" data-type="username">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-at"></i> Username / handle</label>
+                            <input type="text" class="form-input" name="searchValue" placeholder="@username or username123" autocomplete="username" required>
+                        </div>
+                        <button type="submit" class="search-btn" id="usernameBtn"><i class="fas fa-search"></i><span>Find social media accounts</span></button>
+                    </form>
+
+                    <!-- Phone Form -->
+                    <form class="search-form" id="phoneForm" data-type="phone">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-phone"></i> Phone number</label>
+                            <input type="tel" class="form-input" name="searchValue" placeholder="+1 (555) 123-4567" autocomplete="tel" required>
+                        </div>
+                        <button type="submit" class="search-btn" id="phoneBtn"><i class="fas fa-search"></i><span>Reverse phone lookup</span></button>
+                    </form>
+
+                    <!-- Image Form -->
+                    <form class="search-form" id="imageForm" data-type="image">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-camera"></i> Reverse image search</label>
+                            <div class="image-upload-area" id="imageUploadArea">
+                                <i class="fas fa-cloud-arrow-up upload-icon"></i>
+                                <div class="upload-text">
+                                    <h3>Drag and drop an image here</h3>
+                                    <p>JPG, PNG, GIF, WEBP · max 20MB · vision analysis</p>
+                                </div>
+                                <button type="button" class="upload-button" id="browseButton"><i class="fas fa-folder-open"></i> Browse files</button>
+                                <input type="file" id="imageFileInput" class="upload-input" accept="image/*">
+                            </div>
+                            <div class="or-divider"><span>OR PASTE IMAGE URL</span></div>
+                            <input type="url" class="form-input" name="searchValue" id="imageUrlInput" placeholder="https://example.com/profile.jpg" value="<%= prefill && prefill.picture ? prefill.picture : '' %>">
+                        </div>
+                        <button type="submit" class="search-btn" id="imageBtn"><i class="fas fa-robot"></i><span>Reverse image search with vision analysis</span></button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Capabilities -->
+            <div class="cap-row vs-reveal">
+                <div class="vs-card cap-item"><i class="fas fa-brain"></i><h4>AI profiling</h4><p>Reads the signals it finds to estimate behaviour and personality.</p></div>
+                <div class="vs-card cap-item"><i class="fas fa-shield-halved"></i><h4>Privacy protected</h4><p>Every search stays private and is deleted automatically after 24 hours.</p></div>
+                <div class="vs-card cap-item"><i class="fas fa-bolt"></i><h4>Real-time</h4><p>Results stream in live as each source is queried.</p></div>
+                <div class="vs-card cap-item"><i class="fas fa-diagram-project"></i><h4>Cross-platform</h4><p>Brings findings from 50+ platforms together in one view.</p></div>
+            </div>
+
+            <!-- KPI bento -->
+            <section class="vs-section vs-reveal" style="padding-bottom: 8px;">
+                <div class="kpi-grid">
+                    <div class="vs-metric vs-edge-violet">
+                        <div class="vs-metric__top"><div class="vs-metric__ic vs-tint-violet"><i class="fas fa-magnifying-glass"></i></div><span class="vs-metric__label">Total searches</span></div>
+                        <div class="vs-metric__value vs-data"><%= (stats.totalSearches || 0).toLocaleString() %></div>
+                        <% if (stats.last24Hours > 0) { %><div class="vs-metric__sub up"><i class="fas fa-arrow-up"></i>+<%= stats.last24Hours %> today</div><% } else { %><div class="vs-metric__sub"><i class="fas fa-clock"></i>All time</div><% } %>
+                    </div>
+                    <div class="vs-metric <%= (stats.criticalFindings || 0) > 0 ? 'vs-edge-alert' : 'vs-edge-ok' %>">
+                        <div class="vs-metric__top"><div class="vs-metric__ic <%= (stats.criticalFindings || 0) > 0 ? 'vs-tint-alert' : 'vs-tint-ok' %>"><i class="fas fa-triangle-exclamation"></i></div><span class="vs-metric__label">Critical findings</span></div>
+                        <div class="vs-metric__value vs-data"><%= (stats.criticalFindings || 0).toLocaleString() %></div>
+                        <div class="vs-metric__sub <%= (stats.criticalFindings || 0) > 0 ? 'down' : 'up' %>"><i class="fas fa-shield"></i><%= (stats.criticalFindings || 0) > 0 ? 'Requires attention' : 'All clear' %></div>
+                    </div>
+                    <div class="vs-metric vs-edge-warn">
+                        <div class="vs-metric__top"><div class="vs-metric__ic vs-tint-warn"><i class="fas fa-gauge-high"></i></div><span class="vs-metric__label">Avg risk score</span></div>
+                        <div class="vs-metric__value vs-data"><%= stats.avgRiskScore || 0 %>%</div>
+                        <div class="vs-metric__sub"><i class="fas fa-chart-line"></i>Across completed</div>
+                    </div>
+                    <div class="vs-metric vs-edge-cyan">
+                        <div class="vs-metric__top"><div class="vs-metric__ic vs-tint-cyan"><i class="fas fa-bolt"></i></div><span class="vs-metric__label">Active searches</span></div>
+                        <div class="vs-metric__value vs-data"><%= stats.activeSearches || 0 %></div>
+                        <div class="vs-metric__sub up"><i class="fas fa-sync-alt fa-spin"></i>Processing now</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Platform statistics -->
+            <section class="vs-section vs-reveal" style="padding-block: 8px;">
+                <div class="vs-section-head"><h2 class="vs-section-title"><span class="vs-tick"></span>Platform statistics</h2></div>
+                <div class="kpi-grid">
+                    <div class="vs-metric vs-edge-ok"><div class="vs-metric__top"><div class="vs-metric__ic vs-tint-ok"><i class="fas fa-database"></i></div><span class="vs-metric__label">Completed</span></div><div class="vs-metric__value vs-data"><%= (stats.completedSearches || 0).toLocaleString() %></div><div class="vs-metric__sub"><i class="fas fa-check"></i>Searches</div></div>
+                    <div class="vs-metric vs-edge-alert"><div class="vs-metric__top"><div class="vs-metric__ic vs-tint-alert"><i class="fas fa-triangle-exclamation"></i></div><span class="vs-metric__label">High risk</span></div><div class="vs-metric__value vs-data"><%= (stats.highRiskSearches || 0).toLocaleString() %></div><div class="vs-metric__sub"><i class="fas fa-flag"></i>Cases</div></div>
+                    <div class="vs-metric vs-edge-violet"><div class="vs-metric__top"><div class="vs-metric__ic vs-tint-violet"><i class="fas fa-brain"></i></div><span class="vs-metric__label">AI profiles</span></div><div class="vs-metric__value vs-data"><%= (stats.aiProfilesGenerated || 0).toLocaleString() %></div><div class="vs-metric__sub"><i class="fas fa-robot"></i>Generated</div></div>
+                    <div class="vs-metric vs-edge-cyan"><div class="vs-metric__top"><div class="vs-metric__ic vs-tint-cyan"><i class="fas fa-stopwatch"></i></div><span class="vs-metric__label">Avg time</span></div><div class="vs-metric__value vs-data"><%= stats.avgDuration || 0 %>s</div><div class="vs-metric__sub"><i class="fas fa-gauge"></i>Per search</div></div>
+                </div>
+            </section>
+
+            <!-- Real-time analytics -->
+            <section class="vs-section vs-reveal" style="padding-top: 8px;">
+                <div class="vs-section-head"><h2 class="vs-section-title"><span class="vs-tick"></span>Real-time analytics</h2></div>
+                <div class="ana-grid">
+                    <div class="vs-card">
+                        <div class="vs-card-head"><h3 class="vs-card-title"><span class="vs-ic"><i class="fas fa-magnifying-glass"></i></span>Search type distribution</h3></div>
+                        <div class="vs-card-body">
+                            <ul class="ana-list">
+                                <% if (searchTypeDistribution && searchTypeDistribution.length > 0) { %>
+                                    <% searchTypeDistribution.forEach(function(type) { %>
+                                    <li class="ana-item"><span class="ana-label"><%= type._id.toUpperCase() %></span><span class="ana-value"><%= type.count || 0 %></span></li>
+                                    <% }); %>
+                                <% } else { %>
+                                    <li class="ana-item"><span class="ana-label">No data available</span></li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="vs-card">
+                        <div class="vs-card-head"><h3 class="vs-card-title"><span class="vs-ic" style="background: rgba(255,93,108,.12); color: var(--vs-alert);"><i class="fas fa-shield-halved"></i></span>Risk distribution</h3></div>
+                        <div class="vs-card-body">
+                            <ul class="ana-list">
+                                <li class="ana-item"><span class="ana-label">Critical risk</span><span class="ana-value" style="color: var(--vs-alert);"><%= stats.criticalFindings || 0 %></span></li>
+                                <li class="ana-item"><span class="ana-label">High risk</span><span class="ana-value" style="color: var(--vs-warn);"><%= stats.highRiskSearches || 0 %></span></li>
+                                <li class="ana-item"><span class="ana-label">Medium risk</span><span class="ana-value"><%= stats.mediumRiskSearches || 0 %></span></li>
+                                <li class="ana-item"><span class="ana-label">Low risk</span><span class="ana-value" style="color: var(--vs-ok);"><%= stats.lowRiskSearches || 0 %></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="vs-card">
+                        <div class="vs-card-head"><h3 class="vs-card-title"><span class="vs-ic"><i class="fas fa-clock"></i></span>Performance</h3></div>
+                        <div class="vs-card-body">
+                            <ul class="ana-list">
+                                <li class="ana-item"><span class="ana-label">Active searches</span><span class="ana-value"><%= stats.activeSearches || 0 %></span></li>
+                                <li class="ana-item"><span class="ana-label">Queue position</span><span class="ana-value"><%= stats.queue?.queued || 0 %></span></li>
+                                <li class="ana-item"><span class="ana-label">Avg response</span><span class="ana-value"><%= stats.avgDuration || 0 %>s</span></li>
+                                <li class="ana-item"><span class="ana-label">Success rate</span><span class="ana-value" style="color: var(--vs-ok);"><% if (stats.totalSearches > 0 && stats.completedSearches > 0) { %><%= Math.round((stats.completedSearches / stats.totalSearches) * 100) %>%<% } else { %>100%<% } %></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script nonce="<%= nonce %>">
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 70, density: { enable: true, value_area: 900 } },
+                color: { value: '#7c6cff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.4, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#7c6cff',
+                    opacity: 0.25,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1.6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Alert System
+        class AlertSystem {
+            constructor() {
+                this.container = document.querySelector('.alert-container');
+                this.alertCount = 0;
+            }
+
+            show(type, title, message, duration = 5000) {
+                const alert = document.createElement('div');
+                alert.className = `alert alert-${type}`;
+                alert.dataset.id = ++this.alertCount;
+
+                const icons = {
+                    success: 'check-circle',
+                    error: 'exclamation-circle',
+                    warning: 'exclamation-triangle',
+                    info: 'info-circle'
+                };
+
+                alert.innerHTML = `
+                    <div class="alert-icon">
+                        <i class="fas fa-${icons[type]}"></i>
+                    </div>
+                    <div class="alert-content">
+                        <div class="alert-title">${this.escapeHtml(title)}</div>
+                        <div class="alert-message">${this.escapeHtml(message)}</div>
+                    </div>
+                    <button class="alert-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                this.container.appendChild(alert);
+
+                // Attach close handler
+                alert.querySelector('.alert-close').addEventListener('click', () => {
+                    alert.remove();
+                });
+
+                setTimeout(() => alert.classList.add('show'), 10);
+
+                if (duration > 0) {
+                    setTimeout(() => {
+                        if (alert.parentNode) {
+                            alert.classList.remove('show');
+                            setTimeout(() => alert.remove(), 300);
+                        }
+                    }, duration);
+                }
+
+                return alert.dataset.id;
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            success(title, message, duration) { return this.show('success', title, message, duration); }
+            error(title, message, duration) { return this.show('error', title, message, duration); }
+            warning(title, message, duration) { return this.show('warning', title, message, duration); }
+            info(title, message, duration) { return this.show('info', title, message, duration); }
+        }
+
+        const alerts = new AlertSystem();
+
+        // Utility Functions
+        const utils = {
+            validateEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) && email.length <= 254;
+            },
+            validatePhone(phone) {
+                const digits = phone.replace(/\D/g, '');
+                return digits.length >= 10 && digits.length <= 15;
+            },
+            validateImageUrl(url) {
+                if (!url) return false;
+                return url.startsWith('data:image/') ||
+                       url.includes('/uploads/images/') ||
+                       /\.(jpg|jpeg|png|gif|webp|bmp|tiff|svg)(\?.*)?$/i.test(url);
+            }
+        };
+
+        // Search Manager
+        class SearchManager {
+            constructor() {
+                this.forms = {};
+                this.currentType = 'email';
+                this.socket = null;
+                this.init();
+            }
+
+            init() {
+                this.initTabs();
+                this.initForms();
+                this.initSocket();
+                this.initButtons();
+            }
+
+            initTabs() {
+                document.querySelectorAll('.search-tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const targetType = tab.dataset.tab;
+
+                        document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+
+                        document.querySelectorAll('.search-form').forEach(f => f.classList.remove('active'));
+                        document.getElementById(`${targetType}Form`).classList.add('active');
+
+                        this.currentType = targetType;
+                    });
+                });
+            }
+
+            initForms() {
+                ['email', 'name', 'username', 'phone', 'image'].forEach(type => {
+                    const form = document.getElementById(`${type}Form`);
+                    if (form) {
+                        this.forms[type] = form;
+                        form.addEventListener('submit', (e) => this.handleSubmit(e, type));
+                    }
+                });
+            }
+
+            async handleSubmit(e, type) {
+                e.preventDefault();
+
+                const form = this.forms[type];
+                const submitBtn = form.querySelector('.search-btn');
+                const originalText = submitBtn.querySelector('span').textContent;
+
+                let searchValue;
+
+                if (type === 'image') {
+                    // Handle image upload separately
+                    const fileInput = document.getElementById('imageFileInput');
+                    const urlInput = document.getElementById('imageUrlInput');
+
+                    if (fileInput.files.length > 0) {
+                        // Handle file upload first
+                        const formData = new FormData();
+                        formData.append('image', fileInput.files[0]);
+
+                        submitBtn.disabled = true;
+                        submitBtn.classList.add('searching');
+                        submitBtn.innerHTML = '<div class="spinner"></div><span>Uploading image...</span>';
+
+                        try {
+                            const uploadResponse = await fetch('/internet-search/upload-image', {
+                                method: 'POST',
+                                body: formData
+                            });
+
+                            const uploadData = await uploadResponse.json();
+
+                            if (uploadData.success) {
+                                searchValue = uploadData.imageUrl;
+                                urlInput.value = uploadData.imageUrl;
+                            } else {
+                                alerts.error('Upload Failed', uploadData.message || 'Please try again', 5000);
+                                this.resetButton(submitBtn, originalText);
+                                return;
+                            }
+                        } catch (error) {
+                            alerts.error('Network Error', 'Failed to upload image', 5000);
+                            this.resetButton(submitBtn, originalText);
+                            return;
+                        }
+                    } else {
+                        searchValue = urlInput.value.trim();
+                    }
+
+                    if (!searchValue || !utils.validateImageUrl(searchValue)) {
+                        alerts.warning('Invalid Image', 'Please upload an image or provide a valid URL', 5000);
+                        return;
+                    }
+                } else {
+                    const input = form.querySelector('[name="searchValue"]');
+                    searchValue = input.value.trim();
+
+                    if (!searchValue) {
+                        alerts.warning('Empty Field', 'Please enter a value to search', 5000);
+                        return;
+                    }
+
+                    if (type === 'email' && !utils.validateEmail(searchValue)) {
+                        alerts.warning('Invalid Email', 'Please enter a valid email address', 5000);
+                        return;
+                    }
+
+                    if (type === 'phone' && !utils.validatePhone(searchValue)) {
+                        alerts.warning('Invalid Phone', 'Please enter a valid phone number', 5000);
+                        return;
+                    }
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.classList.add('searching');
+                submitBtn.innerHTML = '<div class="spinner"></div><span>Starting comprehensive OSINT search...</span>';
+
+                try {
+                    const response = await fetch('/internet-search/start', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            searchType: type,
+                            searchValue: searchValue,
+                            searchOptions: {
+                                deepSearch: true,
+                                includeBreaches: true,
+                                includeSocial: true,
+                                aiAnalysis: true
+                            }
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        alerts.success('Search Started',
+                            `Private search initiated across 50+ sources`,
+                            3000);
+
+                        submitBtn.innerHTML = '<div class="spinner"></div><span>Searching... Redirecting</span>';
+
+                        setTimeout(() => {
+                            if (data.redirect) window.location.href = data.redirect;
+                        }, 1500);
+
+                    } else {
+                        alerts.error('Search Failed', data.message || 'Please try again', 5000);
+                        this.resetButton(submitBtn, originalText);
+                    }
+                } catch (error) {
+                    console.error('Search error:', error);
+                    alerts.error('Network Error', 'Connection failed. Please retry', 5000);
+                    this.resetButton(submitBtn, originalText);
+                }
+            }
+
+            resetButton(button, originalText) {
+                button.disabled = false;
+                button.classList.remove('searching');
+                button.innerHTML = `<i class="fas fa-search"></i><span>${originalText}</span>`;
+            }
+
+            initSocket() {
+                try {
+                    this.socket = io();
+
+                    this.socket.on('search_complete', (data) => {
+                        alerts.success('Search Complete',
+                            `Found ${data.summary?.totalResults || 0} results`,
+                            5000);
+                    });
+
+                    this.socket.on('search_error', (data) => {
+                        alerts.error('Search Error', data.error || 'Search failed unexpectedly', 5000);
+                    });
+                } catch (e) {
+                    console.warn('Socket.io not available:', e);
+                }
+            }
+
+            initButtons() {
+                // Refresh button
+                const refreshBtn = document.getElementById('refreshBtn');
+                if (refreshBtn) {
+                    refreshBtn.addEventListener('click', () => {
+                        alerts.info('Refreshing', 'Updating dashboard data...', 2000);
+                        setTimeout(() => window.location.reload(), 500);
+                    });
+                }
+
+                // Image upload button
+                const browseButton = document.getElementById('browseButton');
+                const fileInput = document.getElementById('imageFileInput');
+                if (browseButton && fileInput) {
+                    browseButton.addEventListener('click', () => {
+                        fileInput.click();
+                    });
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            window.searchManager = new SearchManager();
+
+            setTimeout(() => {
+                alerts.info('Privacy First Platform',
+                    'All searches are 100% private and automatically deleted after 24 hours.',
+                    8000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

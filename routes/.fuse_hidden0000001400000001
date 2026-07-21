@@ -1,0 +1,4053 @@
+/**
+ * homeRoute.js - Main Application Routes and Data Processing
+ * Enhanced v3.0.0 with Surveillance Intelligence Integration
+ * route: routes/homeRoute.js
+ * @version 3.0.0
+ * @author Farhan Khan
+ * @license MIT
+ */
+
+// ==================== Core Dependencies ====================
+const dotenv = require('dotenv');
+dotenv.config();
+const mongoose = require('mongoose');
+const express = require('express');
+const axios = require('axios');
+const natural = require('natural');
+const Sentiment = require('sentiment');
+const path = require('path');
+const fs = require('fs').promises;
+const fsSync = require('fs');
+const csv = require('csv-parser');
+const OpenAI = require('openai');
+const Tesseract = require('tesseract.js');
+const crypto = require('crypto');
+const { Parser } = require('json2csv');
+const archiver = require('archiver');
+const multer = require('multer');
+const sharp = require('sharp');
+const { JSDOM } = require('jsdom');
+const createDOMPurify = require('dompurify');
+
+// ==================== Custom Modules ====================
+const wrapAsync = require('../utils/wrapAsync');
+const logger = require('../utils/logger');
+const UserToken = require('../models/UserToken');
+const User = require('../models/User');
+const Admin = require('../models/Admin');
+const { compareUserDataWithModel } = require('../controllers/userController');
+const taskStatus = require('../utils/taskStatus');
+const rateLimiter = require('../utils/rateLimiter');
+const cache = require('../utils/cache');
+const metrics = require('../utils/metrics');
+const SurveillanceEngine = require('../services/surveillanceEngine');
+const { extractTextFromImage, batchExtractText } = require('../services/ocrService');
+const InternetSearchResult = require('../models/InternetSearchResult');
+
+// ==================== Constants ====================
+const { ObjectId } = mongoose.Types;
+const CSV_FILE_PATH = path.resolve(process.cwd(), './extras/mypersonality_final.csv');
+const MAX_CONCURRENT_OCR_TASKS = 3;
+const MAX_TOTAL_IMAGES = 25;
+const DEFAULT_MIN_WORD_OCCURRENCES = 2;
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+const CACHE_EXPIRY = 60 * 60 * 1000; // 1 hour
+const EXPORT_DIR = path.join(process.cwd(), 'temp', 'exports');
+const UPLOAD_DIR = path.join(process.cwd(), 'uploads');
+const FETCH_TIMEOUT = 15000;
+const SIMILARITY_THRESHOLD = 0.15;
+const API_VERSION = process.env.API_VERSION || 'v14.0';
+const MAX_RETRY_ATTEMPTS = 3;
+const BACKOFF_DELAY = 1000;
+
+// ==================== Router Initialization ====================
+const router = express.Router();
+
+// ==================== DOMPurify Setup ====================
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
+// ==================== Directory Initialization ====================
+(async () => {
+  try {
+    await Promise.all([
+      fs.mkdir(EXPORT_DIR, { recursive: true }),
+      fs.mkdir(UPLOAD_DIR, { recursive: true })
+    ]);
+  } catch (error) {
+    logger.error(`Failed to create directories: ${error.message}`);
+  }
+})();
+
+// ==================== File Upload Configuration ====================
+const storage = multer.diskStorage({
+  destination: async (req, file, cb) => {
+    const userDir = path.join(UPLOAD_DIR, req.user?.id || 'anonymous');
+    try {
+      await fs.mkdir(userDir, { recursive: true });
+      cb(null, userDir);
+    } catch (error) {
+      cb(error);
+    }
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}`;
+    const ext = path.extname(file.originalname);
+    const sanitizedName = file.fieldname.replace(/[^a-zA-Z0-9]/g, '_');
+    cb(null, `${sanitizedName}-${uniqueSuffix}${ext}`);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  if (allowedMimes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files (JPEG, PNG, GIF, WebP) are allowed'), false);
+  }
+};
+
+const upload = multer({ 
+  storage,
+  fileFilter,
+  limits: { 
+    fileSize: 10 * 1024 * 1024, // 10MB
+    files: 5
+  }
+});
+
+// ==================== OpenAI Initialization ====================
+let openai = null;
+
+try {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey || apiKey === 'CENSORED') {
+    logger.error('OpenAI API key missing or invalid');
+  } else {
+    openai = new OpenAI({ apiKey });
+    logger.info('✅ OpenAI client initialized successfully');
+  }
+} catch (error) {
+  logger.error(`OpenAI initialization failed: ${error.message}`);
+}
+
+// ==================== Utility Functions ====================
+
+/**
+ * Advanced retry mechanism with exponential backoff
+ */
+async function retryableRequest(requestFn, maxRetries = MAX_RETRY_ATTEMPTS, context = {}) {
+  let lastError;
+  
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      return await requestFn();
+    } catch (error) {
+      lastError = error;
+      
+      // Don't retry client errors (4xx)
+      if (error.response?.status >= 400 && error.response?.status < 500) {
+        throw error;
+      }
+      
+      // Exponential backoff with jitter
+      const delay = BACKOFF_DELAY * Math.pow(2, attempt) + Math.random() * 1000;
+      logger.info(`Request failed, retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries})`, context);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  
+  throw lastError;
+}
+
+/**
+ * Comprehensive stopwords list
+ */
+const comprehensiveStopwords = [
+  "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", 
+  "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", 
+  "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", 
+  "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", 
+  "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", 
+  "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", 
+  "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", 
+  "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", 
+  "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", 
+  "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", 
+  "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", 
+  "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", 
+  "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", 
+  "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "when's", 
+  "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", 
+  "won't", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", 
+  "yours", "yourself", "yourselves", "s", "re", "t", "ll", "d", "ve", "m", "y", "ok", 
+  "yes", "no", "also", "one", "two", "three", "now", "then", "later", "before", "still"
+];
+
+/**
+ * Language detection with fallback
+ */
+function detectLanguage(text) {
+  try {
+    if (natural.LanguageDetect) {
+      const detector = new natural.LanguageDetect();
+      const detections = detector.detect(text, 2);
+      if (detections.length && detections[0][1] > 0.3) {
+        return detections[0][0];
+      }
+    }
+    
+    const englishRatio = text.split(/\s+/).filter(word => /^[a-zA-Z]+$/.test(word)).length / text.split(/\s+/).length;
+    return englishRatio > 0.5 ? 'english' : 'unknown';
+  } catch (error) {
+    logger.error(`Language detection error: ${error.message}`);
+    return 'unknown';
+  }
+}
+
+/**
+ * Enhanced text preprocessing with multilingual support
+ */
+function preprocessText(text, language = 'english') {
+  if (!text || typeof text !== 'string') return [];
+  
+  if (language === 'auto') {
+    language = detectLanguage(text);
+  }
+  
+  const normalizedText = text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\s]/g, ' ')
+    .toLowerCase();
+  
+  const tokenizer = new natural.WordTokenizer();
+  let tokens = tokenizer.tokenize(normalizedText);
+  
+  if (language === 'english' && natural.PorterStemmer) {
+    tokens = tokens.map(token => natural.PorterStemmer.stem(token));
+  } else if (language === 'spanish' && natural.PorterStemmerEs) {
+    tokens = tokens.map(token => natural.PorterStemmerEs.stem(token));
+  }
+  
+  return tokens.filter(token => 
+    !comprehensiveStopwords.includes(token) && 
+    token.length > 2 &&
+    !/^\d+$/.test(token)
+  );
+}
+
+/**
+ * Calculate text similarity using cosine similarity
+ */
+function calculateTextSimilarity(text1, text2) {
+  try {
+    const tokens1 = preprocessText(text1);
+    const tokens2 = preprocessText(text2);
+    
+    const freqMap1 = tokens1.reduce((map, token) => {
+      map[token] = (map[token] || 0) + 1;
+      return map;
+    }, {});
+    
+    const freqMap2 = tokens2.reduce((map, token) => {
+      map[token] = (map[token] || 0) + 1;
+      return map;
+    }, {});
+    
+    const uniqueWords = [...new Set([...tokens1, ...tokens2])];
+    const vector1 = uniqueWords.map(word => freqMap1[word] || 0);
+    const vector2 = uniqueWords.map(word => freqMap2[word] || 0);
+    
+    const dotProduct = vector1.reduce((sum, val, i) => sum + val * vector2[i], 0);
+    const magnitude1 = Math.sqrt(vector1.reduce((sum, val) => sum + val * val, 0));
+    const magnitude2 = Math.sqrt(vector2.reduce((sum, val) => sum + val * val, 0));
+    
+    if (magnitude1 === 0 || magnitude2 === 0) return 0;
+    return dotProduct / (magnitude1 * magnitude2);
+  } catch (error) {
+    logger.error(`Text similarity calculation error: ${error.message}`);
+    return 0;
+  }
+}
+
+/**
+ * Analyze text frequency with improved filtering
+ */
+function analyzeTextFrequency(textData, minOccurrences = DEFAULT_MIN_WORD_OCCURRENCES) {
+  if (!Array.isArray(textData)) {
+    return { mostCommonWords: [], wordFrequency: {}, totalWords: 0, uniqueWords: 0, vocabularyDiversity: 0 };
+  }
+  
+  const wordFrequency = {};
+
+  textData.forEach(word => {
+    if (word && typeof word === 'string') {
+      const cleanWord = word.trim().toLowerCase();
+      if (cleanWord.length > 2 && !comprehensiveStopwords.includes(cleanWord)) {
+        wordFrequency[cleanWord] = (wordFrequency[cleanWord] || 0) + 1;
+      }
+    }
+  });
+
+  const mostCommonWords = Object.entries(wordFrequency)
+    .filter(([_, count]) => count >= minOccurrences)
+    .sort((a, b) => b[1] - a[1])
+    .map(([word, count]) => ({ word, count }))
+    .slice(0, 15);
+
+  const totalWords = Object.values(wordFrequency).reduce((sum, count) => sum + count, 0);
+  const uniqueWords = Object.keys(wordFrequency).length;
+
+  return {
+    mostCommonWords,
+    wordFrequency,
+    totalWords,
+    uniqueWords,
+    vocabularyDiversity: uniqueWords ? (uniqueWords / totalWords) : 0
+  };
+}
+
+/**
+ * Advanced text analysis with comprehensive metrics
+ */
+function analyzeText(text) {
+  try {
+    if (!text || typeof text !== 'string') {
+      return {
+        sentiment: { score: 50, comparative: 0 },
+        wordFrequency: {},
+        mostCommonWords: [],
+        readability: { fleschKincaid: 50, syllablesPerWord: 0, wordsPerSentence: 0 },
+        statistics: { totalWords: 0, uniqueWords: 0, vocabularyDiversity: 0, sentences: 0, characters: 0 }
+      };
+    }
+    
+    const sentiment = new Sentiment();
+    const sentimentResult = sentiment.analyze(text);
+    
+    const tokens = preprocessText(text);
+    const { mostCommonWords, wordFrequency, totalWords, uniqueWords, vocabularyDiversity } = analyzeTextFrequency(tokens);
+    
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+    const characters = text.replace(/\s/g, '').length;
+    
+    const calculateSyllables = word => {
+      word = word.toLowerCase();
+      if (word.length <= 3) return 1;
+      return word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '')
+                .replace(/^y/, '')
+                .match(/[aeiouy]{1,2}/g)?.length || 1;
+    };
+    
+    const totalSyllables = tokens.reduce((sum, word) => sum + calculateSyllables(word), 0);
+    const syllablesPerWord = tokens.length ? totalSyllables / tokens.length : 0;
+    
+    const fleschKincaid = tokens.length && sentences 
+      ? 206.835 - 1.015 * (tokens.length / sentences) - 84.6 * (totalSyllables / tokens.length)
+      : 50;
+    
+    return {
+      sentiment: {
+        score: Math.round((sentimentResult.comparative + 5) * 10),
+        comparative: sentimentResult.comparative,
+        positive: sentimentResult.positive,
+        negative: sentimentResult.negative
+      },
+      wordFrequency,
+      mostCommonWords,
+      readability: {
+        fleschKincaid: Math.max(0, Math.min(100, fleschKincaid)),
+        syllablesPerWord,
+        wordsPerSentence: sentences ? tokens.length / sentences : 0
+      },
+      statistics: {
+        totalWords,
+        uniqueWords,
+        vocabularyDiversity,
+        sentences,
+        characters
+      }
+    };
+  } catch (error) {
+    logger.error(`Text analysis error: ${error.message}`);
+    return {
+      sentiment: { score: 50, comparative: 0 },
+      wordFrequency: {},
+      mostCommonWords: [],
+      readability: { fleschKincaid: 50, syllablesPerWord: 0, wordsPerSentence: 0 },
+      statistics: { totalWords: 0, uniqueWords: 0, vocabularyDiversity: 0, sentences: 0, characters: 0 }
+    };
+  }
+}
+
+// ==================== Image Processing ====================
+
+/**
+ * Optimize image buffer or file using Sharp
+ */
+async function optimizeImage(input) {
+  try {
+    const inputBuffer = Buffer.isBuffer(input) ? input : await fs.readFile(input);
+    const metadata = await sharp(inputBuffer).metadata();
+    
+    const width = Math.min(metadata.width || 1920, 1920);
+    const height = Math.min(metadata.height || 1080, 1080);
+    
+    const optimizedBuffer = await sharp(inputBuffer)
+      .resize({ width, height, fit: 'inside', withoutEnlargement: true })
+      .rotate()
+      .toFormat('jpeg', { quality: 80, progressive: true, optimizeCoding: true, mozjpeg: true })
+      .toBuffer();
+    
+    logger.debug(`Image optimized: ${inputBuffer.length} → ${optimizedBuffer.length} bytes`);
+    return optimizedBuffer;
+  } catch (error) {
+    logger.error(`Image optimization error: ${error.message}`);
+    return Buffer.isBuffer(input) ? input : await fs.readFile(input);
+  }
+}
+
+/**
+ * Process album data with enhanced OCR
+ */
+async function handleAlbumsData(userId, albums, taskId = null, forceReprocess = false) {
+  const startTime = Date.now();
+  metrics.increment('image_processing.started');
+  
+  if (!userId || !albums || !Array.isArray(albums)) {
+    logger.error('Invalid parameters for handleAlbumsData');
+    metrics.increment('image_processing.error.invalid_params');
+    return;
+  }
+
+  let totalImages = 0;
+  albums.forEach(album => totalImages += (album.photos?.data?.length || 0));
+
+  if (totalImages === 0) {
+    logger.info("No images found to process");
+    metrics.increment('image_processing.no_images');
+    return;
+  }
+
+  logger.info(`Starting OCR processing for ${Math.min(totalImages, MAX_TOTAL_IMAGES)} images`);
+
+  try {
+    const user = await User.findOne({ id: userId });
+    if (!user) {
+      logger.error(`User ${userId} not found`);
+      metrics.increment('image_processing.error.user_not_found');
+      return;
+    }
+
+    if (!user.feedData) user.feedData = [];
+    if (!user.processedAlbums) user.processedAlbums = [];
+
+    const processedAlbumIds = new Set(user.processedAlbums.map(album => album.id));
+    const userLanguages = detectUserLanguages(user);
+    logger.info(`Using language codes for OCR: ${userLanguages}`);
+
+    let totalProcessedImages = 0;
+    let totalSuccessfulImages = 0;
+
+    for (const album of albums) {
+      if (!forceReprocess && processedAlbumIds.has(album.id)) {
+        logger.info(`Skipping already processed album: ${album.name || 'Unnamed'}`);
+        continue;
+      }
+      
+      const albumPhotos = album.photos?.data || [];
+      const imageData = [];
+      
+      for (let i = 0; i < albumPhotos.length && totalProcessedImages < MAX_TOTAL_IMAGES; i++) {
+        const photo = albumPhotos[i];
+        const imageUrl = photo.images?.[0]?.source;
+        
+        if (imageUrl) {
+          imageData.push({
+            url: imageUrl,
+            photoId: photo.id,
+            albumId: album.id,
+            albumName: album.name || 'Unnamed'
+          });
+          totalProcessedImages++;
+        }
+        
+        if (totalProcessedImages >= MAX_TOTAL_IMAGES) {
+          logger.info(`Reached limit of ${MAX_TOTAL_IMAGES} images`);
+          break;
+        }
+      }
+
+      if (imageData.length === 0) continue;
+
+      logger.info(`Processing ${imageData.length} images from album: ${album.name || 'Unnamed'}`);
+
+      const imageUrls = imageData.map(img => img.url);
+      const ocrResults = await batchExtractText(imageUrls, userLanguages, MAX_CONCURRENT_OCR_TASKS);
+
+      const processedResults = ocrResults
+        .map((result, index) => {
+          if (!result || !result.text || result.text.length < 3 || result.confidence < 60) {
+            return null;
+          }
+
+          totalSuccessfulImages++;
+
+          return {
+            text: result.text,
+            confidence: result.confidence,
+            wordCount: result.wordCount,
+            language: result.language,
+            method: result.method,
+            source: 'image',
+            imageUrl: imageData[index].url,
+            photoId: imageData[index].photoId,
+            albumId: imageData[index].albumId,
+            albumName: imageData[index].albumName,
+            processedAt: new Date()
+          };
+        })
+        .filter(result => result !== null);
+
+      if (processedResults.length > 0) {
+        user.feedData.push(...processedResults);
+        
+        user.processedAlbums.push({
+          id: album.id,
+          name: album.name,
+          processedAt: new Date(),
+          processedPhotos: processedResults.length,
+          totalPhotos: imageData.length,
+          averageConfidence: processedResults.reduce((sum, r) => sum + r.confidence, 0) / processedResults.length,
+          methods: {
+            google_vision: processedResults.filter(r => r.method === 'google_vision').length,
+            tesseract: processedResults.filter(r => r.method === 'tesseract').length
+          }
+        });
+        
+        await user.save();
+        logger.info(`Saved ${processedResults.length} text entries from album: ${album.name || 'Unnamed'}`);
+      }
+
+      if (totalProcessedImages >= MAX_TOTAL_IMAGES) break;
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    const processingTime = Date.now() - startTime;
+    const successRate = totalProcessedImages > 0 ? (totalSuccessfulImages / totalProcessedImages) * 100 : 0;
+    
+    metrics.timing('image_processing.duration', processingTime);
+    metrics.increment('image_processing.completed');
+    metrics.gauge('image_processing.success_rate', successRate);
+    
+    logger.info(`OCR processing complete: ${totalSuccessfulImages}/${totalProcessedImages} successful (${successRate.toFixed(1)}%)`);
+  } catch (error) {
+    metrics.increment('image_processing.error');
+    logger.error(`Error processing albums: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Detect user languages for OCR
+ */
+function detectUserLanguages(user) {
+  const languages = new Set(['eng']);
+  
+  if (user.languages && Array.isArray(user.languages)) {
+    const langMap = {
+      'English': 'eng', 'Spanish': 'spa', 'French': 'fra', 'German': 'deu',
+      'Italian': 'ita', 'Portuguese': 'por', 'Chinese': 'chi_sim', 'Japanese': 'jpn',
+      'Korean': 'kor', 'Arabic': 'ara', 'Russian': 'rus', 'Hindi': 'hin'
+    };
+    
+    user.languages.forEach(lang => {
+      const code = langMap[lang.name || lang];
+      if (code) languages.add(code);
+    });
+  }
+  
+  if (user.location?.name) {
+    const location = user.location.name.toLowerCase();
+    if (location.includes('spain') || location.includes('mexico')) languages.add('spa');
+    else if (location.includes('france')) languages.add('fra');
+    else if (location.includes('germany')) languages.add('deu');
+    else if (location.includes('italy')) languages.add('ita');
+    else if (location.includes('brazil')) languages.add('por');
+    else if (location.includes('china')) languages.add('chi_sim');
+    else if (location.includes('japan')) languages.add('jpn');
+    else if (location.includes('korea')) languages.add('kor');
+  }
+  
+  return Array.from(languages).slice(0, 3).join('+');
+}
+
+// ==================== CSV Data Processing ====================
+
+/**
+ * Load and preprocess CSV data with caching
+ */
+async function loadAndPreprocessCSVData() {
+  const cacheKey = 'csv_data';
+  
+  try {
+    const cachedData = await cache.get(cacheKey);
+    if (cachedData) {
+      logger.debug('Using cached CSV data');
+      return cachedData;
+    }
+
+    logger.info(`Loading CSV data from: ${CSV_FILE_PATH}`);
+    
+    if (!fsSync.existsSync(CSV_FILE_PATH)) {
+      logger.error(`CSV file not found at: ${CSV_FILE_PATH}`);
+      throw new Error('CSV file not found');
+    }
+    
+    const csvData = [];
+    
+    await new Promise((resolve, reject) => {
+      fsSync.createReadStream(CSV_FILE_PATH)
+        .pipe(csv())
+        .on("data", (row) => csvData.push(row))
+        .on("end", () => {
+          logger.info(`CSV loaded: ${csvData.length} rows`);
+          resolve();
+        })
+        .on("error", reject);
+    });
+    
+    await cache.set(cacheKey, csvData, CACHE_EXPIRY);
+    return csvData;
+  } catch (error) {
+    logger.error(`CSV processing error: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Calculate personality scores from CSV data
+ */
+async function calculatePersonalityScoresFromCSV(feedText) {
+  try {
+    const personalityScores = {
+      extroversion: 50,
+      neuroticism: 50,
+      agreeableness: 50,
+      conscientiousness: 50,
+      openness: 50
+    };
+    
+    if (!feedText || typeof feedText !== 'string' || feedText.length < 10) {
+      logger.warn('Insufficient feed text for personality analysis');
+      return personalityScores;
+    }
+    
+    const csvData = await loadAndPreprocessCSVData();
+    if (!csvData || csvData.length === 0) {
+      logger.error('CSV data unavailable');
+      return personalityScores;
+    }
+    
+    // Preprocess the user's feed ONCE and build a frequency vector.
+    // (Previously the whole feed was re-tokenized for every CSV row, which
+    // caused a ~300MB memory/CPU spike on each analysis.)
+    const feedTokens = preprocessText(feedText);
+    if (feedTokens.length === 0) {
+      logger.warn('No usable tokens in feed text for personality analysis');
+      return personalityScores;
+    }
+
+    const feedFreq = new Map();
+    for (const t of feedTokens) feedFreq.set(t, (feedFreq.get(t) || 0) + 1);
+    let feedMagSq = 0;
+    for (const c of feedFreq.values()) feedMagSq += c * c;
+    const feedMag = Math.sqrt(feedMagSq);
+
+    // Cosine similarity of a single status row against the precomputed feed
+    // vector, iterating only over the (small) row's tokens.
+    const similarityToFeed = (statusText) => {
+      const tokens = preprocessText(statusText);
+      if (tokens.length === 0) return 0;
+      const rowFreq = new Map();
+      for (const t of tokens) rowFreq.set(t, (rowFreq.get(t) || 0) + 1);
+      let dot = 0;
+      let rowMagSq = 0;
+      for (const [t, c] of rowFreq) {
+        rowMagSq += c * c;
+        const fc = feedFreq.get(t);
+        if (fc) dot += fc * c;
+      }
+      if (dot === 0) return 0;
+      return dot / (feedMag * Math.sqrt(rowMagSq));
+    };
+
+    // Score every labelled row, keeping the matches above threshold.
+    const matches = [];
+    for (const row of csvData) {
+      if (!row.STATUS || !row.sEXT || !row.sNEU || !row.sAGR || !row.sCON || !row.sOPN) continue;
+      const similarity = similarityToFeed(row.STATUS);
+      if (similarity > SIMILARITY_THRESHOLD) {
+        matches.push({
+          similarity,
+          scores: {
+            extroversion: parseFloat(row.sEXT) || 0,
+            neuroticism: parseFloat(row.sNEU) || 0,
+            agreeableness: parseFloat(row.sAGR) || 0,
+            conscientiousness: parseFloat(row.sCON) || 0,
+            openness: parseFloat(row.sOPN) || 0
+          }
+        });
+      }
+    }
+
+    // Use only the strongest matches. Averaging hundreds/thousands of weak
+    // matches regresses every trait to the dataset mean (the old behaviour),
+    // which is why results looked generic.
+    const TOP_MATCHES = 50;
+    matches.sort((a, b) => b.similarity - a.similarity);
+    const topMatches = matches.slice(0, TOP_MATCHES);
+
+    if (topMatches.length > 0) {
+      let weightSum = 0;
+      const totals = { extroversion: 0, neuroticism: 0, agreeableness: 0, conscientiousness: 0, openness: 0 };
+      for (const m of topMatches) {
+        const weight = m.similarity * m.similarity;
+        weightSum += weight;
+        for (const trait of Object.keys(totals)) {
+          totals[trait] += m.scores[trait] * weight;
+        }
+      }
+      // CSV scores are on the Big Five 1-5 scale -> map to 0-100.
+      const toScale = (v) => Math.round(Math.max(0, Math.min(100, (((v / weightSum) - 1) / 4) * 100)));
+      personalityScores.extroversion = toScale(totals.extroversion);
+      personalityScores.neuroticism = toScale(totals.neuroticism);
+      personalityScores.agreeableness = toScale(totals.agreeableness);
+      personalityScores.conscientiousness = toScale(totals.conscientiousness);
+      personalityScores.openness = toScale(totals.openness);
+
+      // Confidence reflects how many strong matches we found and how strong
+      // they were, instead of always being 100.
+      const avgSimilarity = topMatches.reduce((s, m) => s + m.similarity, 0) / topMatches.length;
+      const coverage = Math.min(1, topMatches.length / TOP_MATCHES);
+      personalityScores.confidence = Math.round(Math.min(100, coverage * avgSimilarity * 200));
+    } else {
+      personalityScores.confidence = 0;
+    }
+
+    logger.info(`Personality analysis complete: ${matches.length} candidate matches, using top ${topMatches.length}, confidence ${personalityScores.confidence}`);
+
+    return personalityScores;
+  } catch (error) {
+    logger.error(`Personality score calculation error: ${error.message}`);
+    return {
+      extroversion: 50,
+      neuroticism: 50,
+      agreeableness: 50,
+      conscientiousness: 50,
+      openness: 50,
+      confidence: 0
+    };
+  }
+}
+
+// ==================== AI Content Generation ====================
+
+/**
+ * Generate personality description using OpenAI
+ */
+async function generatePersonalityDescription(personalityScores) {
+  if (!personalityScores || typeof personalityScores !== 'object') {
+    return "No personality data available";
+  }
+  
+  const scores = {
+    extroversion: Math.min(100, Math.max(0, personalityScores.extroversion || 50)),
+    neuroticism: Math.min(100, Math.max(0, personalityScores.neuroticism || 50)),
+    agreeableness: Math.min(100, Math.max(0, personalityScores.agreeableness || 50)),
+    conscientiousness: Math.min(100, Math.max(0, personalityScores.conscientiousness || 50)),
+    openness: Math.min(100, Math.max(0, personalityScores.openness || 50)),
+    confidence: Math.min(100, Math.max(0, personalityScores.confidence || 50))
+  };
+  
+  const cacheKey = `personality_description_${Object.values(scores).join('_')}`;
+  const cachedResult = await cache.get(cacheKey);
+  if (cachedResult) {
+    logger.debug('Using cached personality description');
+    return cachedResult;
+  }
+
+  const interpretScore = (score) => {
+    if (score < 20) return "Very Low";
+    if (score < 40) return "Low";
+    if (score < 60) return "Moderate";
+    if (score < 80) return "High";
+    return "Very High";
+  };
+
+  const prompt = `Generate a professional, insightful personality description based on Big Five scores.
+Use second-person perspective. Focus on behavior, communication, decision-making, and relationships.
+Do not mention specific numbers. Adjust language based on confidence (${scores.confidence}/100).
+Make sure to keep the vocabulary easy and engaging and use simple word so normal (non technical) people can understand.
+
+Personality Assessment:
+- Extroversion: ${scores.extroversion}/100 (${interpretScore(scores.extroversion)})
+- Neuroticism: ${scores.neuroticism}/100 (${interpretScore(scores.neuroticism)})
+- Agreeableness: ${scores.agreeableness}/100 (${interpretScore(scores.agreeableness)})
+- Conscientiousness: ${scores.conscientiousness}/100 (${interpretScore(scores.conscientiousness)})
+- Openness: ${scores.openness}/100 (${interpretScore(scores.openness)})
+
+Return 3 paragraphs covering:
+1. Social situations and communication
+2. Work style and stress management
+3. Decision-making and creativity`;
+
+  try {
+    if (!openai) throw new Error('OpenAI not initialized');
+    
+    logger.info('Generating personality description');
+    metrics.increment('ai.personality.requests');
+    
+    const startTime = Date.now();
+    const chatCompletion = await openai.chat.completions.create({
+      model: OPENAI_MODEL,
+      messages: [
+        { role: "system", content: "You are a professional personality analyst providing insightful psychological assessments." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 800
+    });
+    
+    const duration = Date.now() - startTime;
+    metrics.timing('ai.personality.duration', duration);
+    
+    const description = chatCompletion.choices?.[0]?.message?.content?.trim() || 
+                        "Unable to generate personality description.";
+    
+    await cache.set(cacheKey, description, 7 * 24 * 60 * 60 * 1000);
+    return description;
+  } catch (error) {
+    logger.error(`OpenAI personality description error: ${error.message}`);
+    metrics.increment('ai.personality.errors');
+    return "Your personality assessment is being processed and will be available soon.";
+  }
+}
+
+/**
+ * Generate user description using OpenAI
+ */
+async function generateUserDataDescription(userData) {
+  if (!userData) return "Not enough data available to generate description.";
+  
+  const dataHash = crypto.createHash('md5').update(JSON.stringify(userData)).digest('hex');
+  const cacheKey = `user_description_${dataHash}`;
+  
+  const cachedResult = await cache.get(cacheKey);
+  if (cachedResult) {
+    logger.debug('Using cached user description');
+    return cachedResult;
+  }
+  
+  const simplifiedData = {
+    hasLikes: Array.isArray(userData.likes?.data) && userData.likes.data.length > 0,
+    numLikes: userData.likes?.data?.length || 0,
+    likeCategories: [...new Set(userData.likes?.data?.map(item => item.category).filter(Boolean) || [])],
+    hasLanguages: Array.isArray(userData.languages) && userData.languages.length > 0,
+    languages: userData.languages?.map(lang => lang.name).filter(Boolean) || [],
+    hasLocation: !!userData.location?.name,
+    location: userData.location?.name,
+    interests: [...new Set([
+      ...(userData.likes?.data || []).map(item => item.category || item.name),
+      ...(userData.favorite_teams || []).map(team => team.name),
+      ...(userData.favorite_athletes || []).map(athlete => athlete.name)
+    ])].filter(Boolean).slice(0, 20)
+  };
+
+  const prompt = `Based on anonymized social media data, generate a friendly, personalized description.
+
+Rules:
+1. Do NOT mention specific brands, or platforms
+2. Be brutally honest.
+3. Use warm, conversational tone
+4. Be concise - 2-3 short paragraphs
+5. Focus on interests, languages, locations, patterns
+6. Do NOT use phrases like "based on your data"
+7. Use simple language, simple words so normal (non technical) people can understand.
+8. Show what makes the user unique.
+9. Show what kind of person he is.
+User Data: ${JSON.stringify(simplifiedData)}`;
+
+  try {
+    if (!openai) throw new Error('OpenAI not initialized');
+    
+    logger.info('Generating user description');
+    metrics.increment('ai.userdesc.requests');
+    
+    const startTime = Date.now();
+    const chatCompletion = await openai.chat.completions.create({
+      model: OPENAI_MODEL,
+      messages: [
+        { role: "system", content: "You create accurate, privacy-respecting user descriptions from anonymized social data." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 500
+    });
+    
+    const duration = Date.now() - startTime;
+    metrics.timing('ai.userdesc.duration', duration);
+    
+    const description = chatCompletion.choices[0].message.content.trim() || 
+           "We're processing your profile data to generate a personalized description.";
+    
+    await cache.set(cacheKey, description, 7 * 24 * 60 * 60 * 1000);
+    return description;
+  } catch (error) {
+    logger.error(`OpenAI user description error: ${error.message}`);
+    metrics.increment('ai.userdesc.errors');
+    return "We're currently unable to generate your profile description.";
+  }
+}
+
+/**
+ * Generate insights and recommendations
+ */
+async function generateUserInsights(user) {
+  if (!user) return { insights: [], recommendations: [] };
+  
+  const cacheKey = `user_insights_${user.id}_${user.lastUpdated?.getTime() || 0}`;
+  const cachedResult = await cache.get(cacheKey);
+  if (cachedResult) {
+    logger.debug('Using cached user insights');
+    return cachedResult;
+  }
+  
+  const userData = {
+    personality: user.personalityScores || {},
+    sentiment: user.sentimentResult?.score || 50,
+    interests: user.mostCommonLikes || '',
+    wordCount: user.mostCommonWords?.length || 0,
+    languages: user.languages?.map(l => l.name).filter(Boolean) || [],
+    activityLevel: user.feedData?.length || 0
+  };
+  
+  const prompt = `Based on anonymized user data, generate 3-5 key insights and 2-3 personalized recommendations.
+Focus on personality traits, content interests, and communication patterns.
+
+User data: ${JSON.stringify(userData)}
+
+Return JSON:
+{
+  "insights": [{"title": "Short title", "description": "Detailed explanation"}],
+  "recommendations": [{"title": "Recommendation", "description": "Explanation"}]
+}`;
+  
+  try {
+    if (!openai) throw new Error('OpenAI not initialized');
+    
+    logger.info(`Generating insights for user ${user.id}`);
+    metrics.increment('ai.insights.requests');
+    
+    const startTime = Date.now();
+    const chatCompletion = await openai.chat.completions.create({
+      model: OPENAI_MODEL,
+      messages: [
+        { role: "system", content: "You analyze user data and generate helpful insights and recommendations." },
+        { role: "user", content: prompt }
+      ],
+      response_format: { type: "json_object" },
+      temperature: 0.7,
+      max_tokens: 800
+    });
+    
+    const duration = Date.now() - startTime;
+    metrics.timing('ai.insights.duration', duration);
+    
+    let parsedResponse;
+    try {
+      parsedResponse = JSON.parse(chatCompletion.choices[0].message.content);
+    } catch (parseError) {
+      logger.error(`Error parsing insights JSON: ${parseError.message}`);
+      parsedResponse = {
+        insights: [{ title: "Data Analysis", description: "Analyzing your data patterns." }],
+        recommendations: [{ title: "Complete Profile", description: "Add more info for personalized recommendations." }]
+      };
+    }
+    
+    const sanitizedResponse = {
+      insights: parsedResponse.insights?.map(item => ({
+        title: DOMPurify.sanitize(item.title || ''),
+        description: DOMPurify.sanitize(item.description || '')
+      })).filter(item => item.title && item.description) || [],
+      recommendations: parsedResponse.recommendations?.map(item => ({
+        title: DOMPurify.sanitize(item.title || ''),
+        description: DOMPurify.sanitize(item.description || '')
+      })).filter(item => item.title && item.description) || []
+    };
+    
+    if (sanitizedResponse.insights.length === 0) {
+      sanitizedResponse.insights.push({
+        title: "Personality Patterns",
+        description: "Patterns detected in your data indicating your unique interaction style."
+      });
+    }
+    
+    if (sanitizedResponse.recommendations.length === 0) {
+      sanitizedResponse.recommendations.push({
+        title: "Explore Interests",
+        description: "Explore content related to your main areas of interest."
+      });
+    }
+    
+    await cache.set(cacheKey, sanitizedResponse, 7 * 24 * 60 * 60 * 1000);
+    return sanitizedResponse;
+  } catch (error) {
+    logger.error(`Error generating insights: ${error.message}`);
+    metrics.increment('ai.insights.errors');
+    
+    return {
+      insights: [{ title: "Analysis in Progress", description: "Analyzing your profile data." }],
+      recommendations: [{ title: "Complete Profile", description: "Add more info for better recommendations." }]
+    };
+  }
+}
+
+// ==================== Interest Analysis ====================
+
+/**
+ * Analyze user interests
+ */
+function analyzeInterests(likesArray, favoriteTeamsArray, favoriteAthletesArray) {
+  const combinedArray = [
+    ...(Array.isArray(likesArray) ? likesArray : []), 
+    ...(Array.isArray(favoriteTeamsArray) ? favoriteTeamsArray : []), 
+    ...(Array.isArray(favoriteAthletesArray) ? favoriteAthletesArray : [])
+  ];
+
+  if (combinedArray.length === 0) {
+    return { topInterest: 'Not enough data', interestCategories: {}, diversity: 0, count: 0 };
+  }
+
+  const frequencyMap = {};
+  combinedArray.forEach((item) => {
+    if (!item) return;
+    const category = (item.category || item.name || "Other").trim();
+    if (category) frequencyMap[category] = (frequencyMap[category] || 0) + 1;
+  });
+
+  const sortedCategories = Object.entries(frequencyMap).sort((a, b) => b[1] - a[1]);
+  const totalInterests = combinedArray.length;
+  const uniqueCategories = Object.keys(frequencyMap).length;
+  
+  const diversityIndex = sortedCategories.reduce((entropy, [_, count]) => {
+    const probability = count / totalInterests;
+    return entropy - (probability * Math.log(probability));
+  }, 0);
+  
+  const maxPossibleEntropy = Math.log(uniqueCategories || 1);
+  const normalizedDiversity = Math.round((diversityIndex / (maxPossibleEntropy || 1)) * 100);
+  
+  return {
+    topInterest: sortedCategories.length > 0 ? sortedCategories[0][0] : 'No specific interest',
+    interestCategories: Object.fromEntries(sortedCategories),
+    diversity: normalizedDiversity,
+    count: totalInterests
+  };
+}
+
+/**
+ * Calculate area of interest using OpenAI
+ */
+async function calculateAreaOfInterestWithGPT(user) {
+  if (!user) return "Not determined";
+  
+  const cacheKey = `area_of_interest_${user.id}_${user.lastUpdated?.getTime() || 0}`;
+  const cachedResult = await cache.get(cacheKey);
+  if (cachedResult) return cachedResult;
+  
+  const userData = {
+    likeCategories: [...new Set(user.likes?.map(like => like.category || like.name).filter(Boolean) || [])],
+    teams: user.favorite_teams?.map(team => team.name).filter(Boolean) || [],
+    athletes: user.favorite_athletes?.map(athlete => athlete.name).filter(Boolean) || [],
+    languages: user.languages?.map(lang => lang.name).filter(Boolean) || [],
+    textSampleCount: Array.isArray(user.feedData) ? user.feedData.length : 0,
+    popularWords: user.mostCommonWords?.slice(0, 10).map(w => w.word).filter(Boolean) || []
+  };
+  
+  if (userData.likeCategories.length === 0 && userData.teams.length === 0 && 
+      userData.athletes.length === 0 && userData.popularWords.length === 0) {
+    return "General";
+  }
+
+  const prompt = `Based on anonymized user data, determine ONE specific area of interest (max 3-4 words).
+
+Like categories: ${userData.likeCategories.join(', ')}
+Favorite teams: ${userData.teams.join(', ')}
+Favorite athletes: ${userData.athletes.join(', ')}
+Languages: ${userData.languages.join(', ')}
+Popular words: ${userData.popularWords.join(', ')}
+
+Return ONLY the interest area. Be specific (e.g., "Basketball" not "Sports").`;
+
+  try {
+    if (!openai) throw new Error('OpenAI not initialized');
+    
+    logger.info('Calculating area of interest');
+    metrics.increment('ai.interest.requests');
+    
+    const chatCompletion = await openai.chat.completions.create({
+      model: OPENAI_MODEL,
+      messages: [
+        { role: "system", content: "You identify interest areas from user data precisely." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.3,
+      max_tokens: 20
+    });
+    
+    let interest = chatCompletion.choices?.[0]?.message?.content?.trim() || "General";
+    
+    if (interest.split(' ').length > 4) {
+      interest = interest.split(' ').slice(0, 3).join(' ');
+    }
+    
+    interest = interest.split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+    
+    await cache.set(cacheKey, interest, 7 * 24 * 60 * 60 * 1000);
+    return interest;
+  } catch (error) {
+    logger.error(`Interest calculation error: ${error.message}`);
+    metrics.increment('ai.interest.errors');
+    return "General";
+  }
+}
+
+// ==================== Data Export Functions ====================
+
+/**
+ * Export user data to CSV
+ */
+async function exportUserDataToCsv(user) {
+  try {
+    if (!user) throw new Error('User data not provided');
+    
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const filename = `user_data_${user.id}_${timestamp}.csv`;
+    const filePath = path.join(EXPORT_DIR, filename);
+    
+    const userData = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      gender: user.gender,
+      birthday: user.birthday,
+      location: user.location?.name || '',
+      hometown: user.hometown?.name || '',
+      area_of_interest: user.areaOfInterest || '',
+      most_common_likes: user.mostCommonLikes || '',
+      personality_extroversion: user.personalityScores?.extroversion || '',
+      personality_neuroticism: user.personalityScores?.neuroticism || '',
+      personality_agreeableness: user.personalityScores?.agreeableness || '',
+      personality_conscientiousness: user.personalityScores?.conscientiousness || '',
+      personality_openness: user.personalityScores?.openness || '',
+      sentiment_score: user.sentimentResult?.score || '',
+      created_at: user.createdAt?.toISOString() || '',
+      updated_at: user.updatedAt?.toISOString() || '',
+      last_analyzed: user.lastUpdated?.toISOString() || ''
+    };
+    
+    const parser = new Parser({ fields: Object.keys(userData), header: true });
+    const csv = parser.parse([userData]);
+    
+    await fs.writeFile(filePath, csv);
+    logger.info(`User data exported to ${filePath}`);
+    return filePath;
+  } catch (error) {
+    logger.error(`Error exporting user data: ${error.message}`);
+    throw error;
+  }
+}
+
+/**
+ * Export user data to ZIP
+ */
+async function exportUserDataToZip(user) {
+  try {
+    if (!user) throw new Error('User data not provided');
+    
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const filename = `user_export_${user.id}_${timestamp}.zip`;
+    const filePath = path.join(EXPORT_DIR, filename);
+    
+    const output = fsSync.createWriteStream(filePath);
+    const archive = archiver('zip', { zlib: { level: 9 } });
+    
+    archive.pipe(output);
+    
+    const csvFilePath = await exportUserDataToCsv(user);
+    archive.file(csvFilePath, { name: path.basename(csvFilePath) });
+    
+    const profileData = {
+      basic: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        gender: user.gender,
+        birthday: user.birthday,
+        location: user.location,
+        hometown: user.hometown,
+        languages: user.languages,
+        picture: user.picture
+      },
+      interests: {
+        likes: user.likes,
+        favorite_teams: user.favorite_teams,
+        favorite_athletes: user.favorite_athletes,
+        most_common_likes: user.mostCommonLikes,
+        area_of_interest: user.areaOfInterest
+      },
+      analysis: {
+        personality_scores: user.personalityScores,
+        sentiment: user.sentimentResult,
+        most_common_words: user.mostCommonWords
+      },
+      surveillance: user.surveillance || null,
+      meta: {
+        created_at: user.createdAt,
+        updated_at: user.updatedAt,
+        last_updated: user.lastUpdated
+      }
+    };
+    
+    archive.append(JSON.stringify(profileData, null, 2), { name: 'profile.json' });
+    
+    const readme = `# User Data Export
+This archive contains your exported data from VisiSocial.
+
+## Files
+- profile.json: Your profile information in JSON format
+- ${path.basename(csvFilePath)}: Your basic profile data in CSV format
+
+## Contact
+support@visionsocial.com
+
+Export date: ${new Date().toISOString()}
+User ID: ${user.id}`;
+
+    archive.append(readme, { name: 'README.md' });
+    
+    await new Promise((resolve, reject) => {
+      output.on('close', resolve);
+      archive.on('error', reject);
+      archive.finalize();
+    });
+    
+    logger.info(`User data exported to zip: ${filePath}`);
+    return filePath;
+  } catch (error) {
+    logger.error(`Error creating zip export: ${error.message}`);
+    throw error;
+  }
+}
+
+// ==================== Authentication Middleware ====================
+
+/**
+ * Authenticate user based on access token
+ */
+const authenticateToken = wrapAsync(async (req, res, next) => {
+  const token = req.cookies.access_token;
+  
+  logger.debug('Auth check', { hasAccessToken: !!token });
+  
+  if (!token) {
+    res.clearCookie('access_token');
+    return res.redirect('/login?error=Authentication%20required');
+  }
+
+  try {
+    const userToken = await UserToken.findOne({ accessToken: token });
+    if (!userToken) {
+      res.clearCookie('access_token');
+      return res.redirect('/login?error=Invalid%20session');
+    }
+
+    const now = Date.now();
+    if (now > new Date(userToken.expiresAt).getTime()) {
+      res.clearCookie('access_token');
+      logger.info(`Token expired for user ${userToken.userId}`);
+      return res.redirect('/login?error=Session%20expired');
+    }
+
+    req.user = {
+      id: userToken.userId,
+      accessToken: userToken.accessToken
+    };
+
+    metrics.increment('auth.session_active');
+    logger.debug(`User ${userToken.userId} authenticated`);
+    
+    next();
+  } catch (error) {
+    logger.error(`Authentication error: ${error.message}`);
+    metrics.increment('auth.errors');
+    res.clearCookie('access_token');
+    return res.redirect('/login?error=Authentication%20error');
+  }
+});
+
+/**
+ * Authenticate admin based on access token
+ */
+const authenticateAdminToken = wrapAsync(async (req, res, next) => {
+  const token = req.cookies.access_token;
+
+  if (!token) {
+    res.clearCookie('access_token');
+    return res.redirect('/adminlogin?error=Authentication%20required');
+  }
+
+  try {
+    const userToken = await UserToken.findOne({ accessToken: token });
+    if (!userToken) {
+      res.clearCookie('access_token');
+      return res.redirect('/adminlogin?error=Invalid%20session');
+    }
+
+    if (Date.now() > new Date(userToken.expiresAt).getTime()) {
+      res.clearCookie('access_token');
+      return res.redirect('/adminlogin?error=Session%20expired');
+    }
+
+    const admin = await Admin.findOne({ id: userToken.userId });
+    if (!admin) {
+      logger.warn(`Unauthorized admin attempt: ${userToken.userId}`);
+      metrics.increment('auth.admin_unauthorized');
+      return res.status(403).render('error', {
+        err: { status: 403, message: 'Permission denied' },
+        title: 'Forbidden',
+        nonce: res.locals.nonce
+      });
+    }
+
+    req.adminUser = admin;
+    metrics.increment('auth.admin_session_active');
+    
+    next();
+  } catch (error) {
+    logger.error(`Admin authentication error: ${error.message}`);
+    metrics.increment('auth.admin_errors');
+    res.clearCookie('access_token');
+    return res.redirect('/adminlogin?error=Authentication%20error');
+  }
+});
+
+/**
+ * Authorize admin access
+ */
+const authorizeAdmin = wrapAsync(async (req, res, next) => {
+  try {
+    if (!req.user || !req.user.id) {
+      return res.status(401).render('error', {
+        err: { status: 401, message: 'Authentication required' },
+        title: 'Unauthorized',
+        nonce: res.locals.nonce
+      });
+    }
+
+    const admin = await Admin.findOne({ id: req.user.id });
+    if (!admin) {
+      logger.warn(`Unauthorized admin access by user ${req.user.id}`);
+      metrics.increment('auth.admin_unauthorized');
+
+      return res.status(403).render('error', {
+        err: { status: 403, message: 'Permission denied' },
+        title: 'Forbidden',
+        nonce: res.locals.nonce
+      });
+    }
+
+    req.adminUser = admin;
+    next();
+  } catch (error) {
+    logger.error(`Admin authorization error: ${error.message}`);
+    metrics.increment('auth.admin_errors');
+
+    res.status(500).render('error', {
+      err: { status: 500, message: 'Authorization error' },
+      title: 'Error',
+      nonce: res.locals.nonce
+    });
+  }
+});
+
+// ==================== Background Processing ====================
+
+/**
+ * ENHANCED: Process user data in background with surveillance integration
+ */
+async function processUserDataInBackground(userId, accessToken) {
+  console.log('🚀 BACKGROUND PROCESSING STARTED:', userId);
+  logger.info(`Starting background processing: ${userId}`);
+  
+  const userTasks = taskStatus.getUserTasks(userId);
+  let task = userTasks.find(t => t.state === 'running' || t.state === 'pending');
+  
+  if (!task) {
+    task = taskStatus.create(userId, 'background_analysis', {
+      source: 'background_processing',
+      type: 'full_analysis'
+    });
+    taskStatus.start(task.id, 9, 'Starting background processing...');
+  } else if (task.state === 'pending') {
+    taskStatus.start(task.id, 9, 'Initializing background processing...');
+  }
+  
+  try {
+    let user = await User.findOne({ id: userId });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    
+    await user.markAsProcessing();
+    
+    // STEP 1: Fetch Facebook basic data (10%)
+    taskStatus.update(task.id, { currentStep: 1, progress: 10, message: 'Fetching Facebook data...' });
+    
+    let userData = {};
+    try {
+      const basicResponse = await axios.get(`https://graph.facebook.com/${API_VERSION}/me`, {
+        params: {
+          fields: "id,name,email,picture,birthday,age_range,gender,location,hometown,languages,friends",
+          access_token: accessToken
+        },
+        timeout: FETCH_TIMEOUT
+      });
+      userData = basicResponse.data;
+      console.log('✅ Basic data fetched');
+    } catch (err) {
+      logger.error(`Failed to fetch Facebook data: ${err.message}`);
+      throw new Error('Facebook data fetch failed');
+    }
+    
+    // STEP 2: Fetch likes (20%)
+    taskStatus.update(task.id, { currentStep: 2, progress: 20, message: 'Fetching likes...' });
+    
+    let likes = [];
+    try {
+      const likesResponse = await axios.get(`https://graph.facebook.com/${API_VERSION}/me/likes`, {
+        params: { access_token: accessToken, limit: 100 },
+        timeout: FETCH_TIMEOUT
+      });
+      likes = likesResponse.data?.data || [];
+      console.log(`✅ Likes fetched: ${likes.length}`);
+    } catch (err) {
+      logger.debug(`Likes not available: ${err.message}`);
+    }
+    
+    // STEP 3: Fetch feed posts (30%)
+    taskStatus.update(task.id, { currentStep: 3, progress: 30, message: 'Fetching posts...' });
+    
+    let feedData = [];
+    try {
+      const feedResponse = await axios.get(`https://graph.facebook.com/${API_VERSION}/me/feed`, {
+        params: { access_token: accessToken, limit: 100 },
+        timeout: FETCH_TIMEOUT
+      });
+      feedData = feedResponse.data?.data || [];
+      console.log(`✅ Feed posts fetched: ${feedData.length}`);
+    } catch (err) {
+      logger.debug(`Feed not available: ${err.message}`);
+    }
+    
+    // STEP 4: Fetch albums (40%)
+    taskStatus.update(task.id, { currentStep: 4, progress: 40, message: 'Fetching albums...' });
+    
+    let albumsData = [];
+    try {
+      const albumsResponse = await axios.get(`https://graph.facebook.com/${API_VERSION}/me/albums`, {
+        params: { 
+          fields: "id,name,count,created_time,photos{id,name,images}",
+          access_token: accessToken,
+          limit: 50
+        },
+        timeout: FETCH_TIMEOUT
+      });
+      albumsData = albumsResponse.data?.data || [];
+      console.log(`✅ Albums fetched: ${albumsData.length}`);
+    } catch (err) {
+      logger.debug(`Albums not available: ${err.message}`);
+    }
+    
+    // STEP 5: Save user data (50%)
+    taskStatus.update(task.id, { currentStep: 5, progress: 50, message: 'Saving user data...' });
+    
+    user.name = userData.name || user.name || 'User';
+    user.email = userData.email || user.email;
+    user.picture = userData.picture || user.picture;
+    user.birthday = userData.birthday || user.birthday;
+    user.gender = userData.gender || user.gender;
+    user.location = userData.location || user.location;
+    user.hometown = userData.hometown || user.hometown;
+    user.likes = likes;
+    user.feedData = feedData;
+    user.albumsData = albumsData;
+    user.lastUpdated = new Date();
+    
+    await user.save();
+    console.log('✅ User data saved');
+    
+    // STEP 6: Calculate personality scores (60%)
+    taskStatus.update(task.id, { currentStep: 6, progress: 60, message: 'Calculating personality...' });
+    
+    let personalityScores;
+    try {
+      personalityScores = await compareUserDataWithModel(user);
+      console.log('✅ Personality calculated');
+    } catch (err) {
+      logger.error(`Personality calculation failed: ${err.message}`);
+      personalityScores = {
+        extroversion: 50,
+        neuroticism: 50,
+        agreeableness: 50,
+        conscientiousness: 50,
+        openness: 50,
+        confidence: 0
+      };
+    }
+    
+    // STEP 7: Generate descriptions (70%)
+    taskStatus.update(task.id, { currentStep: 7, progress: 70, message: 'Generating descriptions...' });
+    
+    const feedText = feedData.map(item => item.message || item.story || '').filter(Boolean).join(" ");
+    
+    let pD, uD, areaOfInterest;
+    try {
+      [pD, uD, areaOfInterest] = await Promise.all([
+        generatePersonalityDescription(personalityScores),
+        generateUserDataDescription(userData),
+        calculateAreaOfInterestWithGPT(user)
+      ]);
+      console.log('✅ Descriptions generated');
+    } catch (err) {
+      logger.error(`AI generation failed: ${err.message}`);
+      pD = 'Personality analysis complete.';
+      uD = 'Profile analysis complete.';
+      areaOfInterest = 'General';
+    }
+    
+    // STEP 8: Analyze text (80%)
+    taskStatus.update(task.id, { currentStep: 8, progress: 80, message: 'Analyzing text...' });
+    
+    const textAnalysis = analyzeText(feedText);
+    const interestAnalysis = analyzeInterests(likes, userData.favorite_teams || [], userData.favorite_athletes || []);
+    
+    user.personalityScores = personalityScores;
+    user.sentimentResult = textAnalysis.sentiment;
+    user.pD = pD;
+    user.uD = uD;
+    user.areaOfInterest = areaOfInterest;
+    user.mostCommonWords = textAnalysis.mostCommonWords;
+    user.mostCommonLikes = interestAnalysis.topInterest;
+    user.readability = textAnalysis.readability;
+    user.textStatistics = textAnalysis.statistics;
+    user.interestDiversity = interestAnalysis.diversity;
+    
+    const engagementScore = Math.min(100, Math.round(
+      ((feedData.length || 0) / 10) * 10 +
+      ((likes.length || 0) / 5) * 5 +
+      (albumsData.length || 0) * 5
+    ));
+    user.engagementScore = engagementScore;
+    
+    // ✅ STEP 9: SURVEILLANCE ANALYSIS (90%)
+    if (user.settings?.analysis?.enableSurveillance !== false) {
+      try {
+        taskStatus.update(task.id, { currentStep: 9, progress: 90, message: 'Running surveillance analysis...' });
+        
+        console.log('🔍 Step 9: Running surveillance analysis...');
+        
+        const [behavioral, psychographic, lifestyle, socialGraph, correlations] = await Promise.all([
+          SurveillanceEngine.analyzeBehavioralRhythms(userId, feedData),
+          SurveillanceEngine.inferPsychographics(userId, feedText, albumsData, likes),
+          SurveillanceEngine.extractLifestyleMarkers(user, feedData.map(f => f.message || ''), albumsData, likes),
+          SurveillanceEngine.analyzeSocialGraph(userId, [], []),
+          SurveillanceEngine.findCrossModalCorrelations(user)
+        ]);
+        
+        const vulnerability = await SurveillanceEngine.calculateVulnerabilityProfile(user, {
+          behavioralPatterns: behavioral,
+          inferredTraits: psychographic,
+          lifestyleMarkers: lifestyle,
+          socialGraph: socialGraph,
+          correlations: correlations
+        });
+        
+        user.surveillance = {
+          behavioralPatterns: behavioral,
+          inferredTraits: psychographic,
+          lifestyleMarkers: lifestyle,
+          socialGraph: socialGraph,
+          correlations: correlations,
+          vulnerabilityProfile: vulnerability,
+          surveillanceMetadata: {
+            totalDataPoints: feedData.length + likes.length + albumsData.length,
+            lastFullAnalysis: new Date(),
+            inferenceConfidence: 85,
+            dataFreshness: 100,
+            crossModalCorrelations: correlations.length
+          }
+        };
+        
+        console.log('✅ Surveillance analysis complete');
+        logger.info(`Surveillance analysis completed: ${userId}`);
+      } catch (err) {
+        console.error('⚠️ Surveillance analysis failed:', err.message);
+        logger.error(`Surveillance analysis failed: ${err.message}`);
+      }
+    }
+    
+    // Mark as complete
+    user.status = 'complete';
+    user.analysisComplete = true;
+    user.lastUpdated = new Date();
+    await user.save();
+
+    console.log(`✅ User ${userId} marked as complete`);
+    taskStatus.complete(task.id, { userId }, 'Analysis complete!');
+
+    console.log('🎉 Background processing complete:', userId);
+    logger.info(`Background processing complete: ${userId}`);
+    
+    // Process images asynchronously (don't wait)
+    if (albumsData.length > 0) {
+      handleAlbumsData(userId, albumsData).catch(err => {
+        logger.error(`Album processing error: ${err.message}`);
+      });
+    }
+  } catch (error) {
+    console.error('💥 Background processing failed:', error);
+    logger.error(`Background processing failed: ${userId}`, error);
+    
+    try {
+      const user = await User.findOne({ id: userId });
+      if (user) await user.markAsError(error.message);
+    } catch (markError) {
+      logger.error(`Failed to mark user as error: ${markError.message}`);
+    }
+    
+    if (task?.id) {
+      taskStatus.fail(task.id, error, 'Background processing failed');
+    }
+  }
+}
+
+// ==================== ROUTES ====================
+
+router.get("/", authenticateToken, rateLimiter({ windowMs: 60000, max: 10 }), wrapAsync(async (req, res) => {
+  const startTime = Date.now();
+  metrics.increment('routes.dashboard.requests');
+  
+  try {
+    const userId = req.user.id;
+    logger.info(`Dashboard request: ${userId}`);
+
+    let user = await User.findOne({ id: userId });
+    
+    if (!user) {
+      user = new User({
+        id: userId,
+        name: 'User',
+        lastUpdated: new Date(),
+        createdAt: new Date(),
+        status: 'pending',
+        analysisComplete: false
+      });
+      await user.save();
+      
+      setImmediate(() => {
+        processUserDataInBackground(userId, req.user.accessToken)
+          .catch(err => logger.error(`Background processing error: ${err.message}`));
+      });
+      
+      return res.redirect('/loading');
+    }
+    
+    if (!user.analysisComplete || user.status !== 'complete') {
+      if (user.status === 'processing') {
+        const lastUpdated = user.lastUpdated || user.createdAt;
+        const timeSinceUpdate = Date.now() - lastUpdated.getTime();
+        
+        if (timeSinceUpdate < 3 * 60 * 1000) {
+          const activeTasks = taskStatus.getUserTasks(userId, { activeOnly: true });
+          if (activeTasks.length === 0) {
+            user.status = 'pending';
+            await user.save();
+          } else {
+            return res.redirect('/loading');
+          }
+        } else {
+          user.status = 'pending';
+          await user.save();
+        }
+      }
+      
+      user.status = 'processing';
+      user.lastUpdated = new Date();
+      await user.save();
+      
+      setImmediate(() => {
+        processUserDataInBackground(userId, req.user.accessToken)
+          .catch(err => logger.error(`Background processing error: ${err.message}`));
+      });
+      
+      return res.redirect('/loading');
+    }
+    
+    // ==================== GENERATE MISSING DATA ====================
+    
+    if (!user.uD || user.uD === 'Profile analysis being generated...') {
+      try {
+        logger.info('Generating missing user description');
+        user.uD = await generateUserDataDescription(user);
+        await user.save();
+      } catch (err) {
+        logger.error(`Failed to generate user description: ${err.message}`);
+        user.uD = 'Your profile shows a diverse range of interests and activities.';
+      }
+    }
+    
+    if (!user.pD || user.pD === 'Personality analysis being generated...') {
+      try {
+        logger.info('Generating missing personality description');
+        user.pD = await generatePersonalityDescription(user.personalityScores);
+        await user.save();
+      } catch (err) {
+        logger.error(`Failed to generate personality description: ${err.message}`);
+        user.pD = 'Your personality profile reflects a unique combination of traits.';
+      }
+    }
+    
+    if (!user.areaOfInterest || user.areaOfInterest === 'General' || user.areaOfInterest === 'Not determined') {
+      try {
+        logger.info('Calculating area of interest');
+        user.areaOfInterest = await calculateAreaOfInterestWithGPT(user);
+        await user.save();
+      } catch (err) {
+        logger.error(`Failed to calculate area of interest: ${err.message}`);
+      }
+    }
+    
+    // ==================== FETCH INTERNET SEARCH DATA ====================
+    
+    const [userSearches, searchStats, recentSearches] = await Promise.all([
+      // Get all user's searches
+      InternetSearchResult.find({ 
+        userId: userId,
+        status: 'complete'
+      })
+      .sort({ createdAt: -1 })
+      .limit(50)
+      .lean(),
+      
+      // Aggregated statistics
+      InternetSearchResult.aggregate([
+        { $match: { userId: userId, status: 'complete' } },
+        {
+          $group: {
+            _id: null,
+            totalSearches: { $sum: 1 },
+            avgRiskScore: { $avg: '$summary.riskScore' },
+            totalDataPoints: { $sum: '$summary.totalResults' },
+            criticalFindings: { $sum: '$summary.criticalFindings' },
+            searchTypes: { $push: '$searchType' }
+          }
+        }
+      ]),
+      
+      // Recent 5 searches for quick view
+      InternetSearchResult.find({ 
+        userId: userId,
+        status: 'complete'
+      })
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .select('searchId searchType searchValue summary createdAt tags')
+      .lean()
+    ]);
+
+    // Process search statistics
+    const internetSearchData = {
+      hasSearches: userSearches.length > 0,
+      totalSearches: searchStats[0]?.totalSearches || 0,
+      avgRiskScore: Math.round(searchStats[0]?.avgRiskScore || 0),
+      totalDataPoints: searchStats[0]?.totalDataPoints || 0,
+      criticalFindings: searchStats[0]?.criticalFindings || 0,
+      recentSearches: recentSearches,
+      searchTypeBreakdown: {},
+      riskDistribution: { low: 0, medium: 0, high: 0, critical: 0 },
+      timeline: []
+    };
+
+    // Calculate search type breakdown
+    if (searchStats[0]?.searchTypes) {
+      internetSearchData.searchTypeBreakdown = searchStats[0].searchTypes.reduce((acc, type) => {
+        acc[type] = (acc[type] || 0) + 1;
+        return acc;
+      }, {});
+    }
+
+    // Calculate risk distribution
+    userSearches.forEach(search => {
+      const risk = search.summary?.overallRisk || 'LOW';
+      if (risk === 'CRITICAL') internetSearchData.riskDistribution.critical++;
+      else if (risk === 'HIGH') internetSearchData.riskDistribution.high++;
+      else if (risk === 'MEDIUM') internetSearchData.riskDistribution.medium++;
+      else internetSearchData.riskDistribution.low++;
+    });
+
+    // Generate timeline (last 30 days)
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const searchesByDay = userSearches
+      .filter(s => new Date(s.createdAt) >= thirtyDaysAgo)
+      .reduce((acc, search) => {
+        const day = new Date(search.createdAt).toISOString().split('T')[0];
+        acc[day] = (acc[day] || 0) + 1;
+        return acc;
+      }, {});
+    
+    internetSearchData.timeline = Object.entries(searchesByDay)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // Calculate exposure score from searches
+    internetSearchData.exposureScore = Math.min(100, Math.round(
+      (internetSearchData.totalDataPoints / 100) * 10 +
+      (internetSearchData.criticalFindings * 5) +
+      (internetSearchData.avgRiskScore * 0.5)
+    ));
+
+    // Aggregate all sources found across searches
+    const allSources = {};
+    userSearches.forEach(search => {
+      if (search.sources) {
+        Object.keys(search.sources).forEach(source => {
+          if (!allSources[source]) allSources[source] = 0;
+          const items = search.sources[source];
+          allSources[source] += Array.isArray(items) ? items.length : 0;
+        });
+      }
+    });
+    internetSearchData.sourcesFound = allSources;
+
+    // Top vulnerabilities across all searches
+    const vulnerabilities = userSearches
+      .filter(s => s.summary?.criticalFindings > 0)
+      .map(s => ({
+        searchType: s.searchType,
+        searchValue: s.searchValue,
+        risk: s.summary.overallRisk,
+        findings: s.summary.criticalFindings,
+        searchId: s.searchId
+      }))
+      .sort((a, b) => b.findings - a.findings)
+      .slice(0, 5);
+    
+    internetSearchData.topVulnerabilities = vulnerabilities;
+    
+    // ==================== REST OF EXISTING DATA GATHERING ====================
+    
+    const userData = {
+      id: user.id,
+      name: user.name || 'User',
+      email: user.email || '',
+      picture: user.picture,
+      birthday: user.birthday,
+      age_range: user.age_range,
+      gender: user.gender,
+      location: user.location,
+      hometown: user.hometown,
+      languages: user.languages || []
+    };
+    
+    const analysisCount = user.feedData?.length || 0;
+    const createdDate = user.createdAt || new Date();
+    const daysActive = Math.max(1, Math.floor((Date.now() - createdDate.getTime()) / (1000 * 60 * 60 * 24)));
+    const connectedAccounts = 1;
+    const insightsCount = user.mostCommonWords?.length || 0;
+    const joinDate = user.createdAt ? user.createdAt.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }) : 'Recently';
+    
+    const profileStats = {
+      analysisCount,
+      daysActive,
+      connectedAccounts,
+      insightsCount,
+      joinDate
+    };
+    
+    let insights = [];
+    let recommendations = [];
+    
+    try {
+      // Don't block the dashboard on a multi-second OpenAI call.
+      // Serve cached insights instantly; if none exist yet, use fallbacks now
+      // and generate in the background so the next load is fast.
+      const insightsCacheKey = `user_insights_${user.id}_${user.lastUpdated?.getTime() || 0}`;
+      const cachedInsights = await cache.get(insightsCacheKey);
+      if (cachedInsights) {
+        insights = cachedInsights.insights || [];
+        recommendations = cachedInsights.recommendations || [];
+      } else {
+        insights = [
+          { title: 'Digital Footprint Analysis', description: `You've shared ${analysisCount} pieces of content, creating a rich data profile.` }
+        ];
+        recommendations = [
+          { title: 'Privacy Protection', description: 'Review your privacy settings regularly.' }
+        ];
+        generateUserInsights(user).catch(err => logger.warn(`Background insights generation failed: ${err.message}`));
+      }
+    } catch (err) {
+      logger.warn(`Insights generation failed: ${err.message}`);
+      insights = [
+        { 
+          title: 'Digital Footprint Analysis', 
+          description: `You've shared ${analysisCount} pieces of content, creating a rich data profile.`
+        }
+      ];
+      recommendations = [
+        { 
+          title: 'Privacy Protection', 
+          description: 'Review your privacy settings regularly.'
+        }
+      ];
+    }
+    
+    const sentimentData = user.sentimentResult || { score: 50, comparative: 0, positive: [], negative: [] };
+    const totalWords = user.textStatistics?.totalWords || 1;
+    const positiveWords = sentimentData.positive?.length || 0;
+    const negativeWords = sentimentData.negative?.length || 0;
+    const neutralWords = Math.max(0, totalWords - positiveWords - negativeWords);
+    
+    const sentimentBreakdown = {
+      positive: Math.round((positiveWords / totalWords) * 100),
+      neutral: Math.round((neutralWords / totalWords) * 100),
+      negative: Math.round((negativeWords / totalWords) * 100),
+      score: sentimentData.score,
+      comparative: sentimentData.comparative
+    };
+    
+    let facebookTokenInfo = {};
+    let facebookPermissions = [];
+    
+    try {
+      const tokenResponse = await retryableRequest(async () => {
+        return await axios.get(`https://graph.facebook.com/${API_VERSION}/debug_token`, {
+          params: {
+            input_token: req.user.accessToken,
+            access_token: `${process.env.FACEBOOK_APP_ID}|${process.env.FACEBOOK_APP_SECRET}`
+          },
+          timeout: FETCH_TIMEOUT
+        });
+      });
+      
+      facebookTokenInfo = {
+        appId: tokenResponse.data.data.app_id,
+        userId: tokenResponse.data.data.user_id,
+        issuedAt: new Date(tokenResponse.data.data.issued_at * 1000),
+        expiresAt: tokenResponse.data.data.expires_at ? 
+                   new Date(tokenResponse.data.data.expires_at * 1000) : 
+                   'Never',
+        isValid: tokenResponse.data.data.is_valid,
+        scopes: tokenResponse.data.data.scopes || []
+      };
+      
+      const permsResponse = await retryableRequest(async () => {
+        return await axios.get(`https://graph.facebook.com/${API_VERSION}/me/permissions`, {
+          params: { access_token: req.user.accessToken },
+          timeout: FETCH_TIMEOUT
+        });
+      });
+      
+      facebookPermissions = permsResponse.data?.data || [];
+    } catch (error) {
+      logger.debug(`Facebook token fetch failed: ${error.message}`);
+    }
+    
+    const processedAlbums = user.processedAlbums || [];
+    const ocrStatistics = {
+      totalAlbums: processedAlbums.length,
+      totalPhotos: processedAlbums.reduce((sum, album) => sum + album.totalPhotos, 0),
+      processedPhotos: processedAlbums.reduce((sum, album) => sum + album.processedPhotos, 0),
+      averageConfidence: processedAlbums.length > 0 
+        ? Math.round(processedAlbums.reduce((sum, album) => sum + album.averageConfidence, 0) / processedAlbums.length)
+        : 0,
+      methodsUsed: {
+        google_vision: processedAlbums.reduce((sum, album) => sum + (album.methods?.google_vision || 0), 0),
+        tesseract: processedAlbums.reduce((sum, album) => sum + (album.methods?.tesseract || 0), 0)
+      }
+    };
+    
+    const userSettings = user.settings || {
+      privacy: { profileVisibility: 'private', shareInsights: false, allowDataCollection: true, anonymizeData: true },
+      notifications: { emailAlerts: true, analysisUpdates: true, weeklyDigest: false, marketingEmails: false },
+      analysis: { refreshFrequency: 'weekly', includeImages: true, maxImageProcessing: 25, languagePreference: 'auto', detailedReports: true },
+      display: { theme: 'dark', compactMode: false, animations: true, fontSize: 'medium' },
+      export: { autoBackup: false, backupFrequency: 'monthly', includeRawData: false, format: 'both' },
+      security: { twoFactorAuth: false, sessionTimeout: 24, loginAlerts: true, dataRetention: '3months' }
+    };
+    
+    const hasSurveillance = !!(user.surveillance && user.surveillance.behavioralPatterns);
+    
+    let surveillanceData = null;
+    if (hasSurveillance) {
+      surveillanceData = {
+        behavioral: user.surveillance.behavioralPatterns || {},
+        psychographic: user.surveillance.inferredTraits || {},
+        lifestyle: user.surveillance.lifestyleMarkers || {},
+        social: user.surveillance.socialGraph || {},
+        correlations: user.surveillance.correlations || [],
+        vulnerability: user.surveillance.vulnerabilityProfile || {},
+        metadata: user.surveillance.surveillanceMetadata || {}
+      };
+    } else {
+      surveillanceData = {
+        behavioral: { postingCycle: { regularity: 0 }, peakActivity: ['various times'] },
+        psychographic: user.personalityScores || {},
+        lifestyle: {},
+        social: {},
+        correlations: [],
+        vulnerability: {
+          manipulationSusceptibility: 50,
+          reidentificationRisk: 50,
+          dataExposureLevel: Math.min(100, (user.feedData?.length || 0) * 2),
+          privacyAwareness: 50,
+          dataLiteracy: 50,
+          trackingExposure: 50
+        },
+        metadata: {
+          totalDataPoints: (user.feedData?.length || 0) + (user.likes?.length || 0) + (user.albumsData?.length || 0),
+          lastFullAnalysis: null,
+          inferenceConfidence: 0,
+          dataFreshness: 100
+        }
+      };
+    }
+    
+    const profileDepth = {
+      explicit: {
+        name: userData.name,
+        email: userData.email,
+        location: userData.location?.name,
+        birthday: userData.birthday,
+        gender: userData.gender,
+        hometown: userData.hometown?.name,
+        languages: userData.languages
+      },
+      derived: surveillanceData.psychographic,
+      behavioral: surveillanceData.behavioral,
+      network: surveillanceData.social,
+      visual: user.surveillance?.visualProfile || {}
+    };
+    
+    const dataTransformations = [];
+    
+    if (user.likes?.length > 0) {
+      dataTransformations.push({
+        input: `${user.likes.length} page likes`,
+        process: 'Collaborative filtering + psycholinguistic analysis',
+        output: user.personalityScores,
+        sensitivity: 'HIGH',
+        description: 'Your likes reveal personality traits and behavioral patterns you may not explicitly share.'
+      });
+    }
+    
+    if (user.feedData?.length > 0) {
+      dataTransformations.push({
+        input: `${user.feedData.length} posts analyzed`,
+        process: 'NLP + sentiment analysis + temporal pattern recognition',
+        output: { 
+          sentiment: sentimentBreakdown, 
+          readability: user.readability,
+          patterns: surveillanceData.behavioral 
+        },
+        sensitivity: 'CRITICAL',
+        description: 'Every post reveals your routine, emotional state, and psychological vulnerabilities.'
+      });
+    }
+    
+    if (user.albumsData?.length > 0 || processedAlbums.length > 0) {
+      dataTransformations.push({
+        input: `${user.albumsData?.length || 0} photo albums (${ocrStatistics.processedPhotos} photos processed)`,
+        process: 'Computer vision + OCR + facial recognition + location extraction',
+        output: { ocr: ocrStatistics, visual: user.surveillance?.visualProfile || {} },
+        sensitivity: 'HIGH',
+        description: 'Photos reveal locations, associates, lifestyle choices, and text in images.'
+      });
+    }
+    
+    if (user.location?.name || user.hometown?.name) {
+      dataTransformations.push({
+        input: 'Location and hometown data',
+        process: 'Geospatial analysis + demographic correlation',
+        output: { 
+          location: user.location, 
+          demographics: 'inferred',
+          economicStatus: 'estimated'
+        },
+        sensitivity: 'CRITICAL',
+        description: 'Location enables cross-platform tracking, demographic profiling, and targeted advertising.'
+      });
+    }
+
+    // Add Internet Search transformation if they have searches
+    if (internetSearchData.hasSearches) {
+      dataTransformations.push({
+        input: `${internetSearchData.totalSearches} OSINT searches conducted`,
+        process: 'Multi-source intelligence aggregation + breach analysis + social mapping',
+        output: {
+          totalDataPoints: internetSearchData.totalDataPoints,
+          criticalFindings: internetSearchData.criticalFindings,
+          avgRisk: internetSearchData.avgRiskScore,
+          sources: Object.keys(internetSearchData.sourcesFound).length
+        },
+        sensitivity: 'CRITICAL',
+        description: `Your ${internetSearchData.totalSearches} searches exposed ${internetSearchData.totalDataPoints} additional data points across ${Object.keys(internetSearchData.sourcesFound).length} different sources, revealing your complete digital footprint.`
+      });
+    }
+    
+    const exploitationScenarios = [];
+    const vulnerability = surveillanceData.vulnerability;
+    
+    if (vulnerability.manipulationSusceptibility > 70) {
+      exploitationScenarios.push({
+        type: 'Behavioral Manipulation',
+        risk: 'HIGH',
+        score: vulnerability.manipulationSusceptibility,
+        vector: 'Predictable routine allows targeted ad injection at vulnerable times',
+        realWorldExample: `Advertisers show you impulse-buy products during your evening browsing when you're most susceptible.`,
+        mitigation: 'Randomize posting times, use ad blockers, disable personalized ads',
+        affectedBy: ['Posting schedule', 'Activity patterns', 'Emotional state indicators']
+      });
+    }
+    
+    if (vulnerability.reidentificationRisk > 70) {
+      exploitationScenarios.push({
+        type: 'Identity Correlation & Cross-Platform Tracking',
+        risk: 'CRITICAL',
+        score: vulnerability.reidentificationRisk,
+        vector: 'Unique combination of data enables re-identification across platforms',
+        realWorldExample: `Data brokers link your Facebook to Amazon purchases, Netflix history, and location tracking through your unique fingerprint.`,
+        mitigation: 'Remove location data, obscure birthday, diversify interests across platforms',
+        affectedBy: ['Location tags', 'Birthday visibility', 'Consistent interests']
+      });
+    }
+
+    // Add Internet Search-specific exploitation scenarios
+    if (internetSearchData.criticalFindings > 0) {
+      exploitationScenarios.push({
+        type: 'Data Breach Exposure',
+        risk: 'CRITICAL',
+        score: 100,
+        vector: `${internetSearchData.criticalFindings} critical security breaches detected in your searches`,
+        realWorldExample: `Your email/phone/username appeared in ${internetSearchData.criticalFindings} data breaches, exposing passwords, personal info, and account details to cybercriminals on the dark web.`,
+        mitigation: 'Change all passwords immediately, enable 2FA everywhere, monitor credit reports',
+        affectedBy: ['Compromised accounts', 'Leaked credentials', 'Exposed PII']
+      });
+    }
+
+    if (internetSearchData.avgRiskScore > 60) {
+      exploitationScenarios.push({
+        type: 'Digital Footprint Exploitation',
+        risk: internetSearchData.avgRiskScore > 80 ? 'CRITICAL' : 'HIGH',
+        score: internetSearchData.avgRiskScore,
+        vector: `${internetSearchData.totalDataPoints} publicly accessible data points found across the internet`,
+        realWorldExample: `Your ${internetSearchData.totalSearches} OSINT searches revealed extensive personal information scattered across ${Object.keys(internetSearchData.sourcesFound).length} different platforms, enabling identity theft, social engineering, and targeted scams.`,
+        mitigation: 'Remove old profiles, request data deletion from brokers, use privacy services',
+        affectedBy: ['Social media profiles', 'Public records', 'Data broker databases']
+      });
+    }
+    
+    // Deterministic per-user pseudo-random so these illustrative broker/advertiser
+    // estimates stay stable across refreshes instead of changing on every load.
+    const _seedStr = String(userData.id || user.id || userData.name || 'user');
+    let _seed = 0;
+    for (let i = 0; i < _seedStr.length; i++) _seed = (_seed * 31 + _seedStr.charCodeAt(i)) >>> 0;
+    const seededRand = () => { _seed = (_seed * 1103515245 + 12345) >>> 0; return _seed / 4294967296; };
+
+    const entityViews = {
+      platform: {
+        name: 'What Facebook Sees (Complete Internal View)',
+        description: 'Facebook has complete access to all your activity on their platform, including deleted content, draft posts, messages, and off-platform tracking via Facebook Pixel.',
+        dataAccess: [
+          { 
+            category: 'Explicit Data', 
+            items: [
+              `Name: ${userData.name}`,
+              `Email: ${userData.email || 'Connected'}`,
+              `${user.feedData?.length || 0} posts`,
+              `${user.likes?.length || 0} likes`,
+              `${user.albumsData?.length || 0} albums`,
+              'All messages (even deleted)',
+              'Friend list and connections'
+            ]
+          },
+          { 
+            category: 'Behavioral Data', 
+            items: [
+              `Active during: ${surveillanceData.behavioral.peakActivity?.[0] || 'evening hours'}`,
+              'Time spent on each post (dwell time)',
+              'Scroll speed and reading patterns',
+              'Hover duration over ads',
+              'Click patterns and hesitation',
+              `Session duration: avg ${Math.round((user.feedData?.length || 0) * 2.5)} min/day`
+            ]
+          },
+          { 
+            category: 'Inferred Data', 
+            items: [
+              `Personality: ${user.personalityScores?.openness}% open, ${user.personalityScores?.conscientiousness}% conscientious`,
+              `Political leaning: ${user.personalityScores?.agreeableness > 60 ? 'Liberal-leaning' : 'Conservative-leaning'} (inferred)`,
+              `Income bracket: Estimated from behavior`,
+              `Education: ${user.readability?.fleschKincaid > 60 ? 'College educated' : 'High school level'} (from writing)`,
+              'Life events predicted 6-12 months in advance'
+            ]
+          }
+        ],
+        capabilities: [
+          `Can predict your behavior 6-12 months in advance`,
+          'Knows your emotional state in real-time',
+          `Can identify when you're vulnerable to ads`,
+          'Tracks offline behavior through business partnerships',
+          'Builds shadow profiles of non-users you interact with'
+        ],
+        monetization: `Your specific profile value: approximately $${Math.round((user.feedData?.length || 0) * 0.5 + (user.likes?.length || 0) * 0.3 + 50)}/year.`
+      },
+      advertiser: {
+        name: 'What Advertisers Get (Targeting Profile)',
+        description: 'Advertisers get incredibly detailed targeting options without seeing your raw data.',
+        dataAccess: [
+          { 
+            category: 'Demographics', 
+            items: [
+              `Age range: ${userData.age_range || 'Inferred'}`,
+              `Gender: ${userData.gender || 'Unknown'}`,
+              `Location: ${userData.location?.name || 'Tracked'}`,
+              `Languages: ${userData.languages?.map(l => l.name || l).join(', ') || 'English'}`,
+              `Education: ${user.readability?.fleschKincaid > 60 ? 'College' : 'High school'} (inferred)`
+            ]
+          },
+          { 
+            category: 'Interests & Behaviors', 
+            items: [
+              `Primary interest: ${user.areaOfInterest || 'General'}`,
+              `Interest diversity: ${user.interestDiversity || 0}%`,
+              `Engagement level: ${user.engagementScore || 0}/100`,
+              `${user.likes?.length || 0} page likes categorized`,
+              `Active during: ${surveillanceData.behavioral.peakActivity?.[0] || 'evening'}`
+            ]
+          }
+        ],
+        capabilities: [
+          `Target during peak susceptibility`,
+          `Show personalized creative`,
+          `Adjust pricing based on purchase likelihood`,
+          'Track conversion across devices'
+        ],
+        cost: `Advertisers pay to reach you. Your estimated CLV: $${Math.round(seededRand() * 5000 + 1000)}`
+      },
+      broker: {
+        name: 'What Data Brokers Build (Complete Dossier)',
+        description: 'Data brokers aggregate your online and offline data from hundreds of sources.',
+        dataAccess: [
+          { 
+            category: 'Social Media Data', 
+            items: [
+              'Facebook (all public and inferred data)',
+              'Twitter/X (timeline and interactions)',
+              'LinkedIn (professional background)',
+              'Instagram (visual preferences)',
+              'Dating apps (relationship status)'
+            ]
+          },
+          { 
+            category: 'Online Behavior', 
+            items: [
+              `~${Math.round((user.feedData?.length || 0) * 100 + seededRand() * 10000)} websites visited`,
+              'Complete search history',
+              'Purchase history from 50+ retailers',
+              'App usage patterns (200+ apps tracked)',
+              'Streaming preferences'
+            ]
+          },
+          { 
+            category: 'Financial Data', 
+            items: [
+              `Credit score: Estimated`,
+              `Income: $${Math.round(seededRand() * 40000 + 40000)}/year estimated`,
+              'Property ownership records',
+              'Debt level and payment history'
+            ]
+          }
+        ],
+        capabilities: [
+          'Link all online identities to real name',
+          `Predict major life events 3-6 months ahead`,
+          `Calculate lifetime value: $${Math.round(seededRand() * 50000 + 10000)}`,
+          `Sell reports about you for $0.50-5 each`
+        ],
+        buyers: [
+          'Insurance companies',
+          'Employers (background checks)',
+          'Landlords (tenant screening)',
+          'Political campaigns',
+          'Law enforcement',
+          'Debt collectors',
+          'Scammers (after breaches)'
+        ],
+        dataPoints: `Your dossier contains ${Math.round((user.feedData?.length || 0) * 50 + (user.likes?.length || 0) * 10 + seededRand() * 2000 + 1500)}-${Math.round((user.feedData?.length || 0) * 50 + (user.likes?.length || 0) * 10 + seededRand() * 3000 + 3500)} data points`
+      }
+    };
+    
+    const correlationsGrouped = {
+      critical: (surveillanceData.correlations || []).filter(c => c.sensitivity === 'critical'),
+      high: (surveillanceData.correlations || []).filter(c => c.sensitivity === 'high'),
+      medium: (surveillanceData.correlations || []).filter(c => c.sensitivity === 'medium'),
+      low: (surveillanceData.correlations || []).filter(c => c.sensitivity === 'low')
+    };
+    
+    const feedDataEnhanced = (user.feedData || []).map(item => ({
+      ...item,
+      source: item.source || 'post',
+      processedDate: item.processedAt || item.created_time,
+      hasOCR: item.source === 'image',
+      confidence: item.confidence || 100,
+      wordCount: item.wordCount || (item.text || item.message || '').split(/\s+/).length
+    }));
+    
+    const surveillanceMetadata = {
+      ...(surveillanceData.metadata || {}),
+      dataCompleteness: Math.round((
+        (user.feedData?.length > 0 ? 25 : 0) +
+        (user.likes?.length > 0 ? 25 : 0) +
+        (user.albumsData?.length > 0 ? 25 : 0) +
+        (surveillanceData.correlations?.length > 0 ? 25 : 0)
+      )),
+      riskLevel: vulnerability.manipulationSusceptibility > 70 || vulnerability.reidentificationRisk > 70 ? 'HIGH' :
+                  vulnerability.manipulationSusceptibility > 50 || vulnerability.reidentificationRisk > 50 ? 'MEDIUM' : 'LOW',
+      hasFullAnalysis: hasSurveillance
+    };
+    
+    // ==================== RENDER WITH ALL DATA ====================
+    res.render("index", {
+      userData,
+      feedData: { data: feedDataEnhanced },
+      mostCommonWords: user.mostCommonWords || [],
+      sentiment: sentimentBreakdown,
+      sentimentData,
+      albumsData: user.albumsData || [],
+      personalityScores: user.personalityScores || {
+        extroversion: 50,
+        neuroticism: 50,
+        agreeableness: 50,
+        conscientiousness: 50,
+        openness: 50
+      },
+      mostCommonLikes: user.mostCommonLikes || 'Not determined',
+      areaOfInterest: user.areaOfInterest || 'General',
+      pD: user.pD || 'Your personality profile is being analyzed.',
+      uD: user.uD || 'Your profile analysis is being generated.',
+      engagementScore: user.engagementScore || 0,
+      interestDiversity: user.interestDiversity || 0,
+      readability: user.readability || { fleschKincaid: 50, syllablesPerWord: 0, wordsPerSentence: 0 },
+      textStatistics: user.textStatistics || { totalWords: 0, uniqueWords: 0, vocabularyDiversity: 0, sentences: 0, characters: 0 },
+      insights,
+      recommendations,
+      surveillance: surveillanceData,
+      hasSurveillance,
+      behavioral: surveillanceData.behavioral,
+      psychographic: surveillanceData.psychographic,
+      profileStats,
+      facebookTokenInfo,
+      facebookPermissions,
+      ocrStatistics,
+      processedAlbums,
+      userSettings,
+      profileDepth,
+      dataTransformations,
+      exploitationScenarios,
+      entityViews,
+      correlationsGrouped,
+      surveillanceMetadata,
+      
+      // ✅ NEW: Internet Search Data
+      internetSearchData,
+      
+      title: 'Your Dashboard | VisiSocial',
+      nonce: res.locals.nonce
+    });
+    
+    const requestDuration = Date.now() - startTime;
+    metrics.timing('routes.dashboard.duration', requestDuration);
+    logger.info(`Dashboard loaded: ${userId} in ${requestDuration}ms`);
+  } catch (error) {
+    metrics.increment('routes.dashboard.errors');
+    logger.error(`Dashboard error: ${error.message}`, error);
+    
+    res.status(500).render("error", { 
+      err: {
+        status: 500,
+        message: "Error loading dashboard",
+        details: process.env.NODE_ENV !== 'production' ? error.message : null
+      },
+      title: 'Error',
+      nonce: res.locals.nonce
+    });
+  }
+}));
+
+/**
+ * Loading Page Route
+ */
+router.get('/loading', authenticateToken, wrapAsync(async (req, res) => {
+  const userId = req.user.id;
+  const user = await User.findOne({ id: userId });
+  
+  if (!user) return res.redirect('/login');
+  if (user.analysisComplete || user.status === 'complete') return res.redirect('/');
+  
+  const userTasks = taskStatus.getUserTasks(userId);
+  const latestTask = userTasks.length > 0 ? userTasks[userTasks.length - 1] : null;
+  const hasActiveTask = latestTask && (latestTask.state === 'running' || latestTask.state === 'pending');
+  
+  if (!hasActiveTask) {
+    if (user.status === 'processing') {
+      const lastUpdated = user.lastUpdated || new Date();
+      const timeSinceUpdate = Date.now() - lastUpdated.getTime();
+      
+      if (timeSinceUpdate > 10 * 60 * 1000) {
+        user.status = 'pending';
+        user.analysisComplete = false;
+        await user.save();
+        taskStatus.clearUserTasks(userId);
+        
+        setImmediate(() => {
+          processUserDataInBackground(userId, req.user.accessToken)
+            .catch(err => console.error('Restart error:', err));
+        });
+      }
+    } else if (user.status === 'pending' || !user.status) {
+      const task = taskStatus.create(userId, 'initial_processing', { triggeredBy: 'loading_page' });
+      taskStatus.start(task.id, 9, 'Preparing to analyze your data...');
+      
+      setImmediate(() => {
+        processUserDataInBackground(userId, req.user.accessToken)
+          .catch(err => console.error('Processing error:', err));
+      });
+    }
+  }
+  
+  res.render('loading', {
+    title: 'Loading Your Data',
+    userId: userId,
+    taskId: latestTask?.id,
+    nonce: res.locals.nonce
+  });
+}));
+
+/**
+ * Task Status API Route
+ */
+router.get('/task-status', authenticateToken, wrapAsync(async (req, res) => {
+  const userId = req.user.id;
+  
+  try {
+    const user = await User.findOne({ id: userId });
+    
+    if (!user) {
+      return res.json({
+        task: 'User not found',
+        progress: 0,
+        completed: false,
+        error: true
+      });
+    }
+    
+    if (user.analysisComplete || user.status === 'complete') {
+      return res.json({
+        task: 'Analysis complete!',
+        step: 9,
+        progress: 100,
+        totalSteps: 9,
+        isProcessing: false,
+        completed: true,
+        redirectTo: '/',
+        timestamp: Date.now()
+      });
+    }
+    
+    const userTasks = taskStatus.getUserTasks(userId, { limit: 5 });
+    const activeTask = userTasks.find(t => t.state === 'running' || t.state === 'pending');
+    const latestTask = userTasks.length > 0 ? userTasks[userTasks.length - 1] : null;
+    const task = activeTask || latestTask;
+    
+    if (task) {
+      if (task.state === 'completed') {
+        user.status = 'complete';
+        user.analysisComplete = true;
+        user.lastUpdated = new Date();
+        await user.save();
+        
+        return res.json({
+          task: 'Analysis complete!',
+          step: 9,
+          progress: 100,
+          totalSteps: 9,
+          isProcessing: false,
+          completed: true,
+          redirectTo: '/',
+          timestamp: Date.now()
+        });
+      }
+      
+      return res.json({
+        task: task.message || 'Processing...',
+        step: task.currentStep || 0,
+        progress: task.progress || 0,
+        totalSteps: task.totalSteps || 9,
+        isProcessing: task.state === 'running',
+        completed: task.state === 'completed',
+        timestamp: Date.now()
+      });
+    }
+    
+    res.json({
+      task: 'Starting analysis...',
+      step: 0,
+      progress: 0,
+      totalSteps: 9,
+      isProcessing: true,
+      completed: false,
+      timestamp: Date.now()
+    });
+  } catch (error) {
+    console.error('Task status error:', error);
+    res.json({
+      task: 'Error checking status',
+      progress: 0,
+      completed: false,
+      error: true
+    });
+  }
+}));
+
+/**
+ * ✅ NEW ROUTE: Trigger Surveillance Analysis
+ */
+router.post('/trigger-surveillance',
+  authenticateToken,
+  rateLimiter({ windowMs: 3600000, max: 3 }),
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      
+      logger.info(`Manual surveillance analysis triggered: ${userId}`);
+      
+      const feedText = (user.feedData || []).map(f => f.message || f.text || '').join(' ');
+      
+      const [behavioral, psychographic, lifestyle, socialGraph, correlations] = await Promise.all([
+        SurveillanceEngine.analyzeBehavioralRhythms(userId, user.feedData || []),
+        SurveillanceEngine.inferPsychographics(userId, feedText, user.albumsData || [], user.likes || []),
+        SurveillanceEngine.extractLifestyleMarkers(user, feedText.split(' '), user.albumsData || [], user.likes || []),
+        SurveillanceEngine.analyzeSocialGraph(userId, [], []),
+        SurveillanceEngine.findCrossModalCorrelations(user)
+      ]);
+      
+      const vulnerability = await SurveillanceEngine.calculateVulnerabilityProfile(user, {
+        behavioralPatterns: behavioral,
+        inferredTraits: psychographic,
+        lifestyleMarkers: lifestyle,
+        socialGraph: socialGraph,
+        correlations: correlations
+      });
+      
+      user.surveillance = {
+        behavioralPatterns: behavioral,
+        inferredTraits: psychographic,
+        lifestyleMarkers: lifestyle,
+        socialGraph: socialGraph,
+        correlations: correlations,
+        vulnerabilityProfile: vulnerability,
+        surveillanceMetadata: {
+          totalDataPoints: (user.feedData?.length || 0) + (user.likes?.length || 0) + (user.albumsData?.length || 0),
+          lastFullAnalysis: new Date(),
+          inferenceConfidence: 85,
+          dataFreshness: 100,
+          crossModalCorrelations: correlations.length
+        }
+      };
+      
+      await user.save();
+      
+      logger.info(`Surveillance analysis complete: ${userId}`);
+      
+      res.json({
+        success: true,
+        message: 'Surveillance analysis complete',
+        redirect: '/surveillance/dashboard'
+      });
+    } catch (error) {
+      logger.error(`Surveillance trigger error: ${error.message}`);
+      res.status(500).json({
+        success: false,
+        message: 'Error running surveillance analysis'
+      });
+    }
+  })
+);
+
+/**
+ * ✅ NEW ROUTE: Refresh Surveillance Analysis
+ */
+router.post('/refresh-surveillance',
+  authenticateToken,
+  rateLimiter({ windowMs: 3600000, max: 5 }),
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      
+      setImmediate(async () => {
+        try {
+          const user = await User.findOne({ id: userId });
+          if (!user) return;
+          
+          const feedText = (user.feedData || []).map(f => f.message || f.text || '').join(' ');
+          
+          const [behavioral, psychographic, lifestyle, socialGraph, correlations] = await Promise.all([
+            SurveillanceEngine.analyzeBehavioralRhythms(userId, user.feedData || []),
+            SurveillanceEngine.inferPsychographics(userId, feedText, user.albumsData || [], user.likes || []),
+            SurveillanceEngine.extractLifestyleMarkers(user, feedText.split(' '), user.albumsData || [], user.likes || []),
+            SurveillanceEngine.analyzeSocialGraph(userId, [], []),
+            SurveillanceEngine.findCrossModalCorrelations(user)
+          ]);
+          
+          const vulnerability = await SurveillanceEngine.calculateVulnerabilityProfile(user, {
+            behavioralPatterns: behavioral,
+            inferredTraits: psychographic,
+            lifestyleMarkers: lifestyle,
+            socialGraph: socialGraph,
+            correlations: correlations
+          });
+          
+          user.surveillance = {
+            behavioralPatterns: behavioral,
+            inferredTraits: psychographic,
+            lifestyleMarkers: lifestyle,
+            socialGraph: socialGraph,
+            correlations: correlations,
+            vulnerabilityProfile: vulnerability,
+            surveillanceMetadata: {
+              totalDataPoints: (user.feedData?.length || 0) + (user.likes?.length || 0) + (user.albumsData?.length || 0),
+              lastFullAnalysis: new Date(),
+              inferenceConfidence: 85,
+              dataFreshness: 100,
+              crossModalCorrelations: correlations.length
+            }
+          };
+          
+          await user.save();
+          logger.info(`Surveillance refreshed: ${userId}`);
+        } catch (error) {
+          logger.error(`Surveillance refresh error: ${error.message}`);
+        }
+      });
+      
+      res.json({ success: true, message: 'Surveillance refresh started' });
+    } catch (error) {
+      logger.error(`Refresh surveillance error: ${error.message}`);
+      res.status(500).json({ success: false, message: 'Error starting refresh' });
+    }
+  })
+);
+
+// Profile route
+// Profile route - Updated with all required variables
+router.get('/profile', 
+  authenticateToken,
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).render('error', { 
+          err: { status: 404, message: "User profile not found" },
+          title: 'Profile Not Found',
+          nonce: res.locals.nonce
+        });
+      }
+
+      // Calculate the statistics needed for the profile page
+      const analysisCount = user.feedData?.length || 0;
+      
+      // Calculate days active (days since account creation)
+      const createdDate = user.createdAt || new Date();
+      const daysActive = Math.max(1, Math.floor((Date.now() - createdDate.getTime()) / (1000 * 60 * 60 * 24)));
+      
+      // Count connected accounts (Facebook is always connected)
+      const connectedAccounts = 1; // Just Facebook for now
+      
+      // Count insights (using mostCommonWords as a proxy)
+      const insightsCount = user.mostCommonWords?.length || 0;
+      
+      // Format join date
+      const joinDate = user.createdAt ? user.createdAt.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }) : 'Recently';
+
+      // Calculate engagement score if not already present
+      if (!user.engagementScore) {
+        const engagementScore = Math.min(100, Math.round(
+          ((user.feedData?.length || 0) / 10) * 10 +
+          ((user.likes?.length || 0) / 5) * 5 +
+          (user.albumsData?.length || 0) * 5
+        ));
+        user.engagementScore = engagementScore;
+        await user.save();
+      }
+
+      res.render('profile', { 
+        user,
+        analysisCount,
+        daysActive,
+        connectedAccounts,
+        insightsCount,
+        joinDate,
+        engagementScore: user.engagementScore || 0,
+        title: `${user.name || 'User'} | Profile`,
+        nonce: res.locals.nonce
+      });
+    } catch (error) {
+      logger.error(`Profile error: ${error.message}`);
+      res.status(500).render('error', { 
+        err: { status: 500, message: "Error loading profile" },
+        title: 'Error',
+        nonce: res.locals.nonce
+      });
+    }
+  })
+);
+
+// Add this BEFORE the POST route
+router.get('/profile/delete', authenticateToken, (req, res) => {
+  res.render('confirm-delete', {
+    title: 'Confirm Account Deletion',
+    warning: 'This action is permanent and cannot be undone.',
+    nonce: res.locals.nonce
+  });
+});
+
+// Account deletion
+router.post('/profile/delete', 
+  authenticateToken,
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      
+      // Delete user data
+      const user = await User.findOneAndDelete({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      // Delete associated tokens
+      await UserToken.deleteMany({ userId });
+      
+      // Clear cookies
+      res.clearCookie('access_token');
+      
+      logger.info(`User account deleted: ${userId}`);
+      metrics.increment('user.deleted');
+      
+      // Redirect to login
+      res.redirect('/login?message=Account%20successfully%20deleted');
+    } catch (error) {
+      logger.error(`Account deletion error: ${error.message}`);
+      metrics.increment('user.deletion_errors');
+      
+      res.status(500).json({ 
+        success: false, 
+        message: "Error deleting account" 
+      });
+    }
+  })
+);
+
+// Refresh analysis
+router.post('/refresh-analysis',
+  authenticateToken,
+  rateLimiter({ windowMs: 3600000, max: 5 }),
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+
+      // Clear processed-album markers so OCR actually re-runs on refresh
+      // (otherwise every album is skipped as "already processed").
+      await User.updateOne({ id: userId }, { $set: { processedAlbums: [] } });
+
+      // Reset task status
+      taskStatus.task = 'Initializing refresh...';
+      taskStatus.step = 0;
+      taskStatus.progress = 0;
+      taskStatus.totalSteps = 8;
+      
+      // Start background processing
+      setImmediate(() => {
+        processUserDataInBackground(userId, req.user.accessToken)
+          .catch(err => logger.error(`Refresh error: ${err.message}`));
+      });
+      
+      res.json({ 
+        success: true, 
+        message: 'Analysis refresh started',
+        redirect: '/loading'
+      });
+      
+    } catch (error) {
+      logger.error(`Refresh error: ${error.message}`);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Error starting refresh' 
+      });
+    }
+  })
+);
+
+// Export data as CSV
+router.get('/export-data/csv',
+  authenticateToken,
+  rateLimiter({ windowMs: 3600000, max: 5 }), // 5 requests per hour
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      // Create CSV export
+      const filePath = await exportUserDataToCsv(user);
+      
+      // Set headers for download
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', `attachment; filename=${path.basename(filePath)}`);
+      
+      // Stream file
+      const fileStream = fs.createReadStream(filePath);
+      fileStream.pipe(res);
+      
+      // Clean up file after sending
+      fileStream.on('end', () => {
+        fs.unlink(filePath, err => {
+          if (err) logger.error(`Error deleting temporary file: ${err.message}`);
+        });
+      });
+      
+      logger.info(`User data exported as CSV for user: ${userId}`);
+      metrics.increment('exports.csv');
+    } catch (error) {
+      logger.error(`CSV export error: ${error.message}`);
+      metrics.increment('exports.errors');
+      
+      res.status(500).json({ 
+        success: false, 
+        message: "Error exporting data" 
+      });
+    }
+  })
+);
+
+// Export all data as ZIP
+router.get('/export-data/zip',
+  authenticateToken,
+  rateLimiter({ windowMs: 3600000, max: 3 }), // 3 requests per hour
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      // Create ZIP export
+      const filePath = await exportUserDataToZip(user);
+      
+      // Set headers for download
+      res.setHeader('Content-Type', 'application/zip');
+      res.setHeader('Content-Disposition', `attachment; filename=${path.basename(filePath)}`);
+      
+      // Stream file
+      const fileStream = fs.createReadStream(filePath);
+      fileStream.pipe(res);
+      
+      // Clean up file after sending
+      fileStream.on('end', () => {
+        fs.unlink(filePath, err => {
+          if (err) logger.error(`Error deleting temporary file: ${err.message}`);
+        });
+      });
+      
+      logger.info(`User data exported as ZIP for user: ${userId}`);
+      metrics.increment('exports.zip');
+    } catch (error) {
+      logger.error(`ZIP export error: ${error.message}`);
+      metrics.increment('exports.errors');
+      
+      res.status(500).json({ 
+        success: false, 
+        message: "Error exporting data" 
+      });
+    }
+  })
+);
+
+
+// Upload custom image for analysis
+router.post('/upload-image',
+  authenticateToken,
+  upload.single('image'),
+  wrapAsync(async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ success: false, message: "No image uploaded" });
+      }
+      
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      // Process the uploaded image
+      const filePath = req.file.path;
+      
+      // Optimize image
+      const optimizedBuffer = await optimizeImage(filePath);
+      fs.writeFileSync(filePath, optimizedBuffer);
+      
+      // Extract text from image
+      const ocrResult = await extractTextFromImage(filePath);
+      const extractedText = ocrResult && ocrResult.text ? ocrResult.text : null;
+
+      if (!extractedText) {
+        return res.json({ 
+          success: true, 
+          message: "Image processed but no text was detected",
+          text: null
+        });
+      }
+      
+      // Add to user's feedData
+      user.feedData.push({
+        text: extractedText,
+        source: 'uploaded_image',
+        filename: req.file.filename,
+        processedAt: new Date()
+      });
+      
+      await user.save();
+      
+      logger.info(`User uploaded image processed: ${req.file.filename}`);
+      metrics.increment('uploads.image_processed');
+      
+      res.json({ 
+        success: true, 
+        message: "Image processed successfully",
+        text: extractedText
+      });
+    } catch (error) {
+      logger.error(`Image upload error: ${error.message}`);
+      metrics.increment('uploads.errors');
+      
+      res.status(500).json({ 
+        success: false, 
+        message: "Error processing uploaded image" 
+      });
+    }
+  })
+);
+
+// Get processing status
+// Admin dashboard route
+router.get(
+  '/admin',
+  authenticateAdminToken,  // Only admin token auth
+  wrapAsync(async (req, res) => {
+    const totalUsers = await User.countDocuments();
+    const newUsersToday = await User.countDocuments({
+      createdAt: { $gte: new Date(new Date().setHours(0, 0, 0, 0)) }
+    });
+
+    const recentUsers = await User.find()
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .select('id name email createdAt');
+
+    res.render('admin/dashboard', {
+      stats: {
+        totalUsers,
+        newUsersToday,
+        apiCalls: metrics.getCounter('api.calls') || 0,
+        errors: metrics.getCounter('errors') || 0
+      },
+      recentUsers,
+      admin: req.adminUser, // ← authenticated admin
+      title: 'Admin Dashboard',
+      nonce: res.locals.nonce
+    });
+  })
+);
+
+
+
+
+// ======================================================
+// 📊 PUBLIC METRICS PAGE
+// ======================================================
+router.get('/metrics', wrapAsync(async (req, res) => {
+  const now = new Date();
+  const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  const yearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+
+  // Core user statistics
+  const [totalUsers, newUsersWeek, newUsersMonth, activeUsersWeek] = await Promise.all([
+    User.countDocuments(),
+    User.countDocuments({ createdAt: { $gte: weekAgo } }),
+    User.countDocuments({ createdAt: { $gte: monthAgo } }),
+    User.countDocuments({ lastUpdated: { $gte: weekAgo } })
+  ]);
+
+  // Analysis statistics
+  const analysisStats = await User.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalPosts: { $sum: { $size: { $ifNull: ["$feedData", []] } } },
+        totalLikes: { $sum: { $size: { $ifNull: ["$likes", []] } } },
+        totalAlbums: { $sum: { $size: { $ifNull: ["$albumsData", []] } } },
+        totalPhotos: { $sum: { $size: { $ifNull: ["$photosData", []] } } }
+      }
+    }
+  ]);
+
+  const totalDataPoints = analysisStats[0] ? 
+    analysisStats[0].totalPosts + 
+    analysisStats[0].totalLikes + 
+    analysisStats[0].totalAlbums + 
+    analysisStats[0].totalPhotos : 0;
+
+  // Countries served
+  const countries = await User.distinct('location.name');
+  const uniqueCountries = new Set(
+    countries
+      .filter(Boolean)
+      .map(loc => loc.split(',').pop().trim())
+  );
+
+  // Average confidence score
+  const avgConfidenceResult = await User.aggregate([
+    { $match: { 'personalityScores.confidence': { $exists: true, $ne: null } } },
+    { $group: { _id: null, avg: { $avg: '$personalityScores.confidence' } } }
+  ]);
+  const avgConfidence = avgConfidenceResult[0]?.avg || 0;
+
+  // Average engagement score
+  const avgEngagementResult = await User.aggregate([
+    { $match: { engagementScore: { $exists: true, $ne: null } } },
+    { $group: { _id: null, avg: { $avg: '$engagementScore' } } }
+  ]);
+  const avgEngagement = avgEngagementResult[0]?.avg || 0;
+
+  // Growth rate calculation
+  const weeklyGrowthRate = totalUsers > 0 ? 
+    Math.round((newUsersWeek / totalUsers) * 100) : 0;
+
+  // User growth over last 30 days
+  const userGrowth = await User.aggregate([
+    { $match: { createdAt: { $gte: monthAgo } } },
+    {
+      $group: {
+        _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+        count: { $sum: 1 }
+      }
+    },
+    { $sort: { _id: 1 } }
+  ]);
+
+  // Personality distribution
+  const personalityDistribution = await User.aggregate([
+    { $match: { personalityScores: { $exists: true } } },
+    {
+      $project: {
+        dominantTrait: {
+          $arrayElemAt: [
+            ['Openness', 'Conscientiousness', 'Extroversion', 'Agreeableness', 'Neuroticism'],
+            {
+              $indexOfArray: [
+                [
+                  '$personalityScores.openness',
+                  '$personalityScores.conscientiousness',
+                  '$personalityScores.extroversion',
+                  '$personalityScores.agreeableness',
+                  '$personalityScores.neuroticism'
+                ],
+                { $max: [
+                  '$personalityScores.openness',
+                  '$personalityScores.conscientiousness',
+                  '$personalityScores.extroversion',
+                  '$personalityScores.agreeableness',
+                  '$personalityScores.neuroticism'
+                ]}
+              ]
+            }
+          ]
+        }
+      }
+    },
+    { $group: { _id: '$dominantTrait', count: { $sum: 1 } } },
+    { $sort: { count: -1 } }
+  ]);
+
+  // Engagement distribution
+  const engagementDistribution = await User.aggregate([
+    { $match: { engagementScore: { $exists: true } } },
+    {
+      $bucket: {
+        groupBy: '$engagementScore',
+        boundaries: [0, 20, 40, 60, 80, 100],
+        default: 'Other',
+        output: { count: { $sum: 1 } }
+      }
+    }
+  ]);
+
+  // Calculate estimated data economy value
+  const dataEconomyValue = Math.round((totalDataPoints * 0.0005) + (totalUsers * 200));
+
+  const stats = {
+    users: {
+      total: totalUsers || 0,
+      newWeek: newUsersWeek || 0,
+      newMonth: newUsersMonth || 0,
+      activeWeek: activeUsersWeek || 0,
+      growthRate: weeklyGrowthRate
+    },
+    analyses: {
+      total: analysisStats[0]?.totalPosts || 0,
+      dataPoints: totalDataPoints,
+      avgConfidence: Math.round(avgConfidence),
+      avgEngagement: Math.round(avgEngagement)
+    },
+    platform: {
+      countries: uniqueCountries.size,
+      dataValue: dataEconomyValue,
+      analysesPerUser: totalUsers > 0 ? Math.round(totalDataPoints / totalUsers) : 0
+    },
+    growth: userGrowth,
+    personality: personalityDistribution,
+    engagement: engagementDistribution
+  };
+
+  res.render('metrics', {
+    title: 'Platform Metrics | VisiSocial',
+    stats,
+    lastUpdated: new Date(),
+    nonce: res.locals.nonce
+  });
+}));
+
+
+// API endpoint to get user insights
+router.get('/api/insights',
+  authenticateToken,
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ 
+          success: false, 
+          message: "User not found" 
+        });
+      }
+      
+      // Generate insights if not already created
+      const insights = await generateUserInsights(user);
+      
+      res.json({
+        success: true,
+        insights: insights.insights,
+        recommendations: insights.recommendations
+      });
+    } catch (error) {
+      logger.error(`API insights error: ${error.message}`);
+      
+      res.status(500).json({
+        success: false,
+        message: "Error generating insights"
+      });
+    }
+  })
+);
+// About Us route - Enhanced with metrics and cache
+router.get('/about',
+  rateLimiter({ windowMs: 60000, max: 30 }), // 30 requests per minute
+  wrapAsync(async (req, res) => {
+    try {
+      metrics.increment('routes.about.requests');
+      const startTime = Date.now();
+      
+      // Cache the about page data (team, features, etc.)
+      const cacheKey = 'about_page_data';
+      const cachedData = await cache.get(cacheKey);
+      
+      let pageData;
+      if (cachedData) {
+        pageData = cachedData;
+        logger.debug('Using cached about page data');
+      } else {
+        // Generate fresh about page data
+        pageData = {
+          // Team members with detailed info
+          team: [
+            {
+              name: 'Farhan Khan',
+              role: 'Software Engineer & Co-Founder',
+              bio: 'Masters in Cyber Security with 5+ years experience in social media analytics. Published research on digital personality assessment.',
+              image: '/img/farhan.jpg',
+              expertise: ['AI/ML', 'Personality Psychology', 'Data Visualization']
+            }
+            
+          ],
+          
+          // Features with icons and descriptions
+          features: [
+            {
+              icon: 'fas fa-brain',
+              title: 'AI-Powered Personality Analysis',
+              description: 'Advanced machine learning models analyze your social patterns to provide deep psychological insights using the Big Five personality framework.',
+              color: '#007bff'
+            },
+            {
+              icon: 'fas fa-shield-alt',
+              title: 'Privacy-First Approach',
+              description: 'Your data is encrypted, anonymized, and never sold. We use industry-leading security practices to protect your information.',
+              color: '#28a745'
+            },
+            {
+              icon: 'fas fa-chart-line',
+              title: 'Visual Analytics',
+              description: 'Beautiful, interactive visualizations that make complex data understandable and actionable.',
+              color: '#ff6b6b'
+            },
+            {
+              icon: 'fas fa-robot',
+              title: 'Smart Recommendations',
+              description: 'Personalized suggestions based on your unique personality profile and social patterns.',
+              color: '#6f42c1'
+            }
+          ],
+          
+          // Statistics
+          stats: [
+            { value: '10,000+', label: 'Users Analyzed', icon: 'fas fa-users' },
+            { value: '99.9%', label: 'Accuracy Rate', icon: 'fas fa-bullseye' },
+            { value: '50M+', label: 'Data Points Processed', icon: 'fas fa-database' },
+            { value: '24/7', label: 'Uptime', icon: 'fas fa-clock' }
+          ],
+          
+          // Timeline of development
+          timeline: [
+            {
+              year: '2020',
+              title: 'Research Phase',
+              description: 'Initial research on social media personality correlation',
+              icon: 'fas fa-flask'
+            },
+            {
+              year: '2021',
+              title: 'Prototype Development',
+              description: 'First working prototype with basic personality assessment',
+              icon: 'fas fa-code'
+            },
+            {
+              year: '2022',
+              title: 'Beta Launch',
+              description: 'Private beta with 1000 users, refined algorithms',
+              icon: 'fas fa-rocket'
+            },
+            {
+              year: '2023',
+              title: 'Public Release',
+              description: 'Full public launch with advanced features',
+              icon: 'fas fa-globe'
+            }
+          ],
+          
+          // Technology stack
+          techStack: [
+            { name: 'Node.js', icon: 'fab fa-node-js', color: '#68a063' },
+            { name: 'TensorFlow', icon: 'fas fa-brain', color: '#ff6f00' },
+            { name: 'MongoDB', icon: 'fas fa-database', color: '#47a248' },
+            { name: 'React', icon: 'fab fa-react', color: '#61dafb' },
+            { name: 'Chart.js', icon: 'fas fa-chart-bar', color: '#ff6384' },
+            { name: 'AWS', icon: 'fab fa-aws', color: '#ff9900' }
+          ]
+        };
+        
+        // Cache for 1 hour
+        await cache.set(cacheKey, pageData, 60 * 60 * 1000);
+      }
+      
+      // Check if user is authenticated for personalized message
+      let user = null;
+      if (req.user) {
+        user = await User.findOne({ id: req.user.id });
+      }
+      
+      const duration = Date.now() - startTime;
+      metrics.timing('routes.about.duration', duration);
+      
+      res.render('about', {
+        ...pageData,
+        user,
+        title: 'About VisiSocial - Understand Yourself Better',
+        description: 'VisiSocial is an advanced personality analytics platform that helps you understand your social patterns and personality traits through AI analysis.',
+        keywords: 'personality analysis, social media analytics, AI insights, self-discovery, data visualization',
+        nonce: res.locals.nonce
+      });
+      
+    } catch (error) {
+      logger.error(`About page error: ${error.message}`);
+      metrics.increment('routes.about.errors');
+      
+      // Fallback to basic about page if there's an error
+      res.render('about', {
+        team: [],
+        features: [],
+        stats: [],
+        timeline: [],
+        techStack: [],
+        title: 'About VisiSocial',
+        nonce: res.locals.nonce
+      });
+    }
+  })
+);
+
+
+// routes/homeRoute.js
+// Add this route after the profile routes
+
+// Settings route
+router.get('/settings',
+  authenticateToken,
+  rateLimiter({ windowMs: 60000, max: 30 }),
+  wrapAsync(async (req, res) => {
+    try {
+      metrics.increment('routes.settings.requests');
+      
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        metrics.increment('routes.settings.errors.user_not_found');
+        return res.redirect('/login?error=User+not+found');
+      }
+      
+      // Get user's Facebook permissions
+      let facebookPermissions = [];
+      let facebookTokenInfo = {};
+      
+      try {
+        const tokenResponse = await retryableRequest(async () => {
+          return await axios.get(`https://graph.facebook.com/${API_VERSION}/debug_token`, {
+            params: {
+              input_token: req.user.accessToken,
+              access_token: `${process.env.FACEBOOK_FACEBOOK_APP_ID}|${process.env.FACEBOOK_FACEBOOK_APP_SECRET}`
+            },
+            timeout: FETCH_TIMEOUT
+          });
+        });
+        
+        facebookTokenInfo = {
+          appId: tokenResponse.data.data.FACEBOOK_APP_ID,
+          userId: tokenResponse.data.data.user_id,
+          issuedAt: new Date(tokenResponse.data.data.issued_at * 1000),
+          expiresAt: tokenResponse.data.data.expires_at ? 
+                     new Date(tokenResponse.data.data.expires_at * 1000) : 
+                     'Never',
+          isValid: tokenResponse.data.data.is_valid,
+          scopes: tokenResponse.data.data.scopes || []
+        };
+        
+        // Fetch extended permissions
+        const permsResponse = await retryableRequest(async () => {
+          return await axios.get(`https://graph.facebook.com/${API_VERSION}/me/permissions`, {
+            params: {
+              access_token: req.user.accessToken
+            },
+            timeout: FETCH_TIMEOUT
+          });
+        });
+        
+        facebookPermissions = permsResponse.data?.data || [];
+        
+      } catch (error) {
+        logger.debug(`Facebook permissions fetch failed: ${error.message}`);
+        // Continue without Facebook data
+      }
+      
+      // Check if user has existing settings or initialize defaults
+      if (!user.settings) {
+        user.settings = {
+          privacy: {
+            profileVisibility: 'private',
+            shareInsights: false,
+            allowDataCollection: true,
+            anonymizeData: true
+          },
+          notifications: {
+            emailAlerts: true,
+            analysisUpdates: true,
+            weeklyDigest: false,
+            marketingEmails: false
+          },
+          analysis: {
+            refreshFrequency: 'weekly',
+            includeImages: true,
+            maxImageProcessing: 25,
+            languagePreference: 'auto',
+            detailedReports: true
+          },
+          display: {
+            theme: 'dark',
+            compactMode: false,
+            animations: true,
+            fontSize: 'medium'
+          },
+          export: {
+            autoBackup: false,
+            backupFrequency: 'monthly',
+            includeRawData: false,
+            format: 'both'
+          },
+          security: {
+            twoFactorAuth: false,
+            sessionTimeout: 24,
+            loginAlerts: true,
+            dataRetention: '3months'
+          }
+        };
+        await user.save();
+      }
+      
+      // Available themes
+      const themes = [
+        { id: 'dark', name: 'Dark', icon: 'fas fa-moon' },
+        { id: 'light', name: 'Light', icon: 'fas fa-sun' },
+        { id: 'system', name: 'System', icon: 'fas fa-desktop' },
+        { id: 'blue', name: 'Blue', icon: 'fas fa-palette' },
+        { id: 'green', name: 'Green', icon: 'fas fa-leaf' }
+      ];
+      
+      // Available languages
+      const languages = [
+        { code: 'en', name: 'English', flag: '🇺🇸' },
+        { code: 'es', name: 'Español', flag: '🇪🇸' },
+        { code: 'fr', name: 'Français', flag: '🇫🇷' },
+        { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+        { code: 'ja', name: '日本語', flag: '🇯🇵' }
+      ];
+      
+      // Refresh frequencies
+      const refreshOptions = [
+        { value: 'daily', label: 'Daily', description: 'Refresh analysis every day' },
+        { value: 'weekly', label: 'Weekly', description: 'Refresh analysis every week' },
+        { value: 'monthly', label: 'Monthly', description: 'Refresh analysis every month' },
+        { value: 'manual', label: 'Manual', description: 'Refresh only when requested' }
+      ];
+      
+      // Data retention options
+      const retentionOptions = [
+        { value: '1month', label: '1 Month', description: 'Delete data after 1 month' },
+        { value: '3months', label: '3 Months', description: 'Delete data after 3 months' },
+        { value: '6months', label: '6 Months', description: 'Delete data after 6 months' },
+        { value: '1year', label: '1 Year', description: 'Delete data after 1 year' },
+        { value: 'never', label: 'Never', description: 'Keep data indefinitely' }
+      ];
+      
+      // Session timeout options (in hours)
+      const sessionOptions = [
+        { value: 1, label: '1 Hour' },
+        { value: 4, label: '4 Hours' },
+        { value: 8, label: '8 Hours' },
+        { value: 24, label: '24 Hours' },
+        { value: 168, label: '1 Week' }
+      ];
+      
+      // Font size options
+      const fontSizeOptions = [
+        { value: 'small', label: 'Small' },
+        { value: 'medium', label: 'Medium' },
+        { value: 'large', label: 'Large' },
+        { value: 'xlarge', label: 'Extra Large' }
+      ];
+      
+      // Export format options
+      const exportFormatOptions = [
+        { value: 'json', label: 'JSON', icon: 'fas fa-code' },
+        { value: 'csv', label: 'CSV', icon: 'fas fa-table' },
+        { value: 'pdf', label: 'PDF', icon: 'fas fa-file-pdf' },
+        { value: 'both', label: 'Multiple Formats', icon: 'fas fa-file-archive' }
+      ];
+      
+      res.render('settings', {
+        user,
+        facebookTokenInfo,
+        facebookPermissions,
+        themes,
+        languages,
+        refreshOptions,
+        retentionOptions,
+        sessionOptions,
+        fontSizeOptions,
+        exportFormatOptions,
+        title: 'Settings | VisiSocial',
+        activeTab: req.query.tab || 'general',
+        success: req.query.success,
+        error: req.query.error,
+        nonce: res.locals.nonce
+      });
+      
+      logger.info(`Settings page loaded for user: ${userId}`);
+      metrics.increment('routes.settings.success');
+      
+    } catch (error) {
+      metrics.increment('routes.settings.errors');
+      logger.error(`Settings error: ${error.message}`);
+      
+      res.status(500).render('error', {
+        err: {
+          status: 500,
+          message: 'Error loading settings page',
+          details: process.env.NODE_ENV === 'production' ? null : error.message
+        },
+        title: 'Settings Error',
+        nonce: res.locals.nonce,
+        currentPage: 'settings',
+        user: req.user || null,
+        userData: req.user || null
+      });
+    }
+  })
+);
+
+// Update settings route
+router.post('/settings/update',
+  authenticateToken,
+  rateLimiter({ windowMs: 60000, max: 10 }),
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      const { section, settings } = req.body;
+      
+      if (!section || !settings) {
+        return res.status(400).json({ success: false, message: "Invalid request" });
+      }
+      
+      // Initialize settings object if it doesn't exist
+      if (!user.settings) {
+        user.settings = {};
+      }
+      
+      // Update specific section
+      user.settings[section] = { ...user.settings[section], ...settings };
+      user.lastUpdated = new Date();
+      
+      await user.save();
+      
+      // Log the update
+      logger.info(`Settings updated for user ${userId}: ${section}`);
+      metrics.increment('settings.updated');
+      
+      // If theme was changed, set a cookie for immediate effect
+      if (section === 'display' && settings.theme) {
+        res.cookie('theme', settings.theme, { 
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+          httpOnly: false
+        });
+      }
+      
+      res.json({ success: true, message: "Settings updated successfully" });
+      
+    } catch (error) {
+      logger.error(`Settings update error: ${error.message}`);
+      metrics.increment('settings.update_errors');
+      
+      res.status(500).json({ 
+        success: false, 
+        message: "Error updating settings" 
+      });
+    }
+  })
+);
+
+// Reset settings route
+router.post('/settings/reset',
+  authenticateToken,
+  rateLimiter({ windowMs: 3600000, max: 3 }), // 3 requests per hour
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const { section } = req.body;
+      
+      const user = await User.findOne({ id: userId });
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      if (!user.settings) {
+        user.settings = {};
+      }
+      
+      const defaultSettings = {
+        privacy: {
+          profileVisibility: 'private',
+          shareInsights: false,
+          allowDataCollection: true,
+          anonymizeData: true
+        },
+        notifications: {
+          emailAlerts: true,
+          analysisUpdates: true,
+          weeklyDigest: false,
+          marketingEmails: false
+        },
+        analysis: {
+          refreshFrequency: 'weekly',
+          includeImages: true,
+          maxImageProcessing: 25,
+          languagePreference: 'auto',
+          detailedReports: true
+        },
+        display: {
+          theme: 'dark',
+          compactMode: false,
+          animations: true,
+          fontSize: 'medium'
+        },
+        export: {
+          autoBackup: false,
+          backupFrequency: 'monthly',
+          includeRawData: false,
+          format: 'both'
+        },
+        security: {
+          twoFactorAuth: false,
+          sessionTimeout: 24,
+          loginAlerts: true,
+          dataRetention: '3months'
+        }
+      };
+      
+      if (section === 'all') {
+        user.settings = defaultSettings;
+      } else if (defaultSettings[section]) {
+        user.settings[section] = defaultSettings[section];
+      } else {
+        return res.status(400).json({ success: false, message: "Invalid section" });
+      }
+      
+      await user.save();
+      
+      logger.info(`Settings reset for user ${userId}: ${section}`);
+      metrics.increment('settings.reset');
+      
+      res.json({ success: true, message: "Settings reset successfully" });
+      
+    } catch (error) {
+      logger.error(`Settings reset error: ${error.message}`);
+      metrics.increment('settings.reset_errors');
+      
+      res.status(500).json({ 
+        success: false, 
+        message: "Error resetting settings" 
+      });
+    }
+  })
+);
+
+// Export settings route
+router.get('/settings/export',
+  authenticateToken,
+  wrapAsync(async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      const settingsData = {
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        },
+        settings: user.settings || {},
+        exportDate: new Date().toISOString()
+      };
+      
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Content-Disposition', `attachment; filename=visisocial-settings-${userId}.json`);
+      res.json(settingsData);
+      
+      logger.info(`Settings exported for user: ${userId}`);
+      metrics.increment('settings.exported');
+      
+    } catch (error) {
+      logger.error(`Settings export error: ${error.message}`);
+      res.status(500).json({ 
+        success: false, 
+        message: "Error exporting settings" 
+      });
+    }
+  })
+);
+
+// Import settings route
+router.post('/settings/import',
+  authenticateToken,
+  upload.single('settingsFile'),
+  wrapAsync(async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ success: false, message: "No file uploaded" });
+      }
+      
+      const userId = req.user.id;
+      const user = await User.findOne({ id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      // Read and parse the uploaded file
+      const fileContent = fs.readFileSync(req.file.path, 'utf8');
+      const importedSettings = JSON.parse(fileContent);
+      
+      // Validate the imported settings structure
+      if (!importedSettings.settings || typeof importedSettings.settings !== 'object') {
+        throw new Error('Invalid settings file format');
+      }
+      
+      // Update user settings
+      user.settings = importedSettings.settings;
+      await user.save();
+      
+      // Clean up uploaded file
+      fs.unlinkSync(req.file.path);
+      
+      logger.info(`Settings imported for user: ${userId}`);
+      metrics.increment('settings.imported');
+      
+      res.json({ success: true, message: "Settings imported successfully" });
+      
+    } catch (error) {
+      logger.error(`Settings import error: ${error.message}`);
+      metrics.increment('settings.import_errors');
+      
+      // Clean up file if it exists
+      if (req.file && fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path);
+      }
+      
+      res.status(500).json({ 
+        success: false, 
+        message: "Error importing settings: " + error.message 
+      });
+    }
+  })
+);
+
+// Revoke Facebook permissions
+router.post('/settings/facebook/revoke',
+  authenticateToken,
+  wrapAsync(async (req, res) => {
+    try {
+      const { permission } = req.body;
+      
+      if (!permission) {
+        return res.status(400).json({ success: false, message: "Permission not specified" });
+      }
+      
+      // Call Facebook API to revoke permission
+      try {
+        await axios.delete(`https://graph.facebook.com/${API_VERSION}/me/permissions`, {
+          params: {
+            permission: permission,
+            access_token: req.user.accessToken
+          },
+          timeout: FETCH_TIMEOUT
+        });
+        
+        logger.info(`Facebook permission revoked: ${permission} for user ${req.user.id}`);
+        metrics.increment('settings.facebook_permission_revoked');
+        
+        res.json({ success: true, message: `Permission '${permission}' revoked successfully` });
+        
+      } catch (fbError) {
+        logger.error(`Facebook API error: ${fbError.message}`);
+        res.status(500).json({ 
+          success: false, 
+          message: "Error revoking Facebook permission" 
+        });
+      }
+      
+    } catch (error) {
+      logger.error(`Revoke permission error: ${error.message}`);
+      res.status(500).json({ 
+        success: false, 
+        message: "Error processing request" 
+      });
+    }
+  })
+);
+
+
+
+
+// Health check endpoint
+router.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    version: '2.0.0',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
+
+// All get routes
+
+
+// Privacy Policy
+router.get('/privacy', (req, res) => {
+    res.render('privacy', { 
+        title: 'Privacy Policy',
+        currentPage: 'privacy',
+        user: req.user || null,
+        userData: req.user || null
+    });
+});
+
+// Terms of Service
+router.get('/terms', (req, res) => {
+    res.render('terms', { 
+        title: 'Terms of Service',
+        currentPage: 'terms',
+        user: req.user || null,
+        userData: req.user || null
+    });
+});
+
+// Cookie Policy
+router.get('/cookies', (req, res) => {
+    res.render('cookies', { 
+        title: 'Cookie Policy',
+        currentPage: 'cookies',
+        user: req.user || null,
+        userData: req.user || null
+    });
+});
+
+// API Documentation
+router.get('/docs', (req, res) => {
+    res.render('docs', { 
+        title: 'API Documentation',
+        currentPage: 'docs',
+        user: req.user || null,
+        userData: req.user || null
+    });
+});
+
+// Support Center
+router.get('/support', (req, res) => {
+    res.render('support', { 
+        title: 'Support Center',
+        currentPage: 'support',
+        user: req.user || null,
+        userData: req.user || null
+    });
+});
+
+// Data Deletion 
+// Data Deletion & Retention Policy
+router.get('/data', (req, res) => {
+    try {
+        
+        res.render('data', { 
+            title: 'Data Deletion & Retention Policy - VisiSocial',
+            currentPage: 'data',
+            user: req.user || null,
+            userData: req.user || null,
+            
+            // Policy Metadata
+            lastUpdated: new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }),
+            policyVersion: '2.1',
+            effectiveDate: 'January 1, 2025',
+            
+            // Contact Information
+            contactEmail: 'dataprotection@visisocial.com',
+            dpoEmail: '-',
+            dpoName: '-',
+            dataController: 'VisiSocial Ltd',
+            
+            // Legal Information
+            jurisdiction: 'United Kingdom & European Union',
+            supervisoryAuthority: 'Information Commissioner\'s Office (UK) & Data Protection Commission (EU)',
+            applicableRegulations: ['GDPR', 'CCPA', 'PIPEDA', 'LGPD'],
+            
+            // SEO Metadata
+            metaDescription: 'Learn how VisiSocial manages, retains, and deletes user data in compliance with GDPR, CCPA, and global privacy regulations.',
+            canonicalUrl: '/data',
+            
+            // Additional Data for Page
+            nonce: req.nonce || '',
+            csrfToken: req.csrfToken ? req.csrfToken() : ''
+        });
+    } catch (error) {
+        console.error('Error rendering data deletion policy:', error);
+        res.status(500).render('error', {
+            title: 'Error - ',
+            errorMessage: 'Unable to load data deletion policy page',
+            currentPage: 'error',
+            user: req.user || null
+        });
+    }
+});
+
+
+
+// Contact Page (GET)
+router.get('/contact', (req, res) => {
+    res.render('contact', {
+        title: 'Contact Us',
+        currentPage: 'contact',
+        user: req.user || null,
+        userData: req.user || null
+    });
+});
+
+// Contact Form Submission (POST)
+router.post('/contact', async (req, res, next) => {
+    try {
+        const { name, email, subject, message } = req.body;
+
+        // Basic validation
+        if (!name || !email || !subject || !message) {
+            return res.status(400).render('contact', {
+                title: 'Contact Us',
+                currentPage: 'contact',
+                user: req.user || null,
+                userData: req.user || null,
+                error: 'All fields are required.'
+            });
+        }
+        // TODO: replace with SendGrid / email / DB logic
+        console.log('📩 Contact form submission:', {
+            name,
+            email,
+            subject,
+            message
+        });
+
+        res.render('contact', {
+            title: 'Contact Us',
+            currentPage: 'contact',
+            user: req.user || null,
+            userData: req.user || null,
+            success: 'Your message has been sent successfully. We will get back to you within 24–48 hours.'
+        });
+
+    } catch (err) {
+        next(err);
+    }
+});
+
+
+// System Status
+router.get('/status', (req, res) => {
+  const authenticated = !!res.locals.user; // or your isAuthenticated check
+  const userData = authenticated ? {
+    id: res.locals.user.id,
+    name: res.locals.user.name,
+    picture: res.locals.user.picture
+  } : null;
+
+  res.render('status', { 
+    title: 'System Status',
+    currentPage: 'status',
+    authenticated,
+    user: userData,
+    timestamp: new Date().toISOString()
+  });
+});
+
+
+
+/**
+ * Export router and functions
+ */
+module.exports = { 
+  router, 
+  authenticateToken, 
+  authenticateAdminToken,
+  authorizeAdmin,
+  generatePersonalityDescription,
+  generateUserDataDescription,     
+  generateUserInsights,            
+  processUserDataInBackground
+};

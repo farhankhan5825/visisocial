@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - VisiSocial</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7c6cff;
+            --primary-dark: #5b4fe0;
+            --primary-light: #9d7bff;
+            --secondary: #9d7bff;
+            --accent: #34e3ff;
+            --success: #2dd4a8;
+            --warning: #f6b24a;
+            --danger: #ff5d6c;
+            --dark: #0a0a16;
+            --darker: #06060e;
+            --light: #ECECF6;
+            --muted: #9a9ab6;
+            --gradient-primary: linear-gradient(118deg, #9d7bff 0%, #7c6cff 45%, #34e3ff 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-hover: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255,255,255,0.09);
+            --shadow-lg: 0 25px 80px -20px rgba(99, 102, 241, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--darker);
+        }
+
+        .bg-animated .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .bg-animated .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            top: -250px;
+            right: -250px;
+            animation-delay: 0s;
+        }
+
+        .bg-animated .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -7s;
+        }
+
+        .bg-animated .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -60px) scale(1.1); }
+            50% { transform: translate(-40px, 40px) scale(0.9); }
+            75% { transform: translate(-60px, -40px) scale(1.05); }
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            max-width: 420px;
+        }
+
+        .toast {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            opacity: 0;
+            transform: translateX(100px);
+            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .toast.hide {
+            animation: slideOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOut {
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        .toast-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .toast.success .toast-icon {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.1) 100%);
+            color: #10b981;
+        }
+
+        .toast.error .toast-icon {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+            color: #ef4444;
+        }
+
+        .toast-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--light);
+        }
+
+        .toast-message {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .toast-close {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .toast-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+        }
+
+        /* Login Container */
+        .login-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .login-container {
+            padding: 48px 40px;
+            text-align: center;
+        }
+
+        .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            font-weight: 600;
+            color: var(--danger);
+        }
+
+        .admin-badge i {
+            font-size: 0.9rem;
+        }
+
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 24px;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .login-icon::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.2;
+            filter: blur(12px);
+        }
+
+        .login-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .login-subtitle {
+            color: var(--muted);
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--light);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--light);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        input::placeholder {
+            color: var(--muted);
+            opacity: 0.6;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        input:focus + .input-icon {
+            color: var(--primary);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-light);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.4);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+            gap: 12px;
+        }
+
+        .security-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 12px;
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+        }
+
+        .security-info i {
+            color: var(--success);
+            font-size: 1rem;
+        }
+
+        .security-info span {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .toast-container {
+                left: 20px;
+                right: 20px;
+                max-width: none;
+            }
+
+            .login-wrapper {
+                padding: 16px;
+            }
+
+            .login-container {
+                padding: 36px 28px;
+            }
+
+            .login-title {
+                font-size: 1.75rem;
+            }
+
+            .login-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 32px 24px;
+            }
+
+            .login-title {
+                font-size: 1.5rem;
+            }
+
+            input {
+                padding: 12px 14px 12px 44px;
+            }
+
+            button[type="submit"] {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Login Card -->
+    <div class="login-wrapper">
+        <div class="glass-card login-container">
+            <div class="admin-badge">
+                <i class="fas fa-shield-halved"></i>
+                <span>ADMIN ACCESS ONLY</span>
+            </div>
+
+            <div class="login-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+
+            <h2 class="login-title">
+                Admin <span class="gradient-text">Portal</span>
+            </h2>
+            <p class="login-subtitle">
+                Secure access to VisiSocial administration
+            </p>
+
+            <form action="/adminlogin" method="POST" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input 
+                            type="email" 
+                            id="email"
+                            name="email" 
+                            required 
+                            placeholder="admin@visisocial.com"
+                            autocomplete="email"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="password"
+                            name="password" 
+                            required 
+                            placeholder="••••••••••"
+                            autocomplete="current-password"
+                        />
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn">
+                    <span id="btnText">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In Securely
+                    </span>
+                </button>
+            </form>
+
+            <div class="security-info">
+                <i class="fas fa-lock"></i>
+                <span>All connections are encrypted with TLS 1.3</span>
+            </div>
+
+            <a class="back-link" href="/">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Toast Notification System
+        function showToast(message, type = 'info', title = '', duration = 5000) {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle'
+            };
+
+            const titles = {
+                success: title || 'Success!',
+                error: title || 'Error'
+            };
+
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <i class="fas ${icons[type]}"></i>
+                </div>
+                <div class="toast-content">
+                    <div class="toast-title">${titles[type]}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.classList.add('hide');
+                    setTimeout(() => toast.remove(), 400);
+                }
+            }, duration);
+        }
+
+        // Show messages from server
+        <% if (typeof message !== 'undefined' && message) { %>
+            showToast('<%= message.replace(/'/g, "\\'") %>', 'success');
+        <% } %>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+            showToast('<%= error.replace(/'/g, "\\'") %>', 'error', 'Authentication Failed');
+        <% } %>
+
+        // Password toggle
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            
+            submitBtn.disabled = true;
+            btnText.innerHTML = '<span class="spinner"></span>Authenticating...';
+        });
+
+        // Auto-focus email field on load
+        window.addEventListener('load', () => {
+            document.getElementById('email').focus();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Alt + H to go home
+            if (e.altKey && e.key === 'h') {
+                e.preventDefault();
+                window.location.href = '/';
+            }
+        });
+    </script>
+</body>
+</html>

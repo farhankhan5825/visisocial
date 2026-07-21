@@ -1,0 +1,28 @@
+{
+  "root": true,
+  "env": { "node": true, "es2021": true },
+  "parserOptions": { "ecmaVersion": 2022, "sourceType": "script" },
+  "rules": {
+    "no-undef": "error",
+    "no-dupe-keys": "error",
+    "no-dupe-args": "error",
+    "no-dupe-else-if": "error",
+    "no-unreachable": "error",
+    "no-const-assign": "error",
+    "no-redeclare": "error",
+    "no-cond-assign": "error",
+    "no-self-assign": "error",
+    "no-unsafe-negation": "error",
+    "no-func-assign": "error",
+    "use-isnan": "error",
+    "valid-typeof": "error",
+    "no-unused-vars": "off"
+  },
+  "overrides": [
+    {
+      "files": ["public/js/**/*.js"],
+      "env": { "browser": true, "node": false },
+      "globals": { "Chart": "readonly", "jQuery": "readonly", "$": "readonly" }
+    }
+  ]
+}

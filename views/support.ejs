@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | VisiSocial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+    <link href="/stylesheets/visisocial.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7c6cff;
+            --primary-light: #9d7bff;
+            --primary-dark: #5b4fe0;
+            --secondary: #9d7bff;
+            --accent: #34e3ff;
+            --success: #2dd4a8;
+            --warning: #f6b24a;
+            --danger: #ff5d6c;
+            --dark: #0a0a16;
+            --darker: #06060e;
+            --light: #ECECF6;
+            --muted: #9a9ab6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-hover: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255,255,255,0.09);
+            --shadow-glow: 0 0 60px rgba(124,108,255,0.32);
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .support-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 60%);
+            animation: float 25s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -20px) rotate(120deg); }
+            66% { transform: translate(-20px, 30px) rotate(240deg); }
+        }
+
+        .support-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .support-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: var(--shadow-glow);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .support-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .support-subtitle {
+            font-size: 1.2rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .contact-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            background: var(--glass-hover);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .contact-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--light);
+        }
+
+        .contact-card p {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.35);
+            color: white;
+        }
+
+        .section {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .section:hover {
+            background: var(--glass-hover);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h2 i {
+            color: var(--primary-light);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(2, 6, 23, 0.4);
+            border-left: 3px solid var(--primary-light);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            background: rgba(2, 6, 23, 0.6);
+            transform: translateX(5px);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .faq-question i {
+            color: var(--primary-light);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            color: var(--muted);
+            margin-top: 1rem;
+            line-height: 1.8;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-item {
+            padding: 1.5rem;
+            background: rgba(2, 6, 23, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .resource-item:hover {
+            background: rgba(2, 6, 23, 0.6);
+            border-color: var(--primary-light);
+            transform: translateY(-4px);
+        }
+
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .resource-item h4 {
+            color: var(--light);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .resource-item p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(2, 6, 23, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: rgba(2, 6, 23, 0.6);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.35);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-glow);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .support-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .support-title {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 2rem;
+            }
+
+            .contact-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .support-title {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="support-bg"></div>
+            <%- include('partials/navbar') %>
+
+    <div class="support-container">
+        <header class="support-header">
+            <div class="support-icon">
+                <i class="fas fa-headset"></i>
+            </div>
+            <h1 class="support-title">Support Center</h1>
+            <p class="support-subtitle">
+                Get help with VisiSocial. We're here to assist you with any questions or issues you may have.
+            </p>
+        </header>
+
+        <div class="contact-options">
+            <div class="contact-card">
+                <div class="contact-icon" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Support</h3>
+                <p>Get help via email within 24 hours</p>
+                <a href="mailto:support@visionsocial.com" class="contact-link">
+                    <i class="fas fa-paper-plane"></i> Send Email
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon" style="background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Live Chat</h3>
+                <p>Chat with our support team in real-time</p>
+                <a href="#" class="contact-link" onclick="openChat(); return false;">
+                    <i class="fas fa-comment-dots"></i> Start Chat
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Documentation</h3>
+                <p>Browse our comprehensive guides</p>
+                <a href="/docs" class="contact-link">
+                    <i class="fas fa-book-open"></i> View Docs
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone Support</h3>
+                <p>Call us for urgent assistance</p>
+                <a href="tel:+1234567890" class="contact-link">
+                    <i class="fas fa-phone-alt"></i> Call Now
+                </a>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2>
+                <i class="fas fa-question-circle"></i>
+                Frequently Asked Questions
+            </h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I reset my password?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    To reset your password, go to the login page and click "Forgot Password". Enter your email address, and we'll send you a password reset link. Follow the instructions in the email to create a new password.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How is my data protected?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We use industry-standard encryption (AES-256) to protect your data both in transit and at rest. Your data is never shared with third parties without your explicit consent. We comply with GDPR and other privacy regulations.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I delete my account?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes, you can delete your account at any time from your profile settings. Navigate to Settings → Profile → Delete Account. Please note that this action is irreversible and all your data will be permanently deleted.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How often is my analysis updated?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Your personality analysis is updated whenever you manually refresh it or when new social media data is available. We recommend refreshing your analysis every few weeks for the most accurate results.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What social media platforms are supported?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Currently, we support Facebook with plans to add Instagram, Twitter, and LinkedIn in the near future. We're constantly working to expand our platform integrations.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is there a mobile app?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We currently offer a fully responsive web application that works great on mobile devices. Native iOS and Android apps are in development and will be released soon.
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>
+                <i class="fas fa-life-ring"></i>
+                Help Resources
+            </h2>
+            
+            <div class="resource-grid">
+                <a href="/docs" class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4>User Guide</h4>
+                    <p>Complete guide to using VisiSocial</p>
+                </a>
+
+                <a href="/docs/api" class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>API Documentation</h4>
+                    <p>Developer resources and API reference</p>
+                </a>
+
+                <a href="/blog" class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h4>Blog & Updates</h4>
+                    <p>Latest news and feature updates</p>
+                </a>
+
+                <a href="/community" class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Community Forum</h4>
+                    <p>Connect with other users</p>
+                </a>
+
+                <a href="/tutorials" class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Video Tutorials</h4>
+                    <p>Learn through step-by-step videos</p>
+                </a>
+
+                <a href="/status" class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h4>System Status</h4>
+                    <p>Check service availability</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>
+                <i class="fas fa-paper-plane"></i>
+                Contact Us
+            </h2>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="technical">Technical Issue</option>
+                        <option value="account">Account Help</option>
+                        <option value="billing">Billing Question</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Brief description of your issue">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Please provide as much detail as possible..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.getElementById('backToTop');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const contactForm = document.getElementById('contactForm');
+
+            // Back to top functionality
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // FAQ accordion
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const wasActive = item.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    faqItems.forEach(faq => faq.classList.remove('active'));
+                    
+                    // Open clicked item if it wasn't active
+                    if (!wasActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Contact form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    category: document.getElementById('category').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Here you would send the data to your server
+                console.log('Form submitted:', formData);
+                
+                // Show success message
+                alert('Thank you for contacting us! We\'ll get back to you within 24 hours.');
+                
+                // Reset form
+                contactForm.reset();
+            });
+        });
+
+        function openChat() {
+            // This would integrate with your actual chat system
+            alert('Live chat feature coming soon! Please use email support for now.');
+        }
+    </script>
+    <%- include('partials/footer') %>
+</body>
+</html>

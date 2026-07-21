@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <title><%= typeof title !== 'undefined' ? title : 'VisiSocial: Surveillance Intelligence' %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VisiSocial rebuilds the profile advertisers and data brokers keep on you, using your own social data, so you can finally see it for yourself.">
+    <link href="/img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+    <style>
+        :root{
+            --bg:#06060e; --bg-2:#0a0a16; --bg-3:#0e0e1f;
+            --surface:rgba(255,255,255,.035); --surface-2:rgba(255,255,255,.06);
+            --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+            --text:#ECECF6; --dim:#9a9ab6; --faint:#5d5d78;
+            --violet:#7c6cff; --violet-2:#9d7bff; --cyan:#34e3ff; --amber:#f6b24a;
+            --grad:linear-gradient(118deg,#9d7bff 0%,#7c6cff 42%,#34e3ff 100%);
+            --grad-text:linear-gradient(120deg,#c7bcff 0%,#7c6cff 50%,#34e3ff 100%);
+            --font-d:'Poppins',sans-serif; --font-b:'Inter',sans-serif; --font-m:'Space Grotesk',sans-serif;
+            --ease:cubic-bezier(.2,.7,.2,1);
+            --maxw:1280px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{overflow-x:hidden;scroll-behavior:smooth}
+        body{
+            font-family:var(--font-b); background:var(--bg); color:var(--text);
+            line-height:1.6; overflow-x:hidden; position:relative;
+            -webkit-font-smoothing:antialiased; letter-spacing:.1px;
+        }
+        ::selection{background:rgba(124,108,255,.35); color:#fff}
+        a{color:inherit; text-decoration:none}
+        img{max-width:100%}
+
+        /* ---------- Atmospheric background ---------- */
+        .atmosphere{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+        .atmosphere .mesh{position:absolute; border-radius:50%; filter:blur(90px); opacity:.5; mix-blend-mode:screen}
+        .m1{width:60vw;height:60vw;top:-22vw;left:-12vw;background:radial-gradient(circle,rgba(124,108,255,.55),transparent 62%);animation:drift1 26s var(--ease) infinite alternate}
+        .m2{width:48vw;height:48vw;top:30vh;right:-16vw;background:radial-gradient(circle,rgba(52,227,255,.4),transparent 62%);animation:drift2 32s var(--ease) infinite alternate}
+        .m3{width:42vw;height:42vw;bottom:-16vw;left:24vw;background:radial-gradient(circle,rgba(157,123,255,.32),transparent 64%);animation:drift3 30s var(--ease) infinite alternate}
+        @keyframes drift1{to{transform:translate(8vw,6vh) scale(1.12)}}
+        @keyframes drift2{to{transform:translate(-7vw,-5vh) scale(1.08)}}
+        @keyframes drift3{to{transform:translate(5vw,-7vh) scale(1.14)}}
+        .grid-overlay{position:fixed; inset:0; z-index:0; pointer-events:none;
+            background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+            background-size:64px 64px; mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 78%);
+            -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 78%); opacity:.5}
+        .noise{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.045;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+        .scanline{position:fixed; left:0; right:0; height:140px; z-index:1; pointer-events:none;
+            background:linear-gradient(180deg,transparent,rgba(52,227,255,.05),transparent); animation:scan 9s linear infinite}
+        @keyframes scan{0%{top:-140px}100%{top:100vh}}
+
+        .wrap{position:relative; z-index:2; max-width:var(--maxw); margin:0 auto; padding:0 28px}
+
+        /* ---------- type ---------- */
+        .kicker{font-family:var(--font-m); font-size:.74rem; letter-spacing:.32em; text-transform:uppercase; color:var(--dim);
+            display:inline-flex; align-items:center; gap:10px}
+        .kicker::before{content:""; width:26px; height:1px; background:linear-gradient(90deg,var(--violet),transparent)}
+        .display{font-family:var(--font-d); font-weight:800; line-height:.98; letter-spacing:-.02em;
+            font-size:clamp(2.7rem,7vw,5.6rem)}
+        .grad-text{background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+        .lead{color:var(--dim); font-size:clamp(1rem,1.4vw,1.18rem); max-width:46ch}
+
+        /* ---------- buttons ---------- */
+        .btn{position:relative; display:inline-flex; align-items:center; gap:11px; font-family:var(--font-b); font-weight:600;
+            font-size:.98rem; padding:15px 26px; border-radius:14px; cursor:pointer; border:1px solid transparent;
+            transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease); overflow:hidden}
+        .btn i{font-size:1.05rem}
+        .btn-primary{background:var(--grad); color:#0a0a16; box-shadow:0 12px 40px -12px rgba(124,108,255,.7)}
+        .btn-primary:hover{transform:translateY(-3px); box-shadow:0 22px 60px -14px rgba(124,108,255,.85)}
+        .btn-primary::after{content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent,rgba(255,255,255,.5),transparent);
+            transform:translateX(-130%); transition:transform .7s var(--ease)}
+        .btn-primary:hover::after{transform:translateX(130%)}
+        .btn-ghost{background:var(--surface); color:var(--text); border-color:var(--line-2)}
+        .btn-ghost:hover{background:var(--surface-2); transform:translateY(-3px); border-color:var(--violet)}
+        .btn[aria-busy="true"]{pointer-events:none; opacity:.85}
+        .btn[aria-busy="true"] .btn-label-default{display:none}
+        .btn .btn-spinner{display:none; width:16px; height:16px; border-radius:50%;
+            border:2px solid rgba(10,10,22,.35); border-top-color:#0a0a16; animation:spin .7s linear infinite}
+        .btn[aria-busy="true"] .btn-spinner{display:inline-block}
+
+        /* ---------- accessibility: visible focus ---------- */
+        a:focus-visible,.btn:focus-visible,.tag:focus-visible,.cap:focus-visible,button:focus-visible{
+            outline:2px solid var(--cyan); outline-offset:3px; border-radius:12px}
+        .skip-link{position:absolute; left:16px; top:-60px; z-index:10000; background:var(--bg-3); color:var(--text);
+            border:1px solid var(--line-2); padding:11px 18px; border-radius:12px; font-family:var(--font-m); font-size:.82rem;
+            transition:top .25s var(--ease)}
+        .skip-link:focus{top:16px; outline:2px solid var(--cyan); outline-offset:2px}
+
+        /* ---------- sign-in framing ---------- */
+        .signin-note{margin-top:16px; color:var(--faint); max-width:48ch; line-height:1.65;
+            font-family:var(--font-m); font-size:.8rem; letter-spacing:.02em}
+        .signin-note i{color:var(--cyan); margin-right:8px}
+        .signin-note a{color:var(--dim); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--line-2)}
+        .signin-note a:hover{color:var(--text); text-decoration-color:var(--violet)}
+        .secure-badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-m); font-size:.7rem;
+            letter-spacing:.18em; text-transform:uppercase; color:var(--cyan); border:1px solid rgba(52,227,255,.25);
+            background:rgba(52,227,255,.06); padding:6px 12px; border-radius:999px}
+        .secure-badge i{font-size:.78rem}
+
+        /* ---------- reveal ---------- */
+        [data-reveal]{opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease),transform .9s var(--ease)}
+        [data-reveal].in{opacity:1; transform:none}
+        [data-reveal][data-d="1"]{transition-delay:.08s}
+        [data-reveal][data-d="2"]{transition-delay:.16s}
+        [data-reveal][data-d="3"]{transition-delay:.24s}
+        [data-reveal][data-d="4"]{transition-delay:.32s}
+
+        /* ---------- HERO (asymmetric split) ---------- */
+        .hero{min-height:calc(100vh - 70px); display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:48px; padding:40px 0 90px}
+        .hero-left{max-width:620px}
+        .hero .display{margin:22px 0 24px}
+        .hero-meta{margin-top:34px; display:flex; align-items:center; gap:26px; flex-wrap:wrap}
+        .hero-cta{display:flex; gap:14px; flex-wrap:wrap}
+        .trust{display:flex; align-items:center; gap:10px; color:var(--faint); font-size:.84rem; font-family:var(--font-m)}
+        .trust .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2.4s infinite}
+        @keyframes pulse{50%{opacity:.35}}
+
+        /* observation panel (right) */
+        .scope{position:relative; aspect-ratio:1/1; max-width:520px; margin-left:auto; width:100%}
+        .scope canvas{position:absolute; inset:0; width:100%; height:100%}
+        .scope .ring{position:absolute; inset:8%; border:1px solid var(--line); border-radius:50%}
+        .scope .ring.r2{inset:20%; border-color:rgba(124,108,255,.25)}
+        .scope .ring.r3{inset:33%; border-style:dashed; border-color:rgba(52,227,255,.22); animation:spin 38s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .scope .core{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center}
+        .scope .core .eye{font-size:2.2rem; background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+        .scope .core small{display:block; font-family:var(--font-m); letter-spacing:.28em; font-size:.6rem; color:var(--dim); margin-top:8px}
+        .chip{position:absolute; font-family:var(--font-m); font-size:.72rem; color:var(--text); background:rgba(10,10,22,.72);
+            border:1px solid var(--line-2); padding:7px 12px; border-radius:10px; white-space:nowrap; backdrop-filter:blur(8px);
+            box-shadow:0 10px 30px -14px rgba(0,0,0,.8); animation:float 7s var(--ease) infinite}
+        .chip i{color:var(--cyan); margin-right:6px}
+        .chip.c1{top:6%; left:-4%; animation-delay:0s}
+        .chip.c2{top:34%; right:-8%; animation-delay:1.1s}
+        .chip.c3{bottom:18%; left:-8%; animation-delay:2.2s}
+        .chip.c4{bottom:2%; right:4%; animation-delay:3.1s}
+        .chip.risk i{color:var(--amber)}
+        @keyframes float{50%{transform:translateY(-12px)}}
+
+        /* ---------- ticker ---------- */
+        .ticker{position:relative; z-index:2; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+            padding:18px 0; overflow:hidden; background:linear-gradient(180deg,transparent,rgba(124,108,255,.04),transparent)}
+        .ticker-track{display:flex; gap:46px; width:max-content; animation:marquee 38s linear infinite}
+        .ticker:hover .ticker-track{animation-play-state:paused}
+        .ticker span{font-family:var(--font-m); font-size:.92rem; color:var(--dim); display:inline-flex; align-items:center; gap:12px; white-space:nowrap}
+        .ticker span b{color:var(--text); font-weight:500}
+        .ticker span::before{content:""; width:5px;height:5px;border-radius:50%; background:var(--violet)}
+        @keyframes marquee{to{transform:translateX(-50%)}}
+
+        /* ---------- editorial "what they see" ---------- */
+        .section{padding:120px 0; position:relative; z-index:2}
+        .sec-head{max-width:640px; margin-bottom:64px}
+        .sec-head h2{font-family:var(--font-d); font-weight:700; font-size:clamp(2rem,4vw,3.1rem); line-height:1.04; letter-spacing:-.02em; margin:18px 0 16px}
+        .watchers{display:flex; flex-direction:column; gap:90px}
+        .watch{display:grid; grid-template-columns:1fr 1fr; gap:54px; align-items:center}
+        .watch:nth-child(even) .watch-visual{order:-1}
+        .watch-index{font-family:var(--font-d); font-weight:800; font-size:clamp(4rem,9vw,7.5rem); line-height:.8; letter-spacing:-.04em;
+            -webkit-text-stroke:1px var(--line-2); color:transparent; margin-bottom:8px}
+        .watch h3{font-family:var(--font-d); font-weight:700; font-size:1.7rem; margin-bottom:14px}
+        .watch p{color:var(--dim); max-width:48ch; margin-bottom:22px}
+        .watch-list{display:flex; flex-wrap:wrap; gap:10px}
+        .tag{font-family:var(--font-m); font-size:.78rem; color:var(--text); padding:7px 13px; border-radius:9px;
+            border:1px solid var(--line-2); background:var(--surface); transition:.3s var(--ease)}
+        .tag:hover{border-color:var(--violet); color:#fff; transform:translateY(-2px)}
+        .tag.crit{border-color:rgba(246,178,74,.4); color:var(--amber)}
+        .watch-visual{position:relative; aspect-ratio:4/3; border-radius:20px; overflow:hidden; border:1px solid var(--line);
+            background:
+              linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px) 0 0/100% 30px,
+              linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px) 0 0/42px 100%,
+              radial-gradient(120% 85% at 72% 8%,rgba(124,108,255,.18),transparent 58%),
+              linear-gradient(160deg,rgba(124,108,255,.08),rgba(8,8,20,.72))}
+        .watch-visual .vlabel{position:absolute; top:16px; left:16px; z-index:3; font-family:var(--font-m); font-size:.66rem; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--dim)}
+        .watch-visual .vread{position:absolute; top:15px; right:16px; z-index:3; font-family:var(--font-m); font-size:.62rem; letter-spacing:.16em;
+            text-transform:uppercase; color:var(--cyan); display:inline-flex; align-items:center; gap:7px}
+        .watch-visual .vread::before{content:""; width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 9px var(--cyan);animation:pulse 1.6s infinite}
+        .bars{position:absolute; inset:auto 20px 20px 20px; display:flex; align-items:flex-end; gap:8px; height:56%; z-index:2}
+        .bars i{flex:1; height:100%; border-radius:6px 6px 0 0; background:var(--grad); opacity:.92; transform-origin:bottom; transform:scaleY(var(--h));
+            box-shadow:0 0 18px -4px rgba(124,108,255,.5); animation:eq 2.8s ease-in-out infinite}
+        .bars i:nth-child(2){animation-delay:.18s}.bars i:nth-child(3){animation-delay:.36s}.bars i:nth-child(4){animation-delay:.54s}
+        .bars i:nth-child(5){animation-delay:.72s}.bars i:nth-child(6){animation-delay:.9s}.bars i:nth-child(7){animation-delay:1.08s}.bars i:nth-child(8){animation-delay:1.26s}
+        @keyframes eq{0%,100%{transform:scaleY(calc(var(--h) * .5))}50%{transform:scaleY(var(--h))}}
+        .scanline-v{position:absolute; left:0; right:0; height:2px; z-index:2; background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+            top:0; animation:scanv 4.5s linear infinite; opacity:.7}
+        @keyframes scanv{to{top:100%}}
+
+        /* ---------- panel charts (one per watcher) ---------- */
+        .viz{position:absolute; inset:46px 20px 20px 20px; z-index:2}
+
+        /* 1 · realtime line + area (the platform) */
+        .viz-line svg{width:100%; height:100%; overflow:visible}
+        .viz-line .area{fill:url(#areaGrad)}
+        .viz-line .line{fill:none; stroke:url(#lineGrad); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;
+            vector-effect:non-scaling-stroke; stroke-dasharray:640; stroke-dashoffset:640; animation:draw 3s var(--ease) forwards}
+        @keyframes draw{to{stroke-dashoffset:0}}
+        .viz-line .dot{fill:var(--cyan); filter:drop-shadow(0 0 6px var(--cyan)); animation:blip 1.7s ease-in-out infinite}
+        @keyframes blip{50%{opacity:.35}}
+
+        /* 2 · radar / targeting profile (the advertisers) */
+        .viz-radar{display:grid; place-items:center}
+        .viz-radar svg{width:100%; height:100%; overflow:visible}
+        .viz-radar .grid{fill:none; stroke:var(--line); stroke-width:1}
+        .viz-radar .axis{stroke:var(--line); stroke-width:1}
+        .viz-radar .shape{fill:rgba(124,108,255,.24); stroke:var(--violet-2); stroke-width:2;
+            transform-box:fill-box; transform-origin:center; animation:radarPulse 4.5s ease-in-out infinite}
+        @keyframes radarPulse{50%{transform:scale(1.07)}}
+        .viz-radar .vtx{fill:var(--cyan); filter:drop-shadow(0 0 4px var(--cyan))}
+        .viz-radar text{fill:var(--dim); font-family:var(--font-m); font-size:8.5px; letter-spacing:.1em}
+
+        /* 3 · dossier rows (the data brokers) */
+        .viz-dossier{display:flex; flex-direction:column; justify-content:center; gap:11px; overflow:hidden}
+        .drow{display:flex; align-items:center; gap:10px}
+        .drow .dlabel{font-family:var(--font-m); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase;
+            color:var(--faint); width:74px; flex-shrink:0; text-align:right}
+        .drow .dbar{position:relative; flex:1; height:9px; border-radius:5px; background:var(--surface-2); overflow:hidden}
+        .drow .dbar::before{content:""; position:absolute; inset:0 auto 0 0; width:var(--w,60%); border-radius:5px; background:var(--grad); opacity:.9}
+        .drow .dbar::after{content:""; position:absolute; top:0; bottom:0; left:0; width:36%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent); transform:translateX(-130%); animation:shimmer 2.8s linear infinite}
+        .drow:nth-child(3) .dbar::after{animation-delay:.5s}
+        .drow:nth-child(4) .dbar::after{animation-delay:1s}
+        .drow:nth-child(5) .dbar::after{animation-delay:1.5s}
+        .drow:nth-child(6) .dbar::after{animation-delay:2s}
+        @keyframes shimmer{to{transform:translateX(360%)}}
+        .dscan{position:absolute; left:0; right:0; top:8%; height:24px; z-index:3; pointer-events:none;
+            background:linear-gradient(180deg,rgba(52,227,255,.14),transparent); border-top:1px solid rgba(52,227,255,.35); animation:dscan 3.6s ease-in-out infinite}
+        @keyframes dscan{0%,100%{top:6%}50%{top:84%}}
+
+        /* ---------- capability constellation ---------- */
+        .constell{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center}
+        #netcanvas{width:100%; aspect-ratio:1/1; display:block}
+        .cap-list{display:flex; flex-direction:column}
+        .cap{padding:22px 0; border-top:1px solid var(--line); cursor:default; transition:.4s var(--ease)}
+        .cap:last-child{border-bottom:1px solid var(--line)}
+        .cap-top{display:flex; align-items:center; gap:16px}
+        .cap-num{font-family:var(--font-m); font-size:.8rem; color:var(--faint); width:34px}
+        .cap h4{font-family:var(--font-d); font-weight:600; font-size:1.22rem; transition:.4s var(--ease)}
+        .cap p{color:var(--faint); font-size:.92rem; max-width:52ch; margin:6px 0 0 50px; max-height:0; overflow:hidden;
+            opacity:0; transition:.5s var(--ease)}
+        .cap:hover{padding-left:14px}
+        .cap:hover h4{background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+        .cap:hover p{max-height:80px; opacity:1; margin-top:12px}
+        .cap-dot{margin-left:auto; width:9px;height:9px;border-radius:50%; background:var(--line-2); transition:.4s var(--ease)}
+        .cap:hover .cap-dot{background:var(--cyan); box-shadow:0 0 14px var(--cyan)}
+
+        /* ---------- closing manifesto ---------- */
+        .manifesto{text-align:center; padding:150px 0 120px; position:relative; z-index:2}
+        .manifesto h2{font-family:var(--font-d); font-weight:800; font-size:clamp(2.2rem,6vw,4.4rem); line-height:1.02; letter-spacing:-.025em; max-width:16ch; margin:0 auto 28px}
+        .manifesto p{color:var(--dim); max-width:52ch; margin:0 auto 38px}
+        .manifesto .btn{margin:0 auto}
+        .disclaim{margin-top:40px; font-family:var(--font-m); font-size:.78rem; color:var(--faint); letter-spacing:.04em}
+
+        /* ---------- toast ---------- */
+        .toast-wrap{position:fixed; top:88px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px}
+        .toast{display:flex; gap:12px; align-items:flex-start; min-width:300px; max-width:380px; padding:15px 18px; border-radius:14px;
+            background:rgba(12,12,24,.92); border:1px solid var(--line-2); backdrop-filter:blur(14px); transform:translateX(120%);
+            transition:transform .5s var(--ease); box-shadow:0 20px 60px -20px rgba(0,0,0,.8)}
+        .toast.show{transform:none}
+        .toast.error{border-color:rgba(239,68,68,.5)} .toast.error .ti{color:#ef4444}
+        .toast.success{border-color:rgba(16,185,129,.5)} .toast.success .ti{color:#10b981}
+        .toast .ti{font-size:1.2rem; margin-top:1px}
+        .toast .tt{font-family:var(--font-d); font-weight:600; font-size:.9rem}
+        .toast .tm{color:var(--dim); font-size:.84rem; margin-top:2px}
+
+        @media (max-width:980px){
+            .hero{grid-template-columns:1fr; gap:48px; text-align:left; min-height:auto; padding:24px 0 72px}
+            .scope{margin:0 auto; max-width:360px}
+            .section{padding:84px 0}
+            .sec-head{margin-bottom:48px}
+            .watch,.constell{grid-template-columns:1fr; gap:30px}
+            .watch:nth-child(even) .watch-visual{order:0}
+            .watchers{gap:64px}
+            #netcanvas{max-width:440px; margin:0 auto}
+            .cap p{margin-left:50px}
+            .manifesto{padding:96px 0 80px}
+        }
+        @media (max-width:560px){
+            .wrap{padding:0 20px}
+            .hero{gap:40px}
+            .hero-cta{flex-direction:column; align-items:stretch}
+            .btn{justify-content:center; width:100%; padding:16px 22px}
+            .signin-note{font-size:.76rem}
+            .hero-meta{gap:14px}
+            .section{padding:64px 0}
+            .scope{max-width:300px}
+            /* keep floating chips inside the viewport on small phones */
+            .chip{font-size:.66rem; padding:6px 10px}
+            .chip.c1{left:0} .chip.c2{right:-2%} .chip.c3{left:-2%} .chip.c4{right:0}
+            .toast-wrap{left:16px; right:16px} .toast{min-width:0; max-width:none}
+        }
+        @media (max-width:380px){
+            .scope{max-width:248px}
+            .chip{display:none}
+        }
+        @media (prefers-reduced-motion:reduce){
+            *{animation:none !important; transition:none !important}
+            [data-reveal]{opacity:1; transform:none}
+            .viz-line .line{stroke-dashoffset:0}
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to sign in</a>
+    <div class="atmosphere" aria-hidden="true">
+        <span class="mesh m1"></span><span class="mesh m2"></span><span class="mesh m3"></span>
+    </div>
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="scanline" aria-hidden="true"></div>
+
+    <%- include('partials/navbar') %>
+
+    <div class="toast-wrap" id="toastWrap"></div>
+    <!-- ===================== HERO ===================== -->
+    <header class="wrap hero" id="main">
+        <div class="hero-left">
+            <span class="kicker" data-reveal>Surveillance intelligence · for the watched</span>
+            <h1 class="display" data-reveal data-d="1">
+                See yourself the way<br>the machine <span class="grad-text">already does.</span>
+            </h1>
+            <p class="lead" data-reveal data-d="2">
+                Every like, caption and timestamp you leave behind gets reassembled into a profile you never agreed to.
+                VisiSocial builds that same profile from your own data and hands it back to you.
+            </p>
+            <div data-reveal data-d="3" style="margin-top:30px">
+                <span class="secure-badge"><i class="fas fa-shield-halved"></i> Secure OAuth sign-in</span>
+            </div>
+            <div class="hero-cta" data-reveal data-d="3" style="margin-top:16px">
+                <a href="/auth/facebook" class="btn btn-primary" id="loginBtn" aria-label="Sign in with Facebook to reveal your profile">
+                    <span class="btn-spinner" aria-hidden="true"></span>
+                    <span class="btn-label-default"><i class="fab fa-facebook-f"></i> Continue with Facebook</span>
+                </a>
+                <a href="#watchers" class="btn btn-ghost">
+                    <i class="fas fa-arrow-down"></i> See what they see
+                </a>
+            </div>
+            <p class="signin-note" data-reveal data-d="3">
+                <i class="fas fa-lock"></i> No password needed, just one read-only sign-in through Facebook. By continuing you agree to our
+                <a href="/terms">Terms</a> &amp; <a href="/privacy">Privacy Policy</a>.
+            </p>
+            <div class="hero-meta" data-reveal data-d="4">
+                <span class="trust"><span class="dot"></span> Analyzed locally · never sold</span>
+                <span class="trust" style="--cyan:#9d7bff"><span class="dot" style="background:var(--violet);box-shadow:0 0 12px var(--violet)"></span> Big Five · behavioral · cross-modal</span>
+            </div>
+        </div>
+
+        <div class="hero-right" data-reveal data-d="2" aria-hidden="true">
+            <div class="scope" id="scope">
+                <canvas id="scopeCanvas"></canvas>
+                <span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span>
+                <div class="core">
+                    <span class="eye"><i class="fas fa-eye"></i></span>
+                    <small>OBSERVING</small>
+                </div>
+                <div class="chip c1"><i class="fas fa-brain"></i>Openness 77%</div>
+                <div class="chip c2"><i class="fas fa-clock"></i>Active 11pm-2am</div>
+                <div class="chip c3"><i class="fas fa-location-dot"></i>Home · Work inferred</div>
+                <div class="chip c4 risk"><i class="fas fa-triangle-exclamation"></i>Manipulation risk: high</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== TICKER ===================== -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track" id="ticker">
+            <span><b>Personality</b> reconstructed</span>
+            <span><b>Posting rhythm</b> mapped to your sleep</span>
+            <span><b>Wealth signals</b> read from photos</span>
+            <span><b>Political lean</b> inferred</span>
+            <span><b>Relationship status</b> guessed</span>
+            <span><b>Vulnerable moments</b> timed</span>
+            <span><b>Brand loyalty</b> scored</span>
+            <span><b>Re-identification</b> risk measured</span>
+        </div>
+    </div>
+
+    <!-- ===================== WHAT THEY SEE ===================== -->
+    <section class="section wrap" id="watchers">
+        <div class="sec-head" data-reveal>
+            <span class="kicker">Three machines are reading you</span>
+            <h2>You think you're posting.<br>They think you're <span class="grad-text">predictable</span>.</h2>
+            <p class="lead">The same signals feed three very different appetites. Here's what each one builds from them, and what it does next.</p>
+        </div>
+
+        <div class="watchers">
+            <article class="watch" data-reveal>
+                <div class="watch-text">
+                    <div class="watch-index">01</div>
+                    <h3>The platform</h3>
+                    <p>It sees everything you do, and plenty you don't: the drafts you deleted, the posts you hovered over, the exact seconds you lingered. Then it models you to keep you scrolling.</p>
+                    <div class="watch-list">
+                        <span class="tag">Engagement depth</span>
+                        <span class="tag">Dwell time</span>
+                        <span class="tag">Shadow profile</span>
+                        <span class="tag crit">Emotional state</span>
+                    </div>
+                </div>
+                <div class="watch-visual" data-reveal-visual aria-hidden="true">
+                    <span class="vlabel">internal view · realtime</span>
+                    <span class="vread">analyzing</span>
+                    <span class="scanline-v"></span>
+                    <div class="viz viz-line" aria-hidden="true">
+                        <svg viewBox="0 0 320 140" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0" stop-color="#9d7bff"/><stop offset="1" stop-color="#34e3ff"/>
+                                </linearGradient>
+                                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#7c6cff" stop-opacity=".40"/><stop offset="1" stop-color="#7c6cff" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <path class="area" d="M0,104 L32,86 L64,96 L96,58 L128,74 L160,44 L192,66 L224,34 L256,56 L288,28 L320,48 L320,140 L0,140 Z"/>
+                            <path class="line" d="M0,104 L32,86 L64,96 L96,58 L128,74 L160,44 L192,66 L224,34 L256,56 L288,28 L320,48"/>
+                            <circle class="dot" cx="320" cy="48" r="4"/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <article class="watch" data-reveal>
+                <div class="watch-text">
+                    <div class="watch-index">02</div>
+                    <h3>The advertisers</h3>
+                    <p>They never see your name, and they don't need it. What they buy is the inference: your purchase intent, your susceptibility, the moment your judgement is weakest.</p>
+                    <div class="watch-list">
+                        <span class="tag">Purchase intent</span>
+                        <span class="tag">Lookalike match</span>
+                        <span class="tag">Lifetime value</span>
+                        <span class="tag crit">Susceptibility</span>
+                    </div>
+                </div>
+                <div class="watch-visual" data-reveal-visual aria-hidden="true">
+                    <span class="vlabel">targeting profile</span>
+                    <span class="vread">analyzing</span>
+                    <span class="scanline-v"></span>
+                    <div class="viz viz-radar" aria-hidden="true">
+                        <svg viewBox="0 0 160 142">
+                            <polygon class="grid" points="80,15 132.3,53 112.3,114.5 47.7,114.5 27.7,53"/>
+                            <polygon class="grid" points="80,33 115.2,58.6 101.8,99.9 58.2,99.9 44.8,58.6"/>
+                            <polygon class="grid" points="80,51 98.1,64.1 91.2,85.4 68.8,85.4 61.9,64.1"/>
+                            <line class="axis" x1="80" y1="70" x2="80" y2="15"/>
+                            <line class="axis" x1="80" y1="70" x2="132.3" y2="53"/>
+                            <line class="axis" x1="80" y1="70" x2="112.3" y2="114.5"/>
+                            <line class="axis" x1="80" y1="70" x2="47.7" y2="114.5"/>
+                            <line class="axis" x1="80" y1="70" x2="27.7" y2="53"/>
+                            <polygon class="shape" points="80,20 118,57.6 97.6,94.3 53.5,106.4 46.7,59.2"/>
+                            <circle class="vtx" cx="80" cy="20" r="2.5"/>
+                            <circle class="vtx" cx="118" cy="57.6" r="2.5"/>
+                            <circle class="vtx" cx="97.6" cy="94.3" r="2.5"/>
+                            <circle class="vtx" cx="53.5" cy="106.4" r="2.5"/>
+                            <circle class="vtx" cx="46.7" cy="59.2" r="2.5"/>
+                            <text x="80" y="9" text-anchor="middle">INTENT</text>
+                            <text x="139" y="50" text-anchor="start">MATCH</text>
+                            <text x="108" y="130" text-anchor="middle">VALUE</text>
+                            <text x="52" y="130" text-anchor="middle">REACH</text>
+                            <text x="21" y="50" text-anchor="end">RISK</text>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <article class="watch" data-reveal>
+                <div class="watch-text">
+                    <div class="watch-index">03</div>
+                    <h3>The data brokers</h3>
+                    <p>They stitch your online self to your offline one using property records, purchase history, even the people you stand next to. Then they assemble a dossier and sell it by the row.</p>
+                    <div class="watch-list">
+                        <span class="tag">Cross-platform ID</span>
+                        <span class="tag">Offline records</span>
+                        <span class="tag">Life-event prediction</span>
+                        <span class="tag crit">Re-identification</span>
+                    </div>
+                </div>
+                <div class="watch-visual" data-reveal-visual aria-hidden="true">
+                    <span class="vlabel">aggregated dossier</span>
+                    <span class="vread">analyzing</span>
+                    <div class="viz viz-dossier" aria-hidden="true">
+                        <span class="dscan"></span>
+                        <div class="drow"><span class="dlabel">Cross-ID</span><span class="dbar" style="--w:78%"></span></div>
+                        <div class="drow"><span class="dlabel">Offline rec</span><span class="dbar" style="--w:54%"></span></div>
+                        <div class="drow"><span class="dlabel">Life-event</span><span class="dbar" style="--w:88%"></span></div>
+                        <div class="drow"><span class="dlabel">Geo-trace</span><span class="dbar" style="--w:42%"></span></div>
+                        <div class="drow"><span class="dlabel">Re-ident</span><span class="dbar" style="--w:67%"></span></div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <!-- ===================== CAPABILITY CONSTELLATION ===================== -->
+    <section class="section wrap">
+        <div class="sec-head" data-reveal>
+            <span class="kicker">The engine</span>
+            <h2>From scattered posts<br>to a full <span class="grad-text">portrait</span>.</h2>
+            <p class="lead">Each signal cross-references the others, and confidence only climbs where they agree. Hover a node to trace how it connects.</p>
+        </div>
+
+        <div class="constell">
+            <div data-reveal>
+                <canvas id="netcanvas" aria-hidden="true"></canvas>
+            </div>
+            <div class="cap-list" data-reveal data-d="1">
+                <div class="cap" data-node="0">
+                    <div class="cap-top"><span class="cap-num">01</span><h4>Big Five personality</h4><span class="cap-dot"></span></div>
+                    <p>Your writing is scored against a labelled corpus to estimate the Big Five traits: openness, conscientiousness, extroversion, agreeableness and neuroticism.</p>
+                </div>
+                <div class="cap" data-node="1">
+                    <div class="cap-top"><span class="cap-num">02</span><h4>Behavioral rhythms</h4><span class="cap-dot"></span></div>
+                    <p>Timestamps reveal your sleep cycle, your habits, and the hours when you're most reachable and most impulsive.</p>
+                </div>
+                <div class="cap" data-node="2">
+                    <div class="cap-top"><span class="cap-num">03</span><h4>Psychographic inference</h4><span class="cap-dot"></span></div>
+                    <p>Risk tolerance, materialism, need for cognition and social dominance, drawn from word choice and interests.</p>
+                </div>
+                <div class="cap" data-node="3">
+                    <div class="cap-top"><span class="cap-num">04</span><h4>Cross-modal correlation</h4><span class="cap-dot"></span></div>
+                    <p>Text, images and timing get cross-checked against each other, so nothing counts until the sources line up.</p>
+                </div>
+                <div class="cap" data-node="4">
+                    <div class="cap-top"><span class="cap-num">05</span><h4>Vulnerability scoring</h4><span class="cap-dot"></span></div>
+                    <p>The output is a set of scores for data exposure, re-identification and manipulation risk. They're the same numbers an adversary would put together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== MANIFESTO / CLOSING ===================== -->
+    <section class="manifesto wrap">
+        <div data-reveal>
+            <h2>The profile exists either way.<br>Only one of you gets to <span class="grad-text">read it</span>.</h2>
+            <p>Connect once, see the dossier the surveillance economy keeps on you, and decide for yourself what to do with it.</p>
+            <a href="/auth/facebook" class="btn btn-primary" data-login aria-label="Sign in with Facebook to reveal your profile">
+                <span class="btn-spinner" aria-hidden="true"></span>
+                <span class="btn-label-default"><i class="fab fa-facebook-f"></i> Continue with Facebook</span>
+            </a>
+            <div class="disclaim">Educational surveillance analysis. We process your data only to show you its reach, and never resell it.</div>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+
+    <script nonce="<%= typeof nonce !== 'undefined' ? nonce : '' %>">
+    (function(){
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* ---- scroll reveal ---- */
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+            });
+        }, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
+        document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+        var iov = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); iov.unobserve(e.target);} });
+        }, {threshold:.3});
+        document.querySelectorAll('[data-reveal-visual]').forEach(function(el){ iov.observe(el); });
+
+        /* ---- duplicate ticker for seamless loop ---- */
+        var tk = document.getElementById('ticker');
+        if(tk){ tk.innerHTML += tk.innerHTML; }
+
+        /* ---- hero mouse parallax ---- */
+        if(!reduce){
+            var scope = document.getElementById('scope');
+            window.addEventListener('mousemove', function(ev){
+                var x = (ev.clientX/window.innerWidth - .5), y = (ev.clientY/window.innerHeight - .5);
+                document.querySelectorAll('.atmosphere .mesh').forEach(function(m,i){
+                    m.style.transform = 'translate('+(x*(14+i*8))+'px,'+(y*(14+i*8))+'px)';
+                });
+                if(scope) scope.style.transform = 'translate('+(x*-12)+'px,'+(y*-12)+'px)';
+            });
+        }
+
+        /* ---- scope canvas: orbiting data points ---- */
+        (function(){
+            var c = document.getElementById('scopeCanvas'); if(!c) return;
+            var ctx = c.getContext('2d'), DPR = Math.min(window.devicePixelRatio||1, 2);
+            function size(){ var r=c.getBoundingClientRect(); c.width=r.width*DPR; c.height=r.height*DPR; }
+            size(); window.addEventListener('resize', size);
+            var pts = []; for(var i=0;i<40;i++){ pts.push({a:Math.random()*Math.PI*2, r:.18+Math.random()*.32, s:.0008+Math.random()*.0016, sz:.6+Math.random()*1.8}); }
+            function frame(){
+                ctx.clearRect(0,0,c.width,c.height);
+                var cx=c.width/2, cy=c.height/2, R=Math.min(c.width,c.height);
+                pts.forEach(function(p){
+                    if(!reduce) p.a += p.s;
+                    var x=cx+Math.cos(p.a)*p.r*R, y=cy+Math.sin(p.a)*p.r*R;
+                    ctx.beginPath(); ctx.arc(x,y,p.sz*DPR,0,Math.PI*2);
+                    ctx.fillStyle = p.sz>1.4 ? 'rgba(52,227,255,.9)' : 'rgba(157,123,255,.65)'; ctx.fill();
+                    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(x,y);
+                    ctx.strokeStyle='rgba(124,108,255,.07)'; ctx.lineWidth=DPR; ctx.stroke();
+                });
+                requestAnimationFrame(frame);
+            }
+            frame();
+        })();
+
+        /* ---- capability network ---- */
+        (function(){
+            var c = document.getElementById('netcanvas'); if(!c) return;
+            var ctx=c.getContext('2d'), DPR=Math.min(window.devicePixelRatio||1,2), hover=-1;
+            function size(){ var r=c.getBoundingClientRect(); c.width=r.width*DPR; c.height=r.height*DPR; }
+            size(); window.addEventListener('resize', size);
+            var N=5, nodes=[];
+            function layout(){
+                nodes=[]; var cx=c.width/2, cy=c.height/2, R=Math.min(c.width,c.height)*.32;
+                for(var i=0;i<N;i++){ var a=(i/N)*Math.PI*2 - Math.PI/2; nodes.push({x:cx+Math.cos(a)*R, y:cy+Math.sin(a)*R, bx:cx+Math.cos(a)*R, by:cy+Math.sin(a)*R, ph:Math.random()*Math.PI*2}); }
+            }
+            layout(); window.addEventListener('resize', layout);
+            var t=0;
+            function frame(){
+                t+=.012; ctx.clearRect(0,0,c.width,c.height);
+                for(var i=0;i<N;i++){ var n=nodes[i]; var off=reduce?0:Math.sin(t+n.ph)*8*DPR; n.x=n.bx+off; n.y=n.by+Math.cos(t+n.ph)*8*DPR; }
+                for(var i=0;i<N;i++) for(var j=i+1;j<N;j++){
+                    ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y);
+                    var hot = (hover===i||hover===j);
+                    ctx.strokeStyle = hot?'rgba(52,227,255,.5)':'rgba(124,108,255,.14)'; ctx.lineWidth=(hot?1.6:1)*DPR; ctx.stroke();
+                }
+                for(var i=0;i<N;i++){ var n=nodes[i], hot=hover===i;
+                    var g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,(hot?22:14)*DPR);
+                    g.addColorStop(0, hot?'rgba(52,227,255,.95)':'rgba(157,123,255,.9)'); g.addColorStop(1,'rgba(124,108,255,0)');
+                    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(n.x,n.y,(hot?22:14)*DPR,0,Math.PI*2); ctx.fill();
+                    ctx.fillStyle=hot?'#34e3ff':'#cfc7ff'; ctx.beginPath(); ctx.arc(n.x,n.y,(hot?5:3.4)*DPR,0,Math.PI*2); ctx.fill();
+                }
+                requestAnimationFrame(frame);
+            }
+            frame();
+            document.querySelectorAll('.cap').forEach(function(cap){
+                cap.addEventListener('mouseenter', function(){ hover=parseInt(cap.getAttribute('data-node'),10); });
+                cap.addEventListener('mouseleave', function(){ hover=-1; });
+            });
+        })();
+
+        /* ---- login button loading state ---- */
+        document.querySelectorAll('#loginBtn,[data-login]').forEach(function(btn){
+            btn.addEventListener('click', function(){
+                if(btn.getAttribute('aria-busy') === 'true') return;
+                btn.setAttribute('aria-busy','true');
+                var lbl = btn.querySelector('.btn-label-default');
+                if(lbl){
+                    var live = document.createElement('span'); live.className='btn-label-busy';
+                    live.appendChild(document.createTextNode(' Connecting to Facebook…'));
+                    btn.appendChild(live);
+                }
+                /* safety: clear state if user returns via back button */
+                setTimeout(function(){ btn.removeAttribute('aria-busy'); var b=btn.querySelector('.btn-label-busy'); if(b) b.remove(); }, 8000);
+            });
+        });
+
+        /* ---- navbar scroll state (works with shared navbar) ---- */
+        window.addEventListener('scroll', function(){
+            var nb=document.querySelector('.navbar'); if(nb) nb.classList.toggle('scrolled', window.scrollY>20);
+        });
+
+        /* ---- toast ---- */
+        window.showToast = function(msg, type, title){
+            var icons={error:'fa-circle-exclamation',success:'fa-circle-check',info:'fa-circle-info'};
+            var w=document.getElementById('toastWrap'); if(!w) return;
+            var el=document.createElement('div'); el.className='toast '+(type||'info');
+            el.innerHTML='<i class="ti fas '+(icons[type]||icons.info)+'"></i><div><div class="tt">'+(title||'Notice')+'</div><div class="tm">'+msg+'</div></div>';
+            w.appendChild(el); requestAnimationFrame(function(){ el.classList.add('show'); });
+            setTimeout(function(){ el.classList.remove('show'); setTimeout(function(){ el.remove(); }, 500); }, 5200);
+        };
+        <% if (typeof error !== 'undefined' && error) { %>
+            showToast('<%= String(error).replace(/'/g, "\\'") %>', 'error', 'Authentication failed');
+        <% } %>
+        <% if (typeof success !== 'undefined' && success) { %>
+            showToast('<%= String(success).replace(/'/g, "\\'") %>', 'success', 'Success');
+        <% } %>
+    })();
+    </script>
+</body>
+</html>

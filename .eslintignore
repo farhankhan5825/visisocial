@@ -1,0 +1,9 @@
+node_modules/
+public/lib/
+public/stylesheets/
+temp/
+logs/
+data/
+uploads/
+coverage/
+read-csv.js

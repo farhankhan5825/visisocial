@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+venv/
+
+# Secrets & credentials — NEVER commit
+.env
+.env.*
+!.env.example
+cloudvision/*.json
+
+# Personal / restricted data — cannot be redistributed
+extras/mypersonality_final.csv
+extras/Book1.csv
+read-csv.js
+
+# Runtime state, logs, user content
+logs/
+data/metrics.json
+uploads/
+evidence/
+temp/
+*.log
+
+# Large third-party binary — see README (Tesseract eng.traineddata)
+eng.traineddata
+
+# Build junk
+dist/
+build/
+*.zip
+*.tar
+*.gz
+.DS_Store
+npm-debug.log*
+
+# Paper draft (under review, not part of the release)
+VisiSocial_paper.docx
