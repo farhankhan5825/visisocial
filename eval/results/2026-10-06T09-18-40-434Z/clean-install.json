@@ -1,0 +1,577 @@
+{
+  "scope": "Source copy in a project-local clean directory; npm ci used the lockfile. Not a remote Git clone.",
+  "excluded": [
+    ".env",
+    "private datasets",
+    "old logs",
+    "uploads",
+    "eng.traineddata",
+    "local paper"
+  ],
+  "tests": {
+    "success": true,
+    "tests": 47,
+    "passed": 47,
+    "failed": 0,
+    "suites": 12,
+    "passedSuites": 12,
+    "startTimeUTC": "2026-10-06T09:26:31.737Z",
+    "assertions": [
+      {
+        "title": "full consent/report/export/feedback/delete flow and removed routes",
+        "status": "passed"
+      },
+      {
+        "title": "golden report JSON matches the released full pipeline fixture and independently planted peak",
+        "status": "passed"
+      },
+      {
+        "title": "warm cache retains provenance and consent changes cannot reuse provider output",
+        "status": "passed"
+      },
+      {
+        "title": "cursor pagination ignores arbitrary next URLs and uses fixed host and bearer header",
+        "status": "passed"
+      },
+      {
+        "title": "Graph backoff handles 429 and stops after a bounded number of attempts",
+        "status": "passed"
+      },
+      {
+        "title": "SSRF blocks private DNS, userinfo, deceptive suffixes, ports and redirects by response",
+        "status": "passed"
+      },
+      {
+        "title": "image features use actual scores and do not invent OCR confidence",
+        "status": "passed"
+      },
+      {
+        "title": "images abstain without consent and use OCR fallback only when consented",
+        "status": "passed"
+      },
+      {
+        "title": "explanation verifier rejects missing keys, numeric mismatch and unsupported text",
+        "status": "passed"
+      },
+      {
+        "title": "judge errors fail closed; empty explanations have no rate",
+        "status": "passed"
+      },
+      {
+        "title": "authenticated token encryption binds owner and detects tampering",
+        "status": "passed"
+      },
+      {
+        "title": "deletion drains jobs and removes record, feedback, tokens, cache and sessions",
+        "status": "passed"
+      },
+      {
+        "title": "retention excludes expired records and Mongo TTL is declared",
+        "status": "passed"
+      },
+      {
+        "title": "no posts abstains; missing message does not invent a value",
+        "status": "passed"
+      },
+      {
+        "title": "one post has per-post sentiment, negation and a valid denominator",
+        "status": "passed"
+      },
+      {
+        "title": "non-English text is unscored and unicode survives tokenization",
+        "status": "passed"
+      },
+      {
+        "title": "emoji-only and empty input are distinct",
+        "status": "passed"
+      },
+      {
+        "title": "readability uses raw words including stopwords and at least three sentences",
+        "status": "passed"
+      },
+      {
+        "title": "taxonomy uses whole tokens and returns evidence",
+        "status": "passed"
+      },
+      {
+        "title": "TF-IDF is normalized and uses document frequency",
+        "status": "passed"
+      },
+      {
+        "title": "acquisition permission failures produce unavailable modules, never empty-observation conclusions",
+        "status": "passed"
+      },
+      {
+        "title": "cache is isolated by owner, consent and prompt metadata",
+        "status": "passed"
+      },
+      {
+        "title": "repeated cursor and identity mismatch stop ingestion",
+        "status": "passed"
+      },
+      {
+        "title": "inferences reject absent ids, nonverbatim spans, empty evidence and sensitive attributes",
+        "status": "passed"
+      },
+      {
+        "title": "empty inferences have no estimated rejection rate and model can abstain",
+        "status": "passed"
+      },
+      {
+        "title": "inference does not call provider without consent or posts",
+        "status": "passed"
+      },
+      {
+        "title": "only OAuth-owned matching email can query HIBP, no active account claim",
+        "status": "passed"
+      },
+      {
+        "title": "empty and one-post profiles abstain",
+        "status": "passed"
+      },
+      {
+        "title": "circular mean handles midnight and cancels antipodes",
+        "status": "passed"
+      },
+      {
+        "title": "explicit timezone handles daylight saving and midnight",
+        "status": "passed"
+      },
+      {
+        "title": "entropy uses occupied-bin correction and n",
+        "status": "passed"
+      },
+      {
+        "title": "intervals preserve zero gaps and sorted median",
+        "status": "passed"
+      },
+      {
+        "title": "weekend ratio abstains for zero denominator and missing fields count correctly",
+        "status": "passed"
+      },
+      {
+        "title": "pinned inference request uses strict native JSON schema and no application storage",
+        "status": "passed"
+      },
+      {
+        "title": "HIBP sends attribution-compatible user-agent and requests full breach objects; 404 is empty",
+        "status": "passed"
+      },
+      {
+        "title": "logger refuses free text and discards identifiers",
+        "status": "passed"
+      },
+      {
+        "title": "provenance abstains without an invented confidence",
+        "status": "passed"
+      },
+      {
+        "title": "images finish before synthesis; module failure is isolated",
+        "status": "passed"
+      },
+      {
+        "title": "queue deduplicates jobs and draining prevents writes for deleted owners",
+        "status": "passed"
+      },
+      {
+        "title": "cache clones results, expires and deletes by owner",
+        "status": "passed"
+      },
+      {
+        "title": "offline server starts with no credentials or database and closes cleanly",
+        "status": "passed"
+      },
+      {
+        "title": "live startup fails closed on missing configuration or insecure transport",
+        "status": "passed"
+      },
+      {
+        "title": "set precision/recall counts duplicates once and handles empty denominators",
+        "status": "passed"
+      },
+      {
+        "title": "CER and WER count substitutions, insertions and unicode code points",
+        "status": "passed"
+      },
+      {
+        "title": "timing distributions state n and interpolation",
+        "status": "passed"
+      },
+      {
+        "title": "likes map to documented categories with supporting ids",
+        "status": "passed"
+      },
+      {
+        "title": "no likes abstains",
+        "status": "passed"
+      }
+    ]
+  },
+  "offlineEvaluation": {
+    "runId": "2026-10-06T09-15-41-134Z",
+    "protocolVersion": "1.0.0",
+    "providerMode": "authored_synthetic_mocks_no_network",
+    "limitations": [
+      "Mock agreement measures software contract handling, not live model/API accuracy.",
+      "Cold means empty in-process module cache, not fresh process or hardware cold start.",
+      "Warm is prefilled per-owner module cache; Graph ingestion, synthesis and explanation still run.",
+      "30 repeated runs per condition are not 30 independent profiles.",
+      "No OAuth, network latency, rendering or provider service latency is timed.",
+      "Cross-language topic divergence is a limitation of English rules. This is a coverage pilot, not demographic fairness evidence."
+    ],
+    "environment": {
+      "node": "v24.19.0",
+      "platform": "win32",
+      "architecture": "x64",
+      "cpu": "AMD Ryzen 7 9700X 8-Core Processor             ",
+      "gitRevision": "bb2b15ef7c5f3cdb0d89845bec07ae4f676d9388",
+      "sourceHashes": {
+        "eval/README.md": "d8a411ffc27f398e211c255d36df8620fad77e59b65720da16703480264fd4a2",
+        "eval/build-fixtures.js": "090793703a1437963f150a89a1e79be8ff6da2f50d810b20e80eed6cb9080c9b",
+        "eval/metrics.js": "03fc9f2aaaad08025c3a59fa519f273335babb69a0f6696ec2515ee4eed3e06c",
+        "eval/mock-providers.js": "4fec7073c68914796053e92e5678ba4c5de02a6165658b27346aba81089f1eef",
+        "eval/run-ocr.js": "3bc55100406091f44a8a1d556b4a4e2b41b20a4a5f558f050f4db8370ecda367",
+        "eval/run.js": "3e78386281a749c2d81bf553181c44757021a3b2627b4d713158bb958fc178b5",
+        "src/analysis/image.js": "c13df3e947d4536e0255cbcf15f84e59764c1c310219533cbd9c809f04dc020f",
+        "src/analysis/inference.js": "d56d8e6d33d02d9adabbd32e00da4ac3e849d6df21099e9dc74bfca754909c7f",
+        "src/analysis/interests.js": "887f0a53923e555640e8d4d3fc62e8b8b29f6073faa619021de16f164cdc80b9",
+        "src/analysis/osint.js": "e02e5fcf4cb2a6299b1ec94aea14a36cb748add2daf3527812cc8c3bd1b0d7c5",
+        "src/analysis/temporal.js": "ddc39f1a511203735342b628ee4a7d8d594dc7a58486409a3ff6820ac0c96bf0",
+        "src/analysis/text.js": "0b3522ad55142fc52242c6a6aa794291bafd15cbb80821f2b15799c6dd36efff",
+        "src/app.js": "16fefaf63d70d37b835e528917c2098559d6332a513ea7cc090739fe58cf163b",
+        "src/ingest/facebook.js": "64a7a97ef755ff42ce737bbbfdc3b68e17bc52f74641bd6cf8b2d6511a6ee73c",
+        "src/jobs/queue.js": "9c28ee4e5dc514af263f2bb7269c08c05e23c6c8e44cffa69af961f7d40892a4",
+        "src/modules.js": "60253507975bae14c4da83afcee8c94250bb8034eaa84fa8435fc386f7be914a",
+        "src/pipeline.js": "37440fd36752194024cf75b848bbb2bb14fb18b463bedec678464613d0db3632",
+        "src/privacy/cache.js": "24a6aa2cb5cdd949277f9d653aa0b5116c64abc3933fbbef815fd3e84373b7ed",
+        "src/privacy/logger.js": "18be5ec6dec31f74e9143382e2141f1fa649e1691d1ef30e59a96c013448888e",
+        "src/privacy/network.js": "b14a03ead28e17b3773af23a5dbacb63253b388cf77e6ba997ce4966cd654df2",
+        "src/privacy/store.js": "820aa81c483e7e39d267b032922a47ed4b1cc0aa47a8d8d72544cf5426d6f7f6",
+        "src/privacy/tokens.js": "e05a7e7505adcfd993754db767618b04a8ac3aaabca334475bc228419190e56d",
+        "src/prompts/explain-image.md": "9bbae8f11e9f6b7f6118d811a40a29de2824a15e8c499c1bd20feaee40d1be75",
+        "src/prompts/explain-inference.md": "3705e59fb030a000e1388bff719baf7e74bc2a5287a87014511895bf30a9ef2c",
+        "src/prompts/explain-interests.md": "9802a6c41ca82429572074443efa92e924c5fab65258f43a53bf3650ac183a92",
+        "src/prompts/explain-osint.md": "ad33bac0eb1a89680431c1de9ea7a1763bef1cc145d9f56022080f49b5f873b8",
+        "src/prompts/explain-temporal.md": "6993b1df906095c7d9cca300e66b78658c7ef1949a1bafd14bc2c272d1ea1592",
+        "src/prompts/explain-text.md": "19f1948d22a86dc8b9dec4b09f08e0c9b6d3936499aa2957b257fe39dd796af5",
+        "src/prompts/inference.md": "a08729232d362df4ac770552b5e4983fafeb1c26376d829d150f802fe2606d4d",
+        "src/prompts/judge.md": "587cb1fab7b9487d2f9ecb522037a7a3e2702611412a80b3439daefd4381bacf",
+        "src/providers.js": "e260b649753cfdda5dc92ad600fd292faa476219309dc3d46970a591120234f1",
+        "src/report/explain.js": "0465412ddf3b42f47f754d9647fe6b43fcb14b5a640aebebc1e6e41cb0c7aa1c",
+        "src/report/feature.js": "7dd83e98fe897a4d4a02f479d0265ed08b6a39d3f7642e5755bcac01fd7bb6cf",
+        "src/report/synthesize.js": "e5a930df7eb9af4e86b14983fd02e8d80ca6eeee97a8040b63208be744fa69ae",
+        "src/routes/index.js": "050ab1acf9b6e98711b54f04c1625bcb3016875cffa4daefb67d84398c126887",
+        "src/schemas/index.js": "07e0e5ab4e973e4380306a4ec1a4353193d6e218b8959d67aa5d5881891f8f42",
+        "src/schemas/provider-json.js": "4203e7821a92cdcafc53f42ede3635f94fce04241866a84fb3e766ef28c5a638",
+        "src/server.js": "08ecdf5443894799eb1f9159009df7c0c97866cba4c77c637892d2147d1d7e66"
+      },
+      "lockfileHash": "2e5330e2abe9a5010230395c2792ff036c7db610236614da6ae10a85fe4da2b2"
+    },
+    "profiles": 10,
+    "timedRuns": 60,
+    "repeatsPerProfilePerCondition": 3,
+    "aggregate": {
+      "topics": {
+        "tp": 12,
+        "fp": 0,
+        "fn": 8,
+        "precision": 1,
+        "recall": 0.6
+      },
+      "temporalPeak": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "visionLabels": {
+        "tp": 30,
+        "fp": 10,
+        "fn": 10,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "inferenceAttributes": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "interests": {
+        "tp": 20,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    "ocr": {
+      "characterEdits": 20,
+      "characters": 310,
+      "CER": 0.06451612903225806,
+      "wordEdits": 10,
+      "words": 80,
+      "WER": 0.125
+    },
+    "explanation": {
+      "attempted": 180,
+      "flagged": 120,
+      "flaggedRate": 0.6666666666666666,
+      "acceptedRate": 0.3333333333333333,
+      "judgeMode": "authored_mock_judge"
+    },
+    "inference": {
+      "attempted": 20,
+      "rejected": 10,
+      "evidenceRejectionRate": 0.5
+    },
+    "failureIsolation": {
+      "injectedModule": "image",
+      "failed": true,
+      "otherModules": {
+        "text": "ok",
+        "temporal": "ok",
+        "interests": "ok",
+        "inference": "ok",
+        "osint": "ok"
+      },
+      "reportGenerated": true,
+      "explanationsGenerated": true
+    },
+    "timing": {
+      "cold": {
+        "total": {
+          "n": 30,
+          "mean": 4.856226666666663,
+          "median": 4.875699999999995,
+          "p95": 5.4921799999999985,
+          "min": 3.8806999999999903,
+          "max": 5.634199999999993,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "ingest": {
+          "n": 30,
+          "mean": 0.1714100000000002,
+          "median": 0.14939999999998577,
+          "p95": 0.20746999999999635,
+          "min": 0.12349999999997863,
+          "max": 0.6752999999999929,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "text": {
+          "n": 30,
+          "mean": 1.399786666666668,
+          "median": 1.2896499999999946,
+          "p95": 1.97729999999999,
+          "min": 1.025999999999982,
+          "max": 2.4496000000000038,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "temporal": {
+          "n": 30,
+          "mean": 1.0746966666666689,
+          "median": 1.002049999999997,
+          "p95": 1.5848850000000083,
+          "min": 0.8719999999999857,
+          "max": 1.8394999999999868,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "interests": {
+          "n": 30,
+          "mean": 0.27357333333333334,
+          "median": 0.21315000000002726,
+          "p95": 0.8013200000000053,
+          "min": 0.1710999999999956,
+          "max": 0.8451000000000022,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "image": {
+          "n": 30,
+          "mean": 0.2876633333333369,
+          "median": 0.2244500000000187,
+          "p95": 0.824774999999998,
+          "min": 0.18719999999999004,
+          "max": 0.8596000000000004,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "inference": {
+          "n": 30,
+          "mean": 0.24916666666666837,
+          "median": 0.18729999999999336,
+          "p95": 0.7820950000000023,
+          "min": 0.1529000000000167,
+          "max": 0.8256000000000085,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "osint": {
+          "n": 30,
+          "mean": 0.21385333333332995,
+          "median": 0.1720499999999987,
+          "p95": 0.5381049999999914,
+          "min": 0.1413000000000011,
+          "max": 0.8122999999999934,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "synthesis": {
+          "n": 30,
+          "mean": 0.09574666666666663,
+          "median": 0.05499999999999261,
+          "p95": 0.31150999999998896,
+          "min": 0.041700000000048476,
+          "max": 0.6905999999999892,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "explanation": {
+          "n": 30,
+          "mean": 0.14877000000000465,
+          "median": 0.12285000000001389,
+          "p95": 0.2078749999999955,
+          "min": 0.09890000000001464,
+          "max": 0.6377000000000237,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        }
+      },
+      "warm": {
+        "total": {
+          "n": 30,
+          "mean": 3.3915433333333285,
+          "median": 3.3478999999999814,
+          "p95": 3.843554999999989,
+          "min": 2.647899999999993,
+          "max": 4.294800000000009,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "ingest": {
+          "n": 30,
+          "mean": 0.13973333333333168,
+          "median": 0.122099999999989,
+          "p95": 0.21079500000001586,
+          "min": 0.10770000000002256,
+          "max": 0.35019999999997253,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "text": {
+          "n": 30,
+          "mean": 0.1995266666666699,
+          "median": 0.1773499999999899,
+          "p95": 0.268315000000004,
+          "min": 0.1623000000000161,
+          "max": 0.46200000000004593,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "temporal": {
+          "n": 30,
+          "mean": 0.11176999999999945,
+          "median": 0.09255000000001701,
+          "p95": 0.16811999999999327,
+          "min": 0.08530000000001792,
+          "max": 0.3686000000000149,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "interests": {
+          "n": 30,
+          "mean": 0.07381000000000502,
+          "median": 0.056450000000012324,
+          "p95": 0.12760500000002534,
+          "min": 0.05200000000002092,
+          "max": 0.3287000000000262,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "image": {
+          "n": 30,
+          "mean": 0.05208666666666583,
+          "median": 0.04409999999998604,
+          "p95": 0.09460499999995868,
+          "min": 0.04059999999998354,
+          "max": 0.11470000000002756,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "inference": {
+          "n": 30,
+          "mean": 0.028633333333334576,
+          "median": 0.024649999999979855,
+          "p95": 0.0382300000000157,
+          "min": 0.021700000000009823,
+          "max": 0.08940000000001191,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "osint": {
+          "n": 30,
+          "mean": 0.013230000000004339,
+          "median": 0.012300000000038835,
+          "p95": 0.018465000000000484,
+          "min": 0.010299999999972442,
+          "max": 0.01870000000002392,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "synthesis": {
+          "n": 30,
+          "mean": 0.06940999999999349,
+          "median": 0.05009999999998627,
+          "p95": 0.08138500000001443,
+          "min": 0.04410000000001446,
+          "max": 0.5133000000000152,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        },
+        "explanation": {
+          "n": 30,
+          "mean": 0.1583499999999939,
+          "median": 0.11074999999996749,
+          "p95": 0.3703099999999807,
+          "min": 0.09629999999998518,
+          "max": 0.8667000000000371,
+          "unit": "milliseconds",
+          "quantileMethod": "linear interpolation over sorted samples"
+        }
+      }
+    },
+    "biasPilot": {
+      "en": {
+        "n": 6,
+        "topicRecall": 1,
+        "sentimentUnscoredFraction": 0
+      },
+      "es": {
+        "n": 2,
+        "topicRecall": 0,
+        "sentimentUnscoredFraction": 1
+      },
+      "ur": {
+        "n": 2,
+        "topicRecall": 0,
+        "sentimentUnscoredFraction": 1
+      }
+    }
+  },
+  "limitations": [
+    "Local Windows/Node environment only; hosted CI has not run."
+  ]
+}

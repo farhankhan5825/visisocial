@@ -1,0 +1,782 @@
+[
+  {
+    "id": "p01",
+    "language": "en",
+    "topics": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 10,
+        "neutral": 5,
+        "negative": 5,
+        "unscored": 0
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p02",
+    "language": "en",
+    "topics": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 10,
+        "neutral": 5,
+        "negative": 5,
+        "unscored": 0
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p03",
+    "language": "en",
+    "topics": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 10,
+        "neutral": 5,
+        "negative": 5,
+        "unscored": 0
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p04",
+    "language": "en",
+    "topics": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 10,
+        "neutral": 5,
+        "negative": 5,
+        "unscored": 0
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p05",
+    "language": "es",
+    "topics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": null,
+      "recall": 0
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 0,
+        "neutral": 0,
+        "negative": 0,
+        "unscored": 20
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p06",
+    "language": "es",
+    "topics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": null,
+      "recall": 0
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 0,
+        "neutral": 0,
+        "negative": 0,
+        "unscored": 20
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p07",
+    "language": "ur",
+    "topics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": null,
+      "recall": 0
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 0,
+        "neutral": 0,
+        "negative": 0,
+        "unscored": 20
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p08",
+    "language": "ur",
+    "topics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": null,
+      "recall": 0
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 0,
+        "neutral": 0,
+        "negative": 0,
+        "unscored": 20
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p09",
+    "language": "en",
+    "topics": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 10,
+        "neutral": 5,
+        "negative": 5,
+        "unscored": 0
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  },
+  {
+    "id": "p10",
+    "language": "en",
+    "topics": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "ocr": {
+      "characterEdits": 2,
+      "characters": 31,
+      "wordEdits": 1,
+      "words": 8,
+      "CER": 0.06451612903225806,
+      "WER": 0.125
+    },
+    "sentimentDistribution": {
+      "predicted": {
+        "positive": 10,
+        "neutral": 5,
+        "negative": 5,
+        "unscored": 0
+      },
+      "truth": {
+        "positive": 10,
+        "negative": 5,
+        "neutral": 5,
+        "unscored": 0
+      }
+    },
+    "explanation": {
+      "attempted": 18,
+      "flagged": 12,
+      "flaggedRate": 0.6666666666666666
+    },
+    "inferenceEvidence": {
+      "attempted": 2,
+      "rejected": 1,
+      "rejectionRate": 0.5
+    }
+  }
+]

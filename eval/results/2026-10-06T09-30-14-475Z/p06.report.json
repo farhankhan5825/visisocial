@@ -1,0 +1,2982 @@
+{
+  "schemaVersion": "3.0.0",
+  "metadata": {
+    "inputHash": "d0b6602f4ed67316e172a5f57419cfd9a8b0b4f22e6be12b79f96981da942a2f",
+    "timezone": "Europe/London",
+    "model": "gpt-4o-mini-2024-07-18",
+    "temperature": 0,
+    "promptVersion": "1.0.0",
+    "promptHashes": {
+      "explain-image": "c2fe3ee9850299c2df480e14f9c6c1de6b2fc2f5e5324ed59bd8ffe329518844",
+      "explain-inference": "7f910ccb978834928a2881db8b61b1021f7cff4a77e551270f89d5f6f6b74cf4",
+      "explain-interests": "25abe70b01c869eab528dbf051140c82d5740eb30ddc439f98b32e0380fb8590",
+      "explain-osint": "6a5fc7769691bb29eae505a1a0c093b73a9ca641b08de573d5d5e91384d29bc8",
+      "explain-temporal": "0e51cf524597831d50d9be4405e12c224381a334f6222da04f7bb1fc170c06c5",
+      "explain-text": "bced2588e534ea4963668e1681a76877dd3cc26b3a604c03307be7243385b536",
+      "inference": "9b2a54c9e5424961be459f6f1ade553f61865b5c45deca0a46b7c729026683e9",
+      "judge": "5531675e1504e6097362528adc95119256340c4a967e30a3253d82c929f639ec"
+    },
+    "mode": "authored_mock_providers",
+    "graphVersion": "offline_mock_v24.0_shape"
+  },
+  "modules": {
+    "text": {
+      "status": "ok",
+      "features": {
+        "sentiment": {
+          "value": {
+            "distribution": {
+              "positive": 0,
+              "neutral": 0,
+              "negative": 0,
+              "unscored": 20
+            },
+            "mean": null,
+            "scoredN": 0,
+            "posts": [
+              {
+                "postId": "p06-post-1",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-2",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-3",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-4",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-5",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-6",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-7",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-8",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-9",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-10",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-11",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-12",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-13",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-14",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-15",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-16",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-17",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-18",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-19",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              },
+              {
+                "postId": "p06-post-20",
+                "label": "unscored",
+                "score": null,
+                "language": "unknown"
+              }
+            ]
+          },
+          "status": "ok",
+          "method": "per_post_english_lexicon_v1",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Exploratory English lexicon, three-token negation window and four emoji; sarcasm, mixed languages and demographics are unvalidated. Unscored text is not neutral."
+          ]
+        },
+        "readability": {
+          "value": null,
+          "status": "insufficient_evidence",
+          "method": "raw_text_flesch_reading_ease",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Exploratory syllable heuristic; ASCII English only; at least three punctuated sentences; not education level."
+          ]
+        },
+        "keywords": {
+          "value": [
+            {
+              "term": "en",
+              "weight": 2.401487218503365,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-16",
+                "p06-post-17",
+                "p06-post-18",
+                "p06-post-19",
+                "p06-post-20"
+              ]
+            },
+            {
+              "term": "esta",
+              "weight": 2.252762968495368,
+              "postIds": [
+                "p06-post-16",
+                "p06-post-17",
+                "p06-post-18",
+                "p06-post-19",
+                "p06-post-20"
+              ]
+            },
+            {
+              "term": "está",
+              "weight": 2.252762968495368,
+              "postIds": [
+                "p06-post-16",
+                "p06-post-17",
+                "p06-post-18",
+                "p06-post-19",
+                "p06-post-20"
+              ]
+            },
+            {
+              "term": "exposición",
+              "weight": 2.252762968495368,
+              "postIds": [
+                "p06-post-16",
+                "p06-post-17",
+                "p06-post-18",
+                "p06-post-19",
+                "p06-post-20"
+              ]
+            },
+            {
+              "term": "pintura",
+              "weight": 2.252762968495368,
+              "postIds": [
+                "p06-post-16",
+                "p06-post-17",
+                "p06-post-18",
+                "p06-post-19",
+                "p06-post-20"
+              ]
+            },
+            {
+              "term": "encanta",
+              "weight": 2.140615314402568,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-4",
+                "p06-post-5",
+                "p06-post-6",
+                "p06-post-7",
+                "p06-post-8",
+                "p06-post-9",
+                "p06-post-10"
+              ]
+            },
+            {
+              "term": "la",
+              "weight": 2.140615314402568,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-4",
+                "p06-post-5",
+                "p06-post-6",
+                "p06-post-7",
+                "p06-post-8",
+                "p06-post-9",
+                "p06-post-10"
+              ]
+            },
+            {
+              "term": "los",
+              "weight": 2.140615314402568,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-4",
+                "p06-post-5",
+                "p06-post-6",
+                "p06-post-7",
+                "p06-post-8",
+                "p06-post-9",
+                "p06-post-10"
+              ]
+            },
+            {
+              "term": "me",
+              "weight": 2.140615314402568,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-4",
+                "p06-post-5",
+                "p06-post-6",
+                "p06-post-7",
+                "p06-post-8",
+                "p06-post-9",
+                "p06-post-10"
+              ]
+            },
+            {
+              "term": "programas",
+              "weight": 2.140615314402568,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-4",
+                "p06-post-5",
+                "p06-post-6",
+                "p06-post-7",
+                "p06-post-8",
+                "p06-post-9",
+                "p06-post-10"
+              ]
+            },
+            {
+              "term": "tecnología",
+              "weight": 2.140615314402568,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-4",
+                "p06-post-5",
+                "p06-post-6",
+                "p06-post-7",
+                "p06-post-8",
+                "p06-post-9",
+                "p06-post-10"
+              ]
+            },
+            {
+              "term": "y",
+              "weight": 2.140615314402568,
+              "postIds": [
+                "p06-post-1",
+                "p06-post-2",
+                "p06-post-3",
+                "p06-post-4",
+                "p06-post-5",
+                "p06-post-6",
+                "p06-post-7",
+                "p06-post-8",
+                "p06-post-9",
+                "p06-post-10"
+              ]
+            },
+            {
+              "term": "bueno",
+              "weight": 1.87730247374614,
+              "postIds": [
+                "p06-post-11",
+                "p06-post-12",
+                "p06-post-13",
+                "p06-post-14",
+                "p06-post-15"
+              ]
+            },
+            {
+              "term": "concierto",
+              "weight": 1.87730247374614,
+              "postIds": [
+                "p06-post-11",
+                "p06-post-12",
+                "p06-post-13",
+                "p06-post-14",
+                "p06-post-15"
+              ]
+            },
+            {
+              "term": "de",
+              "weight": 1.87730247374614,
+              "postIds": [
+                "p06-post-11",
+                "p06-post-12",
+                "p06-post-13",
+                "p06-post-14",
+                "p06-post-15"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "tf_normalized_smoothed_idf_across_posts",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Stopwords are English; keywords are not inferred attributes."
+          ]
+        },
+        "topics": {
+          "value": [],
+          "status": "ok",
+          "method": "fixed_six_topic_word_boundary_taxonomy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Released project taxonomy, not IAB; English word rules miss other languages and context."
+          ]
+        },
+        "languages": {
+          "value": [
+            {
+              "postId": "p06-post-1",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-2",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-3",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-4",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-5",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-6",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-7",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-8",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-9",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-10",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-11",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-12",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-13",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-14",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-15",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-16",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-17",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-18",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-19",
+              "language": "unknown"
+            },
+            {
+              "postId": "p06-post-20",
+              "language": "unknown"
+            }
+          ],
+          "status": "ok",
+          "method": "script_and_english_anchor_heuristic",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Exploratory script/anchor detection; not a validated language classifier. NER is not implemented."
+          ]
+        }
+      },
+      "diagnostics": {}
+    },
+    "temporal": {
+      "status": "ok",
+      "features": {
+        "circular": {
+          "value": {
+            "meanHour": 19.184285071973967,
+            "resultantLength": 0.9270443651571064
+          },
+          "status": "ok",
+          "method": "user_local_circular_hour_statistics",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "peakHours": {
+          "value": [
+            18
+          ],
+          "status": "ok",
+          "method": "user_local_hour_histogram_modes",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "hourHistogram": {
+          "value": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            12,
+            0,
+            0,
+            8,
+            0,
+            0
+          ],
+          "status": "ok",
+          "method": "user_local_24_hour_histogram",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "entropy": {
+          "value": {
+            "bits": 0.9709505944546686,
+            "millerMadowBits": 1.0070179704768927,
+            "normalized": 0.23300201862871053,
+            "n": 20,
+            "occupiedBins": 2
+          },
+          "status": "ok",
+          "method": "miller_madow_hour_entropy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "intervals": {
+          "value": {
+            "unit": "hours",
+            "count": 19,
+            "min": 24,
+            "max": 27,
+            "mean": 24.157894736842106,
+            "median": 24
+          },
+          "status": "ok",
+          "method": "sorted_utc_inter_post_intervals",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "weekdayWeekend": {
+          "value": {
+            "weekdayPosts": 14,
+            "weekendPosts": 6,
+            "ratio": 2.3333333333333335
+          },
+          "status": "ok",
+          "method": "weekday_to_weekend_post_count_ratio",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10",
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        }
+      },
+      "diagnostics": {
+        "validN": 20,
+        "minN": 10,
+        "timezone": "Europe/London"
+      }
+    },
+    "interests": {
+      "status": "ok",
+      "features": {
+        "categories": {
+          "value": [
+            {
+              "topic": "technology",
+              "likeIds": [
+                "p06-like-1"
+              ]
+            },
+            {
+              "topic": "education",
+              "likeIds": [
+                "p06-like-1"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "like_name_category_fixed_taxonomy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-like-1"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "Six project categories; a page like is an observed action, not proof of identity, belief or endorsement."
+          ]
+        }
+      },
+      "diagnostics": {}
+    },
+    "inference": {
+      "status": "ok",
+      "features": {
+        "guesses": {
+          "value": [
+            {
+              "attribute": "location",
+              "guess": "London",
+              "evidence": [
+                {
+                  "postId": "p06-post-1",
+                  "quote": "Vivo en Londres."
+                }
+              ],
+              "certainty": "low"
+            }
+          ],
+          "status": "ok",
+          "method": "llm_guess_with_exact_span_verification",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-post-1"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+          ]
+        }
+      },
+      "diagnostics": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    },
+    "osint": {
+      "status": "ok",
+      "features": {
+        "breaches": {
+          "value": [],
+          "status": "ok",
+          "method": "hibp_v3_authenticated_owned_email_lookup",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "oauth:email"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+          ]
+        }
+      },
+      "diagnostics": {}
+    },
+    "image": {
+      "status": "ok",
+      "features": {
+        "observations": {
+          "value": [
+            {
+              "photoId": "p06-photo-1",
+              "method": "google_vision",
+              "text": "BOOKS 1",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Tree",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p06-photo-2",
+              "method": "google_vision",
+              "text": "BOOKS 2",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Book",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p06-photo-3",
+              "method": "google_vision",
+              "text": "BOOKS 3",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Car",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p06-photo-4",
+              "method": "google_vision",
+              "text": "B00KS 4",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "IncorrectLabel",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            }
+          ],
+          "status": "ok",
+          "method": "vision_features_with_optional_local_tesseract_fallback",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p06-photo-1",
+            "p06-photo-2",
+            "p06-photo-3",
+            "p06-photo-4"
+          ],
+          "n": 4,
+          "confidence": null,
+          "limitations": [
+            "No face recognition, facial attributes or demographic classification. OCR confidence is null unless supplied by local OCR; provider label scores are not accuracy estimates.",
+            "At most 25 photos per run. Failed photographs and omitted photographs are listed in diagnostics."
+          ]
+        }
+      },
+      "diagnostics": {
+        "failures": 0,
+        "attempted": 4,
+        "omitted": 0
+      }
+    }
+  },
+  "features": {
+    "text.sentiment": {
+      "value": {
+        "distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0,
+          "unscored": 20
+        },
+        "mean": null,
+        "scoredN": 0,
+        "posts": [
+          {
+            "postId": "p06-post-1",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-2",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-3",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-4",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-5",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-6",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-7",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-8",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-9",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-10",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-11",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-12",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-13",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-14",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-15",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-16",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-17",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-18",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-19",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-20",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          }
+        ]
+      },
+      "status": "ok",
+      "method": "per_post_english_lexicon_v1",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Exploratory English lexicon, three-token negation window and four emoji; sarcasm, mixed languages and demographics are unvalidated. Unscored text is not neutral."
+      ]
+    },
+    "text.readability": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "method": "raw_text_flesch_reading_ease",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Exploratory syllable heuristic; ASCII English only; at least three punctuated sentences; not education level."
+      ]
+    },
+    "text.keywords": {
+      "value": [
+        {
+          "term": "en",
+          "weight": 2.401487218503365,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "esta",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "está",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "exposición",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "pintura",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "encanta",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "la",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "los",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "me",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "programas",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "tecnología",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "y",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "bueno",
+          "weight": 1.87730247374614,
+          "postIds": [
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15"
+          ]
+        },
+        {
+          "term": "concierto",
+          "weight": 1.87730247374614,
+          "postIds": [
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15"
+          ]
+        },
+        {
+          "term": "de",
+          "weight": 1.87730247374614,
+          "postIds": [
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "tf_normalized_smoothed_idf_across_posts",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Stopwords are English; keywords are not inferred attributes."
+      ]
+    },
+    "text.topics": {
+      "value": [],
+      "status": "ok",
+      "method": "fixed_six_topic_word_boundary_taxonomy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Released project taxonomy, not IAB; English word rules miss other languages and context."
+      ]
+    },
+    "text.languages": {
+      "value": [
+        {
+          "postId": "p06-post-1",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-2",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-3",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-4",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-5",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-6",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-7",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-8",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-9",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-10",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-11",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-12",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-13",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-14",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-15",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-16",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-17",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-18",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-19",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-20",
+          "language": "unknown"
+        }
+      ],
+      "status": "ok",
+      "method": "script_and_english_anchor_heuristic",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Exploratory script/anchor detection; not a validated language classifier. NER is not implemented."
+      ]
+    },
+    "temporal.circular": {
+      "value": {
+        "meanHour": 19.184285071973967,
+        "resultantLength": 0.9270443651571064
+      },
+      "status": "ok",
+      "method": "user_local_circular_hour_statistics",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.peakHours": {
+      "value": [
+        18
+      ],
+      "status": "ok",
+      "method": "user_local_hour_histogram_modes",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.hourHistogram": {
+      "value": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        8,
+        0,
+        0
+      ],
+      "status": "ok",
+      "method": "user_local_24_hour_histogram",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.entropy": {
+      "value": {
+        "bits": 0.9709505944546686,
+        "millerMadowBits": 1.0070179704768927,
+        "normalized": 0.23300201862871053,
+        "n": 20,
+        "occupiedBins": 2
+      },
+      "status": "ok",
+      "method": "miller_madow_hour_entropy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.intervals": {
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 24,
+        "max": 27,
+        "mean": 24.157894736842106,
+        "median": 24
+      },
+      "status": "ok",
+      "method": "sorted_utc_inter_post_intervals",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.weekdayWeekend": {
+      "value": {
+        "weekdayPosts": 14,
+        "weekendPosts": 6,
+        "ratio": 2.3333333333333335
+      },
+      "status": "ok",
+      "method": "weekday_to_weekend_post_count_ratio",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "interests.categories": {
+      "value": [
+        {
+          "topic": "technology",
+          "likeIds": [
+            "p06-like-1"
+          ]
+        },
+        {
+          "topic": "education",
+          "likeIds": [
+            "p06-like-1"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "like_name_category_fixed_taxonomy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-like-1"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "Six project categories; a page like is an observed action, not proof of identity, belief or endorsement."
+      ]
+    },
+    "inference.guesses": {
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "London",
+          "evidence": [
+            {
+              "postId": "p06-post-1",
+              "quote": "Vivo en Londres."
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "status": "ok",
+      "method": "llm_guess_with_exact_span_verification",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-post-1"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+      ]
+    },
+    "osint.breaches": {
+      "value": [],
+      "status": "ok",
+      "method": "hibp_v3_authenticated_owned_email_lookup",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "oauth:email"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+      ]
+    },
+    "image.observations": {
+      "value": [
+        {
+          "photoId": "p06-photo-1",
+          "method": "google_vision",
+          "text": "BOOKS 1",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Tree",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p06-photo-2",
+          "method": "google_vision",
+          "text": "BOOKS 2",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Book",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p06-photo-3",
+          "method": "google_vision",
+          "text": "BOOKS 3",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Car",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p06-photo-4",
+          "method": "google_vision",
+          "text": "B00KS 4",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "IncorrectLabel",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        }
+      ],
+      "status": "ok",
+      "method": "vision_features_with_optional_local_tesseract_fallback",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p06-photo-1",
+        "p06-photo-2",
+        "p06-photo-3",
+        "p06-photo-4"
+      ],
+      "n": 4,
+      "confidence": null,
+      "limitations": [
+        "No face recognition, facial attributes or demographic classification. OCR confidence is null unless supplied by local OCR; provider label scores are not accuracy estimates.",
+        "At most 25 photos per run. Failed photographs and omitted photographs are listed in diagnostics."
+      ]
+    }
+  },
+  "checklist": [
+    {
+      "featureKey": "text.sentiment",
+      "value": {
+        "distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0,
+          "unscored": 20
+        },
+        "mean": null,
+        "scoredN": 0,
+        "posts": [
+          {
+            "postId": "p06-post-1",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-2",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-3",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-4",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-5",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-6",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-7",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-8",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-9",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-10",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-11",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-12",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-13",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-14",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-15",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-16",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-17",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-18",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-19",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          },
+          {
+            "postId": "p06-post-20",
+            "label": "unscored",
+            "score": null,
+            "language": "unknown"
+          }
+        ]
+      },
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "per_post_english_lexicon_v1"
+    },
+    {
+      "featureKey": "text.keywords",
+      "value": [
+        {
+          "term": "en",
+          "weight": 2.401487218503365,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "esta",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "está",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "exposición",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "pintura",
+          "weight": 2.252762968495368,
+          "postIds": [
+            "p06-post-16",
+            "p06-post-17",
+            "p06-post-18",
+            "p06-post-19",
+            "p06-post-20"
+          ]
+        },
+        {
+          "term": "encanta",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "la",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "los",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "me",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "programas",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "tecnología",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "y",
+          "weight": 2.140615314402568,
+          "postIds": [
+            "p06-post-1",
+            "p06-post-2",
+            "p06-post-3",
+            "p06-post-4",
+            "p06-post-5",
+            "p06-post-6",
+            "p06-post-7",
+            "p06-post-8",
+            "p06-post-9",
+            "p06-post-10"
+          ]
+        },
+        {
+          "term": "bueno",
+          "weight": 1.87730247374614,
+          "postIds": [
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15"
+          ]
+        },
+        {
+          "term": "concierto",
+          "weight": 1.87730247374614,
+          "postIds": [
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15"
+          ]
+        },
+        {
+          "term": "de",
+          "weight": 1.87730247374614,
+          "postIds": [
+            "p06-post-11",
+            "p06-post-12",
+            "p06-post-13",
+            "p06-post-14",
+            "p06-post-15"
+          ]
+        }
+      ],
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "tf_normalized_smoothed_idf_across_posts"
+    },
+    {
+      "featureKey": "text.topics",
+      "value": [],
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "fixed_six_topic_word_boundary_taxonomy"
+    },
+    {
+      "featureKey": "text.languages",
+      "value": [
+        {
+          "postId": "p06-post-1",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-2",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-3",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-4",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-5",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-6",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-7",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-8",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-9",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-10",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-11",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-12",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-13",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-14",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-15",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-16",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-17",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-18",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-19",
+          "language": "unknown"
+        },
+        {
+          "postId": "p06-post-20",
+          "language": "unknown"
+        }
+      ],
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "script_and_english_anchor_heuristic"
+    },
+    {
+      "featureKey": "temporal.circular",
+      "value": {
+        "meanHour": 19.184285071973967,
+        "resultantLength": 0.9270443651571064
+      },
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "user_local_circular_hour_statistics"
+    },
+    {
+      "featureKey": "temporal.peakHours",
+      "value": [
+        18
+      ],
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "user_local_hour_histogram_modes"
+    },
+    {
+      "featureKey": "temporal.hourHistogram",
+      "value": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        8,
+        0,
+        0
+      ],
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "user_local_24_hour_histogram"
+    },
+    {
+      "featureKey": "temporal.entropy",
+      "value": {
+        "bits": 0.9709505944546686,
+        "millerMadowBits": 1.0070179704768927,
+        "normalized": 0.23300201862871053,
+        "n": 20,
+        "occupiedBins": 2
+      },
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "miller_madow_hour_entropy"
+    },
+    {
+      "featureKey": "temporal.intervals",
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 24,
+        "max": 27,
+        "mean": 24.157894736842106,
+        "median": 24
+      },
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "sorted_utc_inter_post_intervals"
+    },
+    {
+      "featureKey": "temporal.weekdayWeekend",
+      "value": {
+        "weekdayPosts": 14,
+        "weekendPosts": 6,
+        "ratio": 2.3333333333333335
+      },
+      "inputs": [
+        "p06-post-1",
+        "p06-post-2",
+        "p06-post-3",
+        "p06-post-4",
+        "p06-post-5",
+        "p06-post-6",
+        "p06-post-7",
+        "p06-post-8",
+        "p06-post-9",
+        "p06-post-10",
+        "p06-post-11",
+        "p06-post-12",
+        "p06-post-13",
+        "p06-post-14",
+        "p06-post-15",
+        "p06-post-16",
+        "p06-post-17",
+        "p06-post-18",
+        "p06-post-19",
+        "p06-post-20"
+      ],
+      "method": "weekday_to_weekend_post_count_ratio"
+    },
+    {
+      "featureKey": "interests.categories",
+      "value": [
+        {
+          "topic": "technology",
+          "likeIds": [
+            "p06-like-1"
+          ]
+        },
+        {
+          "topic": "education",
+          "likeIds": [
+            "p06-like-1"
+          ]
+        }
+      ],
+      "inputs": [
+        "p06-like-1"
+      ],
+      "method": "like_name_category_fixed_taxonomy"
+    },
+    {
+      "featureKey": "inference.guesses",
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "London",
+          "evidence": [
+            {
+              "postId": "p06-post-1",
+              "quote": "Vivo en Londres."
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "inputs": [
+        "p06-post-1"
+      ],
+      "method": "llm_guess_with_exact_span_verification"
+    },
+    {
+      "featureKey": "osint.breaches",
+      "value": [],
+      "inputs": [
+        "oauth:email"
+      ],
+      "method": "hibp_v3_authenticated_owned_email_lookup"
+    },
+    {
+      "featureKey": "image.observations",
+      "value": [
+        {
+          "photoId": "p06-photo-1",
+          "method": "google_vision",
+          "text": "BOOKS 1",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Tree",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p06-photo-2",
+          "method": "google_vision",
+          "text": "BOOKS 2",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Book",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p06-photo-3",
+          "method": "google_vision",
+          "text": "BOOKS 3",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Car",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p06-photo-4",
+          "method": "google_vision",
+          "text": "B00KS 4",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "IncorrectLabel",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        }
+      ],
+      "inputs": [
+        "p06-photo-1",
+        "p06-photo-2",
+        "p06-photo-3",
+        "p06-photo-4"
+      ],
+      "method": "vision_features_with_optional_local_tesseract_fallback"
+    }
+  ],
+  "explanations": {
+    "status": "ok",
+    "sentences": [
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "text.sentiment"
+        ]
+      },
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "temporal.circular"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "interests.categories"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "inference.guesses"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "osint.breaches"
+        ]
+      },
+      {
+        "text": "This section uses 4 source items.",
+        "supportedBy": [
+          "image.observations"
+        ]
+      }
+    ],
+    "attempted": 18,
+    "flagged": 12,
+    "flaggedRate": 0.6666666666666666,
+    "rejections": [
+      {
+        "index": 1,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 2,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 4,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 5,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 7,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 8,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 10,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 11,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 13,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 14,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 16,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 17,
+        "reason": "judge_rejected"
+      }
+    ],
+    "verifier": "feature_keys + exact_numeric_values + second_llm_judge; not independent human validation",
+    "sectionFailures": []
+  }
+}

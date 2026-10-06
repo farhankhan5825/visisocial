@@ -1,0 +1,29 @@
+{
+  "runId": "ocr-2026-10-06T09-07-31-641Z",
+  "provider": "tesseract_local_real_execution",
+  "language": "eng",
+  "version": "4.1.4",
+  "trainedDataSHA256": "daa0c97d651c19fba3b25e81317cd697e9908c8208090c94c3905381c23fc047",
+  "n": 40,
+  "characterEdits": 140,
+  "characters": 280,
+  "CER": 0.5,
+  "wordEdits": 70,
+  "words": 80,
+  "WER": 0.875,
+  "timings": {
+    "n": 40,
+    "mean": 17.742049999999992,
+    "median": 15.303199999999947,
+    "p95": 25.904205000000058,
+    "min": 10.626399999999876,
+    "max": 52.729799999999955,
+    "unit": "milliseconds",
+    "quantileMethod": "linear interpolation over sorted samples"
+  },
+  "limitations": [
+    "Simple repeated English text on project-drawn synthetic images, not natural photos.",
+    "Shared worker; per-image time excludes worker initialization and language loading.",
+    "No evidence about Google Vision performance or non-English OCR."
+  ]
+}

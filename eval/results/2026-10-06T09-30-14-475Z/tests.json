@@ -1,0 +1,203 @@
+{
+  "success": true,
+  "tests": 48,
+  "passed": 48,
+  "failed": 0,
+  "suites": 13,
+  "passedSuites": 13,
+  "startTimeUTC": "2026-10-06T09:29:45.561Z",
+  "assertions": [
+    {
+      "title": "full consent/report/export/feedback/delete flow and removed routes",
+      "status": "passed"
+    },
+    {
+      "title": "golden report JSON matches the released full pipeline fixture and independently planted peak",
+      "status": "passed"
+    },
+    {
+      "title": "warm cache retains provenance and consent changes cannot reuse provider output",
+      "status": "passed"
+    },
+    {
+      "title": "cursor pagination ignores arbitrary next URLs and uses fixed host and bearer header",
+      "status": "passed"
+    },
+    {
+      "title": "Graph backoff handles 429 and stops after a bounded number of attempts",
+      "status": "passed"
+    },
+    {
+      "title": "SSRF blocks private DNS, userinfo, deceptive suffixes, ports and redirects by response",
+      "status": "passed"
+    },
+    {
+      "title": "image features use actual scores and do not invent OCR confidence",
+      "status": "passed"
+    },
+    {
+      "title": "images abstain without consent and use OCR fallback only when consented",
+      "status": "passed"
+    },
+    {
+      "title": "two OAuth sessions share an account record; deleting it revokes both sessions",
+      "status": "passed"
+    },
+    {
+      "title": "explanation verifier rejects missing keys, numeric mismatch and unsupported text",
+      "status": "passed"
+    },
+    {
+      "title": "judge errors fail closed; empty explanations have no rate",
+      "status": "passed"
+    },
+    {
+      "title": "authenticated token encryption binds owner and detects tampering",
+      "status": "passed"
+    },
+    {
+      "title": "deletion drains jobs and removes record, feedback, tokens, cache and sessions",
+      "status": "passed"
+    },
+    {
+      "title": "retention excludes expired records and Mongo TTL is declared",
+      "status": "passed"
+    },
+    {
+      "title": "no posts abstains; missing message does not invent a value",
+      "status": "passed"
+    },
+    {
+      "title": "one post has per-post sentiment, negation and a valid denominator",
+      "status": "passed"
+    },
+    {
+      "title": "non-English text is unscored and unicode survives tokenization",
+      "status": "passed"
+    },
+    {
+      "title": "emoji-only and empty input are distinct",
+      "status": "passed"
+    },
+    {
+      "title": "readability uses raw words including stopwords and at least three sentences",
+      "status": "passed"
+    },
+    {
+      "title": "taxonomy uses whole tokens and returns evidence",
+      "status": "passed"
+    },
+    {
+      "title": "TF-IDF is normalized and uses document frequency",
+      "status": "passed"
+    },
+    {
+      "title": "acquisition permission failures produce unavailable modules, never empty-observation conclusions",
+      "status": "passed"
+    },
+    {
+      "title": "cache is isolated by owner, consent and prompt metadata",
+      "status": "passed"
+    },
+    {
+      "title": "repeated cursor and identity mismatch stop ingestion",
+      "status": "passed"
+    },
+    {
+      "title": "inferences reject absent ids, nonverbatim spans, empty evidence and sensitive attributes",
+      "status": "passed"
+    },
+    {
+      "title": "empty inferences have no estimated rejection rate and model can abstain",
+      "status": "passed"
+    },
+    {
+      "title": "inference does not call provider without consent or posts",
+      "status": "passed"
+    },
+    {
+      "title": "only OAuth-owned matching email can query HIBP, no active account claim",
+      "status": "passed"
+    },
+    {
+      "title": "pinned inference request uses strict native JSON schema and no application storage",
+      "status": "passed"
+    },
+    {
+      "title": "HIBP sends attribution-compatible user-agent and requests full breach objects; 404 is empty",
+      "status": "passed"
+    },
+    {
+      "title": "logger refuses free text and discards identifiers including numeric IDs",
+      "status": "passed"
+    },
+    {
+      "title": "empty and one-post profiles abstain",
+      "status": "passed"
+    },
+    {
+      "title": "circular mean handles midnight and cancels antipodes",
+      "status": "passed"
+    },
+    {
+      "title": "explicit timezone handles daylight saving and midnight",
+      "status": "passed"
+    },
+    {
+      "title": "entropy uses occupied-bin correction and n",
+      "status": "passed"
+    },
+    {
+      "title": "intervals preserve zero gaps and sorted median",
+      "status": "passed"
+    },
+    {
+      "title": "weekend ratio abstains for zero denominator and missing fields count correctly",
+      "status": "passed"
+    },
+    {
+      "title": "provenance abstains without an invented confidence",
+      "status": "passed"
+    },
+    {
+      "title": "images finish before synthesis; module failure is isolated",
+      "status": "passed"
+    },
+    {
+      "title": "queue deduplicates jobs and draining prevents writes for deleted owners",
+      "status": "passed"
+    },
+    {
+      "title": "cache clones results, expires and deletes by owner",
+      "status": "passed"
+    },
+    {
+      "title": "offline server starts with no credentials or database and closes cleanly",
+      "status": "passed"
+    },
+    {
+      "title": "live startup fails closed on missing configuration or insecure transport",
+      "status": "passed"
+    },
+    {
+      "title": "set precision/recall counts duplicates once and handles empty denominators",
+      "status": "passed"
+    },
+    {
+      "title": "CER and WER count substitutions, insertions and unicode code points",
+      "status": "passed"
+    },
+    {
+      "title": "timing distributions state n and interpolation",
+      "status": "passed"
+    },
+    {
+      "title": "likes map to documented categories with supporting ids",
+      "status": "passed"
+    },
+    {
+      "title": "no likes abstains",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,364 @@
+{
+  "runId": "2026-10-06T09-18-40-434Z",
+  "protocolVersion": "1.0.0",
+  "providerMode": "authored_synthetic_mocks_no_network",
+  "limitations": [
+    "Mock agreement measures software contract handling, not live model/API accuracy.",
+    "Cold means empty in-process module cache, not fresh process or hardware cold start.",
+    "Warm is prefilled per-owner module cache; Graph ingestion, synthesis and explanation still run.",
+    "30 repeated runs per condition are not 30 independent profiles.",
+    "No OAuth, network latency, rendering or provider service latency is timed.",
+    "Cross-language topic divergence is a limitation of English rules. This is a coverage pilot, not demographic fairness evidence."
+  ],
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor             ",
+    "gitRevision": "cc4e432b808f84a96a924966cc5ff52529353b77",
+    "sourceHashes": {
+      "eval/README.md": "d8a411ffc27f398e211c255d36df8620fad77e59b65720da16703480264fd4a2",
+      "eval/build-fixtures.js": "090793703a1437963f150a89a1e79be8ff6da2f50d810b20e80eed6cb9080c9b",
+      "eval/metrics.js": "03fc9f2aaaad08025c3a59fa519f273335babb69a0f6696ec2515ee4eed3e06c",
+      "eval/mock-providers.js": "4fec7073c68914796053e92e5678ba4c5de02a6165658b27346aba81089f1eef",
+      "eval/run-ocr.js": "3bc55100406091f44a8a1d556b4a4e2b41b20a4a5f558f050f4db8370ecda367",
+      "eval/run.js": "3e78386281a749c2d81bf553181c44757021a3b2627b4d713158bb958fc178b5",
+      "src/analysis/image.js": "c13df3e947d4536e0255cbcf15f84e59764c1c310219533cbd9c809f04dc020f",
+      "src/analysis/inference.js": "d56d8e6d33d02d9adabbd32e00da4ac3e849d6df21099e9dc74bfca754909c7f",
+      "src/analysis/interests.js": "887f0a53923e555640e8d4d3fc62e8b8b29f6073faa619021de16f164cdc80b9",
+      "src/analysis/osint.js": "e02e5fcf4cb2a6299b1ec94aea14a36cb748add2daf3527812cc8c3bd1b0d7c5",
+      "src/analysis/temporal.js": "ddc39f1a511203735342b628ee4a7d8d594dc7a58486409a3ff6820ac0c96bf0",
+      "src/analysis/text.js": "0b3522ad55142fc52242c6a6aa794291bafd15cbb80821f2b15799c6dd36efff",
+      "src/app.js": "16fefaf63d70d37b835e528917c2098559d6332a513ea7cc090739fe58cf163b",
+      "src/ingest/facebook.js": "64a7a97ef755ff42ce737bbbfdc3b68e17bc52f74641bd6cf8b2d6511a6ee73c",
+      "src/jobs/queue.js": "9c28ee4e5dc514af263f2bb7269c08c05e23c6c8e44cffa69af961f7d40892a4",
+      "src/modules.js": "60253507975bae14c4da83afcee8c94250bb8034eaa84fa8435fc386f7be914a",
+      "src/pipeline.js": "37440fd36752194024cf75b848bbb2bb14fb18b463bedec678464613d0db3632",
+      "src/privacy/cache.js": "24a6aa2cb5cdd949277f9d653aa0b5116c64abc3933fbbef815fd3e84373b7ed",
+      "src/privacy/logger.js": "17b989a0eae681bd485cc821790e5707b3ad1d6d5d677495da3fdbd3beda4f89",
+      "src/privacy/network.js": "b14a03ead28e17b3773af23a5dbacb63253b388cf77e6ba997ce4966cd654df2",
+      "src/privacy/store.js": "820aa81c483e7e39d267b032922a47ed4b1cc0aa47a8d8d72544cf5426d6f7f6",
+      "src/privacy/tokens.js": "e05a7e7505adcfd993754db767618b04a8ac3aaabca334475bc228419190e56d",
+      "src/prompts/explain-image.md": "9bbae8f11e9f6b7f6118d811a40a29de2824a15e8c499c1bd20feaee40d1be75",
+      "src/prompts/explain-inference.md": "3705e59fb030a000e1388bff719baf7e74bc2a5287a87014511895bf30a9ef2c",
+      "src/prompts/explain-interests.md": "9802a6c41ca82429572074443efa92e924c5fab65258f43a53bf3650ac183a92",
+      "src/prompts/explain-osint.md": "ad33bac0eb1a89680431c1de9ea7a1763bef1cc145d9f56022080f49b5f873b8",
+      "src/prompts/explain-temporal.md": "6993b1df906095c7d9cca300e66b78658c7ef1949a1bafd14bc2c272d1ea1592",
+      "src/prompts/explain-text.md": "19f1948d22a86dc8b9dec4b09f08e0c9b6d3936499aa2957b257fe39dd796af5",
+      "src/prompts/inference.md": "a08729232d362df4ac770552b5e4983fafeb1c26376d829d150f802fe2606d4d",
+      "src/prompts/judge.md": "587cb1fab7b9487d2f9ecb522037a7a3e2702611412a80b3439daefd4381bacf",
+      "src/providers.js": "e260b649753cfdda5dc92ad600fd292faa476219309dc3d46970a591120234f1",
+      "src/report/explain.js": "0465412ddf3b42f47f754d9647fe6b43fcb14b5a640aebebc1e6e41cb0c7aa1c",
+      "src/report/feature.js": "7dd83e98fe897a4d4a02f479d0265ed08b6a39d3f7642e5755bcac01fd7bb6cf",
+      "src/report/synthesize.js": "e5a930df7eb9af4e86b14983fd02e8d80ca6eeee97a8040b63208be744fa69ae",
+      "src/routes/index.js": "050ab1acf9b6e98711b54f04c1625bcb3016875cffa4daefb67d84398c126887",
+      "src/schemas/index.js": "07e0e5ab4e973e4380306a4ec1a4353193d6e218b8959d67aa5d5881891f8f42",
+      "src/schemas/provider-json.js": "4203e7821a92cdcafc53f42ede3635f94fce04241866a84fb3e766ef28c5a638",
+      "src/server.js": "08ecdf5443894799eb1f9159009df7c0c97866cba4c77c637892d2147d1d7e66"
+    },
+    "lockfileHash": "2e5330e2abe9a5010230395c2792ff036c7db610236614da6ae10a85fe4da2b2"
+  },
+  "profiles": 10,
+  "timedRuns": 60,
+  "repeatsPerProfilePerCondition": 3,
+  "aggregate": {
+    "topics": {
+      "tp": 12,
+      "fp": 0,
+      "fn": 8,
+      "precision": 1,
+      "recall": 0.6
+    },
+    "temporalPeak": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 30,
+      "fp": 10,
+      "fn": 10,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    }
+  },
+  "ocr": {
+    "characterEdits": 20,
+    "characters": 310,
+    "CER": 0.06451612903225806,
+    "wordEdits": 10,
+    "words": 80,
+    "WER": 0.125
+  },
+  "explanation": {
+    "attempted": 180,
+    "flagged": 120,
+    "flaggedRate": 0.6666666666666666,
+    "acceptedRate": 0.3333333333333333,
+    "judgeMode": "authored_mock_judge"
+  },
+  "inference": {
+    "attempted": 20,
+    "rejected": 10,
+    "evidenceRejectionRate": 0.5
+  },
+  "failureIsolation": {
+    "injectedModule": "image",
+    "failed": true,
+    "otherModules": {
+      "text": "ok",
+      "temporal": "ok",
+      "interests": "ok",
+      "inference": "ok",
+      "osint": "ok"
+    },
+    "reportGenerated": true,
+    "explanationsGenerated": true
+  },
+  "timing": {
+    "cold": {
+      "total": {
+        "n": 30,
+        "mean": 2.0523033333333354,
+        "median": 2.0575000000000045,
+        "p95": 2.6814499999999946,
+        "min": 1.5745000000000005,
+        "max": 2.821499999999986,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "ingest": {
+        "n": 30,
+        "mean": 0.1461433333333351,
+        "median": 0.11554999999999893,
+        "p95": 0.39771000000000134,
+        "min": 0.10060000000001423,
+        "max": 0.4159000000000219,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "text": {
+        "n": 30,
+        "mean": 1.2593666666666679,
+        "median": 1.1488000000000085,
+        "p95": 1.758059999999999,
+        "min": 0.9368000000000052,
+        "max": 2.0893000000000086,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "temporal": {
+        "n": 30,
+        "mean": 0.9680233333333319,
+        "median": 0.9094999999999942,
+        "p95": 1.289870000000003,
+        "min": 0.7968000000000188,
+        "max": 1.4325000000000045,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "interests": {
+        "n": 30,
+        "mean": 0.23774666666666444,
+        "median": 0.18910000000000338,
+        "p95": 0.5405749999999951,
+        "min": 0.15399999999999636,
+        "max": 0.6940999999999917,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "image": {
+        "n": 30,
+        "mean": 0.26931999999999995,
+        "median": 0.20490000000000919,
+        "p95": 0.648579999999996,
+        "min": 0.16989999999998417,
+        "max": 0.7090000000000032,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "inference": {
+        "n": 30,
+        "mean": 0.2166533333333343,
+        "median": 0.16269999999999385,
+        "p95": 0.506215000000004,
+        "min": 0.13700000000000045,
+        "max": 0.6744999999999948,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "osint": {
+        "n": 30,
+        "mean": 0.1979599999999981,
+        "median": 0.14589999999999748,
+        "p95": 0.49322999999999784,
+        "min": 0.12520000000000664,
+        "max": 0.6617999999999995,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "synthesis": {
+        "n": 30,
+        "mean": 0.07180666666666534,
+        "median": 0.050749999999993634,
+        "p95": 0.11119500000000854,
+        "min": 0.03890000000001237,
+        "max": 0.471500000000006,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "explanation": {
+        "n": 30,
+        "mean": 0.1431466666666689,
+        "median": 0.11010000000000275,
+        "p95": 0.3597350000000026,
+        "min": 0.08980000000002519,
+        "max": 0.5069000000000017,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      }
+    },
+    "warm": {
+      "total": {
+        "n": 30,
+        "mean": 0.8153066666666651,
+        "median": 0.8002500000000055,
+        "p95": 1.1991399999999983,
+        "min": 0.6066999999999894,
+        "max": 1.3395999999999901,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "ingest": {
+        "n": 30,
+        "mean": 0.10753333333332857,
+        "median": 0.08799999999999386,
+        "p95": 0.19199999999999715,
+        "min": 0.07559999999998013,
+        "max": 0.2330000000000041,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "text": {
+        "n": 30,
+        "mean": 0.20156333333333312,
+        "median": 0.16685000000001082,
+        "p95": 0.26079499999999883,
+        "min": 0.13900000000001,
+        "max": 0.6771999999999991,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "temporal": {
+        "n": 30,
+        "mean": 0.11908999999999992,
+        "median": 0.08699999999998909,
+        "p95": 0.1712650000000053,
+        "min": 0.07500000000001705,
+        "max": 0.5848000000000013,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "interests": {
+        "n": 30,
+        "mean": 0.08075666666666734,
+        "median": 0.05564999999999998,
+        "p95": 0.13645999999998817,
+        "min": 0.04630000000000223,
+        "max": 0.5424999999999898,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "image": {
+        "n": 30,
+        "mean": 0.065543333333333,
+        "median": 0.0435499999999962,
+        "p95": 0.10623999999999383,
+        "min": 0.035899999999998045,
+        "max": 0.5284000000000049,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "inference": {
+        "n": 30,
+        "mean": 0.04476666666666726,
+        "median": 0.026150000000001228,
+        "p95": 0.0708500000000113,
+        "min": 0.019800000000003593,
+        "max": 0.5048000000000172,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "osint": {
+        "n": 30,
+        "mean": 0.0314266666666659,
+        "median": 0.011749999999992156,
+        "p95": 0.05652499999999476,
+        "min": 0.00919999999999277,
+        "max": 0.49080000000000723,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "synthesis": {
+        "n": 30,
+        "mean": 0.054023333333335206,
+        "median": 0.04349999999999454,
+        "p95": 0.10095999999999772,
+        "min": 0.03639999999998622,
+        "max": 0.1851000000000056,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "explanation": {
+        "n": 30,
+        "mean": 0.1149500000000008,
+        "median": 0.09714999999999918,
+        "p95": 0.18213500000000662,
+        "min": 0.08740000000000236,
+        "max": 0.25130000000001473,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      }
+    }
+  },
+  "biasPilot": {
+    "en": {
+      "n": 6,
+      "topicRecall": 1,
+      "sentimentUnscoredFraction": 0
+    },
+    "es": {
+      "n": 2,
+      "topicRecall": 0,
+      "sentimentUnscoredFraction": 1
+    },
+    "ur": {
+      "n": 2,
+      "topicRecall": 0,
+      "sentimentUnscoredFraction": 1
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "dateUTC": "2026-10-06T09:39:16.602Z",
+  "scope": [
+    "src",
+    "index.js"
+  ],
+  "privateFilesIncluded": false,
+  "semgrep": {
+    "version": "1.172.0",
+    "config": "p/nodejs",
+    "metrics": "off",
+    "findings": [
+      {
+        "rule": "javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain",
+        "path": "src/app.js",
+        "line": 17,
+        "message": "Default session middleware settings: `domain` not set. It indicates the domain of the cookie; use it to compare against the domain of the server in which the URL is being requested. If they match, then check the path attribute next.",
+        "severity": "WARNING",
+        "disposition": "Intentional host-only cookie: no Domain attribute broadening scope. Domain ownership is a deployment boundary."
+      },
+      {
+        "rule": "javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires",
+        "path": "src/app.js",
+        "line": 17,
+        "message": "Default session middleware settings: `expires` not set. Use it to set expiration date for persistent cookies.",
+        "severity": "WARNING",
+        "disposition": "maxAge=3600000 calculates Expires; the library recommends maxAge instead of explicitly setting expires."
+      },
+      {
+        "rule": "javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path",
+        "path": "src/app.js",
+        "line": 17,
+        "message": "Default session middleware settings: `path` not set. It indicates the path of the cookie; use it to compare against the request path. If this and domain match, then send the cookie in the request.",
+        "severity": "WARNING",
+        "disposition": "express-session defaults cookie.path to /, matching all app routes."
+      },
+      {
+        "rule": "javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure",
+        "path": "src/app.js",
+        "line": 17,
+        "message": "Default session middleware settings: `secure` not set. It ensures the browser only sends the cookie over HTTPS.",
+        "severity": "WARNING",
+        "disposition": "cookie.secure is options.production; live startup forces production and HTTPS origin. Offline demo uses HTTP on loopback. Proxy/TLS deployment remains untested."
+      }
+    ],
+    "errors": [],
+    "scannedPaths": [
+      "index.js",
+      "src\\analysis\\image.js",
+      "src\\analysis\\inference.js",
+      "src\\analysis\\interests.js",
+      "src\\analysis\\osint.js",
+      "src\\analysis\\temporal.js",
+      "src\\analysis\\text.js",
+      "src\\app.js",
+      "src\\ingest\\facebook.js",
+      "src\\jobs\\queue.js",
+      "src\\modules.js",
+      "src\\pipeline.js",
+      "src\\privacy\\cache.js",
+      "src\\privacy\\logger.js",
+      "src\\privacy\\network.js",
+      "src\\privacy\\store.js",
+      "src\\privacy\\tokens.js",
+      "src\\providers.js",
+      "src\\report\\explain.js",
+      "src\\report\\feature.js",
+      "src\\report\\synthesize.js",
+      "src\\routes\\index.js",
+      "src\\schemas\\index.js",
+      "src\\schemas\\provider-json.js",
+      "src\\server.js"
+    ]
+  },
+  "njsscan": {
+    "errors": [],
+    "njsscan_version": "1.0.1",
+    "nodejs": {},
+    "templates": {},
+    "limitation": "Executed on Windows, although the documented supported platforms are Linux/macOS. No claim of complete semantic coverage; supported-platform CI is configured but has not run."
+  },
+  "cookieReference": "https://expressjs.com/en/resources/middleware/session/",
+  "assurance": "Pattern scanning and dependency advisories are not a penetration test or proof of security."
+}

@@ -1,0 +1,324 @@
+{
+  "runId": "2026-10-06T09-07-30-364Z",
+  "protocolVersion": "1.0.0",
+  "providerMode": "authored_synthetic_mocks_no_network",
+  "limitations": [
+    "Mock agreement measures software contract handling, not live model/API accuracy.",
+    "Cold means empty in-process module cache, not fresh process or hardware cold start.",
+    "Warm is prefilled per-owner module cache; Graph ingestion, synthesis and explanation still run.",
+    "30 repeated runs per condition are not 30 independent profiles.",
+    "No OAuth, network latency, rendering or provider service latency is timed.",
+    "Cross-language topic divergence is a limitation of English rules. This is a coverage pilot, not demographic fairness evidence."
+  ],
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor             ",
+    "gitRevision": "e2cf8e954d26fd67a80e567b8976f9728934ddd4",
+    "sourceHash": "ac5ddabeedba3aeb780b56ab542139cfb87a7339f699730e91683dc93c8a488b"
+  },
+  "profiles": 10,
+  "timedRuns": 60,
+  "repeatsPerProfilePerCondition": 3,
+  "aggregate": {
+    "topics": {
+      "tp": 12,
+      "fp": 0,
+      "fn": 8,
+      "precision": 1,
+      "recall": 0.6
+    },
+    "temporalPeak": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "visionLabels": {
+      "tp": 30,
+      "fp": 10,
+      "fn": 10,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "interests": {
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    }
+  },
+  "ocr": {
+    "characterEdits": 20,
+    "characters": 310,
+    "CER": 0.06451612903225806,
+    "wordEdits": 10,
+    "words": 80,
+    "WER": 0.125
+  },
+  "explanation": {
+    "attempted": 180,
+    "flagged": 120,
+    "flaggedRate": 0.6666666666666666,
+    "acceptedRate": 0.3333333333333333,
+    "judgeMode": "authored_mock_judge"
+  },
+  "inference": {
+    "attempted": 20,
+    "rejected": 10,
+    "evidenceRejectionRate": 0.5
+  },
+  "failureIsolation": {
+    "injectedModule": "image",
+    "failed": true,
+    "otherModules": {
+      "text": "ok",
+      "temporal": "ok",
+      "interests": "ok",
+      "inference": "ok",
+      "osint": "ok"
+    },
+    "reportGenerated": true,
+    "explanationsGenerated": true
+  },
+  "timing": {
+    "cold": {
+      "total": {
+        "n": 30,
+        "mean": 5.968506666666665,
+        "median": 6.122799999999998,
+        "p95": 6.992374999999982,
+        "min": 4.103499999999997,
+        "max": 7.404699999999991,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "ingest": {
+        "n": 30,
+        "mean": 0.266366666666669,
+        "median": 0.2680000000000291,
+        "p95": 0.34199499999999716,
+        "min": 0.1682999999999879,
+        "max": 0.348700000000008,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "text": {
+        "n": 30,
+        "mean": 2.631336666666663,
+        "median": 2.574150000000003,
+        "p95": 3.2933399999999975,
+        "min": 1.2860999999999763,
+        "max": 4.163599999999974,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "temporal": {
+        "n": 30,
+        "mean": 2.1452033333333316,
+        "median": 2.143950000000018,
+        "p95": 2.96495500000001,
+        "min": 1.093999999999994,
+        "max": 3.0509999999999877,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "interests": {
+        "n": 30,
+        "mean": 0.49465666666666647,
+        "median": 0.43585000000000207,
+        "p95": 1.1805200000000013,
+        "min": 0.21609999999998308,
+        "max": 1.4875999999999863,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "image": {
+        "n": 30,
+        "mean": 0.5422966666666649,
+        "median": 0.44854999999999734,
+        "p95": 1.3859599999999956,
+        "min": 0.2388000000000261,
+        "max": 1.5059999999999718,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "inference": {
+        "n": 30,
+        "mean": 0.424430000000001,
+        "median": 0.3580000000000041,
+        "p95": 1.0935749999999973,
+        "min": 0.18669999999997344,
+        "max": 1.3985000000000127,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "osint": {
+        "n": 30,
+        "mean": 0.36191000000000506,
+        "median": 0.3114500000000078,
+        "p95": 0.6964650000000024,
+        "min": 0.172300000000007,
+        "max": 1.2490999999999985,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "synthesis": {
+        "n": 30,
+        "mean": 0.13682333333333077,
+        "median": 0.10155000000000314,
+        "p95": 0.2630700000000127,
+        "min": 0.054199999999980264,
+        "max": 0.7800000000000296,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "explanation": {
+        "n": 30,
+        "mean": 0.2707466666666742,
+        "median": 0.2103999999999786,
+        "p95": 0.7173950000000047,
+        "min": 0.146000000000015,
+        "max": 1.2811000000000377,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      }
+    },
+    "warm": {
+      "total": {
+        "n": 30,
+        "mean": 2.6083300000000027,
+        "median": 2.230400000000003,
+        "p95": 4.423795000000001,
+        "min": 1.564799999999991,
+        "max": 5.222900000000038,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "ingest": {
+        "n": 30,
+        "mean": 0.18438333333333315,
+        "median": 0.155050000000017,
+        "p95": 0.3395649999999704,
+        "min": 0.10829999999998563,
+        "max": 0.478999999999985,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "text": {
+        "n": 30,
+        "mean": 0.27415333333333175,
+        "median": 0.22210000000001173,
+        "p95": 0.49804500000002155,
+        "min": 0.15679999999997563,
+        "max": 0.7300000000000182,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "temporal": {
+        "n": 30,
+        "mean": 0.14516333333333478,
+        "median": 0.1268000000000029,
+        "p95": 0.2692550000000039,
+        "min": 0.08130000000005566,
+        "max": 0.28230000000002065,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "interests": {
+        "n": 30,
+        "mean": 0.09221333333333254,
+        "median": 0.08134999999998627,
+        "p95": 0.1752649999999931,
+        "min": 0.04950000000002319,
+        "max": 0.24169999999998026,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "image": {
+        "n": 30,
+        "mean": 0.06854000000000345,
+        "median": 0.06329999999996971,
+        "p95": 0.12362499999997278,
+        "min": 0.039099999999962165,
+        "max": 0.16380000000003747,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "inference": {
+        "n": 30,
+        "mean": 0.03822000000000306,
+        "median": 0.035549999999972215,
+        "p95": 0.06531999999999981,
+        "min": 0.021500000000003183,
+        "max": 0.09329999999999927,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "osint": {
+        "n": 30,
+        "mean": 0.018073333333328872,
+        "median": 0.0165500000000236,
+        "p95": 0.02867499999999267,
+        "min": 0.010199999999997544,
+        "max": 0.05099999999998772,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "synthesis": {
+        "n": 30,
+        "mean": 0.0846399999999998,
+        "median": 0.05905000000001337,
+        "p95": 0.18041000000000879,
+        "min": 0.043600000000026284,
+        "max": 0.39140000000003283,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "explanation": {
+        "n": 30,
+        "mean": 0.2110366666666702,
+        "median": 0.12395000000000778,
+        "p95": 0.3224550000000248,
+        "min": 0.09729999999996153,
+        "max": 1.8035000000000423,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      }
+    }
+  },
+  "biasPilot": {
+    "en": {
+      "n": 6,
+      "topicRecall": 1,
+      "sentimentUnscoredFraction": 0
+    },
+    "es": {
+      "n": 2,
+      "topicRecall": 0,
+      "sentimentUnscoredFraction": 1
+    },
+    "ur": {
+      "n": 2,
+      "topicRecall": 0,
+      "sentimentUnscoredFraction": 1
+    }
+  }
+}

@@ -1,0 +1,1 @@
+This preliminary run is invalid for temporal evaluation: the module adapter passed the consent object into the numeric minimum-n parameter. The wiring was corrected and independently checked against planted peak-hour truth. It is retained as an audit trail, excluded from the paper, and superseded by the run named in ../LATEST.

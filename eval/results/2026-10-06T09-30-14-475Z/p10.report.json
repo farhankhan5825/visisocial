@@ -1,0 +1,2907 @@
+{
+  "schemaVersion": "3.0.0",
+  "metadata": {
+    "inputHash": "8b32160611b638df1a4c0ec44cda8e236ab36530993e0ab1f7ebc8c35baaa144",
+    "timezone": "Europe/London",
+    "model": "gpt-4o-mini-2024-07-18",
+    "temperature": 0,
+    "promptVersion": "1.0.0",
+    "promptHashes": {
+      "explain-image": "c2fe3ee9850299c2df480e14f9c6c1de6b2fc2f5e5324ed59bd8ffe329518844",
+      "explain-inference": "7f910ccb978834928a2881db8b61b1021f7cff4a77e551270f89d5f6f6b74cf4",
+      "explain-interests": "25abe70b01c869eab528dbf051140c82d5740eb30ddc439f98b32e0380fb8590",
+      "explain-osint": "6a5fc7769691bb29eae505a1a0c093b73a9ca641b08de573d5d5e91384d29bc8",
+      "explain-temporal": "0e51cf524597831d50d9be4405e12c224381a334f6222da04f7bb1fc170c06c5",
+      "explain-text": "bced2588e534ea4963668e1681a76877dd3cc26b3a604c03307be7243385b536",
+      "inference": "9b2a54c9e5424961be459f6f1ade553f61865b5c45deca0a46b7c729026683e9",
+      "judge": "5531675e1504e6097362528adc95119256340c4a967e30a3253d82c929f639ec"
+    },
+    "mode": "authored_mock_providers",
+    "graphVersion": "offline_mock_v24.0_shape"
+  },
+  "modules": {
+    "text": {
+      "status": "ok",
+      "features": {
+        "sentiment": {
+          "value": {
+            "distribution": {
+              "positive": 10,
+              "neutral": 5,
+              "negative": 5,
+              "unscored": 0
+            },
+            "mean": 0.75,
+            "scoredN": 20,
+            "posts": [
+              {
+                "postId": "p10-post-1",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-2",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-3",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-4",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-5",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-6",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-7",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-8",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-9",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-10",
+                "label": "positive",
+                "score": 2,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-11",
+                "label": "negative",
+                "score": -1,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-12",
+                "label": "negative",
+                "score": -1,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-13",
+                "label": "negative",
+                "score": -1,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-14",
+                "label": "negative",
+                "score": -1,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-15",
+                "label": "negative",
+                "score": -1,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-16",
+                "label": "neutral",
+                "score": 0,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-17",
+                "label": "neutral",
+                "score": 0,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-18",
+                "label": "neutral",
+                "score": 0,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-19",
+                "label": "neutral",
+                "score": 0,
+                "language": "english_heuristic"
+              },
+              {
+                "postId": "p10-post-20",
+                "label": "neutral",
+                "score": 0,
+                "language": "english_heuristic"
+              }
+            ]
+          },
+          "status": "ok",
+          "method": "per_post_english_lexicon_v1",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Exploratory English lexicon, three-token negation window and four emoji; sarcasm, mixed languages and demographics are unvalidated. Unscored text is not neutral."
+          ]
+        },
+        "readability": {
+          "value": {
+            "fleschReadingEase": 73.16420171062012,
+            "sentences": 23,
+            "words": 122
+          },
+          "status": "ok",
+          "method": "raw_text_flesch_reading_ease",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Exploratory syllable heuristic; ASCII English only; at least three punctuated sentences; not education level."
+          ]
+        },
+        "keywords": {
+          "value": [
+            {
+              "term": "love",
+              "weight": 4.83010635044682,
+              "postIds": [
+                "p10-post-1",
+                "p10-post-2",
+                "p10-post-3",
+                "p10-post-4",
+                "p10-post-5",
+                "p10-post-6",
+                "p10-post-7",
+                "p10-post-8",
+                "p10-post-9",
+                "p10-post-10"
+              ]
+            },
+            {
+              "term": "software",
+              "weight": 4.83010635044682,
+              "postIds": [
+                "p10-post-1",
+                "p10-post-2",
+                "p10-post-3",
+                "p10-post-4",
+                "p10-post-5",
+                "p10-post-6",
+                "p10-post-7",
+                "p10-post-8",
+                "p10-post-9",
+                "p10-post-10"
+              ]
+            },
+            {
+              "term": "technology",
+              "weight": 4.83010635044682,
+              "postIds": [
+                "p10-post-1",
+                "p10-post-2",
+                "p10-post-3",
+                "p10-post-4",
+                "p10-post-5",
+                "p10-post-6",
+                "p10-post-7",
+                "p10-post-8",
+                "p10-post-9",
+                "p10-post-10"
+              ]
+            },
+            {
+              "term": "art",
+              "weight": 3.75460494749228,
+              "postIds": [
+                "p10-post-16",
+                "p10-post-17",
+                "p10-post-18",
+                "p10-post-19",
+                "p10-post-20"
+              ]
+            },
+            {
+              "term": "concert",
+              "weight": 3.75460494749228,
+              "postIds": [
+                "p10-post-11",
+                "p10-post-12",
+                "p10-post-13",
+                "p10-post-14",
+                "p10-post-15"
+              ]
+            },
+            {
+              "term": "display",
+              "weight": 3.75460494749228,
+              "postIds": [
+                "p10-post-16",
+                "p10-post-17",
+                "p10-post-18",
+                "p10-post-19",
+                "p10-post-20"
+              ]
+            },
+            {
+              "term": "good",
+              "weight": 3.75460494749228,
+              "postIds": [
+                "p10-post-11",
+                "p10-post-12",
+                "p10-post-13",
+                "p10-post-14",
+                "p10-post-15"
+              ]
+            },
+            {
+              "term": "music",
+              "weight": 3.75460494749228,
+              "postIds": [
+                "p10-post-11",
+                "p10-post-12",
+                "p10-post-13",
+                "p10-post-14",
+                "p10-post-15"
+              ]
+            },
+            {
+              "term": "painting",
+              "weight": 3.75460494749228,
+              "postIds": [
+                "p10-post-16",
+                "p10-post-17",
+                "p10-post-18",
+                "p10-post-19",
+                "p10-post-20"
+              ]
+            },
+            {
+              "term": "live",
+              "weight": 1.5949368459621196,
+              "postIds": [
+                "p10-post-1",
+                "p10-post-2",
+                "p10-post-3"
+              ]
+            },
+            {
+              "term": "london",
+              "weight": 1.5949368459621196,
+              "postIds": [
+                "p10-post-1",
+                "p10-post-2",
+                "p10-post-3"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "tf_normalized_smoothed_idf_across_posts",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Stopwords are English; keywords are not inferred attributes."
+          ]
+        },
+        "topics": {
+          "value": [
+            {
+              "topic": "technology",
+              "postIds": [
+                "p10-post-1",
+                "p10-post-2",
+                "p10-post-3",
+                "p10-post-4",
+                "p10-post-5",
+                "p10-post-6",
+                "p10-post-7",
+                "p10-post-8",
+                "p10-post-9",
+                "p10-post-10"
+              ],
+              "count": 10
+            },
+            {
+              "topic": "arts",
+              "postIds": [
+                "p10-post-11",
+                "p10-post-12",
+                "p10-post-13",
+                "p10-post-14",
+                "p10-post-15",
+                "p10-post-16",
+                "p10-post-17",
+                "p10-post-18",
+                "p10-post-19",
+                "p10-post-20"
+              ],
+              "count": 10
+            }
+          ],
+          "status": "ok",
+          "method": "fixed_six_topic_word_boundary_taxonomy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Released project taxonomy, not IAB; English word rules miss other languages and context."
+          ]
+        },
+        "languages": {
+          "value": [
+            {
+              "postId": "p10-post-1",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-2",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-3",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-4",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-5",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-6",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-7",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-8",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-9",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-10",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-11",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-12",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-13",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-14",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-15",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-16",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-17",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-18",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-19",
+              "language": "english_heuristic"
+            },
+            {
+              "postId": "p10-post-20",
+              "language": "english_heuristic"
+            }
+          ],
+          "status": "ok",
+          "method": "script_and_english_anchor_heuristic",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Exploratory script/anchor detection; not a validated language classifier. NER is not implemented."
+          ]
+        }
+      },
+      "diagnostics": {}
+    },
+    "temporal": {
+      "status": "ok",
+      "features": {
+        "circular": {
+          "value": {
+            "meanHour": 1.1842850719739673,
+            "resultantLength": 0.9270443651571066
+          },
+          "status": "ok",
+          "method": "user_local_circular_hour_statistics",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "peakHours": {
+          "value": [
+            0
+          ],
+          "status": "ok",
+          "method": "user_local_hour_histogram_modes",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "hourHistogram": {
+          "value": [
+            12,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "ok",
+          "method": "user_local_24_hour_histogram",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "entropy": {
+          "value": {
+            "bits": 0.9709505944546686,
+            "millerMadowBits": 1.0070179704768927,
+            "normalized": 0.23300201862871053,
+            "n": 20,
+            "occupiedBins": 2
+          },
+          "status": "ok",
+          "method": "miller_madow_hour_entropy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "intervals": {
+          "value": {
+            "unit": "hours",
+            "count": 19,
+            "min": 24,
+            "max": 27,
+            "mean": 24.157894736842106,
+            "median": 24
+          },
+          "status": "ok",
+          "method": "sorted_utc_inter_post_intervals",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "weekdayWeekend": {
+          "value": {
+            "weekdayPosts": 14,
+            "weekendPosts": 6,
+            "ratio": 2.3333333333333335
+          },
+          "status": "ok",
+          "method": "weekday_to_weekend_post_count_ratio",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10",
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        }
+      },
+      "diagnostics": {
+        "validN": 20,
+        "minN": 10,
+        "timezone": "Europe/London"
+      }
+    },
+    "interests": {
+      "status": "ok",
+      "features": {
+        "categories": {
+          "value": [
+            {
+              "topic": "technology",
+              "likeIds": [
+                "p10-like-1"
+              ]
+            },
+            {
+              "topic": "education",
+              "likeIds": [
+                "p10-like-1"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "like_name_category_fixed_taxonomy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-like-1"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "Six project categories; a page like is an observed action, not proof of identity, belief or endorsement."
+          ]
+        }
+      },
+      "diagnostics": {}
+    },
+    "inference": {
+      "status": "ok",
+      "features": {
+        "guesses": {
+          "value": [
+            {
+              "attribute": "location",
+              "guess": "London",
+              "evidence": [
+                {
+                  "postId": "p10-post-1",
+                  "quote": "I live in London."
+                }
+              ],
+              "certainty": "low"
+            }
+          ],
+          "status": "ok",
+          "method": "llm_guess_with_exact_span_verification",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-post-1"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+          ]
+        }
+      },
+      "diagnostics": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    },
+    "osint": {
+      "status": "ok",
+      "features": {
+        "breaches": {
+          "value": [],
+          "status": "ok",
+          "method": "hibp_v3_authenticated_owned_email_lookup",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "oauth:email"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+          ]
+        }
+      },
+      "diagnostics": {}
+    },
+    "image": {
+      "status": "ok",
+      "features": {
+        "observations": {
+          "value": [
+            {
+              "photoId": "p10-photo-1",
+              "method": "google_vision",
+              "text": "BOOKS 1",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Tree",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p10-photo-2",
+              "method": "google_vision",
+              "text": "BOOKS 2",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Book",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p10-photo-3",
+              "method": "google_vision",
+              "text": "BOOKS 3",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Car",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p10-photo-4",
+              "method": "google_vision",
+              "text": "B00KS 4",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "IncorrectLabel",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            }
+          ],
+          "status": "ok",
+          "method": "vision_features_with_optional_local_tesseract_fallback",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p10-photo-1",
+            "p10-photo-2",
+            "p10-photo-3",
+            "p10-photo-4"
+          ],
+          "n": 4,
+          "confidence": null,
+          "limitations": [
+            "No face recognition, facial attributes or demographic classification. OCR confidence is null unless supplied by local OCR; provider label scores are not accuracy estimates.",
+            "At most 25 photos per run. Failed photographs and omitted photographs are listed in diagnostics."
+          ]
+        }
+      },
+      "diagnostics": {
+        "failures": 0,
+        "attempted": 4,
+        "omitted": 0
+      }
+    }
+  },
+  "features": {
+    "text.sentiment": {
+      "value": {
+        "distribution": {
+          "positive": 10,
+          "neutral": 5,
+          "negative": 5,
+          "unscored": 0
+        },
+        "mean": 0.75,
+        "scoredN": 20,
+        "posts": [
+          {
+            "postId": "p10-post-1",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-2",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-3",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-4",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-5",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-6",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-7",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-8",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-9",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-10",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-11",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-12",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-13",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-14",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-15",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-16",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-17",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-18",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-19",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-20",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          }
+        ]
+      },
+      "status": "ok",
+      "method": "per_post_english_lexicon_v1",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Exploratory English lexicon, three-token negation window and four emoji; sarcasm, mixed languages and demographics are unvalidated. Unscored text is not neutral."
+      ]
+    },
+    "text.readability": {
+      "value": {
+        "fleschReadingEase": 73.16420171062012,
+        "sentences": 23,
+        "words": 122
+      },
+      "status": "ok",
+      "method": "raw_text_flesch_reading_ease",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Exploratory syllable heuristic; ASCII English only; at least three punctuated sentences; not education level."
+      ]
+    },
+    "text.keywords": {
+      "value": [
+        {
+          "term": "love",
+          "weight": 4.83010635044682,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ]
+        },
+        {
+          "term": "software",
+          "weight": 4.83010635044682,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ]
+        },
+        {
+          "term": "technology",
+          "weight": 4.83010635044682,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ]
+        },
+        {
+          "term": "art",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ]
+        },
+        {
+          "term": "concert",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15"
+          ]
+        },
+        {
+          "term": "display",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ]
+        },
+        {
+          "term": "good",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15"
+          ]
+        },
+        {
+          "term": "music",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15"
+          ]
+        },
+        {
+          "term": "painting",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ]
+        },
+        {
+          "term": "live",
+          "weight": 1.5949368459621196,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3"
+          ]
+        },
+        {
+          "term": "london",
+          "weight": 1.5949368459621196,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "tf_normalized_smoothed_idf_across_posts",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Stopwords are English; keywords are not inferred attributes."
+      ]
+    },
+    "text.topics": {
+      "value": [
+        {
+          "topic": "technology",
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ],
+          "count": 10
+        },
+        {
+          "topic": "arts",
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "count": 10
+        }
+      ],
+      "status": "ok",
+      "method": "fixed_six_topic_word_boundary_taxonomy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Released project taxonomy, not IAB; English word rules miss other languages and context."
+      ]
+    },
+    "text.languages": {
+      "value": [
+        {
+          "postId": "p10-post-1",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-2",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-3",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-4",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-5",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-6",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-7",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-8",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-9",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-10",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-11",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-12",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-13",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-14",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-15",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-16",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-17",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-18",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-19",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-20",
+          "language": "english_heuristic"
+        }
+      ],
+      "status": "ok",
+      "method": "script_and_english_anchor_heuristic",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Exploratory script/anchor detection; not a validated language classifier. NER is not implemented."
+      ]
+    },
+    "temporal.circular": {
+      "value": {
+        "meanHour": 1.1842850719739673,
+        "resultantLength": 0.9270443651571066
+      },
+      "status": "ok",
+      "method": "user_local_circular_hour_statistics",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.peakHours": {
+      "value": [
+        0
+      ],
+      "status": "ok",
+      "method": "user_local_hour_histogram_modes",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.hourHistogram": {
+      "value": [
+        12,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "ok",
+      "method": "user_local_24_hour_histogram",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.entropy": {
+      "value": {
+        "bits": 0.9709505944546686,
+        "millerMadowBits": 1.0070179704768927,
+        "normalized": 0.23300201862871053,
+        "n": 20,
+        "occupiedBins": 2
+      },
+      "status": "ok",
+      "method": "miller_madow_hour_entropy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.intervals": {
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 24,
+        "max": 27,
+        "mean": 24.157894736842106,
+        "median": 24
+      },
+      "status": "ok",
+      "method": "sorted_utc_inter_post_intervals",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.weekdayWeekend": {
+      "value": {
+        "weekdayPosts": 14,
+        "weekendPosts": 6,
+        "ratio": 2.3333333333333335
+      },
+      "status": "ok",
+      "method": "weekday_to_weekend_post_count_ratio",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "interests.categories": {
+      "value": [
+        {
+          "topic": "technology",
+          "likeIds": [
+            "p10-like-1"
+          ]
+        },
+        {
+          "topic": "education",
+          "likeIds": [
+            "p10-like-1"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "like_name_category_fixed_taxonomy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-like-1"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "Six project categories; a page like is an observed action, not proof of identity, belief or endorsement."
+      ]
+    },
+    "inference.guesses": {
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "London",
+          "evidence": [
+            {
+              "postId": "p10-post-1",
+              "quote": "I live in London."
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "status": "ok",
+      "method": "llm_guess_with_exact_span_verification",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-post-1"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+      ]
+    },
+    "osint.breaches": {
+      "value": [],
+      "status": "ok",
+      "method": "hibp_v3_authenticated_owned_email_lookup",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "oauth:email"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+      ]
+    },
+    "image.observations": {
+      "value": [
+        {
+          "photoId": "p10-photo-1",
+          "method": "google_vision",
+          "text": "BOOKS 1",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Tree",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p10-photo-2",
+          "method": "google_vision",
+          "text": "BOOKS 2",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Book",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p10-photo-3",
+          "method": "google_vision",
+          "text": "BOOKS 3",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Car",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p10-photo-4",
+          "method": "google_vision",
+          "text": "B00KS 4",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "IncorrectLabel",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        }
+      ],
+      "status": "ok",
+      "method": "vision_features_with_optional_local_tesseract_fallback",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p10-photo-1",
+        "p10-photo-2",
+        "p10-photo-3",
+        "p10-photo-4"
+      ],
+      "n": 4,
+      "confidence": null,
+      "limitations": [
+        "No face recognition, facial attributes or demographic classification. OCR confidence is null unless supplied by local OCR; provider label scores are not accuracy estimates.",
+        "At most 25 photos per run. Failed photographs and omitted photographs are listed in diagnostics."
+      ]
+    }
+  },
+  "checklist": [
+    {
+      "featureKey": "text.sentiment",
+      "value": {
+        "distribution": {
+          "positive": 10,
+          "neutral": 5,
+          "negative": 5,
+          "unscored": 0
+        },
+        "mean": 0.75,
+        "scoredN": 20,
+        "posts": [
+          {
+            "postId": "p10-post-1",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-2",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-3",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-4",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-5",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-6",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-7",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-8",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-9",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-10",
+            "label": "positive",
+            "score": 2,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-11",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-12",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-13",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-14",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-15",
+            "label": "negative",
+            "score": -1,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-16",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-17",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-18",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-19",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          },
+          {
+            "postId": "p10-post-20",
+            "label": "neutral",
+            "score": 0,
+            "language": "english_heuristic"
+          }
+        ]
+      },
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "per_post_english_lexicon_v1"
+    },
+    {
+      "featureKey": "text.readability",
+      "value": {
+        "fleschReadingEase": 73.16420171062012,
+        "sentences": 23,
+        "words": 122
+      },
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "raw_text_flesch_reading_ease"
+    },
+    {
+      "featureKey": "text.keywords",
+      "value": [
+        {
+          "term": "love",
+          "weight": 4.83010635044682,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ]
+        },
+        {
+          "term": "software",
+          "weight": 4.83010635044682,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ]
+        },
+        {
+          "term": "technology",
+          "weight": 4.83010635044682,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ]
+        },
+        {
+          "term": "art",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ]
+        },
+        {
+          "term": "concert",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15"
+          ]
+        },
+        {
+          "term": "display",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ]
+        },
+        {
+          "term": "good",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15"
+          ]
+        },
+        {
+          "term": "music",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15"
+          ]
+        },
+        {
+          "term": "painting",
+          "weight": 3.75460494749228,
+          "postIds": [
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ]
+        },
+        {
+          "term": "live",
+          "weight": 1.5949368459621196,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3"
+          ]
+        },
+        {
+          "term": "london",
+          "weight": 1.5949368459621196,
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3"
+          ]
+        }
+      ],
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "tf_normalized_smoothed_idf_across_posts"
+    },
+    {
+      "featureKey": "text.topics",
+      "value": [
+        {
+          "topic": "technology",
+          "postIds": [
+            "p10-post-1",
+            "p10-post-2",
+            "p10-post-3",
+            "p10-post-4",
+            "p10-post-5",
+            "p10-post-6",
+            "p10-post-7",
+            "p10-post-8",
+            "p10-post-9",
+            "p10-post-10"
+          ],
+          "count": 10
+        },
+        {
+          "topic": "arts",
+          "postIds": [
+            "p10-post-11",
+            "p10-post-12",
+            "p10-post-13",
+            "p10-post-14",
+            "p10-post-15",
+            "p10-post-16",
+            "p10-post-17",
+            "p10-post-18",
+            "p10-post-19",
+            "p10-post-20"
+          ],
+          "count": 10
+        }
+      ],
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "fixed_six_topic_word_boundary_taxonomy"
+    },
+    {
+      "featureKey": "text.languages",
+      "value": [
+        {
+          "postId": "p10-post-1",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-2",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-3",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-4",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-5",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-6",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-7",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-8",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-9",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-10",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-11",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-12",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-13",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-14",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-15",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-16",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-17",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-18",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-19",
+          "language": "english_heuristic"
+        },
+        {
+          "postId": "p10-post-20",
+          "language": "english_heuristic"
+        }
+      ],
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "script_and_english_anchor_heuristic"
+    },
+    {
+      "featureKey": "temporal.circular",
+      "value": {
+        "meanHour": 1.1842850719739673,
+        "resultantLength": 0.9270443651571066
+      },
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "user_local_circular_hour_statistics"
+    },
+    {
+      "featureKey": "temporal.peakHours",
+      "value": [
+        0
+      ],
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "user_local_hour_histogram_modes"
+    },
+    {
+      "featureKey": "temporal.hourHistogram",
+      "value": [
+        12,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "user_local_24_hour_histogram"
+    },
+    {
+      "featureKey": "temporal.entropy",
+      "value": {
+        "bits": 0.9709505944546686,
+        "millerMadowBits": 1.0070179704768927,
+        "normalized": 0.23300201862871053,
+        "n": 20,
+        "occupiedBins": 2
+      },
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "miller_madow_hour_entropy"
+    },
+    {
+      "featureKey": "temporal.intervals",
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 24,
+        "max": 27,
+        "mean": 24.157894736842106,
+        "median": 24
+      },
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "sorted_utc_inter_post_intervals"
+    },
+    {
+      "featureKey": "temporal.weekdayWeekend",
+      "value": {
+        "weekdayPosts": 14,
+        "weekendPosts": 6,
+        "ratio": 2.3333333333333335
+      },
+      "inputs": [
+        "p10-post-1",
+        "p10-post-2",
+        "p10-post-3",
+        "p10-post-4",
+        "p10-post-5",
+        "p10-post-6",
+        "p10-post-7",
+        "p10-post-8",
+        "p10-post-9",
+        "p10-post-10",
+        "p10-post-11",
+        "p10-post-12",
+        "p10-post-13",
+        "p10-post-14",
+        "p10-post-15",
+        "p10-post-16",
+        "p10-post-17",
+        "p10-post-18",
+        "p10-post-19",
+        "p10-post-20"
+      ],
+      "method": "weekday_to_weekend_post_count_ratio"
+    },
+    {
+      "featureKey": "interests.categories",
+      "value": [
+        {
+          "topic": "technology",
+          "likeIds": [
+            "p10-like-1"
+          ]
+        },
+        {
+          "topic": "education",
+          "likeIds": [
+            "p10-like-1"
+          ]
+        }
+      ],
+      "inputs": [
+        "p10-like-1"
+      ],
+      "method": "like_name_category_fixed_taxonomy"
+    },
+    {
+      "featureKey": "inference.guesses",
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "London",
+          "evidence": [
+            {
+              "postId": "p10-post-1",
+              "quote": "I live in London."
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "inputs": [
+        "p10-post-1"
+      ],
+      "method": "llm_guess_with_exact_span_verification"
+    },
+    {
+      "featureKey": "osint.breaches",
+      "value": [],
+      "inputs": [
+        "oauth:email"
+      ],
+      "method": "hibp_v3_authenticated_owned_email_lookup"
+    },
+    {
+      "featureKey": "image.observations",
+      "value": [
+        {
+          "photoId": "p10-photo-1",
+          "method": "google_vision",
+          "text": "BOOKS 1",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Tree",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p10-photo-2",
+          "method": "google_vision",
+          "text": "BOOKS 2",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Book",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p10-photo-3",
+          "method": "google_vision",
+          "text": "BOOKS 3",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Car",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p10-photo-4",
+          "method": "google_vision",
+          "text": "B00KS 4",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "IncorrectLabel",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        }
+      ],
+      "inputs": [
+        "p10-photo-1",
+        "p10-photo-2",
+        "p10-photo-3",
+        "p10-photo-4"
+      ],
+      "method": "vision_features_with_optional_local_tesseract_fallback"
+    }
+  ],
+  "explanations": {
+    "status": "ok",
+    "sentences": [
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "text.sentiment"
+        ]
+      },
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "temporal.circular"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "interests.categories"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "inference.guesses"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "osint.breaches"
+        ]
+      },
+      {
+        "text": "This section uses 4 source items.",
+        "supportedBy": [
+          "image.observations"
+        ]
+      }
+    ],
+    "attempted": 18,
+    "flagged": 12,
+    "flaggedRate": 0.6666666666666666,
+    "rejections": [
+      {
+        "index": 1,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 2,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 4,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 5,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 7,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 8,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 10,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 11,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 13,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 14,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 16,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 17,
+        "reason": "judge_rejected"
+      }
+    ],
+    "verifier": "feature_keys + exact_numeric_values + second_llm_judge; not independent human validation",
+    "sectionFailures": []
+  }
+}

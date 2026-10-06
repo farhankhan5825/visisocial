@@ -1,0 +1,16 @@
+{
+  "scope": "Factual reconstruction of the unpublished draft's Table 5; excluded from the new benchmark",
+  "source": "Local private logs, inspected without publishing account identifiers",
+  "selectedDurationsMs": [6185, 12751, 13205, 14991, 16173, 17166, 17398, 18291, 18407, 22230],
+  "selectedMeanMs": 15679.7,
+  "selectedMedianMs": 16669.5,
+  "dashboardEvents": 8,
+  "distinctDashboardAccounts": 2,
+  "ocrBatches": [
+    { "durationMs": 18291, "attemptedImages": 15, "successfulImages": 15, "msPerAttempt": 1219.4 },
+    { "durationMs": 22230, "attemptedImages": 15, "successfulImages": 14, "msPerAttempt": 1482, "msPerSuccess": 1587.857142857143 }
+  ],
+  "redisHitClaimSupported": false,
+  "tenFullExecutionsClaimSupported": false,
+  "authorPublicationStatus": "unpublished, intended for publication"
+}
