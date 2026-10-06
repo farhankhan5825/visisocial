@@ -1,0 +1,1 @@
+module.exports = { testEnvironment: 'node', transform: {}, cache: false, cacheDirectory: '<rootDir>/.runtime/jest', coverageProvider: 'v8', testMatch: ['**/tests/**/*.test.js'], collectCoverageFrom: ['src/**/*.js', 'eval/metrics.js'], coverageReporters: ['text', 'json-summary', 'lcov'], maxWorkers: 1 };
