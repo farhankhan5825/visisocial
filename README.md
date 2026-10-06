@@ -1,92 +1,85 @@
 # VisiSocial
 
-**A multimodal, user-facing framework for making social-media profiling transparent.**
+A research prototype that shows observations and cited AI guesses about an authenticated user's own data. Each finding includes its method, source IDs, sample size and limitations. The rebuilt app has no Big Five scoring, arbitrary-person search, fabricated dashboard statistics or composite risk score.
 
-Platforms build rich behavioural profiles from your data and show you almost none of it. Most privacy tools focus on *restricting* collection or *deleting* stored data — they say little about what can already be inferred from information that is public or that you've authorised. VisiSocial takes the opposite angle: you connect your own account, and it shows you the profile an analyst *could* build, as a readable privacy report.
+The default is an **offline synthetic demonstration**. Google Vision, OpenAI and HIBP responses in that demonstration are explicitly authored mocks; they do not measure those services' accuracy. Read the revised, unpublished [paper](paper/revised.md), [change record](paper/CHANGES.md) and [audit](AUDIT.md).
 
-It combines natural-language processing, behavioural analytics, image analysis (Google Cloud Vision + Tesseract OCR), open-source intelligence (OSINT) signals, and LLM-generated explanations into a single application you run against your own data. Each technique is established on its own; the contribution is their integration into one tool an end user can actually run.
+## Run from a clean checkout
 
-> **Research prototype — read this first.** VisiSocial is a proof of concept, not a production service or a population-scale study. It runs only against **Meta developer test users** in a Facebook app kept in **Development Mode**, consistent with Meta's Platform Terms; no real end-user data is touched. It does **not** evaluate report accuracy, quality, usability, or security — those require the consent-based studies the architecture is built to support. See the paper for the full framing and limitations.
+Use Node.js 22 or newer and npm. No database, credentials, private CSV, language-training data or .env file is needed:
 
-Accompanies the paper *"VisiSocial: A Multimodal User-Facing Framework for Making Social Media Profiling Transparent"* (F. Khan and N. Micallef, Swansea University).
-
-## What it does
-
-A full run takes an authorised Facebook account through the pipeline:
-
-- **Authentication** — Facebook OAuth 2.0, scoped to the connecting test user.
-- **Authorised data acquisition** — pulls the user's own posts, likes, photos, and profile fields.
-- **Multimodal analysis** — text (sentiment, readability, common words/topics), behaviour (posting rhythms and routines), images (Cloud Vision labels + OCR on embedded text), and personality estimation.
-- **OSINT exposure signals** — checks how much of the same information is discoverable from public sources.
-- **Explanation generation** — GPT-4o-mini narrates the aggregated evidence in plain language.
-- **Dashboard + report export** — an interactive surveillance-style dashboard (profile depth, cross-modal links, exploitation-risk view, model comparison) plus an exportable report.
-
-Analysis modules are designed to fail independently — if one modality is unavailable, the others still produce a coherent report.
-
-## Architecture
-
-Independent services over REST, so each can scale on its own:
-
-- **Backend:** Node.js, Express, EJS views
-- **Data:** MongoDB (Mongoose)
-- **Auth:** Facebook OAuth 2.0 (Passport)
-- **Vision/OCR:** Google Cloud Vision, Tesseract (`eng.traineddata`)
-- **LLM:** OpenAI GPT-4o-mini
-- **OSINT (optional):** Google Custom Search, Have I Been Pwned, Shodan
-
-```
-routes/       HTTP routes (auth, api, admin, surveillance, internet-search)
-services/     surveillanceEngine, internetSearchEngine, ocrService, backgroundJobs
-controllers/  request handling
-models/       Mongoose schemas (User, Admin, tokens, search results)
-views/        EJS templates (dashboard, surveillance/*, internetSearch/*)
-utils/        logger, cache, rate limiter, metrics, task status
-config/       app config + db connection
-public/       static assets
-index.js      app entry point
+```sh
+npm ci
+npm run lint
+npm test
+npm run eval
+npm start
 ```
 
-## Getting started
+Open [the demo](http://127.0.0.1:3001), choose the synthetic profile, review consent and generate the report. It binds to loopback and keeps records in memory; restarting clears that state. It never loads an old .env file. `npm run dev` runs the demo with Node's file watcher. `npm run lint` checks JavaScript syntax, not ESLint or security.
 
-**Prerequisites:** Node.js 18+, a MongoDB instance, a Facebook developer app (Development Mode), a Google Cloud Vision service account, and an OpenAI API key.
+Tests cover consent/report/export/feedback/delete, ownership, CSRF, deletion across two mocked OAuth sessions, metric edge cases and a full report golden file. GitHub Actions runs coverage and the offline evaluator on Node 22; a separate Linux job runs scanners. Hosted CI has been configured but has not run during this overhaul.
 
-```bash
-git clone https://github.com/farhankhan5825/visisocial.git
-cd visisocial
-npm install
+## Implemented modules
+
+| Module | Output and boundary |
+|---|---|
+| Text | Exploratory English per-post sentiment, raw-text Flesch Reading Ease, TF-IDF keywords, six project topics and a script/English-anchor heuristic. No NER or validated multilingual classifier. |
+| Temporal | Explicit IANA timezone, circular hour statistics, histogram/modes, corrected entropy, intervals and weekday/weekend counts. At least ten valid timestamps; no inferred routines. |
+| Images | Vision labels, objects, logos, landmarks and document text; optional consented local Tesseract fallback. No face analysis. Images complete before synthesis. |
+| Likes | Names/categories mapped to the six topics; a like does not establish identity or belief. |
+| AI guesses | Fixed attributes, exact cited quotes and abstention. Sensitive age/relationship guesses require another opt-in. Quote verification does not prove truth. |
+| Exposure | HIBP breach names, dates and data classes for the email from the server-fetched OAuth identity. No free-form email, name, phone, username, image or domain lookup. |
+| Explanations | Section feature JSON, supported keys, numeric checks and a second LLM judge; unsupported sentences are dropped and counted. |
+
+Reports show module failures and provenance, support “This is wrong” feedback, stream a fixed-name JSON export and offer deletion. Provider credentials without consent do not enable processing.
+
+## Reproduce measurements
+
+`npm run fixtures` regenerates ten profiles, planted truth and project-authored SVG/PNG images. `npm run eval` runs the actual local pipeline with external-provider doubles: thirty empty-cache and thirty prefilled-cache executions. It saves reports, per-profile metrics, stage timing CSV, failure injection and environment/source hashes to a new `eval/results/<UTC run>/`. It updates LATEST; the paper cites fixed run IDs so later runs cannot silently change its evidence. See [evaluation protocol](eval/README.md).
+
+The paper uses **2026-10-06T09-30-14-475Z**. This is software-contract evaluation, not a live API benchmark or user study. The language pilot exposes the English topic rules' coverage gap.
+
+The separate **real local OCR** run is **ocr-2026-10-06T09-12-38-727Z**. Its character error rate was 0.6607 and word error rate 0.8125; quality was poor on these generated images. To repeat it, obtain public eng.traineddata from [Tesseract tessdata](https://github.com/tesseract-ocr/tessdata), put it in a local directory and run:
+
+```powershell
+$env:TESSERACT_LANG_PATH = 'C:\path\to\local-language-data'
+npm run eval:ocr
 ```
 
-1. **Configure environment.** Copy the template and fill in your own credentials:
-   ```bash
-   cp .env.example .env
-   ```
-   Set `FACEBOOK_APP_ID` / `FACEBOOK_APP_SECRET`, `OPENAI_API_KEY`, `MONGODB_URI`, a random `SESSION_SECRET`, and the callback URLs. OSINT keys (`GOOGLE_CSE_*`, `HIBP_API_KEY`, `SHODAN_API_KEY`) are optional — those features are skipped if absent.
-2. **Google Cloud Vision.** Place your own service-account JSON in `cloudvision/` and point `GOOGLE_APPLICATION_CREDENTIALS` at it. (No credentials are shipped in this repo.)
-3. **OCR data.** Download Tesseract's `eng.traineddata` from [tessdata](https://github.com/tesseract-ocr/tessdata) into the project root.
-4. **Facebook app.** Keep the app in Development Mode and add the accounts you'll test with as **test users**. Add your dev callback URL (`http://localhost:3001/auth/facebook/callback`) to the app's OAuth settings.
-5. **Bootstrap an admin (optional).** `createAdmin.js` reads `ADMIN_PASSWORD` (and optional `ADMIN_EMAIL`) from the environment:
-   ```bash
-   ADMIN_PASSWORD='...' node createAdmin.js
-   ```
+Language data is never downloaded implicitly. The saved OCR summary records its exact hash and Tesseract version. Per-image timing excludes worker startup; this is not a natural-photo or non-English benchmark.
 
-**Run:**
+## Optional live developer testing
 
-```bash
-npm run dev     # development, auto-reload (default http://localhost:3001)
-npm start       # nodemon
-npm run prod    # production
-npm run lint    # eslint
-npm test        # jest
+Live Meta/OAuth, MongoDB operations and external services remain unverified. Configure a Meta app in Development Mode, appropriate permissions, allowlisted developer test accounts and a **fresh** TLS MongoDB database. Verify a currently supported Graph version in [Meta's documentation](https://developers.facebook.com/docs/graph-api/changelog/) and set API_VERSION=vN.0. The offline adapter's v24-shaped URLs are not a current-live-version claim. This task could not verify the current version from Meta's site.
+
+Copy .env.example to .env and supply its required values. Configure an HTTPS reverse proxy with exactly one trusted proxy hop and no direct public access to the app port. Set PUBLIC_ORIGIN to the HTTPS origin and register its /auth/facebook/callback in Meta. Use mongodb+srv:// and NODE_ENV=production. Generate independent random session and encryption secrets; the encryption key must contain 64 hex characters. Keep credentials outside Git. Explicitly enable live mode:
+
+```powershell
+$env:APP_MODE = 'live'
+npm start
 ```
 
-## Privacy & data handling
+Missing configuration fails closed. Optional keys enable providers only with consent. OpenAI uses gpt-4o-mini-2024-07-18, temperature zero and strict JSON schemas. Vision needs your service-account path. HIBP needs a suitable API subscription/key; breach data is attributed to [Have I Been Pwned](https://haveibeenpwned.com/), CC BY 4.0. Local OCR uses the explicit language directory.
 
-Data handling follows minimisation and user-controlled deletion: the system stores only what a run needs, and connected users can delete their data. Because an aggregated transparency profile is itself a high-value target, treat any deployment as sensitive and never run it against non-consenting accounts.
+The app checks the server-fetched me.id against the allowlist, uses one paginated Graph client and records acquisition failures. Platform/provider terms, permissions, proxy/TLS operation and ethics requirements must be verified for the actual deployment. The repository does not certify compliance or approval.
 
-## Security status
+## Privacy and migration
 
-A static-analysis pass (njsscan / Semgrep) was run over the codebase; three classes of findings remain open for remediation before any deployment — an SSRF surface in the OSINT engine, user-influenced file paths in export endpoints, and development-mode cookie hardening. Static analysis is **not** a substitute for a full penetration test, which is planned but not yet performed. Treat the current controls as **not fully audited**.
+Live sessions for one account share one retained record, enforced by a unique account index. OAuth tokens use AES-256-GCM with owner binding. Reports may retain quoted evidence; consent discloses exactly what goes to OpenAI, Vision and HIBP. Record retention is 24 hours from the last replacement; feedback does not extend it. Sessions and module caches last at most one hour. Mongo TTL plus a minute sweep removes expired records; reads deny expired records immediately. Local contract tests do not verify production TTL scheduling.
 
-## License
+Deletion drains owned jobs and removes the record, token, report, feedback, cache and associated sessions. This version creates no server upload/export files. Downloaded copies, provider retention, backups and upstream Meta data are outside local deletion. OpenAI store:false does not guarantee zero provider retention. The in-process queue is not durable or suitable for distributed replicas.
 
-[MIT](LICENSE) © 2026 Farhan Khan
+Live startup refuses populated legacy users/usertokens/internetsearchresults/sessions collections and old files under uploads/temp/evidence. Some old searches have no recoverable owner. Use a fresh deployment directory/database or arrange an explicit owner-approved migration/purge. The overhaul preserves old private files and databases. The ignored original DOCX and private datasets are unchanged and are not runtime dependencies.
+
+## Security evidence
+
+Saved verification contains **48 passing tests**, **94.23% line coverage**, a clean source-install check and **zero npm dependency advisories** at the recorded date. Semgrep 1.172.0 ran 36 Node.js rules over 25 targets and raised four reviewed cookie-setting audit warnings, retained with dispositions. Njsscan 1.0.1 returned no findings on Windows; supported-platform coverage remains to be checked by Linux CI.
+
+Scans exclude private files and disable metrics. Reproduce them in a disposable Python environment using [pinned scanner requirements](scripts/security-requirements.txt) and commands in [CI](.github/workflows/checks.yml). Tests and scans do not establish resistance to server compromise, live SSRF exploits, valid LLM entailment judgments or deletion from third parties. Remaining boundaries are recorded in the audit and paper.
+
+## Code map and license
+
+index.js starts src/server.js; src/app.js sets up Express and src/routes handles requests. src/ingest, analysis, report, privacy, jobs, prompts and schemas hold the corresponding pipeline pieces. EJS and project CSS provide the UI. No Bull, JWT, Redis, Tailwind or Socket.io claim applies to this version.
+
+[MIT](LICENSE). Released fixture text and artwork are project-authored under that license. No myPersonality data is included or used.
