@@ -1,9 +1,6 @@
 'use strict';
-// The legacy runtime is disabled while the evidence-grounded replacement is built.
-const http = require('node:http');
-const server = http.createServer((_req, res) => {
-  res.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8' });
-  res.end('VisiSocial is being rebuilt. No analysis or external searches are available.\n');
-});
-if (require.main === module) server.listen(Number(process.env.PORT) || 3001, '127.0.0.1');
-module.exports = server;
+// Demo is the default and never loads local credentials. Live mode is explicit.
+if (process.env.APP_MODE === 'live') require('dotenv').config();
+const { start } = require('./src/server');
+if (require.main === module) start().catch(() => { require('./src/privacy/logger').log('startup_failed'); process.exitCode = 1; });
+module.exports = { start };

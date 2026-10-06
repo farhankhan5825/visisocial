@@ -1,0 +1,75 @@
+{
+  "id": "p09",
+  "language": "en",
+  "nameVariant": "Sam Taylor",
+  "topics": [
+    "technology",
+    "arts"
+  ],
+  "peakHours": [
+    23
+  ],
+  "sentiment": {
+    "positive": 10,
+    "negative": 5,
+    "neutral": 5,
+    "unscored": 0
+  },
+  "city": "London",
+  "cityPostIds": [
+    "p09-post-1",
+    "p09-post-2",
+    "p09-post-3"
+  ],
+  "inference": [
+    "location:London"
+  ],
+  "photoTruth": [
+    {
+      "photoId": "p09-photo-1",
+      "text": "BOOKS 1",
+      "labels": [
+        "Book"
+      ],
+      "subject": "Book"
+    },
+    {
+      "photoId": "p09-photo-2",
+      "text": "BOOKS 2",
+      "labels": [
+        "Tree"
+      ],
+      "subject": "Tree"
+    },
+    {
+      "photoId": "p09-photo-3",
+      "text": "BOOKS 3",
+      "labels": [
+        "House"
+      ],
+      "subject": "House"
+    },
+    {
+      "photoId": "p09-photo-4",
+      "text": "BOOKS 4",
+      "labels": [
+        "Car"
+      ],
+      "subject": "Car"
+    }
+  ],
+  "breaches": [
+    {
+      "Name": "SyntheticExample",
+      "BreachDate": "2020-01-01",
+      "DataClasses": [
+        "Email addresses",
+        "Passwords"
+      ]
+    }
+  ],
+  "interests": [
+    "technology",
+    "education"
+  ]
+}

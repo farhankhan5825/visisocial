@@ -1,0 +1,97 @@
+{
+  "provenance": "authored_synthetic_provider_double_v1",
+  "vision": {
+    "p09-photo-1": {
+      "fullTextAnnotation": {
+        "text": "BOOKS 1"
+      },
+      "labelAnnotations": [
+        {
+          "description": "Book",
+          "score": 0.8
+        }
+      ],
+      "localizedObjectAnnotations": [],
+      "logoAnnotations": [],
+      "landmarkAnnotations": []
+    },
+    "p09-photo-2": {
+      "fullTextAnnotation": {
+        "text": "BOOKS 2"
+      },
+      "labelAnnotations": [
+        {
+          "description": "Tree",
+          "score": 0.8
+        }
+      ],
+      "localizedObjectAnnotations": [],
+      "logoAnnotations": [],
+      "landmarkAnnotations": []
+    },
+    "p09-photo-3": {
+      "fullTextAnnotation": {
+        "text": "BOOKS 3"
+      },
+      "labelAnnotations": [
+        {
+          "description": "House",
+          "score": 0.8
+        }
+      ],
+      "localizedObjectAnnotations": [],
+      "logoAnnotations": [],
+      "landmarkAnnotations": []
+    },
+    "p09-photo-4": {
+      "fullTextAnnotation": {
+        "text": "B00KS 4"
+      },
+      "labelAnnotations": [
+        {
+          "description": "IncorrectLabel",
+          "score": 0.8
+        }
+      ],
+      "localizedObjectAnnotations": [],
+      "logoAnnotations": [],
+      "landmarkAnnotations": []
+    }
+  },
+  "inference": {
+    "items": [
+      {
+        "attribute": "location",
+        "guess": "London",
+        "evidence": [
+          {
+            "postId": "p09-post-1",
+            "quote": "I live in London."
+          }
+        ],
+        "certainty": "low"
+      },
+      {
+        "attribute": "occupation",
+        "guess": "engineer",
+        "evidence": [
+          {
+            "postId": "p09-post-1",
+            "quote": "unsupported quote"
+          }
+        ],
+        "certainty": "high"
+      }
+    ]
+  },
+  "breaches": [
+    {
+      "Name": "SyntheticExample",
+      "BreachDate": "2020-01-01",
+      "DataClasses": [
+        "Email addresses",
+        "Passwords"
+      ]
+    }
+  ]
+}

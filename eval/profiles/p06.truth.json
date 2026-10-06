@@ -1,0 +1,66 @@
+{
+  "id": "p06",
+  "language": "es",
+  "nameVariant": "Diego López",
+  "topics": [
+    "technology",
+    "arts"
+  ],
+  "peakHours": [
+    18
+  ],
+  "sentiment": {
+    "positive": 10,
+    "negative": 5,
+    "neutral": 5,
+    "unscored": 0
+  },
+  "city": "London",
+  "cityPostIds": [
+    "p06-post-1",
+    "p06-post-2",
+    "p06-post-3"
+  ],
+  "inference": [
+    "location:London"
+  ],
+  "photoTruth": [
+    {
+      "photoId": "p06-photo-1",
+      "text": "BOOKS 1",
+      "labels": [
+        "Tree"
+      ],
+      "subject": "Tree"
+    },
+    {
+      "photoId": "p06-photo-2",
+      "text": "BOOKS 2",
+      "labels": [
+        "Book"
+      ],
+      "subject": "Book"
+    },
+    {
+      "photoId": "p06-photo-3",
+      "text": "BOOKS 3",
+      "labels": [
+        "Car"
+      ],
+      "subject": "Car"
+    },
+    {
+      "photoId": "p06-photo-4",
+      "text": "BOOKS 4",
+      "labels": [
+        "House"
+      ],
+      "subject": "House"
+    }
+  ],
+  "breaches": [],
+  "interests": [
+    "technology",
+    "education"
+  ]
+}
