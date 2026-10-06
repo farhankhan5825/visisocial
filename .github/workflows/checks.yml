@@ -19,3 +19,21 @@ jobs:
           path: |
             coverage/
             eval/results/
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/security-requirements.txt
+      - run: mkdir -p security-results
+      - run: semgrep scan --config p/nodejs --metrics=off --disable-version-check --json --output security-results/semgrep.json src index.js
+      - run: njsscan --json -o security-results/njsscan.json src index.js
+        env:
+          SEMGREP_SEND_METRICS: 'off'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-scans
+          path: security-results/

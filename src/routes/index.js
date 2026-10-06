@@ -40,9 +40,12 @@ function routes(options) {
     const token = (await response.json()).access_token; if (typeof token !== 'string') throw new Error('missing_oauth_token');
     const graph = createFacebook({ token, version: env.API_VERSION }); const identity = await graph.request('me', { fields: 'id,name,email' });
     if (!env.FACEBOOK_TEST_USER_IDS.split(',').map(s => s.trim()).includes(identity.id)) return res.status(403).send('Only explicitly configured developer test users are permitted.');
+    let existing = await store.findByIdentity(identity.id);
+    if (existing) await queue.pending.get(existing.owner)?.catch(() => {});
+    existing = await store.findByIdentity(identity.id);
     await new Promise((resolve, reject) => req.session.regenerate(err => err ? reject(err) : resolve()));
-    req.session.owner = randomUUID(); req.session.csrf = randomBytes(32).toString('hex');
-    await store.put(req.session.owner, { identity: { id: identity.id, name: identity.name, ...(identity.email ? { email: identity.email } : {}) }, token: encryptToken(token, req.session.owner, options.tokenKey), status: 'awaiting_consent' });
+    req.session.owner = existing?.owner || randomUUID(); req.session.csrf = randomBytes(32).toString('hex');
+    await store.put(req.session.owner, { ...existing, identity: { id: identity.id, name: identity.name, ...(identity.email ? { email: identity.email } : {}) }, token: encryptToken(token, req.session.owner, options.tokenKey), status: existing?.status || 'awaiting_consent' });
     res.redirect('/consent');
   }));
   router.get('/consent', auth, (req, res) => res.render('consent', { identity: req.record.identity }));
