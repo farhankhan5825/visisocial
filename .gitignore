@@ -35,3 +35,8 @@ npm-debug.log*
 
 # Paper draft (under review, not part of the release)
 VisiSocial_paper.docx
+
+.fuse_hidden*
+coverage/
+.runtime/
+
