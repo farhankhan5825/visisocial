@@ -48,7 +48,7 @@ They use synthetic fixtures and test doubles for the external services. `npm run
 
 `npm run fixtures` regenerates the ten evaluation profiles from [eval/fixtures-source.js](eval/fixtures-source.js): ten fictional personas in nine timezones, with 200 hand-written posts (139 English, 30 Spanish and 31 Urdu, some of it Roman Urdu) and 80 page likes, each labelled for language, sentiment and topics. `npm run eval` runs the real local pipeline, scores the rule-based modules against those labels with 95% Wilson intervals, and writes results, reports, timings, a failure-injection report and source hashes to a new `eval/results/<UTC run>/` folder. The Vision, OpenAI, HIBP and explanation paths use test doubles, so their results are reported as contract checks and not as accuracy. See the [evaluation protocol](eval/README.md).
 
-Results from run 2026-10-06T10-24-06-563Z (protocol 2.0.0):
+Results from run 2026-10-07T06-12-32-283Z (protocol 2.0.0, commit 8ebee94):
 
 | Module | Result |
 |---|---|
@@ -90,7 +90,7 @@ The job queue runs in one process and is not durable across restarts or replicas
 
 ## Security checks
 
-`npm audit` reports no dependency advisories. Semgrep 1.172.0 (36 Node.js rules over 25 targets) raised four cookie-setting warnings, which were reviewed and are recorded with their dispositions. Njsscan 1.0.1 reported no findings on Windows; the Linux CI job gives it a supported platform. To run the scanners yourself, use a disposable Python environment with the [pinned requirements](scripts/security-requirements.txt) and the commands in the [CI workflow](.github/workflows/checks.yml). These checks are not a penetration test.
+`npm audit` reports no dependency advisories. The Linux CI job runs Semgrep 1.172.0 with the `p/nodejs` ruleset and njsscan 1.0.1 over `src` and `index.js`. Semgrep raises four warnings about the session cookie settings, and njsscan raises warnings about the same cookie, about `res.render` calls and about four regular expressions. All of them were reviewed: the cookie is host-only, expires through `maxAge` and is Secure in production, every `res.render` call uses a fixed template name, and the regular expressions are anchored with no nested repetition. To run the scanners yourself, use a disposable Python environment with the [pinned requirements](scripts/security-requirements.txt) and the commands in the [CI workflow](.github/workflows/checks.yml). These checks are not a penetration test.
 
 ## Code map
 

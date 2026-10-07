@@ -1,0 +1,3128 @@
+{
+  "schemaVersion": "3.0.0",
+  "metadata": {
+    "inputHash": "8f39f1b6ac3fe011563af954271bcd2b7050956ca1c9838bc4df7940f0f6f924",
+    "timezone": "Asia/Karachi",
+    "model": "gpt-4o-mini",
+    "temperature": 0,
+    "promptVersion": "1.2.0",
+    "promptHashes": {
+      "explain-image": "c2fe3ee9850299c2df480e14f9c6c1de6b2fc2f5e5324ed59bd8ffe329518844",
+      "explain-inference": "7f910ccb978834928a2881db8b61b1021f7cff4a77e551270f89d5f6f6b74cf4",
+      "explain-interests": "25abe70b01c869eab528dbf051140c82d5740eb30ddc439f98b32e0380fb8590",
+      "explain-osint": "6a5fc7769691bb29eae505a1a0c093b73a9ca641b08de573d5d5e91384d29bc8",
+      "explain-profile": "fbd807f31acd01a2edb4cf72df9792740b4b505542077a457a7954851ea63ed5",
+      "explain-temporal": "0e51cf524597831d50d9be4405e12c224381a334f6222da04f7bb1fc170c06c5",
+      "explain-text": "bced2588e534ea4963668e1681a76877dd3cc26b3a604c03307be7243385b536",
+      "inference": "ed283ad92f9d6d7877d71e518605b2df63cb720d4623220fd329bd4a68ffc597",
+      "judge": "5531675e1504e6097362528adc95119256340c4a967e30a3253d82c929f639ec"
+    },
+    "mode": "authored_mock_providers",
+    "graphVersion": "offline_mock_v24.0_shape"
+  },
+  "modules": {
+    "text": {
+      "status": "ok",
+      "features": {
+        "sentiment": {
+          "value": {
+            "distribution": {
+              "positive": 0,
+              "neutral": 0,
+              "negative": 0,
+              "unscored": 20
+            },
+            "mean": null,
+            "scoredN": 0,
+            "posts": [
+              {
+                "postId": "p07-post-1",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-2",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-3",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-4",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-5",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-6",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-7",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-8",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-9",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-10",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-11",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-12",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-13",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-14",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-15",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-16",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-17",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-18",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-19",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              },
+              {
+                "postId": "p07-post-20",
+                "label": "unscored",
+                "score": null,
+                "language": "ur"
+              }
+            ]
+          },
+          "status": "ok",
+          "method": "per_post_vader_compound_english",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "VADER (Hutto & Gilbert, 2014) lexicon and rules; compound >= 0.05 is positive and <= -0.05 negative.",
+            "Only posts detected as English are scored; other languages are unscored, not neutral.",
+            "Sarcasm, slang and context are handled poorly; this describes wording, not mood or mental state."
+          ]
+        },
+        "readability": {
+          "value": null,
+          "status": "insufficient_evidence",
+          "method": "flesch_reading_ease_english_posts",
+          "methodVersion": "2.0.0",
+          "inputs": [],
+          "n": 0,
+          "confidence": null,
+          "limitations": [
+            "Requires at least 5 sentences and 40 words of English text.",
+            "Heuristic syllable count; short informal posts make the score unstable. Not an education estimate."
+          ]
+        },
+        "keywords": {
+          "value": [
+            {
+              "term": "بہت",
+              "weight": 1.8937477557266986,
+              "postIds": [
+                "p07-post-1",
+                "p07-post-5",
+                "p07-post-12",
+                "p07-post-13",
+                "p07-post-15",
+                "p07-post-20"
+              ]
+            },
+            {
+              "term": "میں",
+              "weight": 1.292194203904495,
+              "postIds": [
+                "p07-post-2",
+                "p07-post-4",
+                "p07-post-12"
+              ]
+            },
+            {
+              "term": "رات",
+              "weight": 1.1783640596221254,
+              "postIds": [
+                "p07-post-14",
+                "p07-post-19"
+              ]
+            },
+            {
+              "term": "دیا",
+              "weight": 1.1573218442717303,
+              "postIds": [
+                "p07-post-1",
+                "p07-post-16"
+              ]
+            },
+            {
+              "term": "اجلاس",
+              "weight": 1.1171250857211592,
+              "postIds": [
+                "p07-post-7"
+              ]
+            },
+            {
+              "term": "اسمبلی",
+              "weight": 1.1171250857211592,
+              "postIds": [
+                "p07-post-7"
+              ]
+            },
+            {
+              "term": "قومی",
+              "weight": 1.1171250857211592,
+              "postIds": [
+                "p07-post-7"
+              ]
+            },
+            {
+              "term": "نہیں",
+              "weight": 1.0801670546536148,
+              "postIds": [
+                "p07-post-9",
+                "p07-post-19"
+              ]
+            },
+            {
+              "term": "شروع",
+              "weight": 1.0100263368189646,
+              "postIds": [
+                "p07-post-10",
+                "p07-post-20"
+              ]
+            },
+            {
+              "term": "فیض",
+              "weight": 0.9575357877609936,
+              "postIds": [
+                "p07-post-6"
+              ]
+            },
+            {
+              "term": "جیت",
+              "weight": 0.9574207984429769,
+              "postIds": [
+                "p07-post-8",
+                "p07-post-15"
+              ]
+            },
+            {
+              "term": "لیا",
+              "weight": 0.9574207984429769,
+              "postIds": [
+                "p07-post-8",
+                "p07-post-15"
+              ]
+            },
+            {
+              "term": "بچوں",
+              "weight": 0.9118293318504541,
+              "postIds": [
+                "p07-post-1",
+                "p07-post-11"
+              ]
+            },
+            {
+              "term": "ہیں",
+              "weight": 0.9118293318504541,
+              "postIds": [
+                "p07-post-11",
+                "p07-post-20"
+              ]
+            },
+            {
+              "term": "ارادہ",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p07-post-17"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "tf_normalized_smoothed_idf_across_posts",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "English stopword list; keywords are frequent distinctive words, not inferred attributes."
+          ]
+        },
+        "topics": {
+          "value": null,
+          "status": "insufficient_evidence",
+          "method": "per_post_english_keyword_taxonomy",
+          "methodVersion": "2.0.0",
+          "inputs": [],
+          "n": 0,
+          "confidence": null,
+          "limitations": [
+            "15-topic project taxonomy, matched on whole words with light suffix stripping.",
+            "20 of 20 posts are not English and fall outside topic coverage."
+          ]
+        },
+        "languages": {
+          "value": {
+            "dominant": "ur",
+            "counts": {
+              "ur": 20
+            },
+            "perPost": [
+              {
+                "postId": "p07-post-1",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-2",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-3",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-4",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-5",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-6",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-7",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-8",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 0.7857142857142857
+              },
+              {
+                "postId": "p07-post-9",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-10",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-11",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-12",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-13",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-14",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-15",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-16",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-17",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-18",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-19",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p07-post-20",
+                "language": "ur",
+                "source": "post_detection",
+                "accuracy": 1
+              }
+            ]
+          },
+          "status": "ok",
+          "method": "tinyld_ngram_with_profile_dominant_fallback",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Per-post detection accepted at accuracy >= 0.3 with 3+ words; shorter posts inherit the dominant language of the same script.",
+            "Named-entity recognition is not implemented."
+          ]
+        }
+      },
+      "diagnostics": {
+        "englishPosts": 0,
+        "nonEnglishPosts": 20,
+        "dominantLanguage": "ur"
+      }
+    },
+    "temporal": {
+      "status": "ok",
+      "features": {
+        "circular": {
+          "value": {
+            "meanHour": 18.92851617488794,
+            "resultantLength": 0.8005111080271459
+          },
+          "status": "ok",
+          "method": "user_local_circular_hour_statistics",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+          ]
+        },
+        "peakHours": {
+          "value": [
+            16,
+            21
+          ],
+          "status": "ok",
+          "method": "user_local_hour_histogram_modes",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+          ]
+        },
+        "hourHistogram": {
+          "value": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            0
+          ],
+          "status": "ok",
+          "method": "user_local_24_hour_histogram",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+          ]
+        },
+        "entropy": {
+          "value": {
+            "bits": 1,
+            "millerMadowBits": 1.036067376022224,
+            "normalized": 0.23972341817714252,
+            "n": 20,
+            "occupiedBins": 2
+          },
+          "status": "ok",
+          "method": "miller_madow_hour_entropy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+          ]
+        },
+        "intervals": {
+          "value": {
+            "unit": "hours",
+            "count": 19,
+            "min": 19.25,
+            "max": 53.25,
+            "mean": 40.666666666666664,
+            "median": 43.166666666666664
+          },
+          "status": "ok",
+          "method": "sorted_utc_inter_post_intervals",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+          ]
+        },
+        "weekdayWeekend": {
+          "value": {
+            "weekdayPosts": 15,
+            "weekendPosts": 5,
+            "ratio": 3
+          },
+          "status": "ok",
+          "method": "weekday_to_weekend_post_count_ratio",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-post-1",
+            "p07-post-2",
+            "p07-post-3",
+            "p07-post-4",
+            "p07-post-5",
+            "p07-post-6",
+            "p07-post-7",
+            "p07-post-8",
+            "p07-post-9",
+            "p07-post-10",
+            "p07-post-11",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-14",
+            "p07-post-15",
+            "p07-post-16",
+            "p07-post-17",
+            "p07-post-18",
+            "p07-post-19",
+            "p07-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+          ]
+        }
+      },
+      "diagnostics": {
+        "validN": 20,
+        "minN": 10,
+        "timezone": "Asia/Karachi"
+      }
+    },
+    "interests": {
+      "status": "ok",
+      "features": {
+        "categories": {
+          "value": [
+            {
+              "topic": "arts_culture",
+              "likeIds": [
+                "p07-like-3"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "education",
+              "likeIds": [
+                "p07-like-8"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "film_tv",
+              "likeIds": [
+                "p07-like-2"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "food_drink",
+              "likeIds": [
+                "p07-like-6"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "music",
+              "likeIds": [
+                "p07-like-7"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "news_politics",
+              "likeIds": [
+                "p07-like-4"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "sports_fitness",
+              "likeIds": [
+                "p07-like-1"
+              ],
+              "via": [
+                "page_category"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "like_page_category_then_name_taxonomy",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p07-like-1",
+            "p07-like-2",
+            "p07-like-3",
+            "p07-like-4",
+            "p07-like-5",
+            "p07-like-6",
+            "p07-like-7",
+            "p07-like-8"
+          ],
+          "n": 8,
+          "confidence": null,
+          "limitations": [
+            "15 project categories. A page like is an observed action, not proof of identity, belief or endorsement.",
+            "1 of 8 likes matched no category."
+          ]
+        }
+      },
+      "diagnostics": {
+        "likes": 8,
+        "unmapped": 1,
+        "unmappedIds": [
+          "p07-like-5"
+        ]
+      }
+    },
+    "inference": {
+      "status": "ok",
+      "features": {
+        "guesses": {
+          "value": [
+            {
+              "attribute": "location",
+              "guess": "کراچی",
+              "evidence": [
+                {
+                  "postId": "p07-post-2",
+                  "quote": "کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے"
+                }
+              ],
+              "certainty": "low"
+            }
+          ],
+          "status": "ok",
+          "method": "llm_guess_with_exact_span_verification",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-post-2"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+          ]
+        }
+      },
+      "diagnostics": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5,
+        "rejectionReasons": {
+          "quote_not_in_post": 1
+        },
+        "postsSent": 20
+      }
+    },
+    "osint": {
+      "status": "ok",
+      "features": {
+        "breaches": {
+          "value": [
+            {
+              "name": "SyntheticExample",
+              "date": "2020-01-01",
+              "dataClasses": [
+                "Email addresses",
+                "Passwords"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "hibp_v3_authenticated_owned_email_lookup",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "oauth:email"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+          ]
+        }
+      },
+      "diagnostics": {}
+    },
+    "image": {
+      "status": "ok",
+      "features": {
+        "observations": {
+          "value": [
+            {
+              "photoId": "p07-photo-1",
+              "method": "google_vision",
+              "text": "BOOKS 1",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Book",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p07-photo-2",
+              "method": "google_vision",
+              "text": "BOOKS 2",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "Tree",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p07-photo-3",
+              "method": "google_vision",
+              "text": "BOOKS 3",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "House",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            },
+            {
+              "photoId": "p07-photo-4",
+              "method": "google_vision",
+              "text": "B00KS 4",
+              "ocrConfidence": null,
+              "labels": [
+                {
+                  "label": "IncorrectLabel",
+                  "confidence": 0.8
+                }
+              ],
+              "objects": [],
+              "logos": [],
+              "landmarks": []
+            }
+          ],
+          "status": "ok",
+          "method": "vision_features_with_optional_local_tesseract_fallback",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p07-photo-1",
+            "p07-photo-2",
+            "p07-photo-3",
+            "p07-photo-4"
+          ],
+          "n": 4,
+          "confidence": null,
+          "limitations": [
+            "No face recognition, facial attributes or demographic classification. OCR confidence is only reported by local OCR; Vision label scores come from the provider and are not accuracy estimates.",
+            "At most 25 photos per run. Failed photographs and omitted photographs are listed in diagnostics."
+          ]
+        }
+      },
+      "diagnostics": {
+        "failures": 0,
+        "failureCodes": {},
+        "attempted": 4,
+        "omitted": 0
+      }
+    }
+  },
+  "features": {
+    "text.sentiment": {
+      "value": {
+        "distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0,
+          "unscored": 20
+        },
+        "mean": null,
+        "scoredN": 0,
+        "posts": [
+          {
+            "postId": "p07-post-1",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-2",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-3",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-4",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-5",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-6",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-7",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-8",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-9",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-10",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-11",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-12",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-13",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-14",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-15",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-16",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-17",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-18",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-19",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-20",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          }
+        ]
+      },
+      "status": "ok",
+      "method": "per_post_vader_compound_english",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "VADER (Hutto & Gilbert, 2014) lexicon and rules; compound >= 0.05 is positive and <= -0.05 negative.",
+        "Only posts detected as English are scored; other languages are unscored, not neutral.",
+        "Sarcasm, slang and context are handled poorly; this describes wording, not mood or mental state."
+      ]
+    },
+    "text.readability": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "method": "flesch_reading_ease_english_posts",
+      "methodVersion": "2.0.0",
+      "inputs": [],
+      "n": 0,
+      "confidence": null,
+      "limitations": [
+        "Requires at least 5 sentences and 40 words of English text.",
+        "Heuristic syllable count; short informal posts make the score unstable. Not an education estimate."
+      ]
+    },
+    "text.keywords": {
+      "value": [
+        {
+          "term": "بہت",
+          "weight": 1.8937477557266986,
+          "postIds": [
+            "p07-post-1",
+            "p07-post-5",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-15",
+            "p07-post-20"
+          ]
+        },
+        {
+          "term": "میں",
+          "weight": 1.292194203904495,
+          "postIds": [
+            "p07-post-2",
+            "p07-post-4",
+            "p07-post-12"
+          ]
+        },
+        {
+          "term": "رات",
+          "weight": 1.1783640596221254,
+          "postIds": [
+            "p07-post-14",
+            "p07-post-19"
+          ]
+        },
+        {
+          "term": "دیا",
+          "weight": 1.1573218442717303,
+          "postIds": [
+            "p07-post-1",
+            "p07-post-16"
+          ]
+        },
+        {
+          "term": "اجلاس",
+          "weight": 1.1171250857211592,
+          "postIds": [
+            "p07-post-7"
+          ]
+        },
+        {
+          "term": "اسمبلی",
+          "weight": 1.1171250857211592,
+          "postIds": [
+            "p07-post-7"
+          ]
+        },
+        {
+          "term": "قومی",
+          "weight": 1.1171250857211592,
+          "postIds": [
+            "p07-post-7"
+          ]
+        },
+        {
+          "term": "نہیں",
+          "weight": 1.0801670546536148,
+          "postIds": [
+            "p07-post-9",
+            "p07-post-19"
+          ]
+        },
+        {
+          "term": "شروع",
+          "weight": 1.0100263368189646,
+          "postIds": [
+            "p07-post-10",
+            "p07-post-20"
+          ]
+        },
+        {
+          "term": "فیض",
+          "weight": 0.9575357877609936,
+          "postIds": [
+            "p07-post-6"
+          ]
+        },
+        {
+          "term": "جیت",
+          "weight": 0.9574207984429769,
+          "postIds": [
+            "p07-post-8",
+            "p07-post-15"
+          ]
+        },
+        {
+          "term": "لیا",
+          "weight": 0.9574207984429769,
+          "postIds": [
+            "p07-post-8",
+            "p07-post-15"
+          ]
+        },
+        {
+          "term": "بچوں",
+          "weight": 0.9118293318504541,
+          "postIds": [
+            "p07-post-1",
+            "p07-post-11"
+          ]
+        },
+        {
+          "term": "ہیں",
+          "weight": 0.9118293318504541,
+          "postIds": [
+            "p07-post-11",
+            "p07-post-20"
+          ]
+        },
+        {
+          "term": "ارادہ",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p07-post-17"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "tf_normalized_smoothed_idf_across_posts",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "English stopword list; keywords are frequent distinctive words, not inferred attributes."
+      ]
+    },
+    "text.topics": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "method": "per_post_english_keyword_taxonomy",
+      "methodVersion": "2.0.0",
+      "inputs": [],
+      "n": 0,
+      "confidence": null,
+      "limitations": [
+        "15-topic project taxonomy, matched on whole words with light suffix stripping.",
+        "20 of 20 posts are not English and fall outside topic coverage."
+      ]
+    },
+    "text.languages": {
+      "value": {
+        "dominant": "ur",
+        "counts": {
+          "ur": 20
+        },
+        "perPost": [
+          {
+            "postId": "p07-post-1",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-2",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-3",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-4",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-5",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-6",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-7",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-8",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 0.7857142857142857
+          },
+          {
+            "postId": "p07-post-9",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-10",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-11",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-12",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-13",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-14",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-15",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-16",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-17",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-18",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-19",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-20",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          }
+        ]
+      },
+      "status": "ok",
+      "method": "tinyld_ngram_with_profile_dominant_fallback",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Per-post detection accepted at accuracy >= 0.3 with 3+ words; shorter posts inherit the dominant language of the same script.",
+        "Named-entity recognition is not implemented."
+      ]
+    },
+    "temporal.circular": {
+      "value": {
+        "meanHour": 18.92851617488794,
+        "resultantLength": 0.8005111080271459
+      },
+      "status": "ok",
+      "method": "user_local_circular_hour_statistics",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+      ]
+    },
+    "temporal.peakHours": {
+      "value": [
+        16,
+        21
+      ],
+      "status": "ok",
+      "method": "user_local_hour_histogram_modes",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+      ]
+    },
+    "temporal.hourHistogram": {
+      "value": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        0
+      ],
+      "status": "ok",
+      "method": "user_local_24_hour_histogram",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+      ]
+    },
+    "temporal.entropy": {
+      "value": {
+        "bits": 1,
+        "millerMadowBits": 1.036067376022224,
+        "normalized": 0.23972341817714252,
+        "n": 20,
+        "occupiedBins": 2
+      },
+      "status": "ok",
+      "method": "miller_madow_hour_entropy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+      ]
+    },
+    "temporal.intervals": {
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 19.25,
+        "max": 53.25,
+        "mean": 40.666666666666664,
+        "median": 43.166666666666664
+      },
+      "status": "ok",
+      "method": "sorted_utc_inter_post_intervals",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+      ]
+    },
+    "temporal.weekdayWeekend": {
+      "value": {
+        "weekdayPosts": 15,
+        "weekendPosts": 5,
+        "ratio": 3
+      },
+      "status": "ok",
+      "method": "weekday_to_weekend_post_count_ratio",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Asia/Karachi."
+      ]
+    },
+    "interests.categories": {
+      "value": [
+        {
+          "topic": "arts_culture",
+          "likeIds": [
+            "p07-like-3"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "education",
+          "likeIds": [
+            "p07-like-8"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "film_tv",
+          "likeIds": [
+            "p07-like-2"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "food_drink",
+          "likeIds": [
+            "p07-like-6"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "music",
+          "likeIds": [
+            "p07-like-7"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "news_politics",
+          "likeIds": [
+            "p07-like-4"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "sports_fitness",
+          "likeIds": [
+            "p07-like-1"
+          ],
+          "via": [
+            "page_category"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "like_page_category_then_name_taxonomy",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p07-like-1",
+        "p07-like-2",
+        "p07-like-3",
+        "p07-like-4",
+        "p07-like-5",
+        "p07-like-6",
+        "p07-like-7",
+        "p07-like-8"
+      ],
+      "n": 8,
+      "confidence": null,
+      "limitations": [
+        "15 project categories. A page like is an observed action, not proof of identity, belief or endorsement.",
+        "1 of 8 likes matched no category."
+      ]
+    },
+    "inference.guesses": {
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "کراچی",
+          "evidence": [
+            {
+              "postId": "p07-post-2",
+              "quote": "کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے"
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "status": "ok",
+      "method": "llm_guess_with_exact_span_verification",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-post-2"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+      ]
+    },
+    "osint.breaches": {
+      "value": [
+        {
+          "name": "SyntheticExample",
+          "date": "2020-01-01",
+          "dataClasses": [
+            "Email addresses",
+            "Passwords"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "hibp_v3_authenticated_owned_email_lookup",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "oauth:email"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+      ]
+    },
+    "image.observations": {
+      "value": [
+        {
+          "photoId": "p07-photo-1",
+          "method": "google_vision",
+          "text": "BOOKS 1",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Book",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p07-photo-2",
+          "method": "google_vision",
+          "text": "BOOKS 2",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Tree",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p07-photo-3",
+          "method": "google_vision",
+          "text": "BOOKS 3",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "House",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p07-photo-4",
+          "method": "google_vision",
+          "text": "B00KS 4",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "IncorrectLabel",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        }
+      ],
+      "status": "ok",
+      "method": "vision_features_with_optional_local_tesseract_fallback",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p07-photo-1",
+        "p07-photo-2",
+        "p07-photo-3",
+        "p07-photo-4"
+      ],
+      "n": 4,
+      "confidence": null,
+      "limitations": [
+        "No face recognition, facial attributes or demographic classification. OCR confidence is only reported by local OCR; Vision label scores come from the provider and are not accuracy estimates.",
+        "At most 25 photos per run. Failed photographs and omitted photographs are listed in diagnostics."
+      ]
+    }
+  },
+  "checklist": [
+    {
+      "featureKey": "text.sentiment",
+      "value": {
+        "distribution": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0,
+          "unscored": 20
+        },
+        "mean": null,
+        "scoredN": 0,
+        "posts": [
+          {
+            "postId": "p07-post-1",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-2",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-3",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-4",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-5",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-6",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-7",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-8",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-9",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-10",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-11",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-12",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-13",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-14",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-15",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-16",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-17",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-18",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-19",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          },
+          {
+            "postId": "p07-post-20",
+            "label": "unscored",
+            "score": null,
+            "language": "ur"
+          }
+        ]
+      },
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "per_post_vader_compound_english"
+    },
+    {
+      "featureKey": "text.keywords",
+      "value": [
+        {
+          "term": "بہت",
+          "weight": 1.8937477557266986,
+          "postIds": [
+            "p07-post-1",
+            "p07-post-5",
+            "p07-post-12",
+            "p07-post-13",
+            "p07-post-15",
+            "p07-post-20"
+          ]
+        },
+        {
+          "term": "میں",
+          "weight": 1.292194203904495,
+          "postIds": [
+            "p07-post-2",
+            "p07-post-4",
+            "p07-post-12"
+          ]
+        },
+        {
+          "term": "رات",
+          "weight": 1.1783640596221254,
+          "postIds": [
+            "p07-post-14",
+            "p07-post-19"
+          ]
+        },
+        {
+          "term": "دیا",
+          "weight": 1.1573218442717303,
+          "postIds": [
+            "p07-post-1",
+            "p07-post-16"
+          ]
+        },
+        {
+          "term": "اجلاس",
+          "weight": 1.1171250857211592,
+          "postIds": [
+            "p07-post-7"
+          ]
+        },
+        {
+          "term": "اسمبلی",
+          "weight": 1.1171250857211592,
+          "postIds": [
+            "p07-post-7"
+          ]
+        },
+        {
+          "term": "قومی",
+          "weight": 1.1171250857211592,
+          "postIds": [
+            "p07-post-7"
+          ]
+        },
+        {
+          "term": "نہیں",
+          "weight": 1.0801670546536148,
+          "postIds": [
+            "p07-post-9",
+            "p07-post-19"
+          ]
+        },
+        {
+          "term": "شروع",
+          "weight": 1.0100263368189646,
+          "postIds": [
+            "p07-post-10",
+            "p07-post-20"
+          ]
+        },
+        {
+          "term": "فیض",
+          "weight": 0.9575357877609936,
+          "postIds": [
+            "p07-post-6"
+          ]
+        },
+        {
+          "term": "جیت",
+          "weight": 0.9574207984429769,
+          "postIds": [
+            "p07-post-8",
+            "p07-post-15"
+          ]
+        },
+        {
+          "term": "لیا",
+          "weight": 0.9574207984429769,
+          "postIds": [
+            "p07-post-8",
+            "p07-post-15"
+          ]
+        },
+        {
+          "term": "بچوں",
+          "weight": 0.9118293318504541,
+          "postIds": [
+            "p07-post-1",
+            "p07-post-11"
+          ]
+        },
+        {
+          "term": "ہیں",
+          "weight": 0.9118293318504541,
+          "postIds": [
+            "p07-post-11",
+            "p07-post-20"
+          ]
+        },
+        {
+          "term": "ارادہ",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p07-post-17"
+          ]
+        }
+      ],
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "tf_normalized_smoothed_idf_across_posts"
+    },
+    {
+      "featureKey": "text.languages",
+      "value": {
+        "dominant": "ur",
+        "counts": {
+          "ur": 20
+        },
+        "perPost": [
+          {
+            "postId": "p07-post-1",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-2",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-3",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-4",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-5",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-6",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-7",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-8",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 0.7857142857142857
+          },
+          {
+            "postId": "p07-post-9",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-10",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-11",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-12",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-13",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-14",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-15",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-16",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-17",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-18",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-19",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p07-post-20",
+            "language": "ur",
+            "source": "post_detection",
+            "accuracy": 1
+          }
+        ]
+      },
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "tinyld_ngram_with_profile_dominant_fallback"
+    },
+    {
+      "featureKey": "temporal.circular",
+      "value": {
+        "meanHour": 18.92851617488794,
+        "resultantLength": 0.8005111080271459
+      },
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "user_local_circular_hour_statistics"
+    },
+    {
+      "featureKey": "temporal.peakHours",
+      "value": [
+        16,
+        21
+      ],
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "user_local_hour_histogram_modes"
+    },
+    {
+      "featureKey": "temporal.hourHistogram",
+      "value": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        0
+      ],
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "user_local_24_hour_histogram"
+    },
+    {
+      "featureKey": "temporal.entropy",
+      "value": {
+        "bits": 1,
+        "millerMadowBits": 1.036067376022224,
+        "normalized": 0.23972341817714252,
+        "n": 20,
+        "occupiedBins": 2
+      },
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "miller_madow_hour_entropy"
+    },
+    {
+      "featureKey": "temporal.intervals",
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 19.25,
+        "max": 53.25,
+        "mean": 40.666666666666664,
+        "median": 43.166666666666664
+      },
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "sorted_utc_inter_post_intervals"
+    },
+    {
+      "featureKey": "temporal.weekdayWeekend",
+      "value": {
+        "weekdayPosts": 15,
+        "weekendPosts": 5,
+        "ratio": 3
+      },
+      "inputs": [
+        "p07-post-1",
+        "p07-post-2",
+        "p07-post-3",
+        "p07-post-4",
+        "p07-post-5",
+        "p07-post-6",
+        "p07-post-7",
+        "p07-post-8",
+        "p07-post-9",
+        "p07-post-10",
+        "p07-post-11",
+        "p07-post-12",
+        "p07-post-13",
+        "p07-post-14",
+        "p07-post-15",
+        "p07-post-16",
+        "p07-post-17",
+        "p07-post-18",
+        "p07-post-19",
+        "p07-post-20"
+      ],
+      "method": "weekday_to_weekend_post_count_ratio"
+    },
+    {
+      "featureKey": "interests.categories",
+      "value": [
+        {
+          "topic": "arts_culture",
+          "likeIds": [
+            "p07-like-3"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "education",
+          "likeIds": [
+            "p07-like-8"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "film_tv",
+          "likeIds": [
+            "p07-like-2"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "food_drink",
+          "likeIds": [
+            "p07-like-6"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "music",
+          "likeIds": [
+            "p07-like-7"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "news_politics",
+          "likeIds": [
+            "p07-like-4"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "sports_fitness",
+          "likeIds": [
+            "p07-like-1"
+          ],
+          "via": [
+            "page_category"
+          ]
+        }
+      ],
+      "inputs": [
+        "p07-like-1",
+        "p07-like-2",
+        "p07-like-3",
+        "p07-like-4",
+        "p07-like-5",
+        "p07-like-6",
+        "p07-like-7",
+        "p07-like-8"
+      ],
+      "method": "like_page_category_then_name_taxonomy"
+    },
+    {
+      "featureKey": "inference.guesses",
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "کراچی",
+          "evidence": [
+            {
+              "postId": "p07-post-2",
+              "quote": "کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے"
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "inputs": [
+        "p07-post-2"
+      ],
+      "method": "llm_guess_with_exact_span_verification"
+    },
+    {
+      "featureKey": "osint.breaches",
+      "value": [
+        {
+          "name": "SyntheticExample",
+          "date": "2020-01-01",
+          "dataClasses": [
+            "Email addresses",
+            "Passwords"
+          ]
+        }
+      ],
+      "inputs": [
+        "oauth:email"
+      ],
+      "method": "hibp_v3_authenticated_owned_email_lookup"
+    },
+    {
+      "featureKey": "image.observations",
+      "value": [
+        {
+          "photoId": "p07-photo-1",
+          "method": "google_vision",
+          "text": "BOOKS 1",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Book",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p07-photo-2",
+          "method": "google_vision",
+          "text": "BOOKS 2",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "Tree",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p07-photo-3",
+          "method": "google_vision",
+          "text": "BOOKS 3",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "House",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        },
+        {
+          "photoId": "p07-photo-4",
+          "method": "google_vision",
+          "text": "B00KS 4",
+          "ocrConfidence": null,
+          "labels": [
+            {
+              "label": "IncorrectLabel",
+              "confidence": 0.8
+            }
+          ],
+          "objects": [],
+          "logos": [],
+          "landmarks": []
+        }
+      ],
+      "inputs": [
+        "p07-photo-1",
+        "p07-photo-2",
+        "p07-photo-3",
+        "p07-photo-4"
+      ],
+      "method": "vision_features_with_optional_local_tesseract_fallback"
+    }
+  ],
+  "sources": {
+    "posts": {
+      "p07-post-1": {
+        "text": "آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا",
+        "time": "2026-05-01T11:20:00+0000"
+      },
+      "p07-post-2": {
+        "text": "کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے",
+        "time": "2026-05-02T16:10:00+0000"
+      },
+      "p07-post-3": {
+        "text": "امی نے آج بریانی بنائی، مزہ آ گیا",
+        "time": "2026-05-04T11:35:00+0000"
+      },
+      "p07-post-4": {
+        "text": "کل اسکول میں والدین کی میٹنگ ہے",
+        "time": "2026-05-05T16:25:00+0000"
+      },
+      "p07-post-5": {
+        "text": "دو دن سے بخار ہے، بہت کمزوری محسوس ہو رہی ہے",
+        "time": "2026-05-07T11:15:00+0000"
+      },
+      "p07-post-6": {
+        "text": "فیض احمد فیض کی شاعری ہمیشہ دل کو چھو لیتی ہے",
+        "time": "2026-05-08T16:40:00+0000"
+      },
+      "p07-post-7": {
+        "text": "آج قومی اسمبلی کا اجلاس ہے",
+        "time": "2026-05-10T11:50:00+0000"
+      },
+      "p07-post-8": {
+        "text": "پاکستان نے میچ جیت لیا! زبردست",
+        "time": "2026-05-12T16:05:00+0000"
+      },
+      "p07-post-9": {
+        "text": "اساتذہ کی تنخواہیں تین مہینے سے نہیں ملیں",
+        "time": "2026-05-13T11:25:00+0000"
+      },
+      "p07-post-10": {
+        "text": "بہن کی شادی کی تیاریاں شروع ہو گئیں",
+        "time": "2026-05-15T16:30:00+0000"
+      },
+      "p07-post-11": {
+        "text": "بچوں کے لیے نئی کتابیں منگوائی ہیں",
+        "time": "2026-05-17T11:40:00+0000"
+      },
+      "p07-post-12": {
+        "text": "آخری اوور میں ہار گئے، بہت افسوس ہوا",
+        "time": "2026-05-19T16:15:00+0000"
+      },
+      "p07-post-13": {
+        "text": "سمندر کے کنارے شام بہت خوبصورت تھی",
+        "time": "2026-05-20T11:30:00+0000"
+      },
+      "p07-post-14": {
+        "text": "نیا ڈرامہ آج رات نشر ہوگا",
+        "time": "2026-05-22T16:45:00+0000"
+      },
+      "p07-post-15": {
+        "text": "میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے",
+        "time": "2026-05-24T11:10:00+0000"
+      },
+      "p07-post-16": {
+        "text": "مہنگائی نے سب کا جینا مشکل کر دیا ہے",
+        "time": "2026-05-26T16:20:00+0000"
+      },
+      "p07-post-17": {
+        "text": "عید پر لاہور جانے کا ارادہ ہے",
+        "time": "2026-05-28T11:45:00+0000"
+      },
+      "p07-post-18": {
+        "text": "چائے اور پکوڑے، بارش کا بہترین ساتھ",
+        "time": "2026-05-29T16:35:00+0000"
+      },
+      "p07-post-19": {
+        "text": "رات بھر نیند نہیں آئی",
+        "time": "2026-05-31T11:20:00+0000"
+      },
+      "p07-post-20": {
+        "text": "گرمیوں کی چھٹیاں شروع، بچے بہت خوش ہیں",
+        "time": "2026-06-02T16:00:00+0000"
+      }
+    },
+    "likes": {
+      "p07-like-1": {
+        "name": "Pakistan Cricket",
+        "category": "Sports Team"
+      },
+      "p07-like-2": {
+        "name": "Hum TV",
+        "category": "TV Network"
+      },
+      "p07-like-3": {
+        "name": "Faiz Ahmed Faiz",
+        "category": "Writer"
+      },
+      "p07-like-4": {
+        "name": "Dawn News",
+        "category": "Media/News Company"
+      },
+      "p07-like-5": {
+        "name": "The Citizens Foundation",
+        "category": "Nonprofit Organization"
+      },
+      "p07-like-6": {
+        "name": "Student Biryani",
+        "category": "Restaurant"
+      },
+      "p07-like-7": {
+        "name": "Coke Studio Pakistan",
+        "category": "Musician/Band"
+      },
+      "p07-like-8": {
+        "name": "Karachi Grammar School",
+        "category": "School"
+      }
+    }
+  },
+  "explanations": {
+    "status": "ok",
+    "sentences": [
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "text.sentiment"
+        ]
+      },
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "temporal.circular"
+        ]
+      },
+      {
+        "text": "This section uses 8 source items.",
+        "supportedBy": [
+          "interests.categories"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "inference.guesses"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "osint.breaches"
+        ]
+      },
+      {
+        "text": "This section uses 4 source items.",
+        "supportedBy": [
+          "image.observations"
+        ]
+      }
+    ],
+    "attempted": 18,
+    "flagged": 12,
+    "flaggedRate": 0.6666666666666666,
+    "rejections": [
+      {
+        "index": 1,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 2,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 4,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 5,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 7,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 8,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 10,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 11,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 13,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 14,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 16,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 17,
+        "reason": "judge_rejected"
+      }
+    ],
+    "verifier": "feature_keys + exact_numeric_values + second_llm_judge; not independent human validation",
+    "profile": {
+      "status": "ok",
+      "sentences": [
+        {
+          "text": "Your posts suggest you have ties to کراچی.",
+          "supportedBy": [
+            "inference.guesses"
+          ]
+        }
+      ],
+      "attempted": 1,
+      "flagged": 0,
+      "flaggedRate": 0,
+      "rejections": [],
+      "verifier": "feature_keys + exact_numeric_values + second_llm_judge; not independent human validation",
+      "format": "personal_portrait_v1"
+    },
+    "sectionFailures": [],
+    "sectionFailureCodes": {}
+  }
+}

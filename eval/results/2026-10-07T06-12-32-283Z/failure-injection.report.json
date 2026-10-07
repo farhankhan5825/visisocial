@@ -1,0 +1,3215 @@
+{
+  "schemaVersion": "3.0.0",
+  "metadata": {
+    "inputHash": "17fcf4de7cee78aef7cbada193a244042addf00a943279b43fc89ecefad08701",
+    "timezone": "Europe/London",
+    "model": "gpt-4o-mini",
+    "temperature": 0,
+    "promptVersion": "1.2.0",
+    "promptHashes": {
+      "explain-image": "c2fe3ee9850299c2df480e14f9c6c1de6b2fc2f5e5324ed59bd8ffe329518844",
+      "explain-inference": "7f910ccb978834928a2881db8b61b1021f7cff4a77e551270f89d5f6f6b74cf4",
+      "explain-interests": "25abe70b01c869eab528dbf051140c82d5740eb30ddc439f98b32e0380fb8590",
+      "explain-osint": "6a5fc7769691bb29eae505a1a0c093b73a9ca641b08de573d5d5e91384d29bc8",
+      "explain-profile": "fbd807f31acd01a2edb4cf72df9792740b4b505542077a457a7954851ea63ed5",
+      "explain-temporal": "0e51cf524597831d50d9be4405e12c224381a334f6222da04f7bb1fc170c06c5",
+      "explain-text": "bced2588e534ea4963668e1681a76877dd3cc26b3a604c03307be7243385b536",
+      "inference": "ed283ad92f9d6d7877d71e518605b2df63cb720d4623220fd329bd4a68ffc597",
+      "judge": "5531675e1504e6097362528adc95119256340c4a967e30a3253d82c929f639ec"
+    },
+    "mode": "authored_mock_providers",
+    "graphVersion": "offline_mock_v24.0_shape"
+  },
+  "modules": {
+    "image": {
+      "status": "failed",
+      "features": {},
+      "diagnostics": {},
+      "error": "injected_failure"
+    },
+    "text": {
+      "status": "ok",
+      "features": {
+        "sentiment": {
+          "value": {
+            "distribution": {
+              "positive": 4,
+              "neutral": 12,
+              "negative": 4,
+              "unscored": 0
+            },
+            "mean": 0.027605000000000008,
+            "scoredN": 20,
+            "posts": [
+              {
+                "postId": "p01-post-1",
+                "label": "positive",
+                "score": 0.4767,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-2",
+                "label": "negative",
+                "score": -0.34,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-3",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-4",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-5",
+                "label": "positive",
+                "score": 0.3612,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-6",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-7",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-8",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-9",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-10",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-11",
+                "label": "positive",
+                "score": 0.5106,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-12",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-13",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-14",
+                "label": "negative",
+                "score": -0.4588,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-15",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-16",
+                "label": "negative",
+                "score": -0.0516,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-17",
+                "label": "positive",
+                "score": 0.6114,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-18",
+                "label": "negative",
+                "score": -0.5574,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-19",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              },
+              {
+                "postId": "p01-post-20",
+                "label": "neutral",
+                "score": 0,
+                "language": "en"
+              }
+            ]
+          },
+          "status": "ok",
+          "method": "per_post_vader_compound_english",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "VADER (Hutto & Gilbert, 2014) lexicon and rules; compound >= 0.05 is positive and <= -0.05 negative.",
+            "Only posts detected as English are scored; other languages are unscored, not neutral.",
+            "Sarcasm, slang and context are handled poorly; this describes wording, not mood or mental state."
+          ]
+        },
+        "readability": {
+          "value": {
+            "fleschReadingEase": 77.85894472361811,
+            "sentences": 29,
+            "words": 199
+          },
+          "status": "ok",
+          "method": "flesch_reading_ease_english_posts",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Requires at least 5 sentences and 40 words of English text.",
+            "Heuristic syllable count; short informal posts make the score unstable. Not an education estimate."
+          ]
+        },
+        "keywords": {
+          "value": [
+            {
+              "term": "last",
+              "weight": 1.2025317489396934,
+              "postIds": [
+                "p01-post-7",
+                "p01-post-15",
+                "p01-post-16"
+              ]
+            },
+            {
+              "term": "today",
+              "weight": 1.0801670546536148,
+              "postIds": [
+                "p01-post-6",
+                "p01-post-17"
+              ]
+            },
+            {
+              "term": "night",
+              "weight": 0.9165053797060976,
+              "postIds": [
+                "p01-post-5",
+                "p01-post-18"
+              ]
+            },
+            {
+              "term": "finally",
+              "weight": 0.9118293318504541,
+              "postIds": [
+                "p01-post-3",
+                "p01-post-15"
+              ]
+            },
+            {
+              "term": "grad",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-12"
+              ]
+            },
+            {
+              "term": "job",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-12"
+              ]
+            },
+            {
+              "term": "mumbles",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-10"
+              ]
+            },
+            {
+              "term": "september",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-12"
+              ]
+            },
+            {
+              "term": "starting",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-12"
+              ]
+            },
+            {
+              "term": "sunset",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-10"
+              ]
+            },
+            {
+              "term": "tonight",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-10"
+              ]
+            },
+            {
+              "term": "unreal",
+              "weight": 0.8378438142908694,
+              "postIds": [
+                "p01-post-10"
+              ]
+            },
+            {
+              "term": "anyone",
+              "weight": 0.7364775372638284,
+              "postIds": [
+                "p01-post-4",
+                "p01-post-8"
+              ]
+            },
+            {
+              "term": "actually",
+              "weight": 0.6702750514326956,
+              "postIds": [
+                "p01-post-19"
+              ]
+            },
+            {
+              "term": "birthday",
+              "weight": 0.6702750514326956,
+              "postIds": [
+                "p01-post-17"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "tf_normalized_smoothed_idf_across_posts",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "English stopword list; keywords are frequent distinctive words, not inferred attributes."
+          ]
+        },
+        "topics": {
+          "value": [
+            {
+              "topic": "education",
+              "postIds": [
+                "p01-post-4",
+                "p01-post-5",
+                "p01-post-11",
+                "p01-post-16",
+                "p01-post-18",
+                "p01-post-19"
+              ],
+              "count": 6
+            },
+            {
+              "topic": "work_career",
+              "postIds": [
+                "p01-post-11",
+                "p01-post-12",
+                "p01-post-15"
+              ],
+              "count": 3
+            },
+            {
+              "topic": "travel",
+              "postIds": [
+                "p01-post-2",
+                "p01-post-20"
+              ],
+              "count": 2
+            },
+            {
+              "topic": "family_relationships",
+              "postIds": [
+                "p01-post-17"
+              ],
+              "count": 1
+            },
+            {
+              "topic": "health_wellbeing",
+              "postIds": [
+                "p01-post-5"
+              ],
+              "count": 1
+            },
+            {
+              "topic": "music",
+              "postIds": [
+                "p01-post-14"
+              ],
+              "count": 1
+            },
+            {
+              "topic": "nature_outdoors",
+              "postIds": [
+                "p01-post-10"
+              ],
+              "count": 1
+            },
+            {
+              "topic": "sports_fitness",
+              "postIds": [
+                "p01-post-1"
+              ],
+              "count": 1
+            },
+            {
+              "topic": "technology",
+              "postIds": [
+                "p01-post-18"
+              ],
+              "count": 1
+            }
+          ],
+          "status": "ok",
+          "method": "per_post_english_keyword_taxonomy",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "15-topic project taxonomy, matched on whole words with light suffix stripping.",
+            "0 of 20 posts are not English and fall outside topic coverage."
+          ]
+        },
+        "languages": {
+          "value": {
+            "dominant": "en",
+            "counts": {
+              "en": 18
+            },
+            "perPost": [
+              {
+                "postId": "p01-post-1",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 0.5916750000000001
+              },
+              {
+                "postId": "p01-post-2",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 0.5272030769230769
+              },
+              {
+                "postId": "p01-post-3",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-4",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-5",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-6",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-7",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-8",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-9",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-10",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-11",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 0.4016566037735849
+              },
+              {
+                "postId": "p01-post-12",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 0.46134571428571436
+              },
+              {
+                "postId": "p01-post-13",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-14",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-15",
+                "language": "en",
+                "source": "profile_dominant_language",
+                "accuracy": 0.08619565217391303
+              },
+              {
+                "postId": "p01-post-16",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 0.4628272727272727
+              },
+              {
+                "postId": "p01-post-17",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-18",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              },
+              {
+                "postId": "p01-post-19",
+                "language": "en",
+                "source": "profile_dominant_language",
+                "accuracy": 0.095682
+              },
+              {
+                "postId": "p01-post-20",
+                "language": "en",
+                "source": "post_detection",
+                "accuracy": 1
+              }
+            ]
+          },
+          "status": "ok",
+          "method": "tinyld_ngram_with_profile_dominant_fallback",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "Per-post detection accepted at accuracy >= 0.3 with 3+ words; shorter posts inherit the dominant language of the same script.",
+            "Named-entity recognition is not implemented."
+          ]
+        }
+      },
+      "diagnostics": {
+        "englishPosts": 20,
+        "nonEnglishPosts": 0,
+        "dominantLanguage": "en"
+      }
+    },
+    "temporal": {
+      "status": "ok",
+      "features": {
+        "circular": {
+          "value": {
+            "meanHour": 21.525174491847988,
+            "resultantLength": 0.9764579846397226
+          },
+          "status": "ok",
+          "method": "user_local_circular_hour_statistics",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "peakHours": {
+          "value": [
+            21
+          ],
+          "status": "ok",
+          "method": "user_local_hour_histogram_modes",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "hourHistogram": {
+          "value": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            8,
+            4,
+            2
+          ],
+          "status": "ok",
+          "method": "user_local_24_hour_histogram",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "entropy": {
+          "value": {
+            "bits": 1.8464393446710154,
+            "millerMadowBits": 1.9546414727376877,
+            "normalized": 0.4522614513300063,
+            "n": 20,
+            "occupiedBins": 4
+          },
+          "status": "ok",
+          "method": "miller_madow_hour_entropy",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "intervals": {
+          "value": {
+            "unit": "hours",
+            "count": 19,
+            "min": 22.416666666666668,
+            "max": 71.66666666666667,
+            "mean": 45.45614035087719,
+            "median": 48.416666666666664
+          },
+          "status": "ok",
+          "method": "sorted_utc_inter_post_intervals",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        },
+        "weekdayWeekend": {
+          "value": {
+            "weekdayPosts": 14,
+            "weekendPosts": 6,
+            "ratio": 2.3333333333333335
+          },
+          "status": "ok",
+          "method": "weekday_to_weekend_post_count_ratio",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p01-post-1",
+            "p01-post-2",
+            "p01-post-3",
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-6",
+            "p01-post-7",
+            "p01-post-8",
+            "p01-post-9",
+            "p01-post-10",
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-13",
+            "p01-post-14",
+            "p01-post-15",
+            "p01-post-16",
+            "p01-post-17",
+            "p01-post-18",
+            "p01-post-19",
+            "p01-post-20"
+          ],
+          "n": 20,
+          "confidence": null,
+          "limitations": [
+            "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+            "0 posts lack valid timestamps. Timezone: Europe/London."
+          ]
+        }
+      },
+      "diagnostics": {
+        "validN": 20,
+        "minN": 10,
+        "timezone": "Europe/London"
+      }
+    },
+    "interests": {
+      "status": "ok",
+      "features": {
+        "categories": {
+          "value": [
+            {
+              "topic": "education",
+              "likeIds": [
+                "p01-like-1"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "food_drink",
+              "likeIds": [
+                "p01-like-7"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "gaming",
+              "likeIds": [
+                "p01-like-4"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "music",
+              "likeIds": [
+                "p01-like-6"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "news_politics",
+              "likeIds": [
+                "p01-like-8"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "sports_fitness",
+              "likeIds": [
+                "p01-like-2"
+              ],
+              "via": [
+                "page_category"
+              ]
+            },
+            {
+              "topic": "technology",
+              "likeIds": [
+                "p01-like-3"
+              ],
+              "via": [
+                "page_category"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "like_page_category_then_name_taxonomy",
+          "methodVersion": "2.0.0",
+          "inputs": [
+            "p01-like-1",
+            "p01-like-2",
+            "p01-like-3",
+            "p01-like-4",
+            "p01-like-5",
+            "p01-like-6",
+            "p01-like-7",
+            "p01-like-8"
+          ],
+          "n": 8,
+          "confidence": null,
+          "limitations": [
+            "15 project categories. A page like is an observed action, not proof of identity, belief or endorsement.",
+            "1 of 8 likes matched no category."
+          ]
+        }
+      },
+      "diagnostics": {
+        "likes": 8,
+        "unmapped": 1,
+        "unmappedIds": [
+          "p01-like-5"
+        ]
+      }
+    },
+    "inference": {
+      "status": "ok",
+      "features": {
+        "guesses": {
+          "value": [
+            {
+              "attribute": "location",
+              "guess": "Swansea",
+              "evidence": [
+                {
+                  "postId": "p01-post-13",
+                  "quote": "Moving into a new flat in Swansea next month."
+                }
+              ],
+              "certainty": "low"
+            }
+          ],
+          "status": "ok",
+          "method": "llm_guess_with_exact_span_verification",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "p01-post-13"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+          ]
+        }
+      },
+      "diagnostics": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5,
+        "rejectionReasons": {
+          "quote_not_in_post": 1
+        },
+        "postsSent": 20
+      }
+    },
+    "osint": {
+      "status": "ok",
+      "features": {
+        "breaches": {
+          "value": [
+            {
+              "name": "SyntheticExample",
+              "date": "2020-01-01",
+              "dataClasses": [
+                "Email addresses",
+                "Passwords"
+              ]
+            }
+          ],
+          "status": "ok",
+          "method": "hibp_v3_authenticated_owned_email_lookup",
+          "methodVersion": "1.0.0",
+          "inputs": [
+            "oauth:email"
+          ],
+          "n": 1,
+          "confidence": null,
+          "limitations": [
+            "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+          ]
+        }
+      },
+      "diagnostics": {}
+    }
+  },
+  "features": {
+    "text.sentiment": {
+      "value": {
+        "distribution": {
+          "positive": 4,
+          "neutral": 12,
+          "negative": 4,
+          "unscored": 0
+        },
+        "mean": 0.027605000000000008,
+        "scoredN": 20,
+        "posts": [
+          {
+            "postId": "p01-post-1",
+            "label": "positive",
+            "score": 0.4767,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-2",
+            "label": "negative",
+            "score": -0.34,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-3",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-4",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-5",
+            "label": "positive",
+            "score": 0.3612,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-6",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-7",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-8",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-9",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-10",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-11",
+            "label": "positive",
+            "score": 0.5106,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-12",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-13",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-14",
+            "label": "negative",
+            "score": -0.4588,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-15",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-16",
+            "label": "negative",
+            "score": -0.0516,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-17",
+            "label": "positive",
+            "score": 0.6114,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-18",
+            "label": "negative",
+            "score": -0.5574,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-19",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-20",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          }
+        ]
+      },
+      "status": "ok",
+      "method": "per_post_vader_compound_english",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "VADER (Hutto & Gilbert, 2014) lexicon and rules; compound >= 0.05 is positive and <= -0.05 negative.",
+        "Only posts detected as English are scored; other languages are unscored, not neutral.",
+        "Sarcasm, slang and context are handled poorly; this describes wording, not mood or mental state."
+      ]
+    },
+    "text.readability": {
+      "value": {
+        "fleschReadingEase": 77.85894472361811,
+        "sentences": 29,
+        "words": 199
+      },
+      "status": "ok",
+      "method": "flesch_reading_ease_english_posts",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Requires at least 5 sentences and 40 words of English text.",
+        "Heuristic syllable count; short informal posts make the score unstable. Not an education estimate."
+      ]
+    },
+    "text.keywords": {
+      "value": [
+        {
+          "term": "last",
+          "weight": 1.2025317489396934,
+          "postIds": [
+            "p01-post-7",
+            "p01-post-15",
+            "p01-post-16"
+          ]
+        },
+        {
+          "term": "today",
+          "weight": 1.0801670546536148,
+          "postIds": [
+            "p01-post-6",
+            "p01-post-17"
+          ]
+        },
+        {
+          "term": "night",
+          "weight": 0.9165053797060976,
+          "postIds": [
+            "p01-post-5",
+            "p01-post-18"
+          ]
+        },
+        {
+          "term": "finally",
+          "weight": 0.9118293318504541,
+          "postIds": [
+            "p01-post-3",
+            "p01-post-15"
+          ]
+        },
+        {
+          "term": "grad",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "job",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "mumbles",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "september",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "starting",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "sunset",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "tonight",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "unreal",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "anyone",
+          "weight": 0.7364775372638284,
+          "postIds": [
+            "p01-post-4",
+            "p01-post-8"
+          ]
+        },
+        {
+          "term": "actually",
+          "weight": 0.6702750514326956,
+          "postIds": [
+            "p01-post-19"
+          ]
+        },
+        {
+          "term": "birthday",
+          "weight": 0.6702750514326956,
+          "postIds": [
+            "p01-post-17"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "tf_normalized_smoothed_idf_across_posts",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "English stopword list; keywords are frequent distinctive words, not inferred attributes."
+      ]
+    },
+    "text.topics": {
+      "value": [
+        {
+          "topic": "education",
+          "postIds": [
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-11",
+            "p01-post-16",
+            "p01-post-18",
+            "p01-post-19"
+          ],
+          "count": 6
+        },
+        {
+          "topic": "work_career",
+          "postIds": [
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-15"
+          ],
+          "count": 3
+        },
+        {
+          "topic": "travel",
+          "postIds": [
+            "p01-post-2",
+            "p01-post-20"
+          ],
+          "count": 2
+        },
+        {
+          "topic": "family_relationships",
+          "postIds": [
+            "p01-post-17"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "health_wellbeing",
+          "postIds": [
+            "p01-post-5"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "music",
+          "postIds": [
+            "p01-post-14"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "nature_outdoors",
+          "postIds": [
+            "p01-post-10"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "sports_fitness",
+          "postIds": [
+            "p01-post-1"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "technology",
+          "postIds": [
+            "p01-post-18"
+          ],
+          "count": 1
+        }
+      ],
+      "status": "ok",
+      "method": "per_post_english_keyword_taxonomy",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "15-topic project taxonomy, matched on whole words with light suffix stripping.",
+        "0 of 20 posts are not English and fall outside topic coverage."
+      ]
+    },
+    "text.languages": {
+      "value": {
+        "dominant": "en",
+        "counts": {
+          "en": 18
+        },
+        "perPost": [
+          {
+            "postId": "p01-post-1",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.5916750000000001
+          },
+          {
+            "postId": "p01-post-2",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.5272030769230769
+          },
+          {
+            "postId": "p01-post-3",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-4",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-5",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-6",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-7",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-8",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-9",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-10",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-11",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.4016566037735849
+          },
+          {
+            "postId": "p01-post-12",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.46134571428571436
+          },
+          {
+            "postId": "p01-post-13",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-14",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-15",
+            "language": "en",
+            "source": "profile_dominant_language",
+            "accuracy": 0.08619565217391303
+          },
+          {
+            "postId": "p01-post-16",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.4628272727272727
+          },
+          {
+            "postId": "p01-post-17",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-18",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-19",
+            "language": "en",
+            "source": "profile_dominant_language",
+            "accuracy": 0.095682
+          },
+          {
+            "postId": "p01-post-20",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          }
+        ]
+      },
+      "status": "ok",
+      "method": "tinyld_ngram_with_profile_dominant_fallback",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "Per-post detection accepted at accuracy >= 0.3 with 3+ words; shorter posts inherit the dominant language of the same script.",
+        "Named-entity recognition is not implemented."
+      ]
+    },
+    "temporal.circular": {
+      "value": {
+        "meanHour": 21.525174491847988,
+        "resultantLength": 0.9764579846397226
+      },
+      "status": "ok",
+      "method": "user_local_circular_hour_statistics",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.peakHours": {
+      "value": [
+        21
+      ],
+      "status": "ok",
+      "method": "user_local_hour_histogram_modes",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.hourHistogram": {
+      "value": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        8,
+        4,
+        2
+      ],
+      "status": "ok",
+      "method": "user_local_24_hour_histogram",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.entropy": {
+      "value": {
+        "bits": 1.8464393446710154,
+        "millerMadowBits": 1.9546414727376877,
+        "normalized": 0.4522614513300063,
+        "n": 20,
+        "occupiedBins": 4
+      },
+      "status": "ok",
+      "method": "miller_madow_hour_entropy",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.intervals": {
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 22.416666666666668,
+        "max": 71.66666666666667,
+        "mean": 45.45614035087719,
+        "median": 48.416666666666664
+      },
+      "status": "ok",
+      "method": "sorted_utc_inter_post_intervals",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "temporal.weekdayWeekend": {
+      "value": {
+        "weekdayPosts": 14,
+        "weekendPosts": 6,
+        "ratio": 2.3333333333333335
+      },
+      "status": "ok",
+      "method": "weekday_to_weekend_post_count_ratio",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "n": 20,
+      "confidence": null,
+      "limitations": [
+        "At least 10 valid timezone-qualified timestamps required. Describes observed posts, not daily routines or vulnerability.",
+        "0 posts lack valid timestamps. Timezone: Europe/London."
+      ]
+    },
+    "interests.categories": {
+      "value": [
+        {
+          "topic": "education",
+          "likeIds": [
+            "p01-like-1"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "food_drink",
+          "likeIds": [
+            "p01-like-7"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "gaming",
+          "likeIds": [
+            "p01-like-4"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "music",
+          "likeIds": [
+            "p01-like-6"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "news_politics",
+          "likeIds": [
+            "p01-like-8"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "sports_fitness",
+          "likeIds": [
+            "p01-like-2"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "technology",
+          "likeIds": [
+            "p01-like-3"
+          ],
+          "via": [
+            "page_category"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "like_page_category_then_name_taxonomy",
+      "methodVersion": "2.0.0",
+      "inputs": [
+        "p01-like-1",
+        "p01-like-2",
+        "p01-like-3",
+        "p01-like-4",
+        "p01-like-5",
+        "p01-like-6",
+        "p01-like-7",
+        "p01-like-8"
+      ],
+      "n": 8,
+      "confidence": null,
+      "limitations": [
+        "15 project categories. A page like is an observed action, not proof of identity, belief or endorsement.",
+        "1 of 8 likes matched no category."
+      ]
+    },
+    "inference.guesses": {
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "Swansea",
+          "evidence": [
+            {
+              "postId": "p01-post-13",
+              "quote": "Moving into a new flat in Swansea next month."
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "status": "ok",
+      "method": "llm_guess_with_exact_span_verification",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "p01-post-13"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "An AI model guessed these attributes. Verbatim citation checking does not establish that the guess follows from the quote or is true. Certainty is the model’s label, not calibrated confidence."
+      ]
+    },
+    "osint.breaches": {
+      "value": [
+        {
+          "name": "SyntheticExample",
+          "date": "2020-01-01",
+          "dataClasses": [
+            "Email addresses",
+            "Passwords"
+          ]
+        }
+      ],
+      "status": "ok",
+      "method": "hibp_v3_authenticated_owned_email_lookup",
+      "methodVersion": "1.0.0",
+      "inputs": [
+        "oauth:email"
+      ],
+      "n": 1,
+      "confidence": null,
+      "limitations": [
+        "Source: Have I Been Pwned (https://haveibeenpwned.com/), CC BY 4.0. Absence of records is not proof of safety. A breach record does not confirm a currently active account. No username, phone, name, image or domain search is offered."
+      ]
+    }
+  },
+  "checklist": [
+    {
+      "featureKey": "text.sentiment",
+      "value": {
+        "distribution": {
+          "positive": 4,
+          "neutral": 12,
+          "negative": 4,
+          "unscored": 0
+        },
+        "mean": 0.027605000000000008,
+        "scoredN": 20,
+        "posts": [
+          {
+            "postId": "p01-post-1",
+            "label": "positive",
+            "score": 0.4767,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-2",
+            "label": "negative",
+            "score": -0.34,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-3",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-4",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-5",
+            "label": "positive",
+            "score": 0.3612,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-6",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-7",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-8",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-9",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-10",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-11",
+            "label": "positive",
+            "score": 0.5106,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-12",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-13",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-14",
+            "label": "negative",
+            "score": -0.4588,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-15",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-16",
+            "label": "negative",
+            "score": -0.0516,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-17",
+            "label": "positive",
+            "score": 0.6114,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-18",
+            "label": "negative",
+            "score": -0.5574,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-19",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          },
+          {
+            "postId": "p01-post-20",
+            "label": "neutral",
+            "score": 0,
+            "language": "en"
+          }
+        ]
+      },
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "per_post_vader_compound_english"
+    },
+    {
+      "featureKey": "text.readability",
+      "value": {
+        "fleschReadingEase": 77.85894472361811,
+        "sentences": 29,
+        "words": 199
+      },
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "flesch_reading_ease_english_posts"
+    },
+    {
+      "featureKey": "text.keywords",
+      "value": [
+        {
+          "term": "last",
+          "weight": 1.2025317489396934,
+          "postIds": [
+            "p01-post-7",
+            "p01-post-15",
+            "p01-post-16"
+          ]
+        },
+        {
+          "term": "today",
+          "weight": 1.0801670546536148,
+          "postIds": [
+            "p01-post-6",
+            "p01-post-17"
+          ]
+        },
+        {
+          "term": "night",
+          "weight": 0.9165053797060976,
+          "postIds": [
+            "p01-post-5",
+            "p01-post-18"
+          ]
+        },
+        {
+          "term": "finally",
+          "weight": 0.9118293318504541,
+          "postIds": [
+            "p01-post-3",
+            "p01-post-15"
+          ]
+        },
+        {
+          "term": "grad",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "job",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "mumbles",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "september",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "starting",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-12"
+          ]
+        },
+        {
+          "term": "sunset",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "tonight",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "unreal",
+          "weight": 0.8378438142908694,
+          "postIds": [
+            "p01-post-10"
+          ]
+        },
+        {
+          "term": "anyone",
+          "weight": 0.7364775372638284,
+          "postIds": [
+            "p01-post-4",
+            "p01-post-8"
+          ]
+        },
+        {
+          "term": "actually",
+          "weight": 0.6702750514326956,
+          "postIds": [
+            "p01-post-19"
+          ]
+        },
+        {
+          "term": "birthday",
+          "weight": 0.6702750514326956,
+          "postIds": [
+            "p01-post-17"
+          ]
+        }
+      ],
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "tf_normalized_smoothed_idf_across_posts"
+    },
+    {
+      "featureKey": "text.topics",
+      "value": [
+        {
+          "topic": "education",
+          "postIds": [
+            "p01-post-4",
+            "p01-post-5",
+            "p01-post-11",
+            "p01-post-16",
+            "p01-post-18",
+            "p01-post-19"
+          ],
+          "count": 6
+        },
+        {
+          "topic": "work_career",
+          "postIds": [
+            "p01-post-11",
+            "p01-post-12",
+            "p01-post-15"
+          ],
+          "count": 3
+        },
+        {
+          "topic": "travel",
+          "postIds": [
+            "p01-post-2",
+            "p01-post-20"
+          ],
+          "count": 2
+        },
+        {
+          "topic": "family_relationships",
+          "postIds": [
+            "p01-post-17"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "health_wellbeing",
+          "postIds": [
+            "p01-post-5"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "music",
+          "postIds": [
+            "p01-post-14"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "nature_outdoors",
+          "postIds": [
+            "p01-post-10"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "sports_fitness",
+          "postIds": [
+            "p01-post-1"
+          ],
+          "count": 1
+        },
+        {
+          "topic": "technology",
+          "postIds": [
+            "p01-post-18"
+          ],
+          "count": 1
+        }
+      ],
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "per_post_english_keyword_taxonomy"
+    },
+    {
+      "featureKey": "text.languages",
+      "value": {
+        "dominant": "en",
+        "counts": {
+          "en": 18
+        },
+        "perPost": [
+          {
+            "postId": "p01-post-1",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.5916750000000001
+          },
+          {
+            "postId": "p01-post-2",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.5272030769230769
+          },
+          {
+            "postId": "p01-post-3",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-4",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-5",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-6",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-7",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-8",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-9",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-10",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-11",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.4016566037735849
+          },
+          {
+            "postId": "p01-post-12",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.46134571428571436
+          },
+          {
+            "postId": "p01-post-13",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-14",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-15",
+            "language": "en",
+            "source": "profile_dominant_language",
+            "accuracy": 0.08619565217391303
+          },
+          {
+            "postId": "p01-post-16",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 0.4628272727272727
+          },
+          {
+            "postId": "p01-post-17",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-18",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          },
+          {
+            "postId": "p01-post-19",
+            "language": "en",
+            "source": "profile_dominant_language",
+            "accuracy": 0.095682
+          },
+          {
+            "postId": "p01-post-20",
+            "language": "en",
+            "source": "post_detection",
+            "accuracy": 1
+          }
+        ]
+      },
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "tinyld_ngram_with_profile_dominant_fallback"
+    },
+    {
+      "featureKey": "temporal.circular",
+      "value": {
+        "meanHour": 21.525174491847988,
+        "resultantLength": 0.9764579846397226
+      },
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "user_local_circular_hour_statistics"
+    },
+    {
+      "featureKey": "temporal.peakHours",
+      "value": [
+        21
+      ],
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "user_local_hour_histogram_modes"
+    },
+    {
+      "featureKey": "temporal.hourHistogram",
+      "value": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        8,
+        4,
+        2
+      ],
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "user_local_24_hour_histogram"
+    },
+    {
+      "featureKey": "temporal.entropy",
+      "value": {
+        "bits": 1.8464393446710154,
+        "millerMadowBits": 1.9546414727376877,
+        "normalized": 0.4522614513300063,
+        "n": 20,
+        "occupiedBins": 4
+      },
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "miller_madow_hour_entropy"
+    },
+    {
+      "featureKey": "temporal.intervals",
+      "value": {
+        "unit": "hours",
+        "count": 19,
+        "min": 22.416666666666668,
+        "max": 71.66666666666667,
+        "mean": 45.45614035087719,
+        "median": 48.416666666666664
+      },
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "sorted_utc_inter_post_intervals"
+    },
+    {
+      "featureKey": "temporal.weekdayWeekend",
+      "value": {
+        "weekdayPosts": 14,
+        "weekendPosts": 6,
+        "ratio": 2.3333333333333335
+      },
+      "inputs": [
+        "p01-post-1",
+        "p01-post-2",
+        "p01-post-3",
+        "p01-post-4",
+        "p01-post-5",
+        "p01-post-6",
+        "p01-post-7",
+        "p01-post-8",
+        "p01-post-9",
+        "p01-post-10",
+        "p01-post-11",
+        "p01-post-12",
+        "p01-post-13",
+        "p01-post-14",
+        "p01-post-15",
+        "p01-post-16",
+        "p01-post-17",
+        "p01-post-18",
+        "p01-post-19",
+        "p01-post-20"
+      ],
+      "method": "weekday_to_weekend_post_count_ratio"
+    },
+    {
+      "featureKey": "interests.categories",
+      "value": [
+        {
+          "topic": "education",
+          "likeIds": [
+            "p01-like-1"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "food_drink",
+          "likeIds": [
+            "p01-like-7"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "gaming",
+          "likeIds": [
+            "p01-like-4"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "music",
+          "likeIds": [
+            "p01-like-6"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "news_politics",
+          "likeIds": [
+            "p01-like-8"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "sports_fitness",
+          "likeIds": [
+            "p01-like-2"
+          ],
+          "via": [
+            "page_category"
+          ]
+        },
+        {
+          "topic": "technology",
+          "likeIds": [
+            "p01-like-3"
+          ],
+          "via": [
+            "page_category"
+          ]
+        }
+      ],
+      "inputs": [
+        "p01-like-1",
+        "p01-like-2",
+        "p01-like-3",
+        "p01-like-4",
+        "p01-like-5",
+        "p01-like-6",
+        "p01-like-7",
+        "p01-like-8"
+      ],
+      "method": "like_page_category_then_name_taxonomy"
+    },
+    {
+      "featureKey": "inference.guesses",
+      "value": [
+        {
+          "attribute": "location",
+          "guess": "Swansea",
+          "evidence": [
+            {
+              "postId": "p01-post-13",
+              "quote": "Moving into a new flat in Swansea next month."
+            }
+          ],
+          "certainty": "low"
+        }
+      ],
+      "inputs": [
+        "p01-post-13"
+      ],
+      "method": "llm_guess_with_exact_span_verification"
+    },
+    {
+      "featureKey": "osint.breaches",
+      "value": [
+        {
+          "name": "SyntheticExample",
+          "date": "2020-01-01",
+          "dataClasses": [
+            "Email addresses",
+            "Passwords"
+          ]
+        }
+      ],
+      "inputs": [
+        "oauth:email"
+      ],
+      "method": "hibp_v3_authenticated_owned_email_lookup"
+    }
+  ],
+  "sources": {
+    "posts": {
+      "p01-post-1": {
+        "text": "Handed in my final year project report. Running on caffeine and pure relief.",
+        "time": "2026-05-02T20:10:00+0000"
+      },
+      "p01-post-2": {
+        "text": "Train from Cardiff cancelled again. Forty minutes on a freezing platform.",
+        "time": "2026-05-03T21:05:00+0000"
+      },
+      "p01-post-3": {
+        "text": "Got my Raspberry Pi weather station logging to a dashboard finally",
+        "time": "2026-05-04T19:45:00+0000"
+      },
+      "p01-post-4": {
+        "text": "Library open till midnight during exams, if anyone needs a desk",
+        "time": "2026-05-06T20:30:00+0000"
+      },
+      "p01-post-5": {
+        "text": "Third night of barely sleeping before this exam. Brain feels like soup.",
+        "time": "2026-05-08T22:15:00+0000"
+      },
+      "p01-post-6": {
+        "text": "Wales smashed it today!! What a try in the second half",
+        "time": "2026-05-10T19:20:00+0000"
+      },
+      "p01-post-7": {
+        "text": "Mam sent me home with enough cawl to last a week",
+        "time": "2026-05-12T20:50:00+0000"
+      },
+      "p01-post-8": {
+        "text": "Anyone used Rust for embedded stuff? Thinking of trying it over the summer",
+        "time": "2026-05-14T21:40:00+0000"
+      },
+      "p01-post-9": {
+        "text": "Got 52 on the networks coursework. Expected way more tbh",
+        "time": "2026-05-15T20:05:00+0000"
+      },
+      "p01-post-10": {
+        "text": "Sunset over Mumbles tonight was unreal",
+        "time": "2026-05-17T19:30:00+0000"
+      },
+      "p01-post-11": {
+        "text": "Graduate scheme interview on Thursday, any tips appreciated",
+        "time": "2026-05-19T20:40:00+0000"
+      },
+      "p01-post-12": {
+        "text": "GOT THE GRAD JOB. Starting in September!",
+        "time": "2026-05-21T21:10:00+0000"
+      },
+      "p01-post-13": {
+        "text": "Moving into a new flat in Swansea next month.",
+        "time": "2026-05-23T19:55:00+0000"
+      },
+      "p01-post-14": {
+        "text": "The sound at that gig was awful, couldn't hear the vocals at all",
+        "time": "2026-05-25T20:20:00+0000"
+      },
+      "p01-post-15": {
+        "text": "Finally beat the last boss in Elden Ring after 40 attempts",
+        "time": "2026-05-27T22:05:00+0000"
+      },
+      "p01-post-16": {
+        "text": "Last lecture of uni ever. Weird feeling.",
+        "time": "2026-05-29T20:00:00+0000"
+      },
+      "p01-post-17": {
+        "text": "Happy birthday to my little brother, 18 today!",
+        "time": "2026-06-01T19:40:00+0000"
+      },
+      "p01-post-18": {
+        "text": "Laptop died the night before my demo. Of course it did.",
+        "time": "2026-06-03T21:30:00+0000"
+      },
+      "p01-post-19": {
+        "text": "Graduation photos are in and I actually look decent for once",
+        "time": "2026-06-05T20:15:00+0000"
+      },
+      "p01-post-20": {
+        "text": "Booked a cheap flight to Porto for July",
+        "time": "2026-06-07T19:50:00+0000"
+      }
+    },
+    "likes": {
+      "p01-like-1": {
+        "name": "Swansea University",
+        "category": "College & University"
+      },
+      "p01-like-2": {
+        "name": "Welsh Rugby Union",
+        "category": "Sports League"
+      },
+      "p01-like-3": {
+        "name": "Raspberry Pi",
+        "category": "Computers & Internet Website"
+      },
+      "p01-like-4": {
+        "name": "FromSoftware",
+        "category": "Video Game"
+      },
+      "p01-like-5": {
+        "name": "Gower Peninsula",
+        "category": "Landmark & Historical Place"
+      },
+      "p01-like-6": {
+        "name": "Super Furry Animals",
+        "category": "Musician/Band"
+      },
+      "p01-like-7": {
+        "name": "Greggs",
+        "category": "Bakery"
+      },
+      "p01-like-8": {
+        "name": "BBC Wales News",
+        "category": "Media/News Company"
+      }
+    }
+  },
+  "explanations": {
+    "status": "ok",
+    "sentences": [
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "text.sentiment"
+        ]
+      },
+      {
+        "text": "This section uses 20 source items.",
+        "supportedBy": [
+          "temporal.circular"
+        ]
+      },
+      {
+        "text": "This section uses 8 source items.",
+        "supportedBy": [
+          "interests.categories"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "inference.guesses"
+        ]
+      },
+      {
+        "text": "This section uses 1 source items.",
+        "supportedBy": [
+          "osint.breaches"
+        ]
+      }
+    ],
+    "attempted": 15,
+    "flagged": 10,
+    "flaggedRate": 0.6666666666666666,
+    "rejections": [
+      {
+        "index": 1,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 2,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 4,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 5,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 7,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 8,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 10,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 11,
+        "reason": "judge_rejected"
+      },
+      {
+        "index": 13,
+        "reason": "numeric_mismatch"
+      },
+      {
+        "index": 14,
+        "reason": "judge_rejected"
+      }
+    ],
+    "verifier": "feature_keys + exact_numeric_values + second_llm_judge; not independent human validation",
+    "profile": {
+      "status": "ok",
+      "sentences": [
+        {
+          "text": "Your posts suggest you have ties to Swansea.",
+          "supportedBy": [
+            "inference.guesses"
+          ]
+        }
+      ],
+      "attempted": 1,
+      "flagged": 0,
+      "flaggedRate": 0,
+      "rejections": [],
+      "verifier": "feature_keys + exact_numeric_values + second_llm_judge; not independent human validation",
+      "format": "personal_portrait_v1"
+    },
+    "sectionFailures": [],
+    "sectionFailureCodes": {}
+  }
+}
