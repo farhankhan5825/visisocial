@@ -48,17 +48,21 @@ They use synthetic fixtures and test doubles for the external services. `npm run
 
 `npm run fixtures` regenerates the ten evaluation profiles from [eval/fixtures-source.js](eval/fixtures-source.js): ten fictional personas in nine timezones, with 200 hand-written posts (139 English, 30 Spanish and 31 Urdu, some of it Roman Urdu) and 80 page likes, each labelled for language, sentiment and topics. `npm run eval` runs the real local pipeline, scores the rule-based modules against those labels with 95% Wilson intervals, and writes results, reports, timings, a failure-injection report and source hashes to a new `eval/results/<UTC run>/` folder. The Vision, OpenAI, HIBP and explanation paths use test doubles, so their results are reported as contract checks and not as accuracy. See the [evaluation protocol](eval/README.md).
 
-Results from run 2026-10-07T06-12-32-283Z (protocol 2.0.0, commit 8ebee94):
+Results from run 2026-10-07T08-17-10-238Z (protocol 2.0.0, clean checkout of commit 558df6d). Intervals come from resampling whole personas (`npm run eval:analyze`), because posts from the same persona are not independent:
 
-| Module | Result |
-|---|---|
-| Language detection, all 200 posts | 95.0% accuracy, 95% CI [91.0, 97.3] |
-| Sentiment, scored English posts | 44.4% accuracy, CI [36.2, 52.8], macro-F1 0.44 |
-| Post topics, English | precision 0.67, recall 0.40 |
-| Page-like categories | precision 1.00, recall 0.76 |
-| Peak posting hour | 13 of 13 peaks recovered |
+| Module | Result | Simple baseline |
+|---|---|---|
+| Language detection, all 200 posts | 95.0% accuracy, CI [88.0, 100] | Always English: 69.5% |
+| Sentiment, 133 scored English posts | 44.4% accuracy, CI [36.1, 51.5]; macro-F1 0.44 | Always positive: 45.9% accuracy, macro-F1 0.21 |
+| Post topics, English | precision 0.67, recall 0.40 | Most frequent topic: 0.16, 0.15 |
+| Page-like topics | precision 1.00, recall 0.76 | Most frequent topic: 0.16, 0.14 |
+| Peak posting hour | 13 of 13 planted peaks recovered | |
 
-Spanish and Urdu posts are left unscored and fall outside the English topic rules. All labels come from one annotator who also maintains the taxonomy, so read these numbers as a reproducible check, not a validated benchmark. Runs before protocol 2.0.0 (for example 2026-10-06T09-30-14-475Z) used fixtures written in the vocabulary of an older word list and do not measure accuracy.
+All ten language errors come from the two bilingual personas; the eight monolingual personas score 160 of 160. Spanish and Urdu posts are left unscored and fall outside the English topic rules. The labels come from one annotator who also wrote the posts and maintains the taxonomy, so this is a development and regression set, not a benchmark. Blind relabelling by a second annotator is set up in [eval/annotation](eval/annotation/README.md). Runs before protocol 2.0.0 (for example 2026-10-06T09-30-14-475Z) used fixtures written in the vocabulary of an older word list and do not measure accuracy.
+
+### Live model
+
+`npm run eval:live` runs the configured model on the same personas and saves every response, so `node eval/run-live.js --replay eval/live/<run>` repeats the analysis without a key. In run 2026-10-07T08-10-24-596Z (`gpt-4o-mini-2024-07-18`, temperature 0) the model returned 53 attribute guesses and never abstained. The quote check accepted 51. Every location guess named the persona's city, but most accepted relationship-status and age guesses rested on quotes that were authentic and irrelevant, for example an age guessed from a post about the user's brother. Of 159 explanation sentences, the number check rejected 37 and the judge rejected 13 of the rest; the number check's rejections came from rounding, clock times, version strings and counts derived from lists. Human ratings of this output are collected with the annotation package.
 
 The separate local OCR run (ocr-2026-10-06T09-12-38-727Z) gave a character error rate of 0.661 and a word error rate of 0.813 on the generated images. To repeat it, download `eng.traineddata` from [tessdata](https://github.com/tesseract-ocr/tessdata) into a local folder and run:
 
