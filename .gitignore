@@ -44,3 +44,13 @@ coverage/
 # Local build scratch and private working notes
 tmp/
 IMPROVEMENT_PROMPT.md
+
+# Paper and audit notes stay local (not published)
+paper/
+output/
+AUDIT.md
+scripts/build-paper.py
+scripts/paper-visuals.js
+scripts/build-paper-figures.js
+VisiSocial*.pdf
+VisiSocial*.docx

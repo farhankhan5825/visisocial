@@ -2,7 +2,7 @@
 
 VisiSocial is a research prototype that shows people what can be concluded from their own Facebook data, and on what evidence. Every finding is labelled as something you did (observed), something computed from it, or something a language model guessed, and each one links back to the posts, likes or photos it came from. There is no Big Five scoring, no search of other people and no composite risk score.
 
-The accompanying paper is in [paper/manuscript.md](paper/manuscript.md), with built copies in [output/pdf/VisiSocial.pdf](output/pdf/VisiSocial.pdf) and [output/docx/VisiSocial.docx](output/docx/VisiSocial.docx). A hosted instance runs at [visisocial.citmta.com](https://visisocial.citmta.com); sign-in there is limited to allowlisted accounts.
+A hosted instance runs at [visisocial.citmta.com](https://visisocial.citmta.com); sign-in there is limited to allowlisted accounts.
 
 ## Quick start (local)
 
@@ -95,8 +95,6 @@ The job queue runs in one process and is not durable across restarts or replicas
 ## Code map
 
 `index.js` loads `.env` and starts `src/server.js`. `src/app.js` sets up Express and `src/routes` handles requests. The pipeline lives in `src/ingest`, `src/analysis`, `src/report`, `src/privacy`, `src/jobs`, `src/prompts` and `src/schemas`; `src/analysis/taxonomy.js` holds the topic and page-category lists, and `src/report/present.js` turns a report into plain-language sections. The views are EJS with project CSS, server-rendered SVG charts and one same-origin script for filtering and source tracing. `npm run format` applies Prettier; saved results, fixtures, golden files and prompts are excluded so their hashes do not change.
-
-The paper's figures are generated with `node scripts/build-paper-figures.js`, and `python scripts/build-paper.py` builds the PDF and Word versions (it needs reportlab, python-docx, matplotlib and Pillow).
 
 ## Licence
 
