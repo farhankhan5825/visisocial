@@ -370,8 +370,14 @@ async function main() {
   if (!replayDir)
     fs.writeFileSync(path.join(outDir, 'calls.json'), JSON.stringify(calls, null, 2) + '\n');
   const suffix = replayDir ? '.replay' : '';
-  fs.writeFileSync(path.join(outDir, `items${suffix}.json`), JSON.stringify(personas, null, 2) + '\n');
-  fs.writeFileSync(path.join(outDir, `summary${suffix}.json`), JSON.stringify(summary, null, 2) + '\n');
+  fs.writeFileSync(
+    path.join(outDir, `items${suffix}.json`),
+    JSON.stringify(personas, null, 2) + '\n'
+  );
+  fs.writeFileSync(
+    path.join(outDir, `summary${suffix}.json`),
+    JSON.stringify(summary, null, 2) + '\n'
+  );
   process.stdout.write(`${outDir}\n`);
 }
 
