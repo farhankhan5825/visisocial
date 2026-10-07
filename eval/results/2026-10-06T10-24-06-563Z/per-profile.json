@@ -1,0 +1,3284 @@
+[
+  {
+    "id": "p01",
+    "timezone": "Europe/London",
+    "languageCounts": {
+      "en": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p01-post-1",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-2",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-3",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-4",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-5",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-6",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-7",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-8",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-9",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-10",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-11",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-13",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-14",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-15",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p01-post-16",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-17",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-18",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p01-post-19",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p01-post-20",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p01-post-1",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p01-post-2",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p01-post-3",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-4",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-5",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p01-post-6",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-7",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-8",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-9",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-10",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-11",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p01-post-12",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-13",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-14",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p01-post-15",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-16",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p01-post-17",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p01-post-18",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p01-post-19",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p01-post-20",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 13,
+      "fp": 4,
+      "fn": 8,
+      "precision": 0.7647058823529411,
+      "recall": 0.6190476190476191
+    },
+    "postTopicsAllLanguages": {
+      "tp": 13,
+      "fp": 4,
+      "fn": 8,
+      "precision": 0.7647058823529411,
+      "recall": 0.6190476190476191
+    },
+    "profileTopics": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 2,
+      "precision": 1,
+      "recall": 0.6
+    },
+    "likeTopics": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 2,
+      "precision": 1,
+      "recall": 0.7777777777777778
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p02",
+    "timezone": "America/Chicago",
+    "languageCounts": {
+      "en": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p02-post-1",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-2",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-3",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-4",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-5",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-6",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-7",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-8",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-9",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-10",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-11",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-13",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-14",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-15",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-16",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-17",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p02-post-18",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-19",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p02-post-20",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p02-post-1",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-2",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-3",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-4",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-5",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-6",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-7",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-8",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-9",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-10",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p02-post-11",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-12",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-13",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-14",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-15",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-16",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p02-post-17",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p02-post-18",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p02-post-19",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p02-post-20",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 9,
+      "fp": 8,
+      "fn": 12,
+      "precision": 0.5294117647058824,
+      "recall": 0.42857142857142855
+    },
+    "postTopicsAllLanguages": {
+      "tp": 9,
+      "fp": 8,
+      "fn": 12,
+      "precision": 0.5294117647058824,
+      "recall": 0.42857142857142855
+    },
+    "profileTopics": {
+      "tp": 3,
+      "fp": 2,
+      "fn": 1,
+      "precision": 0.6,
+      "recall": 0.75
+    },
+    "likeTopics": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 3,
+      "precision": 1,
+      "recall": 0.6666666666666666
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p03",
+    "timezone": "Australia/Sydney",
+    "languageCounts": {
+      "en": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p03-post-1",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p03-post-2",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-3",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-4",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p03-post-5",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-6",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-7",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-8",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-9",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-10",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-11",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-13",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-14",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-15",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-16",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-17",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-18",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-19",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p03-post-20",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p03-post-1",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-2",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p03-post-3",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p03-post-4",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p03-post-5",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p03-post-6",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p03-post-7",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p03-post-8",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-9",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p03-post-10",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p03-post-11",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-12",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-13",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-14",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-15",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p03-post-16",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-17",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p03-post-18",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p03-post-19",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p03-post-20",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 7,
+      "fp": 6,
+      "fn": 13,
+      "precision": 0.5384615384615384,
+      "recall": 0.35
+    },
+    "postTopicsAllLanguages": {
+      "tp": 7,
+      "fp": 6,
+      "fn": 13,
+      "precision": 0.5384615384615384,
+      "recall": 0.35
+    },
+    "profileTopics": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 4,
+      "precision": 0.5,
+      "recall": 0.3333333333333333
+    },
+    "likeTopics": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 4,
+      "precision": 1,
+      "recall": 0.5555555555555556
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p04",
+    "timezone": "Asia/Kolkata",
+    "languageCounts": {
+      "en": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p04-post-1",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-2",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-3",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-4",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-5",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-6",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-7",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-8",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-9",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-10",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-11",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-13",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-14",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p04-post-15",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-16",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-17",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-18",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-19",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p04-post-20",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p04-post-1",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-2",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-3",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p04-post-4",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-5",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p04-post-6",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-7",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-8",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-9",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-10",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-11",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-12",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-13",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-14",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-15",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p04-post-16",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p04-post-17",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-18",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-19",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p04-post-20",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 5,
+      "fp": 3,
+      "fn": 17,
+      "precision": 0.625,
+      "recall": 0.22727272727272727
+    },
+    "postTopicsAllLanguages": {
+      "tp": 5,
+      "fp": 3,
+      "fn": 17,
+      "precision": 0.625,
+      "recall": 0.22727272727272727
+    },
+    "profileTopics": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 3,
+      "precision": 0,
+      "recall": 0
+    },
+    "likeTopics": {
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "temporalPeak": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p05",
+    "timezone": "Europe/Madrid",
+    "languageCounts": {
+      "es": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p05-post-1",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-2",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-3",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-4",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-5",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p05-post-6",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-7",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-8",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-9",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p05-post-10",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-11",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p05-post-12",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p05-post-13",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p05-post-14",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-15",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p05-post-16",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-17",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-18",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-19",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p05-post-20",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p05-post-1",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-2",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-3",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-4",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-5",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-6",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-7",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-8",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-9",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-10",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-11",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-12",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-13",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-14",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-15",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-16",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-17",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-18",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-19",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p05-post-20",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "postTopicsAllLanguages": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 21,
+      "precision": null,
+      "recall": 0
+    },
+    "profileTopics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "precision": null,
+      "recall": 0
+    },
+    "likeTopics": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1,
+      "recall": 0.875
+    },
+    "temporalPeak": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p06",
+    "timezone": "America/Mexico_City",
+    "languageCounts": {
+      "es": 10,
+      "en": 10
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p06-post-1",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-2",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-3",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-4",
+          "truth": "en",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-5",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p06-post-6",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-7",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-8",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-9",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p06-post-10",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-11",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p06-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-13",
+          "truth": "es",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p06-post-14",
+          "truth": "en",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p06-post-15",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-16",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-17",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-18",
+          "truth": "en",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p06-post-19",
+          "truth": "es",
+          "predicted": "es",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p06-post-20",
+          "truth": "en",
+          "predicted": "es",
+          "source": "profile_dominant_language"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p06-post-1",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-2",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p06-post-3",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-4",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-5",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-6",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p06-post-7",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-8",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p06-post-9",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-10",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p06-post-11",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-12",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p06-post-13",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-14",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-15",
+          "truthLanguage": "es",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-16",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p06-post-17",
+          "truthLanguage": "es",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-18",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-19",
+          "truthLanguage": "es",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p06-post-20",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "unscored"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 2,
+      "fp": 1,
+      "fn": 11,
+      "precision": 0.6666666666666666,
+      "recall": 0.15384615384615385
+    },
+    "postTopicsAllLanguages": {
+      "tp": 2,
+      "fp": 1,
+      "fn": 22,
+      "precision": 0.6666666666666666,
+      "recall": 0.08333333333333333
+    },
+    "profileTopics": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 3,
+      "precision": 1,
+      "recall": 0.25
+    },
+    "likeTopics": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 3,
+      "precision": 1,
+      "recall": 0.7
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p07",
+    "timezone": "Asia/Karachi",
+    "languageCounts": {
+      "ur": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p07-post-1",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-2",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-3",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-4",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-5",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-6",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-7",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-8",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-9",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-10",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-11",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-12",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-13",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-14",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-15",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-16",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-17",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-18",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-19",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p07-post-20",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p07-post-1",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-2",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-3",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-4",
+          "truthLanguage": "ur",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-5",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-6",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-7",
+          "truthLanguage": "ur",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-8",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-9",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-10",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-11",
+          "truthLanguage": "ur",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-12",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-13",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-14",
+          "truthLanguage": "ur",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-15",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-16",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-17",
+          "truthLanguage": "ur",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-18",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-19",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p07-post-20",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null
+    },
+    "postTopicsAllLanguages": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 21,
+      "precision": null,
+      "recall": 0
+    },
+    "profileTopics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "precision": null,
+      "recall": 0
+    },
+    "likeTopics": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1,
+      "recall": 0.875
+    },
+    "temporalPeak": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p08",
+    "timezone": "Europe/London",
+    "languageCounts": {
+      "en": 9,
+      "ur": 11
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p08-post-1",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-2",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-3",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-4",
+          "truth": "ur",
+          "predicted": null,
+          "source": "undetermined"
+        },
+        {
+          "postId": "p08-post-5",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-6",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-7",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-8",
+          "truth": "ur",
+          "predicted": "tl",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-9",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-10",
+          "truth": "en",
+          "predicted": null,
+          "source": "undetermined"
+        },
+        {
+          "postId": "p08-post-11",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-13",
+          "truth": "ur",
+          "predicted": null,
+          "source": "undetermined"
+        },
+        {
+          "postId": "p08-post-14",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-15",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-16",
+          "truth": "en",
+          "predicted": null,
+          "source": "undetermined"
+        },
+        {
+          "postId": "p08-post-17",
+          "truth": "ur",
+          "predicted": null,
+          "source": "undetermined"
+        },
+        {
+          "postId": "p08-post-18",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-19",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p08-post-20",
+          "truth": "ur",
+          "predicted": "ur",
+          "source": "post_detection"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p08-post-1",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p08-post-2",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-3",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p08-post-4",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-5",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p08-post-6",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-7",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p08-post-8",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-9",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-10",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-11",
+          "truthLanguage": "ur",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-12",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p08-post-13",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-14",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p08-post-15",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-16",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-17",
+          "truthLanguage": "ur",
+          "truth": "neutral",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-18",
+          "truthLanguage": "ur",
+          "truth": "negative",
+          "predicted": "unscored"
+        },
+        {
+          "postId": "p08-post-19",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p08-post-20",
+          "truthLanguage": "ur",
+          "truth": "positive",
+          "predicted": "unscored"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 6,
+      "fp": 2,
+      "fn": 4,
+      "precision": 0.75,
+      "recall": 0.6
+    },
+    "postTopicsAllLanguages": {
+      "tp": 6,
+      "fp": 2,
+      "fn": 18,
+      "precision": 0.75,
+      "recall": 0.25
+    },
+    "profileTopics": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 5,
+      "precision": 1,
+      "recall": 0.2857142857142857
+    },
+    "likeTopics": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 3,
+      "precision": 1,
+      "recall": 0.7
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p09",
+    "timezone": "America/Los_Angeles",
+    "languageCounts": {
+      "en": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p09-post-1",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-2",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-3",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-4",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p09-post-5",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-6",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p09-post-7",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p09-post-8",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-9",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-10",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-11",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-13",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-14",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-15",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-16",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-17",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-18",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-19",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p09-post-20",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p09-post-1",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p09-post-2",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p09-post-3",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-4",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-5",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-6",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-7",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p09-post-8",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-9",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-10",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p09-post-11",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p09-post-12",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p09-post-13",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p09-post-14",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-15",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-16",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-17",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p09-post-18",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p09-post-19",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p09-post-20",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 8,
+      "fp": 1,
+      "fn": 14,
+      "precision": 0.8888888888888888,
+      "recall": 0.36363636363636365
+    },
+    "postTopicsAllLanguages": {
+      "tp": 8,
+      "fp": 1,
+      "fn": 14,
+      "precision": 0.8888888888888888,
+      "recall": 0.36363636363636365
+    },
+    "profileTopics": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "precision": 0,
+      "recall": 0
+    },
+    "likeTopics": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 2,
+      "precision": 1,
+      "recall": 0.7777777777777778
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  },
+  {
+    "id": "p10",
+    "timezone": "Africa/Lagos",
+    "languageCounts": {
+      "en": 20
+    },
+    "rows": {
+      "language": [
+        {
+          "postId": "p10-post-1",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-2",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-3",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p10-post-4",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-5",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-6",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-7",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-8",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-9",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p10-post-10",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-11",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p10-post-12",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p10-post-13",
+          "truth": "en",
+          "predicted": "en",
+          "source": "profile_dominant_language"
+        },
+        {
+          "postId": "p10-post-14",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-15",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-16",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-17",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-18",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-19",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        },
+        {
+          "postId": "p10-post-20",
+          "truth": "en",
+          "predicted": "en",
+          "source": "post_detection"
+        }
+      ],
+      "sentiment": [
+        {
+          "postId": "p10-post-1",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p10-post-2",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-3",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-4",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-5",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-6",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-7",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p10-post-8",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-9",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p10-post-10",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-11",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-12",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "negative"
+        },
+        {
+          "postId": "p10-post-13",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p10-post-14",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p10-post-15",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-16",
+          "truthLanguage": "en",
+          "truth": "negative",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-17",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p10-post-18",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        },
+        {
+          "postId": "p10-post-19",
+          "truthLanguage": "en",
+          "truth": "positive",
+          "predicted": "positive"
+        },
+        {
+          "postId": "p10-post-20",
+          "truthLanguage": "en",
+          "truth": "neutral",
+          "predicted": "neutral"
+        }
+      ]
+    },
+    "postTopics": {
+      "tp": 10,
+      "fp": 5,
+      "fn": 12,
+      "precision": 0.6666666666666666,
+      "recall": 0.45454545454545453
+    },
+    "postTopicsAllLanguages": {
+      "tp": 10,
+      "fp": 5,
+      "fn": 12,
+      "precision": 0.6666666666666666,
+      "recall": 0.45454545454545453
+    },
+    "profileTopics": {
+      "tp": 3,
+      "fp": 3,
+      "fn": 2,
+      "precision": 0.5,
+      "recall": 0.6
+    },
+    "likeTopics": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 3,
+      "precision": 1,
+      "recall": 0.7
+    },
+    "temporalPeak": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "contracts": {
+      "visionLabels": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "ocr": {
+        "characterEdits": 2,
+        "characters": 31,
+        "wordEdits": 1,
+        "words": 8,
+        "CER": 0.06451612903225806,
+        "WER": 0.125
+      },
+      "inferenceAttributes": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "breaches": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "explanation": {
+        "attempted": 18,
+        "flagged": 12
+      },
+      "inferenceEvidence": {
+        "attempted": 2,
+        "rejected": 1,
+        "rejectionRate": 0.5
+      }
+    }
+  }
+]

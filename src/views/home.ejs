@@ -1,5 +1,42 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/assets/report.css"><title>VisiSocial</title></head><body><main>
-<p class="eyebrow">Research prototype</p><h1>See what your data supports.</h1><p>VisiSocial brings observations from your posts, posting times, page likes and photos into an evidence checklist. Every finding shows its method, source IDs and limitations.</p>
-<% if (demo) { %><p class="notice">Offline demonstration. The profile is synthetic. Vision, OpenAI and breach responses are authored mocks. This demonstrates the software; it does not measure the services’ accuracy.</p><form action="/demo" method="post"><input type="hidden" name="_csrf" value="<%= csrf %>"><button>Explore the synthetic profile</button></form><% } else { %><p>Only explicitly allowed Meta developer test users may connect. You choose external processing on the consent screen before an analysis begins.</p><a class="button" href="/auth/facebook">Connect your own test account</a><% } %>
-<h2>Evidence first</h2><p>There are no personality scores, composite risk scores or people searches. AI guesses remain guesses. Small samples produce “insufficient evidence”.</p><h2>Privacy</h2><p>Local records expire after 24 hours. You can delete your record sooner. Third-party retention and downloaded copies are outside local deletion.</p>
-</main></body></html>
+<%- include('partials/head', { title: 'Overview', layout: 'console' }) %>
+<main class="work" id="main">
+  <section class="pane" aria-label="Stream">
+    <div class="pane__head"><span class="pane__title">STREAM</span><span class="muted">empty</span></div>
+    <div class="pane__body">
+      <div class="doc">
+        <div class="doc__in">
+          <h1>No account connected.</h1>
+          <p class="lede">Connect your Facebook account and your own posts, page likes and photos are read into this stream. Nothing leaves the server unless you switch on the option that sends it.</p>
+          <% if (demo) { %>
+            <p class="bad">Test fixtures: a synthetic profile with authored mocks for every external service. Used only by automated tests.</p>
+            <form action="/demo" method="post" class="inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="ctl ctl--primary" type="submit">Load test fixtures</button></form>
+          <% } else { %>
+            <p><a class="ctl ctl--primary" href="/auth/facebook">Connect Facebook</a> <span class="muted">read-only, removable at any time</span></p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pane" aria-label="What appears here">
+    <div class="pane__head"><span class="pane__title">FINDINGS</span><span class="muted">appear after a capture</span></div>
+    <div class="pane__body">
+      <div class="doc">
+        <div class="doc__in">
+          <h2>Three kinds of finding</h2>
+          <table class="t">
+            <tbody>
+              <tr><td>● observed</td><td>What you did: page likes, photos and breach records, shown as they are.</td></tr>
+              <tr><td>◐ computed</td><td>What the numbers say: posting rhythm, tone and topics, each with its method and sample size.</td></tr>
+              <tr><td>○ guessed</td><td>What an AI model infers, shown only with a word-for-word quote you can mark wrong.</td></tr>
+            </tbody>
+          </table>
+          <h2>Tracing</h2>
+          <p>Select any finding and the stream highlights the exact posts and likes it came from. Select a post and you see every finding that used it.</p>
+          <h2>Profile insights</h2>
+          <p>See your profile summary, personality observations, activity graphs and exposure checks. Every insight links to evidence. Data is deleted after 24 hours, or immediately on request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include('partials/foot') %>

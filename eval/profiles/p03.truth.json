@@ -1,60 +1,232 @@
 {
   "id": "p03",
-  "language": "en",
-  "nameVariant": "Luca Rossi",
-  "topics": [
-    "technology",
-    "arts"
-  ],
-  "peakHours": [
-    18
-  ],
-  "sentiment": {
-    "positive": 10,
-    "negative": 5,
-    "neutral": 5,
-    "unscored": 0
+  "protocolVersion": "2.0.0",
+  "annotation": "single_annotator_written_with_posts",
+  "name": "Sophie Nguyen",
+  "timezone": "Australia/Sydney",
+  "languageCounts": {
+    "en": 20
   },
-  "city": "London",
-  "cityPostIds": [
-    "p03-post-1",
-    "p03-post-2",
-    "p03-post-3"
+  "posts": [
+    {
+      "postId": "p03-post-1",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["nature_outdoors"]
+    },
+    {
+      "postId": "p03-post-2",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["family_relationships"]
+    },
+    {
+      "postId": "p03-post-3",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["family_relationships", "education"]
+    },
+    {
+      "postId": "p03-post-4",
+      "localHour": 13,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": []
+    },
+    {
+      "postId": "p03-post-5",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["food_drink"]
+    },
+    {
+      "postId": "p03-post-6",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["health_wellbeing", "family_relationships"]
+    },
+    {
+      "postId": "p03-post-7",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["nature_outdoors"]
+    },
+    {
+      "postId": "p03-post-8",
+      "localHour": 13,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["education"]
+    },
+    {
+      "postId": "p03-post-9",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": []
+    },
+    {
+      "postId": "p03-post-10",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["film_tv"]
+    },
+    {
+      "postId": "p03-post-11",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": []
+    },
+    {
+      "postId": "p03-post-12",
+      "localHour": 13,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["nature_outdoors"]
+    },
+    {
+      "postId": "p03-post-13",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p03-post-14",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["family_relationships"]
+    },
+    {
+      "postId": "p03-post-15",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["nature_outdoors"]
+    },
+    {
+      "postId": "p03-post-16",
+      "localHour": 13,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["food_drink"]
+    },
+    {
+      "postId": "p03-post-17",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["health_wellbeing"]
+    },
+    {
+      "postId": "p03-post-18",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["arts_culture"]
+    },
+    {
+      "postId": "p03-post-19",
+      "localHour": 12,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["travel"]
+    },
+    {
+      "postId": "p03-post-20",
+      "localHour": 13,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["travel", "family_relationships"]
+    }
   ],
-  "inference": [
-    "location:London"
+  "likes": [
+    {
+      "likeId": "p03-like-1",
+      "topics": ["film_tv", "nature_outdoors"]
+    },
+    {
+      "likeId": "p03-like-2",
+      "topics": ["film_tv"]
+    },
+    {
+      "likeId": "p03-like-3",
+      "topics": ["family_relationships", "education"]
+    },
+    {
+      "likeId": "p03-like-4",
+      "topics": []
+    },
+    {
+      "likeId": "p03-like-5",
+      "topics": ["pets_animals"]
+    },
+    {
+      "likeId": "p03-like-6",
+      "topics": ["news_politics"]
+    },
+    {
+      "likeId": "p03-like-7",
+      "topics": ["travel"]
+    },
+    {
+      "likeId": "p03-like-8",
+      "topics": ["food_drink"]
+    }
   ],
+  "peakHours": [12],
+  "topics": [
+    "education",
+    "family_relationships",
+    "food_drink",
+    "health_wellbeing",
+    "nature_outdoors",
+    "travel"
+  ],
+  "interests": [
+    "education",
+    "family_relationships",
+    "film_tv",
+    "food_drink",
+    "nature_outdoors",
+    "news_politics",
+    "pets_animals",
+    "travel"
+  ],
+  "city": "Sydney",
+  "inference": ["location:Sydney"],
   "photoTruth": [
     {
       "photoId": "p03-photo-1",
       "text": "BOOKS 1",
-      "labels": [
-        "Book"
-      ],
+      "labels": ["Book"],
       "subject": "Book"
     },
     {
       "photoId": "p03-photo-2",
       "text": "BOOKS 2",
-      "labels": [
-        "Tree"
-      ],
+      "labels": ["Tree"],
       "subject": "Tree"
     },
     {
       "photoId": "p03-photo-3",
       "text": "BOOKS 3",
-      "labels": [
-        "House"
-      ],
+      "labels": ["House"],
       "subject": "House"
     },
     {
       "photoId": "p03-photo-4",
       "text": "BOOKS 4",
-      "labels": [
-        "Car"
-      ],
+      "labels": ["Car"],
       "subject": "Car"
     }
   ],
@@ -62,14 +234,7 @@
     {
       "Name": "SyntheticExample",
       "BreachDate": "2020-01-01",
-      "DataClasses": [
-        "Email addresses",
-        "Passwords"
-      ]
+      "DataClasses": ["Email addresses", "Passwords"]
     }
-  ],
-  "interests": [
-    "technology",
-    "education"
   ]
 }

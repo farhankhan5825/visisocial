@@ -1,60 +1,224 @@
 {
   "id": "p09",
-  "language": "en",
-  "nameVariant": "Sam Taylor",
-  "topics": [
-    "technology",
-    "arts"
-  ],
-  "peakHours": [
-    23
-  ],
-  "sentiment": {
-    "positive": 10,
-    "negative": 5,
-    "neutral": 5,
-    "unscored": 0
+  "protocolVersion": "2.0.0",
+  "annotation": "single_annotator_written_with_posts",
+  "name": "Tyler Kim",
+  "timezone": "America/Los_Angeles",
+  "languageCounts": {
+    "en": 20
   },
-  "city": "London",
-  "cityPostIds": [
-    "p09-post-1",
-    "p09-post-2",
-    "p09-post-3"
+  "posts": [
+    {
+      "postId": "p09-post-1",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p09-post-2",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["gaming", "technology"]
+    },
+    {
+      "postId": "p09-post-3",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p09-post-4",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p09-post-5",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["health_wellbeing"]
+    },
+    {
+      "postId": "p09-post-6",
+      "localHour": 3,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p09-post-7",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["food_drink"]
+    },
+    {
+      "postId": "p09-post-8",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p09-post-9",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": []
+    },
+    {
+      "postId": "p09-post-10",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["film_tv"]
+    },
+    {
+      "postId": "p09-post-11",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p09-post-12",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["gaming", "family_relationships"]
+    },
+    {
+      "postId": "p09-post-13",
+      "localHour": 3,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p09-post-14",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p09-post-15",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p09-post-16",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p09-post-17",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p09-post-18",
+      "localHour": 1,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["pets_animals", "gaming"]
+    },
+    {
+      "postId": "p09-post-19",
+      "localHour": 3,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p09-post-20",
+      "localHour": 2,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["gaming"]
+    }
   ],
-  "inference": [
-    "location:London"
+  "likes": [
+    {
+      "likeId": "p09-like-1",
+      "topics": ["gaming", "technology"]
+    },
+    {
+      "likeId": "p09-like-2",
+      "topics": ["gaming"]
+    },
+    {
+      "likeId": "p09-like-3",
+      "topics": ["technology"]
+    },
+    {
+      "likeId": "p09-like-4",
+      "topics": ["film_tv"]
+    },
+    {
+      "likeId": "p09-like-5",
+      "topics": ["music"]
+    },
+    {
+      "likeId": "p09-like-6",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "likeId": "p09-like-7",
+      "topics": ["food_drink"]
+    },
+    {
+      "likeId": "p09-like-8",
+      "topics": ["pets_animals"]
+    }
   ],
+  "peakHours": [1],
+  "topics": ["gaming", "technology"],
+  "interests": [
+    "film_tv",
+    "food_drink",
+    "gaming",
+    "music",
+    "pets_animals",
+    "sports_fitness",
+    "technology"
+  ],
+  "city": "Los Angeles",
+  "inference": ["location:Los Angeles"],
   "photoTruth": [
     {
       "photoId": "p09-photo-1",
       "text": "BOOKS 1",
-      "labels": [
-        "Book"
-      ],
+      "labels": ["Book"],
       "subject": "Book"
     },
     {
       "photoId": "p09-photo-2",
       "text": "BOOKS 2",
-      "labels": [
-        "Tree"
-      ],
+      "labels": ["Tree"],
       "subject": "Tree"
     },
     {
       "photoId": "p09-photo-3",
       "text": "BOOKS 3",
-      "labels": [
-        "House"
-      ],
+      "labels": ["House"],
       "subject": "House"
     },
     {
       "photoId": "p09-photo-4",
       "text": "BOOKS 4",
-      "labels": [
-        "Car"
-      ],
+      "labels": ["Car"],
       "subject": "Car"
     }
   ],
@@ -62,14 +226,7 @@
     {
       "Name": "SyntheticExample",
       "BreachDate": "2020-01-01",
-      "DataClasses": [
-        "Email addresses",
-        "Passwords"
-      ]
+      "DataClasses": ["Email addresses", "Passwords"]
     }
-  ],
-  "interests": [
-    "technology",
-    "education"
   ]
 }

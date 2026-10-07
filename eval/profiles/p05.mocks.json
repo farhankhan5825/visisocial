@@ -1,5 +1,5 @@
 {
-  "provenance": "authored_synthetic_provider_double_v1",
+  "provenance": "authored_synthetic_provider_double_v2",
   "vision": {
     "p05-photo-1": {
       "fullTextAnnotation": {
@@ -62,11 +62,11 @@
     "items": [
       {
         "attribute": "location",
-        "guess": "London",
+        "guess": "Madrid",
         "evidence": [
           {
-            "postId": "p05-post-1",
-            "quote": "Vivo en Londres."
+            "postId": "p05-post-3",
+            "quote": "Otra vez el metro de Madrid parado una hora. Increíble."
           }
         ],
         "certainty": "low"
@@ -88,10 +88,7 @@
     {
       "Name": "SyntheticExample",
       "BreachDate": "2020-01-01",
-      "DataClasses": [
-        "Email addresses",
-        "Passwords"
-      ]
+      "DataClasses": ["Email addresses", "Passwords"]
     }
   ]
 }

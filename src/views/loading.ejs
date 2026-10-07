@@ -1,1 +1,31 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="3"><link rel="stylesheet" href="/assets/report.css"><title>Analysis in progress</title></head><body><main><h1>Analysis is running.</h1><p>All image processing finishes before the report is assembled. Each module can fail independently. This page refreshes to check completion.</p><a href="/loading">Check now</a></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="refresh" content="3">
+  <title>Capturing · VisiSocial</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/app.css?v=<%= v %>">
+</head>
+<body>
+<div class="app app--doc">
+  <header class="topbar"><span class="brand"><span class="brand__mark" aria-hidden="true"></span>VisiSocial</span><div class="capture"><span class="live" aria-hidden="true"></span>capturing</div></header>
+  <main class="doc" id="main" role="status" aria-live="polite">
+    <div class="doc__in">
+      <h1>Capturing your account</h1>
+      <div class="progress" aria-hidden="true"><i></i></div>
+      <ul class="log">
+        <li>reading posts, page likes and photos</li>
+        <li>placing posting times on your clock</li>
+        <li>scoring tone and topics, post by post</li>
+        <li>analysing photos, if switched on</li>
+        <li>linking every finding to its source items</li>
+      </ul>
+      <p class="muted"><br>Usually under a minute. This page refreshes by itself.</p>
+    </div>
+  </main>
+  <footer class="statusbar"><span>VisiSocial </span></footer>
+</div>
+</body>
+</html>

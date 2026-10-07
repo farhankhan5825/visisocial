@@ -1,0 +1,28 @@
+<%- include('partials/head', { title: 'Method' }) %>
+<main class="doc" id="main">
+  <div class="doc__in">
+    <h1>Method</h1>
+    <p class="lede">How a finding is made, and how it stays traceable to the items it came from.</p>
+    <h2>Capture</h2>
+    <p>Facebook sign-in is read-only. You choose which outside services, if any, may see your data before anything runs. Your posts, page likes and photos are read through the Graph API, every page of them, and checked against a strict format.</p>
+    <h2>Analysis</h2>
+    <table class="t"><tbody>
+      <tr><td>peak hour</td><td>Posting hours on your own clock, with circular statistics so 23:00 and 00:00 stay neighbours.</td></tr>
+      <tr><td>tone</td><td>VADER, a lexicon built for social-media text. English posts only; other languages are left unscored.</td></tr>
+      <tr><td>topics</td><td>A published fifteen-topic word list, matched on whole words.</td></tr>
+      <tr><td>interests</td><td>Facebook page categories mapped to the same topics.</td></tr>
+      <tr><td>photos</td><td>Google Cloud Vision labels and text, or local Tesseract.</td></tr>
+      <tr><td>guesses</td><td>An AI model that may only cite your real post IDs; a guess is kept only if its quote is found in that post.</td></tr>
+      <tr><td>breaches</td><td>Have I Been Pwned, for the email Facebook shared with this app only.</td></tr>
+    </tbody></table>
+    <h2>Checks</h2>
+    <p>Every finding records its method, sample size, source items and limits. An AI-written sentence must cite real findings, use only their numbers and pass a second check, or it is removed. If one part fails, the others still finish and the status bar says which part failed and why.</p>
+    <h2>Known limits</h2>
+    <ul>
+      <li>In our evaluation, tone agreed with human labels on fewer than half of English posts. Sarcasm and achievements without emotional words are often misread.</li>
+      <li>Topic word lists are English only and miss most paraphrase.</li>
+      <li>Only what the Graph API returns is visible. A platform's internal profile is far larger, and no outside tool can see it.</li>
+    </ul>
+  </div>
+</main>
+<%- include('partials/foot') %>

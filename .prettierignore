@@ -1,0 +1,10 @@
+# Saved evaluation artefacts and fixtures are audit records; never reformat them.
+eval/results/
+eval/profiles/
+tests/golden/
+# Prompt templates are hashed into every report.
+src/prompts/
+*.md
+coverage/
+node_modules/
+public/

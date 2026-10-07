@@ -1,5 +1,5 @@
 {
-  "provenance": "authored_synthetic_provider_double_v1",
+  "provenance": "authored_synthetic_provider_double_v2",
   "vision": {
     "p03-photo-1": {
       "fullTextAnnotation": {
@@ -62,11 +62,11 @@
     "items": [
       {
         "attribute": "location",
-        "guess": "London",
+        "guess": "Sydney",
         "evidence": [
           {
-            "postId": "p03-post-1",
-            "quote": "I live in London."
+            "postId": "p03-post-9",
+            "quote": "We moved to Sydney from Brisbane three years ago and still miss the warmth."
           }
         ],
         "certainty": "low"
@@ -88,10 +88,7 @@
     {
       "Name": "SyntheticExample",
       "BreachDate": "2020-01-01",
-      "DataClasses": [
-        "Email addresses",
-        "Passwords"
-      ]
+      "DataClasses": ["Email addresses", "Passwords"]
     }
   ]
 }

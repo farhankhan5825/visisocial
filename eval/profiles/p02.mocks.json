@@ -1,5 +1,5 @@
 {
-  "provenance": "authored_synthetic_provider_double_v1",
+  "provenance": "authored_synthetic_provider_double_v2",
   "vision": {
     "p02-photo-1": {
       "fullTextAnnotation": {
@@ -62,11 +62,11 @@
     "items": [
       {
         "attribute": "location",
-        "guess": "London",
+        "guess": "Chicago",
         "evidence": [
           {
-            "postId": "p02-post-1",
-            "quote": "I live in London."
+            "postId": "p02-post-15",
+            "quote": "Living in Chicago eight years and I still can't handle the winters"
           }
         ],
         "certainty": "low"

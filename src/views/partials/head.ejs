@@ -1,0 +1,41 @@
+<%
+  const shell = typeof layout === 'string' ? layout : 'doc';
+  const capture = typeof captureLine === 'string' ? captureLine : '';
+  const tabs = signedIn
+    ? [['/dashboard', 'Console'], ['/layers', 'Layers'], ['/watchers', 'Readers'], ['/my-data', 'Data']]
+    : [['/', 'Overview'], ['/how-it-works', 'Method'], ['/privacy', 'Privacy'], ['/about', 'About']];
+  const current = (href) => path === href || (href === '/dashboard' && (path === '/report' || path === '/evidence'));
+%><!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title><%= title %> · VisiSocial</title>
+  <meta name="description" content="VisiSocial traces what your own Facebook data reveals back to the posts, likes and photos it came from.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/app.css?v=<%= v %>">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="app <%= shell === 'doc' ? 'app--doc' : '' %>">
+  <header class="topbar">
+    <a class="brand" href="<%= signedIn ? '/dashboard' : '/' %>"><span class="brand__mark" aria-hidden="true"></span>VisiSocial</a>
+    <nav aria-label="Main"><ul class="tabs">
+      <% for (const [href, label] of tabs) { %><li><a href="<%= href %>" <%- current(href) ? 'aria-current="page"' : '' %>><%= label %></a></li><% } %>
+    </ul></nav>
+    <div class="capture"><span class="live <%= signedIn ? '' : 'off' %>" aria-hidden="true"></span><%= capture || (signedIn ? 'signed in' : 'no account connected') %><% if (demo) { %> <span class="bad">· test fixtures</span><% } %></div>
+    <div class="toolbar">
+      <% if (signedIn) { %>
+        <a class="ctl" href="/consent">Re-run</a>
+        <a class="ctl" href="/export">Export</a>
+        <form method="post" action="/logout" class="inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="ctl" type="submit">Log out</button></form>
+      <% } else if (demo) { %>
+        <form action="/demo" method="post" class="inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="ctl ctl--primary" type="submit">Load test fixtures</button></form>
+      <% } else { %>
+        <a class="ctl ctl--primary" href="/auth/facebook">Connect Facebook</a>
+      <% } %>
+    </div>
+  </header>

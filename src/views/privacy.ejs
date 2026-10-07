@@ -1,0 +1,25 @@
+<%- include('partials/head', { title: 'Privacy' }) %>
+<main class="doc" id="main">
+  <div class="doc__in">
+    <h1>Privacy</h1>
+    <p class="lede">What is read, who receives it, and for how long.</p>
+    <h2>Read</h2>
+    <p>With your permission, through Facebook's Graph API: your name, the email Facebook shares with this app, your posts (text and time), your page likes (name and category) and your uploaded photos.</p>
+    <h2>Recipients</h2>
+    <table class="t">
+      <thead><tr><th>recipient</th><th>what</th><th>when</th></tr></thead>
+      <tbody>
+        <tr><td>this server</td><td>everything above</td><td>always, to run the analysis</td></tr>
+        <tr><td>OpenAI</td><td>post text and IDs, structured findings</td><td>only with the AI switch</td></tr>
+        <tr><td>Google Cloud Vision</td><td>up to 25 photos</td><td>only with photo analysis</td></tr>
+        <tr><td>Have I Been Pwned</td><td>your Facebook-shared email</td><td>only with the breach check</td></tr>
+      </tbody>
+    </table>
+    <p><br>Outside services keep data under their own terms. Deleting your data here cannot erase what they already received.</p>
+    <h2>Retention</h2>
+    <p>Your record, encrypted login token, capture and feedback are deleted 24 hours after your last capture. Sessions and cached results last at most one hour. Delete everything, under Data, removes them immediately. No upload or export files are written to disk, and logs hold no personal details.</p>
+    <h2>Security</h2>
+    <p>Your Facebook login token is encrypted with AES-256-GCM. Forms are protected against cross-site requests, and photos are fetched only from Facebook's own image servers.</p>
+  </div>
+</main>
+<%- include('partials/foot') %>

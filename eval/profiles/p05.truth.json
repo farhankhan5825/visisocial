@@ -1,60 +1,232 @@
 {
   "id": "p05",
-  "language": "es",
-  "nameVariant": "María García",
-  "topics": [
-    "technology",
-    "arts"
-  ],
-  "peakHours": [
-    18
-  ],
-  "sentiment": {
-    "positive": 10,
-    "negative": 5,
-    "neutral": 5,
-    "unscored": 0
+  "protocolVersion": "2.0.0",
+  "annotation": "single_annotator_written_with_posts",
+  "name": "Lucía Fernández",
+  "timezone": "Europe/Madrid",
+  "languageCounts": {
+    "es": 20
   },
-  "city": "London",
-  "cityPostIds": [
-    "p05-post-1",
-    "p05-post-2",
-    "p05-post-3"
+  "posts": [
+    {
+      "postId": "p05-post-1",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p05-post-2",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["food_drink"]
+    },
+    {
+      "postId": "p05-post-3",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": []
+    },
+    {
+      "postId": "p05-post-4",
+      "localHour": 14,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p05-post-5",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p05-post-6",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["family_relationships", "food_drink"]
+    },
+    {
+      "postId": "p05-post-7",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["film_tv"]
+    },
+    {
+      "postId": "p05-post-8",
+      "localHour": 14,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": ["health_wellbeing"]
+    },
+    {
+      "postId": "p05-post-9",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["travel"]
+    },
+    {
+      "postId": "p05-post-10",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p05-post-11",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["food_drink"]
+    },
+    {
+      "postId": "p05-post-12",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": ["news_politics"]
+    },
+    {
+      "postId": "p05-post-13",
+      "localHour": 14,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p05-post-14",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["education"]
+    },
+    {
+      "postId": "p05-post-15",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["nature_outdoors"]
+    },
+    {
+      "postId": "p05-post-16",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p05-post-17",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["pets_animals"]
+    },
+    {
+      "postId": "p05-post-18",
+      "localHour": 15,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["news_politics"]
+    },
+    {
+      "postId": "p05-post-19",
+      "localHour": 14,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["food_drink", "family_relationships"]
+    },
+    {
+      "postId": "p05-post-20",
+      "localHour": 22,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": ["travel"]
+    }
   ],
-  "inference": [
-    "location:London"
+  "likes": [
+    {
+      "likeId": "p05-like-1",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "likeId": "p05-like-2",
+      "topics": ["music"]
+    },
+    {
+      "likeId": "p05-like-3",
+      "topics": ["food_drink"]
+    },
+    {
+      "likeId": "p05-like-4",
+      "topics": ["news_politics"]
+    },
+    {
+      "likeId": "p05-like-5",
+      "topics": ["film_tv"]
+    },
+    {
+      "likeId": "p05-like-6",
+      "topics": ["travel"]
+    },
+    {
+      "likeId": "p05-like-7",
+      "topics": ["arts_culture"]
+    },
+    {
+      "likeId": "p05-like-8",
+      "topics": ["education"]
+    }
   ],
+  "peakHours": [15, 22],
+  "topics": [
+    "family_relationships",
+    "food_drink",
+    "news_politics",
+    "sports_fitness",
+    "travel",
+    "work_career"
+  ],
+  "interests": [
+    "arts_culture",
+    "education",
+    "film_tv",
+    "food_drink",
+    "music",
+    "news_politics",
+    "sports_fitness",
+    "travel"
+  ],
+  "city": "Madrid",
+  "inference": ["location:Madrid"],
   "photoTruth": [
     {
       "photoId": "p05-photo-1",
       "text": "BOOKS 1",
-      "labels": [
-        "Book"
-      ],
+      "labels": ["Book"],
       "subject": "Book"
     },
     {
       "photoId": "p05-photo-2",
       "text": "BOOKS 2",
-      "labels": [
-        "Tree"
-      ],
+      "labels": ["Tree"],
       "subject": "Tree"
     },
     {
       "photoId": "p05-photo-3",
       "text": "BOOKS 3",
-      "labels": [
-        "House"
-      ],
+      "labels": ["House"],
       "subject": "House"
     },
     {
       "photoId": "p05-photo-4",
       "text": "BOOKS 4",
-      "labels": [
-        "Car"
-      ],
+      "labels": ["Car"],
       "subject": "Car"
     }
   ],
@@ -62,14 +234,7 @@
     {
       "Name": "SyntheticExample",
       "BreachDate": "2020-01-01",
-      "DataClasses": [
-        "Email addresses",
-        "Passwords"
-      ]
+      "DataClasses": ["Email addresses", "Passwords"]
     }
-  ],
-  "interests": [
-    "technology",
-    "education"
   ]
 }

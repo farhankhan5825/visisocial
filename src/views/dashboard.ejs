@@ -1,0 +1,106 @@
+<%
+  const c = consoleData;
+  const glyph = { observed: '●', computed: '◐', guessed: '○' };
+  const captureLine = `${c.identity.name || 'your account'} / ${c.kinds.post} posts / ${c.kinds.like} likes / ${c.kinds.photo} photos / ${c.timezone}`;
+%>
+<%- include('partials/head', { title: 'Console', layout: 'console', captureLine }) %>
+<main class="dashboard" id="main">
+  <%- include('partials/dashboard-overview', { c }) %>
+  <details class="evidence-drawer" data-evidence-drawer>
+    <summary><span>Evidence explorer</span><span class="muted"><%= c.stream.length %> source items · <%= c.findings.length %> findings · expand to inspect posts</span></summary>
+    <div class="work">
+  <section class="pane" aria-label="Stream of your items">
+    <div class="pane__head">
+      <span class="pane__title">STREAM</span>
+      <div class="seg" role="group" aria-label="Filter stream">
+        <button type="button" data-kind="all" aria-pressed="true">All<b><%= c.stream.length %></b></button>
+        <button type="button" data-kind="post" aria-pressed="false">Posts<b><%= c.kinds.post %></b></button>
+        <button type="button" data-kind="like" aria-pressed="false">Likes<b><%= c.kinds.like %></b></button>
+        <% if (c.kinds.photo) { %><button type="button" data-kind="photo" aria-pressed="false">Photos<b><%= c.kinds.photo %></b></button><% } %>
+      </div>
+      <input class="search" type="search" placeholder="filter text" aria-label="Filter stream text" data-search>
+    </div>
+    <div class="pane__body" data-stream>
+      <% if (!c.stream.length) { %><p class="empty-pane">No items were read from your account.</p><% } %>
+      <ul class="rows">
+        <% for (const s of c.stream) { %>
+          <li class="srow" data-id="<%= s.id %>" data-kind="<%= s.kind %>" tabindex="0">
+            <span class="srow__when"><%= s.when || '' %></span>
+            <span class="srow__kind"><%= s.kind %></span>
+            <span class="srow__text" title="<%= s.text %>"><%= s.text %></span>
+            <span class="srow__used" title="used by <%= s.usedBy %> findings"><%= s.usedBy || '' %></span>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pane" aria-label="Findings">
+    <div class="pane__head">
+      <span class="pane__title">FINDINGS</span>
+      <div class="seg" role="group" aria-label="Filter findings">
+        <button type="button" data-layer-filter="all" aria-pressed="true">All<b><%= c.findings.length %></b></button>
+        <button type="button" data-layer-filter="guessed" aria-pressed="false">○ Guessed<b><%= c.counts.guessed %></b></button>
+        <button type="button" data-layer-filter="computed" aria-pressed="false">◐ Computed<b><%= c.counts.computed %></b></button>
+        <button type="button" data-layer-filter="observed" aria-pressed="false">● Observed<b><%= c.counts.observed %></b></button>
+      </div>
+      <% if (demo) { %><span class="bad">test fixtures: provider results are authored mocks</span><% } %>
+    </div>
+    <div class="pane__body" data-findings>
+      <% for (const f of c.findings) { %>
+        <a class="frow" href="#<%= f.id %>" data-fid="<%= f.id %>" data-layer="<%= f.layer %>" data-sources="<%= f.sources.join(' ') %>">
+          <span class="frow__id"><%= f.id %></span>
+          <span class="frow__glyph" aria-label="<%= f.layer %>"><%= glyph[f.layer] %></span>
+          <span class="frow__name"><%= f.name %></span>
+          <span class="frow__value"><%= f.value %></span>
+          <span class="frow__n"><%= f.sources.length ? f.sources.length + ' src' : '' %></span>
+        </a>
+      <% } %>
+      <% if (!c.counts.guessed) { %><p class="note">○ guesses: <%= c.guessNote %></p><% } %>
+      <% if (c.held.length) { %>
+        <details class="note">
+          <summary class="muted mono">Unavailable sections (<%= c.held.length %>)</summary>
+          <% for (const h of c.held) { %><div><span class="ink2"><%= h.name %></span> <span class="muted">· <%= h.why %></span></div><% } %>
+        </details>
+      <% } %>
+    </div>
+
+    <div class="detail" data-detail aria-live="polite">
+      <article data-default>
+        <h3>Trace a finding</h3>
+        <p class="muted">Select a finding or a graph node to see its source posts and explanation.</p>
+      </article>
+      <% for (const f of c.findings) { %>
+        <article id="<%= f.id %>" data-for="<%= f.id %>" class="hidden">
+          <h3><span class="mono"><%= f.id %></span><%= f.name %>: <span class="<%= f.layer === 'guessed' ? 'acc' : '' %>"><%= f.value %></span></h3>
+          <p><%= f.claim %></p>
+          <dl class="kv">
+            <dt>layer</dt><dd><%= glyph[f.layer] %> <%= f.layer %></dd>
+            <dt>sources</dt><dd><%= f.sources.length %> item<%= f.sources.length === 1 ? '' : 's' %>, highlighted in the stream</dd>
+            <dt>method</dt><dd class="mono"><%= f.method %></dd>
+          </dl>
+          <% for (const q of f.quotes) { %><div class="quote">"<%= q.text %>"<small><%= q.ref %></small></div><% } %>
+          <details><summary class="muted">Why am I seeing this?</summary><ul class="limits"><% for (const l of f.limitations) { %><li><%= l %></li><% } %></ul></details>
+          <% if (f.feedbackIndex !== undefined) { %>
+            <form method="post" action="/feedback" class="inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="index" value="<%= f.feedbackIndex %>"><button class="ctl ctl--sm" type="submit">Mark this guess wrong</button></form>
+          <% } %>
+        </article>
+      <% } %>
+    </div>
+  </section>
+    </div>
+  </details>
+</main>
+<footer class="statusbar">
+  <% if (c.hours) { %>
+    <span>hours</span>
+    <span class="spark" title="posts per hour, <%= c.timezone %>"><% for (const h of c.hours) { %><i class="<%= h.peak ? 'peak' : '' %>" data-h="<%= h.pct %>" title="<%= String(h.h).padStart(2, '0') %>:00, <%= h.v %>"></i><% } %></span>
+  <% } %>
+  <% if (c.tone) { %>
+    <span>tone</span>
+    <span class="mix" title="<%= c.tone.map((t) => t.k + ' ' + t.v).join(', ') %>"><% for (const t of c.tone) { %><i class="<%= t.k %>" data-w="<%= t.pct %>"></i><% } %></span>
+  <% } %>
+  <span class="push"></span>
+  <% for (const m of c.modules) { %><span class="chip <%= m.status %>" title="<%= m.status === 'ok' ? 'done' : m.statusText %>"><%= m.name.toLowerCase().replace('ai ', 'AI ') %></span><% } %>
+</footer>
+<%- include('partials/foot', { statusLine: true }) %>

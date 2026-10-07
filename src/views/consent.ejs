@@ -1,12 +1,27 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="/assets/report.css"><title>Choose your analysis</title></head><body><main><p class="eyebrow">Your account · <%= identity.name || 'Connected account' %></p><h1>Choose what to share.</h1>
-<% if (demo) { %><p class="notice">All provider responses are authored mocks in this offline demonstration. These options exercise the same consent gates as live mode.</p><% } %>
-<p>Local analysis uses your own post text and timestamps, page-like names and categories. Your email comes from the authenticated account. No target identifier can be entered.</p>
-<form action="/analyze" method="post"><input type="hidden" name="_csrf" value="<%= csrf %>">
-<label>Timezone for posting statistics <input name="timezone" value="Europe/London" required maxlength="100"></label><p>Use an IANA timezone, for example Europe/London. This choice is stored with the report.</p>
-<label><input type="checkbox" name="openai"> Send to OpenAI: post IDs and message/story text for attribute guesses; structured feature values, source IDs, sample sizes and limitations for explanations; candidate sentences and their cited features for a second model pass as judge.</label>
-<label><input type="checkbox" name="sensitive"> Also permit age-range and relationship-status guesses. The model receives the same posts. Politics, religion, race, health, sexuality and income are excluded.</label>
-<label><input type="checkbox" name="vision"> Send up to 25 of your photo bytes to Google Cloud Vision for labels, objects, logos, landmarks and embedded text. No face recognition is requested.</label>
-<label><input type="checkbox" name="localOcr"> Permit local English Tesseract OCR if Vision is off or fails. Your images are fetched from an allowlisted Meta CDN and held in memory.</label>
-<label><input type="checkbox" name="hibp"> Send your OAuth-provided email to <a href="https://haveibeenpwned.com/">Have I Been Pwned</a> to check breach records. No other email can be supplied.</label>
-<p>The local record, encrypted token, report and feedback expire after 24 hours. TTL cleanup can lag; expired records are denied immediately. In-memory cache has a one-hour maximum. Exports stream directly; no export or upload files are stored. “Delete my data” drains your jobs and removes local records, sessions and cache. It does not erase data already sent to OpenAI, Google, Meta or HIBP, or copies you download. Their retention depends on your service terms and settings.</p>
-<button>Analyze with these choices</button></form><form action="/delete" method="post"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="secondary">Delete my data</button></form></main></body></html>
+<%- include('partials/head', { title: 'New capture', captureLine: (identity.name || 'your account') + ' / ready to capture' }) %>
+<main class="doc" id="main">
+  <div class="doc__in">
+    <h1>New capture</h1>
+    <p class="lede">Your post text, posting times and page likes are analysed on this server. Each switch below sends something to an outside service, so all start off.</p>
+    <% if (demo) { %><p class="bad">Test fixtures: every provider response is an authored mock. The switches use the same consent gates as live mode.</p><% } %>
+    <form action="/analyze" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+      <h2>Clock</h2>
+      <div class="field">
+        <label for="tz">Your timezone</label>
+        <input id="tz" type="text" name="timezone" value="Europe/London" required maxlength="100" aria-describedby="tz-help">
+        <small id="tz-help">An IANA name such as Europe/London or Asia/Karachi. Places your posting times on your own clock.</small>
+      </div>
+      <h2>Outside services</h2>
+      <label class="toggle"><input type="checkbox" name="openai"><span><strong>AI guesses and summary</strong><span>OpenAI receives post IDs and post text for the guesses; structured findings, source IDs, sample sizes and limitations for the summary; and each candidate sentence with its cited findings for a second model pass as judge.</span></span></label>
+      <label class="toggle"><input type="checkbox" name="sensitive"><span><strong>Age range and relationship guesses</strong><span>Needs the AI switch. Politics, religion, race, health, sexuality and income are never guessed.</span></span></label>
+      <label class="toggle"><input type="checkbox" name="personality"><span><strong>Personality traits</strong><span>Needs the AI switch. Tentative descriptions of openness, organisation, sociability and cooperation, with quotes from your posts. No personality scores or mental health assessment.</span></span></label>
+      <label class="toggle"><input type="checkbox" name="vision"><span><strong>Photo analysis</strong><span>Google Cloud Vision receives up to 25 photos for labels, objects, logos, landmarks and text. No face recognition.</span></span></label>
+      <label class="toggle"><input type="checkbox" name="localOcr"><span><strong>Read text in photos locally</strong><span>Tesseract on this server, used if Vision is off or fails. Photos stay in memory.</span></span></label>
+      <label class="toggle"><input type="checkbox" name="hibp"><span><strong>Breach check</strong><span>Have I Been Pwned receives the email Facebook shared with this app. No other email can be checked.</span></span></label>
+      <p class="muted"><br>The capture is deleted 24 hours after it finishes, or sooner from Data. Deleting cannot erase what an outside service already received.</p>
+      <button class="ctl ctl--primary" type="submit">Start capture</button>
+    </form>
+  </div>
+</main>
+<%- include('partials/foot') %>

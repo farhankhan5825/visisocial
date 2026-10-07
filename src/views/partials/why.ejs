@@ -1,0 +1,4 @@
+<details>
+  <summary class="muted">Why am I seeing this?</summary>
+  <ul class="limits"><li>method <span class="mono"><%= section.method %></span>, from <%= section.n %> of your items</li><% for (const limit of section.limitations || []) { %><li><%= limit %></li><% } %></ul>
+</details>

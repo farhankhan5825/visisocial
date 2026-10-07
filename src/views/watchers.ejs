@@ -1,0 +1,20 @@
+<%- include('partials/head', { title: 'Readers' }) %>
+<main class="doc" id="main">
+  <div class="doc__in">
+    <h1>Readers</h1>
+    <p class="lede">Who else reads signals like yours. Each row says what that reader can do in general, with a source, and only what was actually found in your data.</p>
+    <table class="t">
+      <thead><tr><th>reader</th><th>can do</th><th>in your data</th></tr></thead>
+      <tbody>
+        <% for (const w of watchers) { %>
+          <tr>
+            <td><%= w.name %></td>
+            <td><%= w.what %><br><a href="<%= w.source.href %>" rel="noopener noreferrer"><%= w.source.label %></a></td>
+            <td><% if (w.yours.length) { %><% for (const y of w.yours) { %><div><%= y %></div><% } %><% } else { %><span class="muted">nothing relevant computed</span><% } %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</main>
+<%- include('partials/foot') %>

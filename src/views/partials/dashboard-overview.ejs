@@ -1,0 +1,65 @@
+<div class="dashboard-heading">
+  <div><span class="eyebrow">PROFILE INTELLIGENCE</span><h1><%= c.identity.name || 'Your profile' %></h1></div>
+  <div class="metric-strip"><span><b><%= c.kinds.post %></b> posts analysed</span><span><b><%= c.counts.guessed %></b> AI insights</span><span><b><%= c.counts.observed + c.counts.computed %></b> signals</span></div>
+</div>
+<section class="insight-card profile-summary" aria-labelledby="summary-title">
+  <div class="card-heading"><h2 id="summary-title"><%= c.summary.title %></h2><span class="eyebrow">OVERVIEW</span></div>
+  <% if (c.summary.text) { %>
+    <p class="summary-copy"><%= c.summary.text %></p>
+    <% if (c.summary.title !== 'AI profile summary' && c.explanations.available) { %><p class="chart-caption">A portrait from existing findings. Re-run to generate a fresh AI profile summary.</p><% } %>
+  <% } else { %>
+    <p class="muted"><%= c.explanations.failed ? c.explanations.message : c.explanations.available ? 'No AI summary passed the evidence checks.' : 'Enable AI guesses and summary in Re-run to generate your profile summary.' %></p>
+    <div class="summary-facts"><% for (const f of c.findings.filter(f => ['peak hour', 'tone', 'interest'].includes(f.name)).slice(0, 3)) { %><a class="signal-pill" href="#<%= f.id %>" data-trace="<%= f.id %>"><span><%= f.name %></span> <%= f.value %></a><% } %></div>
+  <% } %>
+  <% const notes = [{ title: 'Post tone', ...c.view.tone }, { title: 'Posting patterns', ...c.view.timing }, { title: 'Page interests', ...c.view.interests }, ...c.view.writing].filter(s => s.sentences?.length); if (notes.length) { %><details class="compact-more"><summary>Technical analysis</summary><% for (const s of notes) { %><p><strong><%= s.title %></strong><br><%= s.sentences.join(' ') %><% if (s.chips?.length) { %><br><%= s.chips.join(', ') %><% } %></p><% } %></details><% } %>
+</section>
+<div class="insight-grid">
+  <section class="insight-card graph-card" aria-labelledby="graph-title">
+    <div class="card-heading"><h2 id="graph-title">Profile graph</h2><a href="/layers">View layers ↗</a></div>
+    <% if (c.graph.length) { %>
+      <svg class="profile-graph" viewBox="0 0 600 310" role="group" aria-label="Profile findings linked to your account. Select a node to inspect evidence.">
+        <% for (const n of c.graph) { %><line x1="300" y1="155" x2="<%= n.x %>" y2="<%= n.y %>" class="graph-edge <%= n.layer %>"/><% } %>
+        <circle cx="300" cy="155" r="32" class="graph-root"/><text x="300" y="159" text-anchor="middle" class="graph-root-label">YOU</text>
+        <% for (const n of c.graph) { %><a href="#<%= n.id %>" data-trace="<%= n.id %>" class="graph-node <%= n.layer %>" aria-label="<%= n.name %>: <%= n.value %>. Inspect evidence."><title><%= n.name %>: <%= n.value %></title><circle cx="<%= n.x %>" cy="<%= n.y %>" r="6"/><text x="<%= n.x %>" y="<%= n.y + 20 %>" text-anchor="middle"><%= n.name %></text><text x="<%= n.x %>" y="<%= n.y + 35 %>" text-anchor="middle" class="graph-value"><%= n.label %></text></a><% } %>
+      </svg>
+    <% } else { %><p class="empty-chart muted">No findings available for your profile graph yet.</p><% } %>
+    <div class="chart-legend"><span>● Observed</span><span>◐ Computed</span><span class="acc">○ AI inferred</span></div>
+  </section>
+  <section class="insight-card" aria-labelledby="emotions-title">
+    <div class="card-heading"><h2 id="emotions-title">Emotions &amp; feelings</h2><span class="eyebrow">POST TONE</span></div>
+    <% if (c.sentimentHistory) { %>
+      <svg class="tone-chart" viewBox="0 0 580 200" role="img" aria-label="Post sentiment over time, from negative minus one to positive plus one">
+        <text x="4" y="33">+1</text><text x="10" y="104">0</text><text x="4" y="174">−1</text>
+        <line x1="30" y1="30" x2="550" y2="30"/><line x1="30" y1="100" x2="550" y2="100"/><line x1="30" y1="170" x2="550" y2="170"/>
+        <polyline points="<%= c.sentimentHistory.path %>"/>
+        <% for (const p of c.sentimentHistory.points) { %><circle cx="<%= p.x %>" cy="<%= p.y %>" r="3" class="<%= p.tone %>"><title><%= p.label %></title></circle><% } %>
+      </svg>
+      <div class="chart-axis"><span><%= c.sentimentHistory.start %></span><span><%= c.sentimentHistory.end %></span></div>
+    <% } else { %><p class="empty-chart muted"><%= c.view.tone.available ? 'Dated, scored posts are needed for a timeline.' : c.view.tone.message %></p><% } %>
+    <% if (c.tone) { %><div class="tone-breakdown"><% for (const t of c.tone) { %><span class="<%= t.k %>"><b><%= t.v %></b> <%= t.k === 'unscored' ? 'not scored' : t.k %></span><% } %></div><% } %>
+    <p class="chart-caption">Emotional tone in your wording; this does not measure your feelings or mental health.</p>
+  </section>
+  <section class="insight-card" aria-labelledby="personality-title">
+    <div class="card-heading"><h2 id="personality-title">Personality traits</h2><span class="eyebrow">AI INFERRED</span></div>
+    <div class="trait-list"><% for (const t of c.traits) { %><div class="trait"><span><%= t.name %></span><% if (t.finding) { %><a href="#<%= t.finding.id %>" data-trace="<%= t.finding.id %>"><%= t.finding.value %> ↗</a><% } else { %><span class="muted"><%= t.invalid ? 'Re-run needed' : 'No supported inference' %></span><% } %></div><% } %></div>
+    <p class="chart-caption"><%= c.traits.some(t => t.invalid) ? 'Placeholder descriptions from the earlier analysis were removed. Re-run to generate meaningful observations.' : c.traits.some(t => t.finding) ? 'Tentative observations from your posts. Select a trait to inspect its quotes.' : c.personalityEnabled ? 'Analysis ran; no personality observation had sufficient supporting evidence.' : 'Enable Personality traits with AI in Re-run to analyse these patterns.' %></p>
+  </section>
+  <section class="insight-card" aria-labelledby="exposure-title">
+    <div class="card-heading"><h2 id="exposure-title">OSINT &amp; breaches</h2><span class="eyebrow">EXPOSURE</span></div>
+    <% if (c.view.breaches.available) { %>
+      <div class="breach-total"><b class="<%= c.view.breaches.items.length ? 'bad' : 'acc' %>"><%= c.view.breaches.items.length %></b><span>known breach<%= c.view.breaches.items.length === 1 ? '' : 'es' %><small>Have I Been Pwned</small></span></div>
+      <% if (c.view.breaches.items.length) { %><div class="breach-list"><% for (const b of c.view.breaches.items) { const f = c.findings.find(f => f.name === 'breach' && f.value === b.name); %><a href="#<%= f.id %>" data-trace="<%= f.id %>"><strong><%= b.name %></strong><span><%= b.date %></span><small><%= b.dataClasses %></small></a><% } %></div><p class="chart-caption">Change any password reused from these services.</p><% } else { %><p class="chart-caption">No records found; this does not prove your email has never been exposed.</p><% } %>
+    <% } else { %><p class="muted"><%= c.view.breaches.message %></p><a class="ctl ctl--sm" href="/consent">Configure breach check</a><% } %>
+    <details class="compact-more"><summary>Other profile exposure signals (<%= c.exposure.length %>)</summary><p class="chart-caption">Signals from connected posts and photos.</p><% for (const f of c.exposure) { %><a class="exposure-row" href="#<%= f.id %>" data-trace="<%= f.id %>"><span><%= f.name %></span><%= f.value %> ↗</a><% } %><% if (!c.exposure.length) { %><p class="muted">No additional exposure signals were available.</p><% } %></details>
+    <p class="chart-caption">Source: <a href="https://haveibeenpwned.com/">Have I Been Pwned</a> · CC BY 4.0</p>
+  </section>
+  <section class="insight-card" aria-labelledby="activity-title">
+    <div class="card-heading"><h2 id="activity-title">Posting activity</h2><span class="eyebrow"><%= c.timezone %></span></div>
+    <% if (c.hours) { %><svg class="activity-chart" viewBox="0 0 580 165" role="img" aria-label="Posts per hour in your timezone"><line x1="10" y1="135" x2="570" y2="135"/><% for (const h of c.hours) { %><rect x="<%= 12 + h.h * 23 %>" y="<%= 135 - h.pct %>" width="16" height="<%= h.pct %>" class="<%= h.peak ? 'peak' : '' %>"><title><%= String(h.h).padStart(2, '0') %>:00 · <%= h.v %> posts</title></rect><% if (h.h % 4 === 0) { %><text x="<%= 12 + h.h * 23 %>" y="155"><%= String(h.h).padStart(2, '0') %></text><% } %><% } %></svg><div class="chart-caption">Peak: <%= c.hours.filter(h => h.peak).map(h => String(h.h).padStart(2, '0') + ':00').join(', ') || 'no peak' %></div><% } else { %><p class="empty-chart muted"><%= c.view.timing.message %></p><% } %>
+  </section>
+  <section class="insight-card" aria-labelledby="interests-title">
+    <div class="card-heading"><h2 id="interests-title">Interests &amp; topics</h2><span class="eyebrow">SIGNALS</span></div>
+    <div class="interest-bars"><% const items = c.view.interests.available ? c.view.interests.items : c.view.topics.available ? c.view.topics.items : []; const max = Math.max(1, ...items.map(i => i.count)); for (const i of items.slice(0, 5)) { %><div class="interest-bar"><span><%= i.name %></span><div><i data-w="<%= i.count / max * 100 %>"></i></div><b><%= i.count %></b></div><% } %></div>
+    <p class="chart-caption"><%= items.length ? (c.view.interests.available ? 'Category counts from your liked pages.' : 'Topic counts from your posts.') : 'No interest categories or post topics available yet.' %></p>
+  </section>
+</div>

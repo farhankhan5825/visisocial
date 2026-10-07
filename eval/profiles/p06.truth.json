@@ -1,66 +1,219 @@
 {
   "id": "p06",
-  "language": "es",
-  "nameVariant": "Diego López",
-  "topics": [
-    "technology",
-    "arts"
-  ],
-  "peakHours": [
-    18
-  ],
-  "sentiment": {
-    "positive": 10,
-    "negative": 5,
-    "neutral": 5,
-    "unscored": 0
+  "protocolVersion": "2.0.0",
+  "annotation": "single_annotator_written_with_posts",
+  "name": "Diego Ramírez",
+  "timezone": "America/Mexico_City",
+  "languageCounts": {
+    "es": 10,
+    "en": 10
   },
-  "city": "London",
-  "cityPostIds": [
-    "p06-post-1",
-    "p06-post-2",
-    "p06-post-3"
+  "posts": [
+    {
+      "postId": "p06-post-1",
+      "localHour": 18,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-2",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-3",
+      "localHour": 19,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": []
+    },
+    {
+      "postId": "p06-post-4",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-5",
+      "localHour": 18,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-6",
+      "localHour": 19,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-7",
+      "localHour": 18,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["food_drink"]
+    },
+    {
+      "postId": "p06-post-8",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["technology", "music"]
+    },
+    {
+      "postId": "p06-post-9",
+      "localHour": 19,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": ["health_wellbeing", "music"]
+    },
+    {
+      "postId": "p06-post-10",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["travel", "music"]
+    },
+    {
+      "postId": "p06-post-11",
+      "localHour": 18,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["family_relationships"]
+    },
+    {
+      "postId": "p06-post-12",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["travel"]
+    },
+    {
+      "postId": "p06-post-13",
+      "localHour": 19,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["arts_culture"]
+    },
+    {
+      "postId": "p06-post-14",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-15",
+      "localHour": 18,
+      "language": "es",
+      "sentiment": "positive",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p06-post-16",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p06-post-17",
+      "localHour": 19,
+      "language": "es",
+      "sentiment": "neutral",
+      "topics": ["education", "music"]
+    },
+    {
+      "postId": "p06-post-18",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-19",
+      "localHour": 18,
+      "language": "es",
+      "sentiment": "negative",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p06-post-20",
+      "localHour": 18,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["food_drink", "travel"]
+    }
   ],
-  "inference": [
-    "location:London"
+  "likes": [
+    {
+      "likeId": "p06-like-1",
+      "topics": ["music"]
+    },
+    {
+      "likeId": "p06-like-2",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "likeId": "p06-like-3",
+      "topics": ["music", "technology"]
+    },
+    {
+      "likeId": "p06-like-4",
+      "topics": ["arts_culture"]
+    },
+    {
+      "likeId": "p06-like-5",
+      "topics": ["music"]
+    },
+    {
+      "likeId": "p06-like-6",
+      "topics": ["technology", "music"]
+    },
+    {
+      "likeId": "p06-like-7",
+      "topics": ["food_drink"]
+    },
+    {
+      "likeId": "p06-like-8",
+      "topics": ["music"]
+    }
   ],
+  "peakHours": [18],
+  "topics": ["food_drink", "music", "technology", "travel"],
+  "interests": ["arts_culture", "food_drink", "music", "sports_fitness", "technology"],
+  "city": "Ciudad de México",
+  "inference": ["location:Ciudad de México"],
   "photoTruth": [
     {
       "photoId": "p06-photo-1",
       "text": "BOOKS 1",
-      "labels": [
-        "Tree"
-      ],
+      "labels": ["Tree"],
       "subject": "Tree"
     },
     {
       "photoId": "p06-photo-2",
       "text": "BOOKS 2",
-      "labels": [
-        "Book"
-      ],
+      "labels": ["Book"],
       "subject": "Book"
     },
     {
       "photoId": "p06-photo-3",
       "text": "BOOKS 3",
-      "labels": [
-        "Car"
-      ],
+      "labels": ["Car"],
       "subject": "Car"
     },
     {
       "photoId": "p06-photo-4",
       "text": "BOOKS 4",
-      "labels": [
-        "House"
-      ],
+      "labels": ["House"],
       "subject": "House"
     }
   ],
-  "breaches": [],
-  "interests": [
-    "technology",
-    "education"
-  ]
+  "breaches": []
 }

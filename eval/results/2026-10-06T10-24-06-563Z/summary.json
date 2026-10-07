@@ -1,0 +1,685 @@
+{
+  "runId": "2026-10-06T10-24-06-563Z",
+  "protocolVersion": "2.0.0",
+  "providerMode": "authored_synthetic_mocks_no_network",
+  "limitations": [
+    "accuracy: rule-based modules (language, sentiment, topics, like categories, peak hour) against single-annotator labels on 200 project-authored posts and 80 likes. Not a validated benchmark; no inter-annotator agreement.",
+    "contracts: vision, inference, breach and explanation rows use authored provider doubles with planted errors. They show the verification and rejection paths work, not provider accuracy.",
+    "Cold means empty in-process module cache, not fresh process or hardware cold start.",
+    "Warm is prefilled per-owner module cache; Graph ingestion, synthesis and explanation still run.",
+    "30 repeated runs per condition are not 30 independent profiles.",
+    "No OAuth, network latency, rendering or provider service latency is timed."
+  ],
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor             ",
+    "gitRevision": "1d80a03a87d94c2650aee3967f6ec5b7033d1afc",
+    "sourceHashes": {
+      "eval/README.md": "d8a411ffc27f398e211c255d36df8620fad77e59b65720da16703480264fd4a2",
+      "eval/build-fixtures.js": "f202ecb2218d405661486507725f25c05cdb0e50fc5efaa86287201a59c3f355",
+      "eval/fixtures-source.js": "70c480af1acac48bca55224527cd79b3f2226346651f7e8a405d65397c272255",
+      "eval/metrics.js": "0c310afe94326df20c6b55a72b361160af7da04ca19c1054c11d3856aa3eecc8",
+      "eval/mock-providers.js": "ced44b7cf163b1593441c6963d90f771fad63927d1727028391a9195b0fe3ff9",
+      "eval/run-ocr.js": "c64b4be3d3158d30b0286273d9506b61af82f91f5582a6e51dfdb59fcfa5ad17",
+      "eval/run.js": "0c5235e1a7ea55b8aa2c73785d833143d79868a09ea0a2048c333191f43ae60f",
+      "src/analysis/image.js": "56f70a32baf1c24dccf628cdfdb40b392caf535c828b1c1b03f0a82897d40f7b",
+      "src/analysis/inference.js": "799ccd0b19dad876c4d7d5315d68ce580c149a1ae8fc93e7598433f039eed3c5",
+      "src/analysis/interests.js": "05f96f7316a410d4162aa5687578e0d24aa176373c4666ca06ce2344d3889586",
+      "src/analysis/osint.js": "e24a7bb794b6678714d11c6369716eb80228cc63be6eb706abcd4dcb5aa445bf",
+      "src/analysis/taxonomy.js": "65455551f456002e298f747543a0b3cf29bddad09386625a039ee7cf3024a81f",
+      "src/analysis/temporal.js": "de937b06dfcf1a3ff7f7311c53b6b61f9a0365f15e6333d6295eb353b31a31bd",
+      "src/analysis/text.js": "34197c00c4c5f035ea2e0ffd836d6879c08c4325baee3b2be9e1e1b4f730f9b8",
+      "src/app.js": "0f00b151d339ec9b1505ed95d06df52852c75055859ed8bb3d94b083185bf226",
+      "src/ingest/facebook.js": "4e65724f847b428b05620e619902145d034084d16cbf4d2277983485272be2bf",
+      "src/jobs/queue.js": "ab8448a928c8224576f300830010c22d861156ad9b436713888846d00b46f40e",
+      "src/modules.js": "08bc15e2e3df92629f49d6063265d18c98119ad5f06deefbef04e6a7d0bf668b",
+      "src/pipeline.js": "6df77034cbd3dd1f2821f2c9c297a23aec4177315edefad84231ca909c3ca432",
+      "src/privacy/cache.js": "5c873c8640aa292d6843de958cd8b10b387ed647d40b411a4f723bdd0796aaf6",
+      "src/privacy/logger.js": "c9d653f33197b0524ed1046815464c59342a1e5d3c770f7d2d39eafe930cf776",
+      "src/privacy/network.js": "c9cb00e1422cb8d093e7e2a5858c23f41a13ec1387535e112a198cd8e11505a1",
+      "src/privacy/store.js": "ecb8adf5d38a850fbeea13698e0cd03eab6cae2e23fffdee3c85501c0c336421",
+      "src/privacy/tokens.js": "c1181b212f37cf7f5ef3e3e5eefa2a274e302305be3ef803f7ef867d635b1b6c",
+      "src/prompts/explain-image.md": "9bbae8f11e9f6b7f6118d811a40a29de2824a15e8c499c1bd20feaee40d1be75",
+      "src/prompts/explain-inference.md": "3705e59fb030a000e1388bff719baf7e74bc2a5287a87014511895bf30a9ef2c",
+      "src/prompts/explain-interests.md": "9802a6c41ca82429572074443efa92e924c5fab65258f43a53bf3650ac183a92",
+      "src/prompts/explain-osint.md": "ad33bac0eb1a89680431c1de9ea7a1763bef1cc145d9f56022080f49b5f873b8",
+      "src/prompts/explain-temporal.md": "6993b1df906095c7d9cca300e66b78658c7ef1949a1bafd14bc2c272d1ea1592",
+      "src/prompts/explain-text.md": "19f1948d22a86dc8b9dec4b09f08e0c9b6d3936499aa2957b257fe39dd796af5",
+      "src/prompts/inference.md": "a08729232d362df4ac770552b5e4983fafeb1c26376d829d150f802fe2606d4d",
+      "src/prompts/judge.md": "587cb1fab7b9487d2f9ecb522037a7a3e2702611412a80b3439daefd4381bacf",
+      "src/providers.js": "19da1666ad8164a3eaf02fa47c0ace7b7754d226f39e26e0c3adf50c2ed496f6",
+      "src/report/explain.js": "cc6b9d4abd7e788fcff4299b4fcb376da6058e073cc5cfd01cd99bb9272cc6d6",
+      "src/report/feature.js": "3ce896e60c30b6069fd48fd67c824a90c3dbc1e6a6d11b12e03c223e35858b8a",
+      "src/report/present.js": "0c042839f779ea1ccd7c247f001f4d468b12adcf5cc9dcd5fe194a40d4d4041f",
+      "src/report/synthesize.js": "e29f8f158ff44256211ded59154a8cb6f5f0cdf776e54a970cd7a6a85fd2cb87",
+      "src/routes/index.js": "b03ee8939503167e8987f9cebb6ed223a8b4f0d530d1c4db066319e5210d219b",
+      "src/schemas/index.js": "3dac744d93d9e245851c2dc8fefce085ed0a58c6b95ed53cfeece309bd3e6000",
+      "src/schemas/provider-json.js": "f2c814169c044d268f3d35535727aa9bb65bfead14b3e615af8281193d6bc4de",
+      "src/server.js": "70a7969945a98633c9c3dec607b1166329f31d8b0e014f7a810308f83f032460"
+    },
+    "lockfileHash": "9f041c92eaaccc06ee84ef04451fda9d474dcd227332250b5dc01e82d36c96e9"
+  },
+  "profiles": 10,
+  "timedRuns": 60,
+  "repeatsPerProfilePerCondition": 3,
+  "accuracy": {
+    "annotation": "Single annotator (the implementer) labelled each post while writing it; see eval/README.md.",
+    "language": {
+      "n": 200,
+      "correct": 190,
+      "accuracy": {
+        "estimate": 0.95,
+        "lower": 0.9104218514713903,
+        "upper": 0.972617354526543,
+        "n": 200
+      },
+      "macroF1": 0.9488252197430697,
+      "perLabel": {
+        "en": {
+          "tp": 133,
+          "fp": 0,
+          "fn": 6,
+          "support": 139,
+          "precision": 1,
+          "recall": 0.9568345323741008,
+          "f1": 0.9779411764705883
+        },
+        "es": {
+          "tp": 30,
+          "fp": 4,
+          "fn": 0,
+          "support": 30,
+          "precision": 0.8823529411764706,
+          "recall": 1,
+          "f1": 0.9375
+        },
+        "ur": {
+          "tp": 27,
+          "fp": 0,
+          "fn": 4,
+          "support": 31,
+          "precision": 1,
+          "recall": 0.8709677419354839,
+          "f1": 0.9310344827586207
+        },
+        "other_or_none": {
+          "tp": 0,
+          "fp": 6,
+          "fn": 0,
+          "support": 0,
+          "precision": 0,
+          "recall": null,
+          "f1": 0
+        }
+      },
+      "confusion": {
+        "en": {
+          "en": 133,
+          "es": 4,
+          "ur": 0,
+          "other_or_none": 2
+        },
+        "es": {
+          "en": 0,
+          "es": 30,
+          "ur": 0,
+          "other_or_none": 0
+        },
+        "ur": {
+          "en": 0,
+          "es": 0,
+          "ur": 27,
+          "other_or_none": 4
+        },
+        "other_or_none": {
+          "en": 0,
+          "es": 0,
+          "ur": 0,
+          "other_or_none": 0
+        }
+      },
+      "confusionAxes": "confusion[truth][predicted]",
+      "inheritedFromProfile": 29
+    },
+    "sentimentEnglish": {
+      "englishPosts": 139,
+      "coverage": {
+        "estimate": 0.9568345323741008,
+        "lower": 0.9090285835185624,
+        "upper": 0.9800690285797532,
+        "n": 139
+      },
+      "onScoredPosts": {
+        "n": 133,
+        "correct": 59,
+        "accuracy": {
+          "estimate": 0.44360902255639095,
+          "lower": 0.3619374957490718,
+          "upper": 0.5284466018582781,
+          "n": 133
+        },
+        "macroF1": 0.4395491574601049,
+        "perLabel": {
+          "positive": {
+            "tp": 26,
+            "fp": 16,
+            "fn": 35,
+            "support": 61,
+            "precision": 0.6190476190476191,
+            "recall": 0.4262295081967213,
+            "f1": 0.5048543689320388
+          },
+          "neutral": {
+            "tp": 21,
+            "fp": 51,
+            "fn": 12,
+            "support": 33,
+            "precision": 0.2916666666666667,
+            "recall": 0.6363636363636364,
+            "f1": 0.4
+          },
+          "negative": {
+            "tp": 12,
+            "fp": 7,
+            "fn": 27,
+            "support": 39,
+            "precision": 0.631578947368421,
+            "recall": 0.3076923076923077,
+            "f1": 0.41379310344827586
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 26,
+            "neutral": 30,
+            "negative": 5
+          },
+          "neutral": {
+            "positive": 10,
+            "neutral": 21,
+            "negative": 2
+          },
+          "negative": {
+            "positive": 6,
+            "neutral": 21,
+            "negative": 12
+          }
+        },
+        "confusionAxes": "confusion[truth][predicted]"
+      },
+      "endToEnd": {
+        "n": 139,
+        "correct": 59,
+        "accuracy": {
+          "estimate": 0.4244604316546763,
+          "lower": 0.3454119711730684,
+          "upper": 0.5075718882437458,
+          "n": 139
+        },
+        "macroF1": 0.4292538199080255,
+        "perLabel": {
+          "positive": {
+            "tp": 26,
+            "fp": 16,
+            "fn": 37,
+            "support": 63,
+            "precision": 0.6190476190476191,
+            "recall": 0.4126984126984127,
+            "f1": 0.49523809523809526
+          },
+          "neutral": {
+            "tp": 21,
+            "fp": 51,
+            "fn": 14,
+            "support": 35,
+            "precision": 0.2916666666666667,
+            "recall": 0.6,
+            "f1": 0.39252336448598135
+          },
+          "negative": {
+            "tp": 12,
+            "fp": 7,
+            "fn": 29,
+            "support": 41,
+            "precision": 0.631578947368421,
+            "recall": 0.2926829268292683,
+            "f1": 0.39999999999999997
+          },
+          "unscored": {
+            "tp": 0,
+            "fp": 6,
+            "fn": 0,
+            "support": 0,
+            "precision": 0,
+            "recall": null,
+            "f1": 0
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 26,
+            "neutral": 30,
+            "negative": 5,
+            "unscored": 2
+          },
+          "neutral": {
+            "positive": 10,
+            "neutral": 21,
+            "negative": 2,
+            "unscored": 2
+          },
+          "negative": {
+            "positive": 6,
+            "neutral": 21,
+            "negative": 12,
+            "unscored": 2
+          },
+          "unscored": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 0,
+            "unscored": 0
+          }
+        },
+        "confusionAxes": "confusion[truth][predicted]"
+      }
+    },
+    "sentimentNonEnglishScored": 0,
+    "postTopicsEnglish": {
+      "tp": 60,
+      "fp": 30,
+      "fn": 91,
+      "precision": 0.6666666666666666,
+      "recall": 0.3973509933774834,
+      "f1": 0.4979253112033195,
+      "precisionCI": {
+        "estimate": 0.6666666666666666,
+        "lower": 0.5642231767760593,
+        "upper": 0.7554649478293802,
+        "n": 90
+      },
+      "recallCI": {
+        "estimate": 0.3973509933774834,
+        "lower": 0.32277872267911334,
+        "upper": 0.47701649867846174,
+        "n": 151
+      }
+    },
+    "postTopicsAllLanguages": {
+      "tp": 60,
+      "fp": 30,
+      "fn": 158,
+      "precision": 0.6666666666666666,
+      "recall": 0.27522935779816515,
+      "f1": 0.38961038961038963,
+      "precisionCI": {
+        "estimate": 0.6666666666666666,
+        "lower": 0.5642231767760593,
+        "upper": 0.7554649478293802,
+        "n": 90
+      },
+      "recallCI": {
+        "estimate": 0.27522935779816515,
+        "lower": 0.220220267596735,
+        "upper": 0.3380228106168901,
+        "n": 218
+      }
+    },
+    "profileTopics": {
+      "tp": 14,
+      "fp": 9,
+      "fn": 34,
+      "precision": 0.6086956521739131,
+      "recall": 0.2916666666666667,
+      "f1": 0.39436619718309857,
+      "precisionCI": {
+        "estimate": 0.6086956521739131,
+        "lower": 0.4078552224423677,
+        "upper": 0.7784237731260946,
+        "n": 23
+      },
+      "recallCI": {
+        "estimate": 0.2916666666666667,
+        "lower": 0.18241578856605184,
+        "upper": 0.4317925992458151,
+        "n": 48
+      }
+    },
+    "likeTopics": {
+      "tp": 68,
+      "fp": 0,
+      "fn": 22,
+      "precision": 1,
+      "recall": 0.7555555555555555,
+      "f1": 0.8607594936708861,
+      "precisionCI": {
+        "estimate": 1,
+        "lower": 0.9465286626814852,
+        "upper": 1,
+        "n": 68
+      },
+      "recallCI": {
+        "estimate": 0.7555555555555555,
+        "lower": 0.6575162878767332,
+        "upper": 0.8326721698516076,
+        "n": 90
+      }
+    },
+    "temporalPeak": {
+      "tp": 13,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "precisionCI": {
+        "estimate": 1,
+        "lower": 0.7719046248681998,
+        "upper": 1,
+        "n": 13
+      },
+      "recallCI": {
+        "estimate": 1,
+        "lower": 0.7719046248681998,
+        "upper": 1,
+        "n": 13
+      }
+    },
+    "languageCoverage": {
+      "en": {
+        "posts": 139,
+        "sentimentScored": {
+          "estimate": 0.9568345323741008,
+          "lower": 0.9090285835185624,
+          "upper": 0.9800690285797532,
+          "n": 139
+        },
+        "inTopicCoverage": 133
+      },
+      "es": {
+        "posts": 30,
+        "sentimentScored": {
+          "estimate": 0,
+          "lower": 0,
+          "upper": 0.11351339476145204,
+          "n": 30
+        },
+        "inTopicCoverage": 0
+      },
+      "ur": {
+        "posts": 31,
+        "sentimentScored": {
+          "estimate": 0,
+          "lower": 0,
+          "upper": 0.11025539700802303,
+          "n": 31
+        },
+        "inTopicCoverage": 0
+      }
+    }
+  },
+  "contracts": {
+    "visionLabels": {
+      "tp": 30,
+      "fp": 10,
+      "fn": 10,
+      "precision": 0.75,
+      "recall": 0.75
+    },
+    "inferenceAttributes": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    "breaches": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    }
+  },
+  "ocr": {
+    "characterEdits": 20,
+    "characters": 310,
+    "CER": 0.06451612903225806,
+    "wordEdits": 10,
+    "words": 80,
+    "WER": 0.125
+  },
+  "explanation": {
+    "attempted": 180,
+    "flagged": 120,
+    "flaggedRate": 0.6666666666666666,
+    "acceptedRate": 0.3333333333333333,
+    "judgeMode": "authored_mock_judge"
+  },
+  "inference": {
+    "attempted": 20,
+    "rejected": 10,
+    "evidenceRejectionRate": 0.5
+  },
+  "failureIsolation": {
+    "injectedModule": "image",
+    "failed": true,
+    "otherModules": {
+      "text": "ok",
+      "temporal": "ok",
+      "interests": "ok",
+      "inference": "ok",
+      "osint": "ok"
+    },
+    "reportGenerated": true,
+    "explanationsGenerated": true
+  },
+  "timing": {
+    "cold": {
+      "total": {
+        "n": 30,
+        "mean": 4.533220000000005,
+        "median": 4.641050000000007,
+        "p95": 6.117569999999999,
+        "min": 1.9385000000000332,
+        "max": 6.514499999999998,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "ingest": {
+        "n": 30,
+        "mean": 0.13819666666666516,
+        "median": 0.12965000000001226,
+        "p95": 0.17123999999997608,
+        "min": 0.11430000000001428,
+        "max": 0.199799999999982,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "text": {
+        "n": 30,
+        "mean": 3.6865433333333377,
+        "median": 3.694000000000017,
+        "p95": 5.110364999999997,
+        "min": 1.2445000000000164,
+        "max": 5.64500000000001,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "temporal": {
+        "n": 30,
+        "mean": 1.1208933333333315,
+        "median": 1.0673500000000047,
+        "p95": 1.4238649999999948,
+        "min": 0.9562999999999988,
+        "max": 1.8138000000000147,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "interests": {
+        "n": 30,
+        "mean": 0.26944333333333453,
+        "median": 0.2352499999999793,
+        "p95": 0.36936500000000444,
+        "min": 0.2005999999999517,
+        "max": 1.0115999999999872,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "image": {
+        "n": 30,
+        "mean": 0.26681000000000005,
+        "median": 0.23324999999999818,
+        "p95": 0.3537700000000055,
+        "min": 0.20109999999999673,
+        "max": 1.0172999999999774,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "inference": {
+        "n": 30,
+        "mean": 0.22463666666666313,
+        "median": 0.19105000000000416,
+        "p95": 0.3024650000000034,
+        "min": 0.1653999999999769,
+        "max": 0.9787000000000035,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "osint": {
+        "n": 30,
+        "mean": 0.20453666666666379,
+        "median": 0.17429999999998813,
+        "p95": 0.2355400000000145,
+        "min": 0.15160000000003038,
+        "max": 0.9642999999999802,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "synthesis": {
+        "n": 30,
+        "mean": 0.05635666666666547,
+        "median": 0.054650000000023624,
+        "p95": 0.07177000000000788,
+        "min": 0.045200000000022555,
+        "max": 0.07730000000000814,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "explanation": {
+        "n": 30,
+        "mean": 0.16508666666666916,
+        "median": 0.12350000000000705,
+        "p95": 0.4457749999999993,
+        "min": 0.10090000000002419,
+        "max": 0.6949999999999932,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      }
+    },
+    "warm": {
+      "total": {
+        "n": 30,
+        "mean": 0.811403333333332,
+        "median": 0.7416500000000212,
+        "p95": 1.3032099999999855,
+        "min": 0.658299999999997,
+        "max": 1.5568999999999846,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "ingest": {
+        "n": 30,
+        "mean": 0.1250133333333262,
+        "median": 0.09165000000004397,
+        "p95": 0.12622999999996407,
+        "min": 0.08439999999995962,
+        "max": 0.9352999999999838,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "text": {
+        "n": 30,
+        "mean": 0.19395333333333345,
+        "median": 0.18785000000002583,
+        "p95": 0.27806499999997525,
+        "min": 0.1564000000000192,
+        "max": 0.2896000000000072,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "temporal": {
+        "n": 30,
+        "mean": 0.11120666666667489,
+        "median": 0.10045000000002346,
+        "p95": 0.18597999999997783,
+        "min": 0.08910000000003038,
+        "max": 0.209699999999998,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "interests": {
+        "n": 30,
+        "mean": 0.07002999999999891,
+        "median": 0.06415000000001214,
+        "p95": 0.08155999999997618,
+        "min": 0.057399999999972806,
+        "max": 0.17690000000004602,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "image": {
+        "n": 30,
+        "mean": 0.04640333333332857,
+        "median": 0.04404999999999859,
+        "p95": 0.05665000000000191,
+        "min": 0.039900000000045566,
+        "max": 0.0584999999999809,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "inference": {
+        "n": 30,
+        "mean": 0.026236666666670773,
+        "median": 0.024599999999992406,
+        "p95": 0.03381999999998584,
+        "min": 0.02240000000000464,
+        "max": 0.03440000000000509,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "osint": {
+        "n": 30,
+        "mean": 0.013150000000001683,
+        "median": 0.012300000000010414,
+        "p95": 0.017749999999989538,
+        "min": 0.010499999999979082,
+        "max": 0.021500000000003183,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "synthesis": {
+        "n": 30,
+        "mean": 0.04570000000000505,
+        "median": 0.04395000000002369,
+        "p95": 0.05408500000000912,
+        "min": 0.03870000000000573,
+        "max": 0.07920000000001437,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      },
+      "explanation": {
+        "n": 30,
+        "mean": 0.13220000000000026,
+        "median": 0.10334999999997763,
+        "p95": 0.15020000000000094,
+        "min": 0.0888999999999669,
+        "max": 0.8865000000000123,
+        "unit": "milliseconds",
+        "quantileMethod": "linear interpolation over sorted samples"
+      }
+    }
+  }
+}

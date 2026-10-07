@@ -1,13 +1,71 @@
 'use strict';
 const { z } = require('zod');
-const post = z.object({ id: z.string(), message: z.string().optional(), story: z.string().optional(), created_time: z.string().optional() });
+const post = z.object({
+  id: z.string(),
+  message: z.string().optional(),
+  story: z.string().optional(),
+  created_time: z.string().optional(),
+});
 const like = z.object({ id: z.string(), name: z.string(), category: z.string().optional() });
-const photo = z.object({ id: z.string(), picture: z.string().optional(), images: z.array(z.object({ source: z.string() })).optional() });
-const edge = item => z.object({ data: z.array(item).default([]) }).default({ data: [] });
-const profile = z.object({ id: z.string(), name: z.string().optional(), email: z.string().email().optional(), timezone: z.string().default('UTC'), posts: edge(post), likes: edge(like), photos: edge(photo), acquisitionErrors: z.array(z.string()).default([]) });
-const feature = z.object({ value: z.unknown(), status: z.enum(['ok', 'insufficient_evidence', 'unavailable']), method: z.string(), methodVersion: z.string(), inputs: z.array(z.string()), n: z.number().int().nonnegative(), confidence: z.number().min(0).max(1).nullable(), limitations: z.array(z.string()) }).strict();
-const moduleOutput = z.object({ status: z.enum(['ok', 'failed', 'unavailable']), features: z.record(feature), diagnostics: z.record(z.unknown()).default({}), error: z.string().optional() }).strict();
-const inferenceItem = z.object({ attribute: z.enum(['location', 'occupation', 'interests', 'age_range', 'relationship_status']), guess: z.string().min(1).max(200).nullable(), evidence: z.array(z.object({ postId: z.string(), quote: z.string().min(1).max(1000) }).strict()), certainty: z.enum(['low', 'medium', 'high']) }).strict();
-const sentence = z.object({ text: z.string().min(1).max(600), supportedBy: z.array(z.string()).min(1) }).strict();
+const photo = z.object({
+  id: z.string(),
+  picture: z.string().optional(),
+  images: z.array(z.object({ source: z.string() })).optional(),
+});
+const edge = (item) => z.object({ data: z.array(item).default([]) }).default({ data: [] });
+const profile = z.object({
+  id: z.string(),
+  name: z.string().optional(),
+  email: z.string().email().optional(),
+  timezone: z.string().default('UTC'),
+  posts: edge(post),
+  likes: edge(like),
+  photos: edge(photo),
+  acquisitionErrors: z.array(z.string()).default([]),
+  acquisitionCodes: z.record(z.string()).default({}),
+});
+const feature = z
+  .object({
+    value: z.unknown(),
+    status: z.enum(['ok', 'insufficient_evidence', 'unavailable']),
+    method: z.string(),
+    methodVersion: z.string(),
+    inputs: z.array(z.string()),
+    n: z.number().int().nonnegative(),
+    confidence: z.number().min(0).max(1).nullable(),
+    limitations: z.array(z.string()),
+  })
+  .strict();
+const moduleOutput = z
+  .object({
+    status: z.enum(['ok', 'failed', 'unavailable']),
+    features: z.record(feature),
+    diagnostics: z.record(z.unknown()).default({}),
+    error: z.string().optional(),
+  })
+  .strict();
+const inferenceItem = z
+  .object({
+    attribute: z.enum([
+      'location',
+      'occupation',
+      'interests',
+      'age_range',
+      'relationship_status',
+      'openness',
+      'conscientiousness',
+      'extraversion',
+      'agreeableness',
+    ]),
+    guess: z.string().min(1).max(200).nullable(),
+    evidence: z.array(
+      z.object({ postId: z.string(), quote: z.string().min(1).max(1000) }).strict()
+    ),
+    certainty: z.enum(['low', 'medium', 'high']),
+  })
+  .strict();
+const sentence = z
+  .object({ text: z.string().min(1).max(600), supportedBy: z.array(z.string()).min(1) })
+  .strict();
 const explanationOutput = z.object({ sentences: z.array(sentence).max(50) }).strict();
 module.exports = { profile, feature, moduleOutput, inferenceItem, explanationOutput };

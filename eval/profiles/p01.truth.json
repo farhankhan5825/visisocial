@@ -1,60 +1,226 @@
 {
   "id": "p01",
-  "language": "en",
-  "nameVariant": "Alex Morgan",
-  "topics": [
-    "technology",
-    "arts"
-  ],
-  "peakHours": [
-    18
-  ],
-  "sentiment": {
-    "positive": 10,
-    "negative": 5,
-    "neutral": 5,
-    "unscored": 0
+  "protocolVersion": "2.0.0",
+  "annotation": "single_annotator_written_with_posts",
+  "name": "Rhys Evans",
+  "timezone": "Europe/London",
+  "languageCounts": {
+    "en": 20
   },
-  "city": "London",
-  "cityPostIds": [
-    "p01-post-1",
-    "p01-post-2",
-    "p01-post-3"
+  "posts": [
+    {
+      "postId": "p01-post-1",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["education"]
+    },
+    {
+      "postId": "p01-post-2",
+      "localHour": 22,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["travel"]
+    },
+    {
+      "postId": "p01-post-3",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p01-post-4",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["education"]
+    },
+    {
+      "postId": "p01-post-5",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["health_wellbeing", "education"]
+    },
+    {
+      "postId": "p01-post-6",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p01-post-7",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["food_drink", "family_relationships"]
+    },
+    {
+      "postId": "p01-post-8",
+      "localHour": 22,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p01-post-9",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["education"]
+    },
+    {
+      "postId": "p01-post-10",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["nature_outdoors"]
+    },
+    {
+      "postId": "p01-post-11",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p01-post-12",
+      "localHour": 22,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p01-post-13",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": []
+    },
+    {
+      "postId": "p01-post-14",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p01-post-15",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p01-post-16",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["education"]
+    },
+    {
+      "postId": "p01-post-17",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["family_relationships"]
+    },
+    {
+      "postId": "p01-post-18",
+      "localHour": 22,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p01-post-19",
+      "localHour": 21,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["education"]
+    },
+    {
+      "postId": "p01-post-20",
+      "localHour": 20,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["travel"]
+    }
   ],
-  "inference": [
-    "location:London"
+  "likes": [
+    {
+      "likeId": "p01-like-1",
+      "topics": ["education"]
+    },
+    {
+      "likeId": "p01-like-2",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "likeId": "p01-like-3",
+      "topics": ["technology"]
+    },
+    {
+      "likeId": "p01-like-4",
+      "topics": ["gaming"]
+    },
+    {
+      "likeId": "p01-like-5",
+      "topics": ["nature_outdoors", "travel"]
+    },
+    {
+      "likeId": "p01-like-6",
+      "topics": ["music"]
+    },
+    {
+      "likeId": "p01-like-7",
+      "topics": ["food_drink"]
+    },
+    {
+      "likeId": "p01-like-8",
+      "topics": ["news_politics"]
+    }
   ],
+  "peakHours": [21],
+  "topics": ["education", "family_relationships", "technology", "travel", "work_career"],
+  "interests": [
+    "education",
+    "food_drink",
+    "gaming",
+    "music",
+    "nature_outdoors",
+    "news_politics",
+    "sports_fitness",
+    "technology",
+    "travel"
+  ],
+  "city": "Swansea",
+  "inference": ["location:Swansea"],
   "photoTruth": [
     {
       "photoId": "p01-photo-1",
       "text": "BOOKS 1",
-      "labels": [
-        "Book"
-      ],
+      "labels": ["Book"],
       "subject": "Book"
     },
     {
       "photoId": "p01-photo-2",
       "text": "BOOKS 2",
-      "labels": [
-        "Tree"
-      ],
+      "labels": ["Tree"],
       "subject": "Tree"
     },
     {
       "photoId": "p01-photo-3",
       "text": "BOOKS 3",
-      "labels": [
-        "House"
-      ],
+      "labels": ["House"],
       "subject": "House"
     },
     {
       "photoId": "p01-photo-4",
       "text": "BOOKS 4",
-      "labels": [
-        "Car"
-      ],
+      "labels": ["Car"],
       "subject": "Car"
     }
   ],
@@ -62,14 +228,7 @@
     {
       "Name": "SyntheticExample",
       "BreachDate": "2020-01-01",
-      "DataClasses": [
-        "Email addresses",
-        "Passwords"
-      ]
+      "DataClasses": ["Email addresses", "Passwords"]
     }
-  ],
-  "interests": [
-    "technology",
-    "education"
   ]
 }

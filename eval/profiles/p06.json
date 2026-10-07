@@ -1,109 +1,109 @@
 {
   "id": "p06",
-  "name": "Diego López",
+  "name": "Diego Ramírez",
   "email": "p06@example.test",
-  "timezone": "Europe/London",
+  "timezone": "America/Mexico_City",
   "posts": {
     "data": [
       {
         "id": "p06-post-1",
-        "message": "Me encanta la tecnología y los programas. Vivo en Londres.",
-        "created_time": "2026-07-01T18:00:00+01:00"
+        "message": "Tocamos en el Foro Indie anoche y estuvo increíble",
+        "created_time": "2026-05-02T00:20:00+0000"
       },
       {
         "id": "p06-post-2",
-        "message": "Me encanta la tecnología y los programas. Vivo en Londres.",
-        "created_time": "2026-07-02T18:00:00+01:00"
+        "message": "New single drops Friday, been working on this one for a year",
+        "created_time": "2026-05-03T00:45:00+0000"
       },
       {
         "id": "p06-post-3",
-        "message": "Me encanta la tecnología y los programas. Vivo en Londres.",
-        "created_time": "2026-07-03T18:00:00+01:00"
+        "message": "El tráfico en la Ciudad de México hoy fue insoportable",
+        "created_time": "2026-05-05T01:10:00+0000"
       },
       {
         "id": "p06-post-4",
-        "message": "Me encanta la tecnología y los programas.",
-        "created_time": "2026-07-04T18:00:00+01:00"
+        "message": "Our van broke down on the way to the gig in Puebla. Classic.",
+        "created_time": "2026-05-06T00:30:00+0000"
       },
       {
         "id": "p06-post-5",
-        "message": "Me encanta la tecnología y los programas.",
-        "created_time": "2026-07-05T18:00:00+01:00"
+        "message": "Buscamos baterista para la gira de verano",
+        "created_time": "2026-05-08T00:15:00+0000"
       },
       {
         "id": "p06-post-6",
-        "message": "Me encanta la tecnología y los programas.",
-        "created_time": "2026-07-06T18:00:00+01:00"
+        "message": "Thank you Guadalajara!! Best crowd we've ever had",
+        "created_time": "2026-05-09T01:05:00+0000"
       },
       {
         "id": "p06-post-7",
-        "message": "Me encanta la tecnología y los programas.",
-        "created_time": "2026-07-07T18:00:00+01:00"
+        "message": "Los tacos al pastor de la esquina son lo mejor de la vida",
+        "created_time": "2026-05-11T00:40:00+0000"
       },
       {
         "id": "p06-post-8",
-        "message": "Me encanta la tecnología y los programas.",
-        "created_time": "2026-07-08T18:00:00+01:00"
+        "message": "Recording drums tomorrow, anyone know a good mic for overheads?",
+        "created_time": "2026-05-13T00:25:00+0000"
       },
       {
         "id": "p06-post-9",
-        "message": "Me encanta la tecnología y los programas.",
-        "created_time": "2026-07-09T18:00:00+01:00"
+        "message": "Perdí la voz justo antes del concierto",
+        "created_time": "2026-05-14T01:15:00+0000"
       },
       {
         "id": "p06-post-10",
-        "message": "Me encanta la tecnología y los programas.",
-        "created_time": "2026-07-10T18:00:00+01:00"
+        "message": "First US tour dates announced! Austin, LA, Chicago",
+        "created_time": "2026-05-16T00:35:00+0000"
       },
       {
         "id": "p06-post-11",
-        "message": "Este concierto de música no es bueno.",
-        "created_time": "2026-07-11T18:00:00+01:00"
+        "message": "Domingo de comida con la familia",
+        "created_time": "2026-05-18T00:50:00+0000"
       },
       {
         "id": "p06-post-12",
-        "message": "Este concierto de música no es bueno.",
-        "created_time": "2026-07-12T18:00:00+01:00"
+        "message": "Visa paperwork for the tour is a nightmare",
+        "created_time": "2026-05-20T00:10:00+0000"
       },
       {
         "id": "p06-post-13",
-        "message": "Este concierto de música no es bueno.",
-        "created_time": "2026-07-13T21:00:00+01:00"
+        "message": "Fui al Museo Frida Kahlo por fin, me encantó",
+        "created_time": "2026-05-21T01:20:00+0000"
       },
       {
         "id": "p06-post-14",
-        "message": "Este concierto de música no es bueno.",
-        "created_time": "2026-07-14T21:00:00+01:00"
+        "message": "Rehearsal at 7, bring snacks",
+        "created_time": "2026-05-23T00:30:00+0000"
       },
       {
         "id": "p06-post-15",
-        "message": "Este concierto de música no es bueno.",
-        "created_time": "2026-07-15T21:00:00+01:00"
+        "message": "¡Golazo del América! Qué partido",
+        "created_time": "2026-05-25T00:55:00+0000"
       },
       {
         "id": "p06-post-16",
-        "message": "Esta pintura está en exposición.",
-        "created_time": "2026-07-16T21:00:00+01:00"
+        "message": "Lost two hours of mixing because the DAW crashed. Save often kids.",
+        "created_time": "2026-05-27T00:15:00+0000"
       },
       {
         "id": "p06-post-17",
-        "message": "Esta pintura está en exposición.",
-        "created_time": "2026-07-17T21:00:00+01:00"
+        "message": "Doy clases de guitarra los sábados, mándenme mensaje",
+        "created_time": "2026-05-29T01:05:00+0000"
       },
       {
         "id": "p06-post-18",
-        "message": "Esta pintura está en exposición.",
-        "created_time": "2026-07-18T21:00:00+01:00"
+        "message": "We hit 10k monthly listeners!! Thank you all",
+        "created_time": "2026-05-31T00:40:00+0000"
       },
       {
         "id": "p06-post-19",
-        "message": "Esta pintura está en exposición.",
-        "created_time": "2026-07-19T21:00:00+01:00"
+        "message": "Cancelaron el festival por la lluvia, qué tristeza",
+        "created_time": "2026-06-02T00:20:00+0000"
       },
       {
         "id": "p06-post-20",
-        "message": "Esta pintura está en exposición.",
-        "created_time": "2026-07-20T21:00:00+01:00"
+        "message": "Mezcal tasting in Oaxaca was unreal",
+        "created_time": "2026-06-04T00:45:00+0000"
       }
     ]
   },
@@ -111,8 +111,43 @@
     "data": [
       {
         "id": "p06-like-1",
-        "name": "Technology and education",
-        "category": "Education"
+        "name": "Café Tacvba",
+        "category": "Musician/Band"
+      },
+      {
+        "id": "p06-like-2",
+        "name": "Club América",
+        "category": "Sports Team"
+      },
+      {
+        "id": "p06-like-3",
+        "name": "Spotify for Artists",
+        "category": "App Page"
+      },
+      {
+        "id": "p06-like-4",
+        "name": "Museo Frida Kahlo",
+        "category": "Art Museum"
+      },
+      {
+        "id": "p06-like-5",
+        "name": "Vive Latino",
+        "category": "Music Festival"
+      },
+      {
+        "id": "p06-like-6",
+        "name": "Ableton",
+        "category": "Software"
+      },
+      {
+        "id": "p06-like-7",
+        "name": "Taquería El Califa",
+        "category": "Mexican Restaurant"
+      },
+      {
+        "id": "p06-like-8",
+        "name": "Sweetwater",
+        "category": "Musical Instrument Store"
       }
     ]
   },

@@ -1,66 +1,227 @@
 {
   "id": "p04",
-  "language": "en",
-  "nameVariant": "Mei Chen",
-  "topics": [
-    "technology",
-    "arts"
-  ],
-  "peakHours": [
-    18
-  ],
-  "sentiment": {
-    "positive": 10,
-    "negative": 5,
-    "neutral": 5,
-    "unscored": 0
+  "protocolVersion": "2.0.0",
+  "annotation": "single_annotator_written_with_posts",
+  "name": "Arjun Mehta",
+  "timezone": "Asia/Kolkata",
+  "languageCounts": {
+    "en": 20
   },
-  "city": "London",
-  "cityPostIds": [
-    "p04-post-1",
-    "p04-post-2",
-    "p04-post-3"
+  "posts": [
+    {
+      "postId": "p04-post-1",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["technology", "work_career"]
+    },
+    {
+      "postId": "p04-post-2",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p04-post-3",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p04-post-4",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": []
+    },
+    {
+      "postId": "p04-post-5",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["food_drink"]
+    },
+    {
+      "postId": "p04-post-6",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p04-post-7",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p04-post-8",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p04-post-9",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["family_relationships"]
+    },
+    {
+      "postId": "p04-post-10",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["education", "technology"]
+    },
+    {
+      "postId": "p04-post-11",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["health_wellbeing", "work_career"]
+    },
+    {
+      "postId": "p04-post-12",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["music"]
+    },
+    {
+      "postId": "p04-post-13",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p04-post-14",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["travel"]
+    },
+    {
+      "postId": "p04-post-15",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["news_politics"]
+    },
+    {
+      "postId": "p04-post-16",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["gaming"]
+    },
+    {
+      "postId": "p04-post-17",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "negative",
+      "topics": ["technology"]
+    },
+    {
+      "postId": "p04-post-18",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["work_career"]
+    },
+    {
+      "postId": "p04-post-19",
+      "localHour": 23,
+      "language": "en",
+      "sentiment": "neutral",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "postId": "p04-post-20",
+      "localHour": 0,
+      "language": "en",
+      "sentiment": "positive",
+      "topics": ["film_tv"]
+    }
   ],
-  "inference": [
-    "location:London"
+  "likes": [
+    {
+      "likeId": "p04-like-1",
+      "topics": ["sports_fitness"]
+    },
+    {
+      "likeId": "p04-like-2",
+      "topics": ["technology"]
+    },
+    {
+      "likeId": "p04-like-3",
+      "topics": ["music"]
+    },
+    {
+      "likeId": "p04-like-4",
+      "topics": ["gaming"]
+    },
+    {
+      "likeId": "p04-like-5",
+      "topics": ["food_drink"]
+    },
+    {
+      "likeId": "p04-like-6",
+      "topics": ["news_politics"]
+    },
+    {
+      "likeId": "p04-like-7",
+      "topics": ["education"]
+    },
+    {
+      "likeId": "p04-like-8",
+      "topics": ["travel"]
+    }
   ],
+  "peakHours": [0, 23],
+  "topics": ["sports_fitness", "technology", "work_career"],
+  "interests": [
+    "education",
+    "food_drink",
+    "gaming",
+    "music",
+    "news_politics",
+    "sports_fitness",
+    "technology",
+    "travel"
+  ],
+  "city": "Bengaluru",
+  "inference": ["location:Bengaluru"],
   "photoTruth": [
     {
       "photoId": "p04-photo-1",
       "text": "BOOKS 1",
-      "labels": [
-        "Tree"
-      ],
+      "labels": ["Tree"],
       "subject": "Tree"
     },
     {
       "photoId": "p04-photo-2",
       "text": "BOOKS 2",
-      "labels": [
-        "Book"
-      ],
+      "labels": ["Book"],
       "subject": "Book"
     },
     {
       "photoId": "p04-photo-3",
       "text": "BOOKS 3",
-      "labels": [
-        "Car"
-      ],
+      "labels": ["Car"],
       "subject": "Car"
     },
     {
       "photoId": "p04-photo-4",
       "text": "BOOKS 4",
-      "labels": [
-        "House"
-      ],
+      "labels": ["House"],
       "subject": "House"
     }
   ],
-  "breaches": [],
-  "interests": [
-    "technology",
-    "education"
-  ]
+  "breaches": []
 }

@@ -1,5 +1,5 @@
 {
-  "provenance": "authored_synthetic_provider_double_v1",
+  "provenance": "authored_synthetic_provider_double_v2",
   "vision": {
     "p06-photo-1": {
       "fullTextAnnotation": {
@@ -62,11 +62,11 @@
     "items": [
       {
         "attribute": "location",
-        "guess": "London",
+        "guess": "Ciudad de México",
         "evidence": [
           {
-            "postId": "p06-post-1",
-            "quote": "Vivo en Londres."
+            "postId": "p06-post-3",
+            "quote": "El tráfico en la Ciudad de México hoy fue insoportable"
           }
         ],
         "certainty": "low"

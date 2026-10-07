@@ -1,0 +1,15 @@
+<%- include('partials/head', { title: 'Layers', captureLine: tree.root + ' / profile layers' }) %>
+<main class="doc" id="main">
+  <div class="doc__in">
+    <h1>Layers</h1>
+    <p class="lede">Your profile as a tree. Each branch is further from anything you typed: what you handed over, what you did, what was computed, and what a model guessed.</p>
+    <h2>Tree</h2>
+    <div class="tree" role="tree" aria-label="Profile layers"><span class="grp"><%= tree.root %></span>
+<% tree.groups.forEach((g, gi) => { const last = gi === tree.groups.length - 1; %><span class="br"><%= last ? '└── ' : '├── ' %></span><span class="grp <%= g.name === 'guessed' ? 'guessed' : '' %>"><%= g.name %></span> <span class="muted">(<%= g.leaves.length %>) <%= g.note %></span>
+<% g.leaves.forEach((leaf) => { %><span class="br"><%= last ? '    ' : '│   ' %><%= leaf.last ? '└── ' : '├── ' %></span><%= leaf.text %>
+<% }) %><% if (!g.leaves.length) { %><span class="br"><%= last ? '    ' : '│   ' %>└── </span><span class="muted">nothing</span>
+<% } %><% }) %></div>
+    <p><a class="ctl" href="/dashboard">Trace these in the console</a></p>
+  </div>
+</main>
+<%- include('partials/foot') %>

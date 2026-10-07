@@ -1,11 +1,49 @@
-# Evaluation protocol
+# Evaluation protocol (2.0.0)
 
-`npm run eval` reads ten released Graph-shaped fixtures and independent planted truth. `npm run fixtures` reproduces their source JSON, SVG and raster PNG artwork. Artwork and text are project-authored, released under the repository MIT licence; no real-person photograph or private dataset is used. Profiles contain 20 posts, four photos and one page-like entry each. Explicit `+01:00` timestamps are interpreted in Europe/London in July 2026.
+`npm run eval` runs the real local pipeline on ten Graph-shaped fixture profiles and writes a new `results/<UTC run>/` directory. `results/LATEST` names the run the paper cites. No paper number may come from an unsaved console result.
 
-English, Spanish and Urdu content is varied across pairs of names and image subjects. The English taxonomy deliberately does not translate; the pilot reports this coverage disparity. It does not measure demographic bias in commercial models. Subject labels describe the drawn fixture shapes, not their subjects' identities. These are simple constructed images, not natural-photo benchmarks.
+## Fixtures
 
-Provider doubles are **authored**, not recorded API responses. Every mock file says so. Inference doubles include one verbatim supported location guess and one fabricated quote to reject. Explanation doubles inject a false quantity and an unsupported income claim in each section. The mock judge accepts only the planted source-count sentence. Image doubles include a deliberate OCR substitution and incorrect label on the fourth image. Thus the harness tests metric computation and rejection paths without pretending to estimate provider quality. Empty ground-truth/prediction precision and recall denominators produce null, not 100%.
+[fixtures-source.js](fixtures-source.js) is the single source. `npm run fixtures` turns it into `profiles/pNN.json` (Graph-shaped input), `pNN.truth.json` (labels) and `pNN.mocks.json` (authored provider doubles).
 
-Timing protocol: 30 runs with an empty module cache, then 30 with all ten owners' caches prefilled; each profile repeats three times per condition. These are **process-warm** executions. They measure local ingestion/schema/analysis/synthesis/explanation work with mocks. They exclude OAuth, live network/service latency, rendering and fresh-process start-up. Stage wall times may overlap because analyses run concurrently. The cache key contains the profile, consent and prompt/model metadata. Cached analyses return complete provenance. Module failure injection bypasses cache and fails images while all other modules complete.
+- Ten distinct personas with their own occupations, interests and posting rhythms, in nine IANA timezones (London ×2, Chicago, Sydney, Kolkata, Madrid, Mexico City, Karachi, Los Angeles, Lagos).
+- 200 posts in total: 139 English, 30 Spanish, 31 Urdu. Two profiles code-switch (Spanish/English, Urdu/English), and four Urdu posts are Roman Urdu in Latin script.
+- 80 page likes with realistic names and Facebook page categories.
+- Timestamps are written as local wall-clock times and converted to the Graph API's own `+0000` format. This is what exposed the temporal module's rejection of colon-less offsets, which is now fixed.
+- Posts were written as ordinary social-media text, not from the keyword lists. They include known hard cases: sarcasm ("Love that for us."), slang ("Gutted.", "hits different"), achievements with no emotional words, British spellings, Roman Urdu, and words that collide with topic keywords ("Running on caffeine").
 
-Outputs: complete report JSON for each fixture, per-profile accuracy/error diagnostics, timings CSV, environment/source metadata, aggregate summary and an injected-failure report, under a unique UTC run ID. `results/LATEST` selects the paper's run. No paper number may be taken from an unsaved console result. Human annotation, live provider tests, model bias, entailment accuracy, real-user understanding/usability, security penetration testing and ethics approval remain outside this harness.
+**Labels.** Each post carries a language, a sentiment (positive/neutral/negative) and zero or more of the 15 topics. Each like carries topics. All were assigned by a **single annotator, the implementer, while writing the posts**. That person also maintains the taxonomy. There is no inter-annotator agreement, and some labels (especially neutral vs. mildly positive) are judgement calls. Treat the results as a transparent, reproducible check that anyone can re-label, not as a validated benchmark. Independent multi-annotator labelling with Krippendorff's alpha is the obvious next step.
+
+**Post-hoc change.** One taxonomy change was made after seeing results on this set. Light stemming mapped "booked" to the keyword "book", so travel posts were tagged as arts and culture. "book" was removed. The superseded run `2026-10-06T10-17-47-180Z` is kept, with a note, so the effect is visible: post-topic precision went from 0.638 to 0.667, and nothing else changed.
+
+## What is measured
+
+`summary.json` has two clearly separated blocks.
+
+`accuracy`: rule-based modules against the labels.
+- **Language**: per-post accuracy over all 200 posts, with a confusion matrix.
+- **Sentiment (English posts)**: coverage (share scored), then accuracy and macro-F1 on scored posts, with a confusion matrix. A separate end-to-end figure counts unscored posts as errors. Non-English posts must be *unscored*; any scored non-English post is counted.
+- **Topics**: micro precision, recall and F1 over (post, topic) pairs for English posts, again over all posts (showing the coverage gap), and at profile level (topics with at least two posts).
+- **Page-like topics**: micro precision, recall and F1 over (like, topic) pairs.
+- **Peak hour**: against the mode of the planted local hours. This checks the timezone and timestamp handling; it is not an estimate of anything uncertain.
+- Every proportion carries a 95% Wilson interval.
+
+`contracts`: provider-backed paths run on **authored doubles**, not recorded API output.
+- Vision labels and OCR text include one planted wrong label and one planted OCR substitution per profile.
+- Inference doubles contain one verbatim-supported location guess and one fabricated quote that must be rejected.
+- Explanation doubles inject a false number and an unsupported claim per section. The mock judge accepts only the planted true sentence.
+- HIBP doubles return a synthetic breach for even-numbered profiles.
+
+These rows show that verification and rejection paths work. Their rates (for example 2 of 3 sentences flagged, 1 of 2 guesses rejected) are **fixed by how the doubles were written** and say nothing about OpenAI, Google Vision or HIBP accuracy.
+
+## Timing and failure isolation
+
+Thirty runs start from an empty module cache and thirty from a prefilled cache; each profile repeats three times per condition. These are process-warm runs that time local ingestion (mocked), analysis, synthesis and explanation (mocked). They exclude OAuth, network and provider latency, rendering and process start-up. Stage times can overlap because modules run concurrently. A failure-injection run makes the image module throw and checks that all other modules complete and a report is produced.
+
+## OCR
+
+`npm run eval:ocr` runs real local Tesseract on the 40 fixture PNGs (see the root README for the language-data path). The images are simple project-drawn shapes beside a two-word label. Tesseract often reads the shapes as characters, so the high error rate in run `ocr-2026-10-06T09-12-38-727Z` reflects this layout and is not a natural-photo benchmark.
+
+## Not covered
+
+Human usability or comprehension, live provider accuracy, LLM entailment quality, prompt injection, demographic bias of commercial models, production TTL scheduling and penetration testing.

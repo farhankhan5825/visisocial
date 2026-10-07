@@ -1,0 +1,20 @@
+<%- include('partials/head', { title: 'Data' }) %>
+<main class="doc" id="main">
+  <div class="doc__in">
+    <h1>Data</h1>
+    <p class="lede">What this server holds about you, and how to take it back.</p>
+    <h2>Held</h2>
+    <table class="t"><tbody>
+      <tr><td>account</td><td><%= identity.name || 'unnamed' %><%= identity.email ? ', with the email Facebook shared' : '' %></td></tr>
+      <tr><td>capture</td><td><%= report ? 'from ' + (report.metadata.mode === 'live_services' ? 'your Facebook account' : 'test fixtures') + ', timezone ' + report.metadata.timezone : 'none yet' %></td></tr>
+      <tr><td>expires</td><td>24 hours after the last capture</td></tr>
+    </tbody></table>
+    <h2>Actions</h2>
+    <table class="t"><tbody>
+      <tr><td><a class="ctl" href="/export">Export JSON</a></td><td>Every finding with its method, source IDs and limits.</td></tr>
+      <tr><td><a class="ctl" href="/consent">Re-run</a></td><td>Choose different switches and capture again; the old capture is removed first.</td></tr>
+      <tr><td><form method="post" action="/delete" class="inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="ctl ctl--danger" type="submit">Delete everything</button></form></td><td>Removes your record, encrypted login token, capture, feedback, cache and sessions now. Cannot erase what an outside service already received.</td></tr>
+    </tbody></table>
+  </div>
+</main>
+<%- include('partials/foot') %>

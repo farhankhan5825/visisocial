@@ -1,109 +1,109 @@
 {
   "id": "p09",
-  "name": "Sam Taylor",
+  "name": "Tyler Kim",
   "email": "p09@example.test",
-  "timezone": "Europe/London",
+  "timezone": "America/Los_Angeles",
   "posts": {
     "data": [
       {
         "id": "p09-post-1",
-        "message": "I love technology and software. I live in London.",
-        "created_time": "2026-07-01T23:00:00+01:00"
+        "message": "Hit 500 followers on Twitch tonight, you guys are insane",
+        "created_time": "2026-05-01T08:30:00+0000"
       },
       {
         "id": "p09-post-2",
-        "message": "I love technology and software. I live in London.",
-        "created_time": "2026-07-02T23:00:00+01:00"
+        "message": "Stream crashed mid raid. OBS hates me.",
+        "created_time": "2026-05-02T09:15:00+0000"
       },
       {
         "id": "p09-post-3",
-        "message": "I love technology and software. I live in London.",
-        "created_time": "2026-07-03T23:00:00+01:00"
+        "message": "Going live at 10pm with the new Zelda",
+        "created_time": "2026-05-03T08:45:00+0000"
       },
       {
         "id": "p09-post-4",
-        "message": "I love technology and software.",
-        "created_time": "2026-07-04T23:00:00+01:00"
+        "message": "New GPU installed, framerate doubled",
+        "created_time": "2026-05-05T09:40:00+0000"
       },
       {
         "id": "p09-post-5",
-        "message": "I love technology and software.",
-        "created_time": "2026-07-05T23:00:00+01:00"
+        "message": "4am again and I can't sleep. Classic.",
+        "created_time": "2026-05-06T08:10:00+0000"
       },
       {
         "id": "p09-post-6",
-        "message": "I love technology and software.",
-        "created_time": "2026-07-06T23:00:00+01:00"
+        "message": "Speedrun PB by 12 seconds!!",
+        "created_time": "2026-05-08T10:05:00+0000"
       },
       {
         "id": "p09-post-7",
-        "message": "I love technology and software.",
-        "created_time": "2026-07-07T23:00:00+01:00"
+        "message": "Cereal is a valid dinner, fight me",
+        "created_time": "2026-05-09T08:55:00+0000"
       },
       {
         "id": "p09-post-8",
-        "message": "I love technology and software.",
-        "created_time": "2026-07-08T23:00:00+01:00"
+        "message": "Patch nerfed my main. Unplayable now.",
+        "created_time": "2026-05-11T09:20:00+0000"
       },
       {
         "id": "p09-post-9",
-        "message": "I love technology and software.",
-        "created_time": "2026-07-09T23:00:00+01:00"
+        "message": "Rent in Los Angeles is wild, might move to Sacramento",
+        "created_time": "2026-05-12T08:35:00+0000"
       },
       {
         "id": "p09-post-10",
-        "message": "I love technology and software.",
-        "created_time": "2026-07-10T23:00:00+01:00"
+        "message": "Arcane season 2 is a masterpiece, no notes",
+        "created_time": "2026-05-14T09:50:00+0000"
       },
       {
         "id": "p09-post-11",
-        "message": "This music concert is not good.",
-        "created_time": "2026-07-11T23:00:00+01:00"
+        "message": "Got rejected from the QA job. Back to the grind.",
+        "created_time": "2026-05-15T08:20:00+0000"
       },
       {
         "id": "p09-post-12",
-        "message": "This music concert is not good.",
-        "created_time": "2026-07-12T23:00:00+01:00"
+        "message": "Taught my little sister to play Mario Kart, she already beats me",
+        "created_time": "2026-05-17T09:30:00+0000"
       },
       {
         "id": "p09-post-13",
-        "message": "This music concert is not good.",
-        "created_time": "2026-07-13T02:00:00+01:00"
+        "message": "Anyone know a good budget mic for streaming?",
+        "created_time": "2026-05-18T10:15:00+0000"
       },
       {
         "id": "p09-post-14",
-        "message": "This music concert is not good.",
-        "created_time": "2026-07-14T02:00:00+01:00"
+        "message": "Lo-fi playlist carrying me through this grind session",
+        "created_time": "2026-05-20T08:40:00+0000"
       },
       {
         "id": "p09-post-15",
-        "message": "This music concert is not good.",
-        "created_time": "2026-07-15T02:00:00+01:00"
+        "message": "Toxic lobby tonight, muted everyone",
+        "created_time": "2026-05-21T09:05:00+0000"
       },
       {
         "id": "p09-post-16",
-        "message": "This art painting is on display.",
-        "created_time": "2026-07-16T02:00:00+01:00"
+        "message": "Collab stream with my favourite streamer this weekend!!",
+        "created_time": "2026-05-23T08:25:00+0000"
       },
       {
         "id": "p09-post-17",
-        "message": "This art painting is on display.",
-        "created_time": "2026-07-17T02:00:00+01:00"
+        "message": "Trying to go to the gym in the mornings. Key word trying.",
+        "created_time": "2026-05-24T09:45:00+0000"
       },
       {
         "id": "p09-post-18",
-        "message": "This art painting is on display.",
-        "created_time": "2026-07-18T02:00:00+01:00"
+        "message": "My cat sat on the keyboard and somehow won the round",
+        "created_time": "2026-05-26T08:50:00+0000"
       },
       {
         "id": "p09-post-19",
-        "message": "This art painting is on display.",
-        "created_time": "2026-07-19T02:00:00+01:00"
+        "message": "Internet went out for six hours. I touched grass. It was fine I guess.",
+        "created_time": "2026-05-27T10:20:00+0000"
       },
       {
         "id": "p09-post-20",
-        "message": "This art painting is on display.",
-        "created_time": "2026-07-20T02:00:00+01:00"
+        "message": "Charity stream raised $2,400 for the children's hospital!",
+        "created_time": "2026-05-29T09:10:00+0000"
       }
     ]
   },
@@ -111,8 +111,43 @@
     "data": [
       {
         "id": "p09-like-1",
-        "name": "Technology and education",
-        "category": "Education"
+        "name": "Twitch",
+        "category": "Website"
+      },
+      {
+        "id": "p09-like-2",
+        "name": "Nintendo",
+        "category": "Video Game Store"
+      },
+      {
+        "id": "p09-like-3",
+        "name": "NVIDIA GeForce",
+        "category": "Computer Company"
+      },
+      {
+        "id": "p09-like-4",
+        "name": "Arcane",
+        "category": "TV Show"
+      },
+      {
+        "id": "p09-like-5",
+        "name": "Lofi Girl",
+        "category": "Musician/Band"
+      },
+      {
+        "id": "p09-like-6",
+        "name": "Los Angeles Dodgers",
+        "category": "Sports Team"
+      },
+      {
+        "id": "p09-like-7",
+        "name": "In-N-Out Burger",
+        "category": "Fast Food Restaurant"
+      },
+      {
+        "id": "p09-like-8",
+        "name": "Best Friends Animal Society",
+        "category": "Animal Shelter"
       }
     ]
   },

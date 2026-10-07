@@ -1,11 +1,142 @@
 const { createFacebook } = require('../src/ingest/facebook');
-const { photoURL, publicIPv4, downloadPhoto } = require('../src/privacy/network');
+const { photoURL, publicIPv4, publicIPv6, downloadPhoto } = require('../src/privacy/network');
 const { analyzeImages, normalizeVision } = require('../src/analysis/image');
 test('cursor pagination ignores arbitrary next URLs and uses fixed host and bearer header', async () => {
-  const urls = []; const graph = createFacebook({ token: 'secret', version: 'v24.0', fetchImpl: async (u, opts) => { urls.push(String(u)); expect(opts.headers.Authorization).toBe('Bearer secret'); return { ok: true, status: 200, json: async () => urls.length === 1 ? { data: [{ id: 'a' }], paging: { next: 'http://127.0.0.1/private', cursors: { after: 'cursor' } } } : { data: [{ id: 'b' }] } }; } });
-  expect((await graph.edge('posts', 'id')).data).toHaveLength(2); expect(urls[1]).toContain('after=cursor'); expect(urls.every(u => u.startsWith('https://graph.facebook.com/'))).toBe(true); expect(() => createFacebook({ version: undefined })).toThrow();
+  const urls = [];
+  const graph = createFacebook({
+    token: 'secret',
+    version: 'v24.0',
+    fetchImpl: async (u, opts) => {
+      urls.push(String(u));
+      expect(opts.headers.Authorization).toBe('Bearer secret');
+      return {
+        ok: true,
+        status: 200,
+        json: async () =>
+          urls.length === 1
+            ? {
+                data: [{ id: 'a' }],
+                paging: { next: 'http://127.0.0.1/private', cursors: { after: 'cursor' } },
+              }
+            : { data: [{ id: 'b' }] },
+      };
+    },
+  });
+  expect((await graph.edge('posts', 'id')).data).toHaveLength(2);
+  expect(urls[1]).toContain('after=cursor');
+  expect(urls.every((u) => u.startsWith('https://graph.facebook.com/'))).toBe(true);
+  expect(() => createFacebook({ version: undefined })).toThrow();
 });
-test('Graph backoff handles 429 and stops after a bounded number of attempts', async () => { const wait = jest.fn(); const fetchImpl = jest.fn(async () => ({ status: 429, headers: { get: () => '1' } })); const graph = createFacebook({ token: 'x', version: 'v24.0', wait, fetchImpl }); await expect(graph.request('me')).rejects.toThrow('graph_rate_or_service_failure'); expect(fetchImpl).toHaveBeenCalledTimes(3); expect(wait).toHaveBeenCalledTimes(2); });
-test('SSRF blocks private DNS, userinfo, deceptive suffixes, ports and redirects by response', async () => { for (const u of ['http://a.fbcdn.net/x', 'https://fbcdn.net.evil.com/x', 'https://x:a@a.fbcdn.net/x', 'https://a.fbcdn.net:8443/x', 'https://127.0.0.1/x']) expect(() => photoURL(u)).toThrow(); for (const ip of ['127.0.0.1', '10.0.0.1', '169.254.169.254', '::1', '::ffff:127.0.0.1', '172.16.0.1', '192.168.1.1']) expect(publicIPv4(ip)).toBe(false); expect(publicIPv4('8.8.8.8')).toBe(true); const transport = jest.fn(); await expect(downloadPhoto('https://a.fbcdn.net/photo', { resolve: async () => [{ address: '127.0.0.1' }], transport })).rejects.toThrow(); expect(transport).not.toHaveBeenCalled(); });
-test('image features use actual scores and do not invent OCR confidence', () => { expect(normalizeVision({ labelAnnotations: [{ description: 'Book', score: .72 }], fullTextAnnotation: { text: 'hello' } })).toMatchObject({ ocrConfidence: null, text: 'hello', labels: [{ label: 'Book', confidence: .72 }] }); });
-test('images abstain without consent and use OCR fallback only when consented', async () => { const profile = { photos: { data: [{ id: 'p' }] } }; expect((await analyzeImages(profile, {})).status).toBe('unavailable'); const output = await analyzeImages(profile, { localOcr: true }, { fallback: async () => ({ text: 'local', confidence: 71 }) }); expect(output.features.observations.value[0].ocrConfidence).toBe(.71); expect((await analyzeImages(profile, { vision: true }, { annotate: async () => { throw new Error(); } })).diagnostics.failures).toBe(1); });
+test('Graph backoff handles 429 and stops after a bounded number of attempts', async () => {
+  const wait = jest.fn();
+  const fetchImpl = jest.fn(async () => ({ status: 429, headers: { get: () => '1' } }));
+  const graph = createFacebook({ token: 'x', version: 'v24.0', wait, fetchImpl });
+  await expect(graph.request('me')).rejects.toThrow('graph_rate_or_service_failure');
+  expect(fetchImpl).toHaveBeenCalledTimes(3);
+  expect(wait).toHaveBeenCalledTimes(2);
+});
+test('SSRF blocks private DNS, userinfo, deceptive suffixes, ports and redirects by response', async () => {
+  for (const u of [
+    'http://a.fbcdn.net/x',
+    'https://fbcdn.net.evil.com/x',
+    'https://x:a@a.fbcdn.net/x',
+    'https://a.fbcdn.net:8443/x',
+    'https://127.0.0.1/x',
+  ])
+    expect(() => photoURL(u)).toThrow();
+  for (const ip of [
+    '127.0.0.1',
+    '10.0.0.1',
+    '169.254.169.254',
+    '::1',
+    '::ffff:127.0.0.1',
+    '172.16.0.1',
+    '192.168.1.1',
+  ])
+    expect(publicIPv4(ip)).toBe(false);
+  expect(publicIPv4('8.8.8.8')).toBe(true);
+  // Real fbcdn answers include IPv6; global unicast is public, local/tunnel ranges are not.
+  expect(publicIPv6('2a00:23a0:172:202:face:b00c:0:a7')).toBe(true);
+  for (const ip of [
+    '::1',
+    'fe80::1',
+    'fc00::1',
+    '::ffff:127.0.0.1',
+    '2001:db8::1',
+    '2001:0:1::1',
+    '2002:a00:1::1',
+  ])
+    expect(publicIPv6(ip)).toBe(false);
+  const mixed = jest.fn();
+  await expect(
+    downloadPhoto('https://a.fbcdn.net/photo', {
+      resolve: async () => [{ address: '2a00:23a0::1' }, { address: '10.0.0.1' }],
+      transport: mixed,
+    })
+  ).rejects.toThrow('photo_address_not_public');
+  expect(mixed).not.toHaveBeenCalled();
+  // With both families public, IPv4 is pinned and either lookup form is answered.
+  let pinned;
+  await downloadPhoto('https://a.fbcdn.net/photo', {
+    resolve: async () => [{ address: '2a00:23a0::1' }, { address: '86.189.103.213' }],
+    transport: (_u, options, onResponse) => {
+      options.lookup('a.fbcdn.net', { all: true }, (_e, list) => (pinned = list));
+      const { EventEmitter } = require('node:events');
+      const res = new EventEmitter();
+      res.statusCode = 200;
+      res.headers = { 'content-type': 'image/jpeg' };
+      const req = new EventEmitter();
+      req.destroy = () => {};
+      setImmediate(() => {
+        onResponse(res);
+        res.emit('data', Buffer.from('jpg'));
+        res.emit('end');
+      });
+      return req;
+    },
+  });
+  expect(pinned).toEqual([{ address: '86.189.103.213', family: 4 }]);
+  const transport = jest.fn();
+  await expect(
+    downloadPhoto('https://a.fbcdn.net/photo', {
+      resolve: async () => [{ address: '127.0.0.1' }],
+      transport,
+    })
+  ).rejects.toThrow();
+  expect(transport).not.toHaveBeenCalled();
+});
+test('image features use actual scores and do not invent OCR confidence', () => {
+  expect(
+    normalizeVision({
+      labelAnnotations: [{ description: 'Book', score: 0.72 }],
+      fullTextAnnotation: { text: 'hello' },
+    })
+  ).toMatchObject({
+    ocrConfidence: null,
+    text: 'hello',
+    labels: [{ label: 'Book', confidence: 0.72 }],
+  });
+});
+test('images abstain without consent and use OCR fallback only when consented', async () => {
+  const profile = { photos: { data: [{ id: 'p' }] } };
+  expect((await analyzeImages(profile, {})).status).toBe('unavailable');
+  const output = await analyzeImages(
+    profile,
+    { localOcr: true },
+    { fallback: async () => ({ text: 'local', confidence: 71 }) }
+  );
+  expect(output.features.observations.value[0].ocrConfidence).toBe(0.71);
+  expect(
+    (
+      await analyzeImages(
+        profile,
+        { vision: true },
+        {
+          annotate: async () => {
+            throw new Error();
+          },
+        }
+      )
+    ).diagnostics.failures
+  ).toBe(1);
+});

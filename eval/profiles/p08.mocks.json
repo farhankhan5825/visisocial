@@ -1,5 +1,5 @@
 {
-  "provenance": "authored_synthetic_provider_double_v1",
+  "provenance": "authored_synthetic_provider_double_v2",
   "vision": {
     "p08-photo-1": {
       "fullTextAnnotation": {
@@ -62,11 +62,11 @@
     "items": [
       {
         "attribute": "location",
-        "guess": "London",
+        "guess": "Birmingham",
         "evidence": [
           {
-            "postId": "p08-post-1",
-            "quote": "میں لندن میں رہتا ہوں۔"
+            "postId": "p08-post-3",
+            "quote": "Birmingham buses are a joke this week, forty minutes late every morning"
           }
         ],
         "certainty": "low"

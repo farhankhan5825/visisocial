@@ -40,3 +40,7 @@ VisiSocial_paper.docx
 coverage/
 .runtime/
 
+
+# Local build scratch and private working notes
+tmp/
+IMPROVEMENT_PROMPT.md

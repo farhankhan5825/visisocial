@@ -1,0 +1,13 @@
+<%
+  const msgTone = typeof tone === 'string' ? tone : '';
+  const msgAction = typeof action === 'object' && action ? action : null;
+%>
+<%- include('partials/head', { title: heading }) %>
+<main class="doc" id="main">
+  <div class="doc__in">
+    <h1 class="<%= msgTone === 'alert' ? 'bad' : '' %>"><%= heading %></h1>
+    <p class="lede"><%= body %></p>
+    <% if (msgAction) { %><a class="ctl ctl--primary" href="<%= msgAction.href %>"><%= msgAction.label %></a><% } %>
+  </div>
+</main>
+<%- include('partials/foot') %>
