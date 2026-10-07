@@ -82,9 +82,9 @@ test('full consent/report/export/feedback/delete flow and removed routes', async
   for (const section of [
     'AI profile summary',
     'Profile graph',
-    'Emotions &amp; feelings',
+    'Post tone',
     'Personality traits',
-    'OSINT &amp; breaches',
+    'Known breaches',
     'Posting activity',
   ])
     expect(html).toContain(section);

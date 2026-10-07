@@ -26,26 +26,25 @@
     <div class="chart-legend"><span>● Observed</span><span>◐ Computed</span><span class="acc">○ AI inferred</span></div>
   </section>
   <section class="insight-card" aria-labelledby="emotions-title">
-    <div class="card-heading"><h2 id="emotions-title">Emotions &amp; feelings</h2><span class="eyebrow">POST TONE</span></div>
+    <div class="card-heading"><h2 id="emotions-title">Post tone</h2><span class="eyebrow">WORDING</span></div>
     <% if (c.sentimentHistory) { %>
       <svg class="tone-chart" viewBox="0 0 580 200" role="img" aria-label="Post sentiment over time, from negative minus one to positive plus one">
         <text x="4" y="33">+1</text><text x="10" y="104">0</text><text x="4" y="174">−1</text>
         <line x1="30" y1="30" x2="550" y2="30"/><line x1="30" y1="100" x2="550" y2="100"/><line x1="30" y1="170" x2="550" y2="170"/>
-        <polyline points="<%= c.sentimentHistory.path %>"/>
         <% for (const p of c.sentimentHistory.points) { %><circle cx="<%= p.x %>" cy="<%= p.y %>" r="3" class="<%= p.tone %>"><title><%= p.label %></title></circle><% } %>
       </svg>
       <div class="chart-axis"><span><%= c.sentimentHistory.start %></span><span><%= c.sentimentHistory.end %></span></div>
     <% } else { %><p class="empty-chart muted"><%= c.view.tone.available ? 'Dated, scored posts are needed for a timeline.' : c.view.tone.message %></p><% } %>
     <% if (c.tone) { %><div class="tone-breakdown"><% for (const t of c.tone) { %><span class="<%= t.k %>"><b><%= t.v %></b> <%= t.k === 'unscored' ? 'not scored' : t.k %></span><% } %></div><% } %>
-    <p class="chart-caption">Emotional tone in your wording; this does not measure your feelings or mental health.</p>
+    <p class="chart-caption">Tone of the words in each post, scored by a lexicon. It does not measure your feelings or mental health.</p>
   </section>
   <section class="insight-card" aria-labelledby="personality-title">
     <div class="card-heading"><h2 id="personality-title">Personality traits</h2><span class="eyebrow">AI INFERRED</span></div>
-    <div class="trait-list"><% for (const t of c.traits) { %><div class="trait"><span><%= t.name %></span><% if (t.finding) { %><a href="#<%= t.finding.id %>" data-trace="<%= t.finding.id %>"><%= t.finding.value %> ↗</a><% } else { %><span class="muted"><%= t.invalid ? 'Re-run needed' : 'No supported inference' %></span><% } %></div><% } %></div>
-    <p class="chart-caption"><%= c.traits.some(t => t.invalid) ? 'Placeholder descriptions from the earlier analysis were removed. Re-run to generate meaningful observations.' : c.traits.some(t => t.finding) ? 'Tentative observations from your posts. Select a trait to inspect its quotes.' : c.personalityEnabled ? 'Analysis ran; no personality observation had sufficient supporting evidence.' : 'Enable Personality traits with AI in Re-run to analyse these patterns.' %></p>
+    <div class="trait-list"><% for (const t of c.traits) { %><div class="trait"><span><%= t.name %></span><% if (t.finding) { %><a href="#<%= t.finding.id %>" data-trace="<%= t.finding.id %>"><%= t.finding.value %> ↗</a><% } else { %><span class="muted"><%= t.invalid ? 'Re-run needed' : c.personalityEnabled ? 'No supported inference' : 'Switched off' %></span><% } %></div><% } %></div>
+    <p class="chart-caption"><%= c.traits.some(t => t.invalid) ? 'Placeholder descriptions from the earlier analysis were removed. Re-run to generate meaningful descriptions.' : c.traits.some(t => t.finding) ? 'Unvalidated AI guesses about how your posts come across. Select a trait to inspect its quotes.' : c.personalityEnabled ? 'Analysis ran; no personality observation had sufficient supporting evidence.' : 'Enable Personality traits with AI in Re-run to analyse these patterns.' %></p>
   </section>
   <section class="insight-card" aria-labelledby="exposure-title">
-    <div class="card-heading"><h2 id="exposure-title">OSINT &amp; breaches</h2><span class="eyebrow">EXPOSURE</span></div>
+    <div class="card-heading"><h2 id="exposure-title">Known breaches</h2><span class="eyebrow">YOUR EMAIL</span></div>
     <% if (c.view.breaches.available) { %>
       <div class="breach-total"><b class="<%= c.view.breaches.items.length ? 'bad' : 'acc' %>"><%= c.view.breaches.items.length %></b><span>known breach<%= c.view.breaches.items.length === 1 ? '' : 'es' %><small>Have I Been Pwned</small></span></div>
       <% if (c.view.breaches.items.length) { %><div class="breach-list"><% for (const b of c.view.breaches.items) { const f = c.findings.find(f => f.name === 'breach' && f.value === b.name); %><a href="#<%= f.id %>" data-trace="<%= f.id %>"><strong><%= b.name %></strong><span><%= b.date %></span><small><%= b.dataClasses %></small></a><% } %></div><p class="chart-caption">Change any password reused from these services.</p><% } else { %><p class="chart-caption">No records found; this does not prove your email has never been exposed.</p><% } %>
