@@ -24,7 +24,7 @@
   <header class="topbar">
     <a class="brand" href="<%= signedIn ? '/dashboard' : '/' %>"><span class="brand__mark" aria-hidden="true"></span>VisiSocial</a>
     <nav aria-label="Main"><ul class="tabs">
-      <% for (const [href, label] of tabs) { %><li><a href="<%= href %>" <%- current(href) ? 'aria-current="page"' : '' %>><%= label %></a></li><% } %>
+      <% for (const [href, label] of tabs) { %><li><a href="<%= href %>"<% if (current(href)) { %> aria-current="page"<% } %>><%= label %></a></li><% } %>
     </ul></nav>
     <div class="capture"><span class="live <%= signedIn ? '' : 'off' %>" aria-hidden="true"></span><%= capture || (signedIn ? 'signed in' : 'no account connected') %><% if (demo) { %> <span class="bad">· test fixtures</span><% } %></div>
     <div class="toolbar">

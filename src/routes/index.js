@@ -282,8 +282,10 @@ function routes(options) {
     res.render('loading');
   });
   const withReport = (render) => (req, res) => {
-    if (!req.record.report)
-      return res.redirect(req.record.status === 'processing' ? '/loading' : '/consent');
+    if (!req.record.report) {
+      if (req.record.status === 'processing') return res.redirect('/loading');
+      return res.redirect('/consent');
+    }
     render(req, res, req.record.report);
   };
   const showDashboard = withReport((req, res, report) =>
