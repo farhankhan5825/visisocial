@@ -17,7 +17,9 @@
     "eval:ocr": "node eval/run-ocr.js",
     "format": "prettier --write \"src/**/*.{js,css}\" \"eval/*.js\" \"tests/*.js\" \"scripts/*.js\" index.js",
     "format:check": "prettier --check \"src/**/*.{js,css}\" \"eval/*.js\" \"tests/*.js\" \"scripts/*.js\" index.js",
-    "live": "node index.js"
+    "live": "node index.js",
+    "eval:analyze": "node eval/analyze.js",
+    "eval:live": "node eval/run-live.js"
   },
   "license": "MIT",
   "dependencies": {

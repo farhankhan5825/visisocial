@@ -1,0 +1,227 @@
+﻿"item_id","persona","attribute","guess","cited_quotes_and_full_posts","valid_value","support","notes"
+"p01-g0","p01","occupation","student","QUOTE: Handed in my final year project report.
+FULL POST (p01-post-1): Handed in my final year project report. Running on caffeine and pure relief.
+
+QUOTE: Graduate scheme interview on Thursday, any tips appreciated
+FULL POST (p01-post-11): Graduate scheme interview on Thursday, any tips appreciated
+
+QUOTE: GOT THE GRAD JOB. Starting in September!
+FULL POST (p01-post-12): GOT THE GRAD JOB. Starting in September!
+
+QUOTE: Last lecture of uni ever. Weird feeling.
+FULL POST (p01-post-16): Last lecture of uni ever. Weird feeling.
+
+QUOTE: Graduation photos are in and I actually look decent for once.
+FULL POST (p01-post-19): Graduation photos are in and I actually look decent for once","","",""
+"p01-g1","p01","location","Swansea","QUOTE: Moving into a new flat in Swansea next month.
+FULL POST (p01-post-13): Moving into a new flat in Swansea next month.","","",""
+"p01-g2","p01","interests","technology and programming","QUOTE: Got my Raspberry Pi weather station logging to a dashboard finally
+FULL POST (p01-post-3): Got my Raspberry Pi weather station logging to a dashboard finally
+
+QUOTE: Anyone used Rust for embedded stuff? Thinking of trying it over the summer
+FULL POST (p01-post-8): Anyone used Rust for embedded stuff? Thinking of trying it over the summer","","",""
+"p01-g3","p01","age_range","18-24","QUOTE: Happy birthday to my little brother, 18 today!
+FULL POST (p01-post-17): Happy birthday to my little brother, 18 today!","","",""
+"p02-g0","p02","occupation","healthcare worker","QUOTE: 12 hour shift done. Three codes in one night.
+FULL POST (p02-post-1): 12 hour shift done. Three codes in one night. Going to sleep for a year.
+
+QUOTE: My back is wrecked from lifting patients all night
+FULL POST (p02-post-8): My back is wrecked from lifting patients all night
+
+QUOTE: Studying for my critical care certification on days off
+FULL POST (p02-post-9): Studying for my critical care certification on days off","","",""
+"p02-g1","p02","location","Chicago","QUOTE: Living in Chicago eight years and I still can't handle the winters
+FULL POST (p02-post-15): Living in Chicago eight years and I still can't handle the winters","","",""
+"p02-g2","p02","interests","dog ownership","QUOTE: Biscuit learned to sit on command!! Proudest dog mom moment
+FULL POST (p02-post-5): Biscuit learned to sit on command!! Proudest dog mom moment
+
+QUOTE: Came home to Biscuit asleep on my scrubs. Best welcome.
+FULL POST (p02-post-20): Came home to Biscuit asleep on my scrubs. Best welcome.","","",""
+"p02-g3","p02","relationship_status","pet owner","QUOTE: Biscuit learned to sit on command!! Proudest dog mom moment
+FULL POST (p02-post-5): Biscuit learned to sit on command!! Proudest dog mom moment
+
+QUOTE: Came home to Biscuit asleep on my scrubs. Best welcome.
+FULL POST (p02-post-20): Came home to Biscuit asleep on my scrubs. Best welcome.","","",""
+"p02-g4","p02","openness","curious about new experiences","QUOTE: Studying for my critical care certification on days off
+FULL POST (p02-post-9): Studying for my critical care certification on days off
+
+QUOTE: Kacey Musgraves concert tickets secured!!
+FULL POST (p02-post-17): Kacey Musgraves concert tickets secured!!","","",""
+"p02-g5","p02","agreeableness","supportive of team members","QUOTE: Shoutout to the night crew, honestly the best team I've worked with
+FULL POST (p02-post-2): Shoutout to the night crew, honestly the best team I've worked with
+
+QUOTE: Patient's daughter brought the whole unit cookies today. Made my week.
+FULL POST (p02-post-14): Patient's daughter brought the whole unit cookies today. Made my week.","","",""
+"p03-g0","p03","location","Sydney, Australia","QUOTE: We moved to Sydney from Brisbane three years ago and still miss the warmth.
+FULL POST (p03-post-9): We moved to Sydney from Brisbane three years ago and still miss the warmth.","","",""
+"p03-g1","p03","occupation","part-time worker","QUOTE: Back to work part time from June
+FULL POST (p03-post-13): Back to work part time from June","","",""
+"p03-g2","p03","interests","gardening and parenting","QUOTE: Tomatoes are finally ripening in the back garden
+FULL POST (p03-post-1): Tomatoes are finally ripening in the back garden
+
+QUOTE: Both kids have gastro. Send help and disinfectant.
+FULL POST (p03-post-6): Both kids have gastro. Send help and disinfectant.
+
+QUOTE: Planted a lemon tree with the kids, fingers crossed it survives
+FULL POST (p03-post-12): Planted a lemon tree with the kids, fingers crossed it survives","","",""
+"p03-g3","p03","age_range","30-40","QUOTE: Ten years married to my favourite person today
+FULL POST (p03-post-14): Ten years married to my favourite person today","","",""
+"p03-g4","p03","relationship_status","married","QUOTE: Ten years married to my favourite person today
+FULL POST (p03-post-14): Ten years married to my favourite person today","","",""
+"p03-g5","p03","openness","curious about new experiences","QUOTE: Finished a novel in one sitting for the first time since having kids
+FULL POST (p03-post-18): Finished a novel in one sitting for the first time since having kids","","",""
+"p03-g6","p03","extraversion","enjoys social family activities","QUOTE: Coastal walk with the pram this morning, glorious weather
+FULL POST (p03-post-7): Coastal walk with the pram this morning, glorious weather
+
+QUOTE: Pho night at Mum's place, nothing beats it
+FULL POST (p03-post-16): Pho night at Mum's place, nothing beats it","","",""
+"p04-g0","p04","occupation","senior engineer","QUOTE: Promotion came through! Senior engineer from next month
+FULL POST (p04-post-18): Promotion came through! Senior engineer from next month","","",""
+"p04-g1","p04","interests","open source software development","QUOTE: Open sourced my first library today, 30 stars already
+FULL POST (p04-post-7): Open sourced my first library today, 30 stars already","","",""
+"p04-g2","p04","location","Bengaluru","QUOTE: Bengaluru traffic took 90 minutes for 8 km today
+FULL POST (p04-post-4): Bengaluru traffic took 90 minutes for 8 km today","","",""
+"p04-g3","p04","relationship_status","in contact with parents","QUOTE: Video call with parents back in Jaipur, they finally figured out the mute button
+FULL POST (p04-post-9): Video call with parents back in Jaipur, they finally figured out the mute button","","",""
+"p04-g4","p04","openness","curious about new technologies","QUOTE: Signed up for an online course on distributed systems
+FULL POST (p04-post-10): Signed up for an online course on distributed systems","","",""
+"p04-g5","p04","conscientiousness","dedicated to work","QUOTE: Haven't slept properly in a week because of this release
+FULL POST (p04-post-11): Haven't slept properly in a week because of this release","","",""
+"p05-g0","p05","occupation","student","QUOTE: Último examen del máster el jueves
+FULL POST (p05-post-14): Último examen del máster el jueves","","",""
+"p05-g1","p05","interests","cooking and family gatherings","QUOTE: Hoy he hecho paella para doce personas y no sobró nada
+FULL POST (p05-post-2): Hoy he hecho paella para doce personas y no sobró nada
+
+QUOTE: Comida familiar en casa de la abuela, como siempre perfecta
+FULL POST (p05-post-6): Comida familiar en casa de la abuela, como siempre perfecta","","",""
+"p05-g2","p05","location","Madrid","QUOTE: Otra vez el metro de Madrid parado una hora.
+FULL POST (p05-post-3): Otra vez el metro de Madrid parado una hora. Increíble.
+
+QUOTE: Los precios del alquiler en esta ciudad son una locura
+FULL POST (p05-post-12): Los precios del alquiler en esta ciudad son una locura","","",""
+"p05-g3","p05","extraversion","social and engaged","QUOTE: Hoy he hecho paella para doce personas y no sobró nada
+FULL POST (p05-post-2): Hoy he hecho paella para doce personas y no sobró nada
+
+QUOTE: Rosalía en directo es otra cosa
+FULL POST (p05-post-10): Rosalía en directo es otra cosa","","",""
+"p06-g0","p06","occupation","musician","QUOTE: Tocamos en el Foro Indie anoche y estuvo increíble
+FULL POST (p06-post-1): Tocamos en el Foro Indie anoche y estuvo increíble
+
+QUOTE: New single drops Friday, been working on this one for a year
+FULL POST (p06-post-2): New single drops Friday, been working on this one for a year
+
+QUOTE: First US tour dates announced! Austin, LA, Chicago
+FULL POST (p06-post-10): First US tour dates announced! Austin, LA, Chicago","","",""
+"p06-g1","p06","interests","music and performing","QUOTE: Tocamos en el Foro Indie anoche y estuvo increíble
+FULL POST (p06-post-1): Tocamos en el Foro Indie anoche y estuvo increíble
+
+QUOTE: Our van broke down on the way to the gig in Puebla. Classic.
+FULL POST (p06-post-4): Our van broke down on the way to the gig in Puebla. Classic.
+
+QUOTE: Recording drums tomorrow, anyone know a good mic for overheads?
+FULL POST (p06-post-8): Recording drums tomorrow, anyone know a good mic for overheads?","","",""
+"p06-g2","p06","location","Mexico City","QUOTE: El tráfico en la Ciudad de México hoy fue insoportable
+FULL POST (p06-post-3): El tráfico en la Ciudad de México hoy fue insoportable","","",""
+"p06-g3","p06","relationship_status","single","QUOTE: Domingo de comida con la familia
+FULL POST (p06-post-11): Domingo de comida con la familia","","",""
+"p06-g4","p06","openness","curious about new experiences","QUOTE: Fui al Museo Frida Kahlo por fin, me encantó
+FULL POST (p06-post-13): Fui al Museo Frida Kahlo por fin, me encantó
+
+QUOTE: Mezcal tasting in Oaxaca was unreal
+FULL POST (p06-post-20): Mezcal tasting in Oaxaca was unreal","","",""
+"p06-g5","p06","extraversion","social and outgoing","QUOTE: Thank you Guadalajara!! Best crowd we've ever had
+FULL POST (p06-post-6): Thank you Guadalajara!! Best crowd we've ever had
+
+QUOTE: We hit 10k monthly listeners!! Thank you all
+FULL POST (p06-post-18): We hit 10k monthly listeners!! Thank you all","","",""
+"p07-g0","p07","occupation","teacher","QUOTE: آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا
+FULL POST (p07-post-1): آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا
+
+QUOTE: میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے
+FULL POST (p07-post-15): میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے","","",""
+"p07-g1","p07","location","Karachi","QUOTE: کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے
+FULL POST (p07-post-2): کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے","","",""
+"p07-g2","p07","interests","education","QUOTE: آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا
+FULL POST (p07-post-1): آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا
+
+QUOTE: میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے
+FULL POST (p07-post-15): میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے","","",""
+"p07-g3","p07","relationship_status","parent","QUOTE: کل اسکول میں والدین کی میٹنگ ہے
+FULL POST (p07-post-4): کل اسکول میں والدین کی میٹنگ ہے
+
+QUOTE: بہن کی شادی کی تیاریاں شروع ہو گئیں
+FULL POST (p07-post-10): بہن کی شادی کی تیاریاں شروع ہو گئیں","","",""
+"p08-g0","p08","relationship_status","family-oriented","QUOTE: Sunday breakfast with the whole family, best part of the week
+FULL POST (p08-post-1): Sunday breakfast with the whole family, best part of the week","","",""
+"p08-g1","p08","occupation","working at the council","QUOTE: Starting a new role at the council next Monday
+FULL POST (p08-post-5): Starting a new role at the council next Monday","","",""
+"p08-g2","p08","interests","cricket","QUOTE: آج کرکٹ میچ میں سنچری بنائی!
+FULL POST (p08-post-2): آج کرکٹ میچ میں سنچری بنائی!
+
+QUOTE: Villa absolutely battered them, what a season
+FULL POST (p08-post-7): Villa absolutely battered them, what a season","","",""
+"p08-g3","p08","interests","accounting","QUOTE: Enrolled in an evening accounting course
+FULL POST (p08-post-10): Enrolled in an evening accounting course","","",""
+"p08-g4","p08","location","Birmingham","QUOTE: Birmingham buses are a joke this week, forty minutes late every morning
+FULL POST (p08-post-3): Birmingham buses are a joke this week, forty minutes late every morning","","",""
+"p09-g0","p09","occupation","Twitch streamer","QUOTE: Hit 500 followers on Twitch tonight, you guys are insane
+FULL POST (p09-post-1): Hit 500 followers on Twitch tonight, you guys are insane
+
+QUOTE: Going live at 10pm with the new Zelda
+FULL POST (p09-post-3): Going live at 10pm with the new Zelda
+
+QUOTE: Got rejected from the QA job. Back to the grind.
+FULL POST (p09-post-11): Got rejected from the QA job. Back to the grind.","","",""
+"p09-g1","p09","interests","gaming and streaming","QUOTE: Going live at 10pm with the new Zelda
+FULL POST (p09-post-3): Going live at 10pm with the new Zelda
+
+QUOTE: Speedrun PB by 12 seconds!!
+FULL POST (p09-post-6): Speedrun PB by 12 seconds!!
+
+QUOTE: Arcane season 2 is a masterpiece, no notes
+FULL POST (p09-post-10): Arcane season 2 is a masterpiece, no notes","","",""
+"p09-g2","p09","location","Los Angeles","QUOTE: Rent in Los Angeles is wild, might move to Sacramento
+FULL POST (p09-post-9): Rent in Los Angeles is wild, might move to Sacramento","","",""
+"p09-g3","p09","relationship_status","single","QUOTE: 4am again and I can't sleep. Classic.
+FULL POST (p09-post-5): 4am again and I can't sleep. Classic.
+
+QUOTE: Trying to go to the gym in the mornings. Key word trying.
+FULL POST (p09-post-17): Trying to go to the gym in the mornings. Key word trying.","","",""
+"p09-g4","p09","openness","curious about new games","QUOTE: Going live at 10pm with the new Zelda
+FULL POST (p09-post-3): Going live at 10pm with the new Zelda
+
+QUOTE: Arcane season 2 is a masterpiece, no notes
+FULL POST (p09-post-10): Arcane season 2 is a masterpiece, no notes","","",""
+"p09-g5","p09","extraversion","engaged with online community","QUOTE: Hit 500 followers on Twitch tonight, you guys are insane
+FULL POST (p09-post-1): Hit 500 followers on Twitch tonight, you guys are insane
+
+QUOTE: Collab stream with my favourite streamer this weekend!!
+FULL POST (p09-post-16): Collab stream with my favourite streamer this weekend!!","","",""
+"p10-g0","p10","occupation","business owner","QUOTE: Closed our first big contract this morning.
+FULL POST (p10-post-1): Closed our first big contract this morning. God did!
+
+QUOTE: Hiring two sales associates, send CVs to my DM
+FULL POST (p10-post-3): Hiring two sales associates, send CVs to my DM
+
+QUOTE: Client hasn't paid in 90 days. Small business life.
+FULL POST (p10-post-8): Client hasn't paid in 90 days. Small business life.","","",""
+"p10-g1","p10","interests","entrepreneurship and business development","QUOTE: Closed our first big contract this morning.
+FULL POST (p10-post-1): Closed our first big contract this morning. God did!
+
+QUOTE: Our app just crossed 10,000 downloads
+FULL POST (p10-post-5): Our app just crossed 10,000 downloads
+
+QUOTE: Speaking at a youth entrepreneurship workshop on Friday
+FULL POST (p10-post-10): Speaking at a youth entrepreneurship workshop on Friday","","",""
+"p10-g2","p10","location","Lagos","QUOTE: Fuel scarcity again in Lagos.
+FULL POST (p10-post-2): Fuel scarcity again in Lagos. Queues everywhere.","","",""
+"p10-g3","p10","age_range","30-40","QUOTE: Mama's 70th birthday party was everything
+FULL POST (p10-post-7): Mama's 70th birthday party was everything
+
+QUOTE: Three months of 5am workouts, down two dress sizes
+FULL POST (p10-post-15): Three months of 5am workouts, down two dress sizes","","",""
+"p10-g4","p10","relationship_status","family-oriented","QUOTE: Mama's 70th birthday party was everything
+FULL POST (p10-post-7): Mama's 70th birthday party was everything
+
+QUOTE: Sunday service then lunch with the family
+FULL POST (p10-post-20): Sunday service then lunch with the family","","",""

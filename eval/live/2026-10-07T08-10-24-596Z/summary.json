@@ -1,0 +1,232 @@
+{
+  "runId": "2026-10-07T08-10-24-596Z",
+  "mode": "live_model",
+  "consent": {
+    "openai": true,
+    "vision": false,
+    "hibp": false,
+    "localOcr": false,
+    "sensitive": true,
+    "personality": true
+  },
+  "model": {
+    "requested": "gpt-4o-mini",
+    "returnedSnapshots": [
+      "gpt-4o-mini-2024-07-18"
+    ],
+    "systemFingerprints": [
+      "fp_daab49e948",
+      "fp_0baa1b582e",
+      "fp_fd983dac38",
+      "fp_804263d44d",
+      "fp_f484c4afaf",
+      "fp_f5646b9245",
+      "fp_3ee3a780c6"
+    ],
+    "temperature": 0
+  },
+  "promptVersion": "1.2.0",
+  "promptHashes": {
+    "explain-image": "c2fe3ee9850299c2df480e14f9c6c1de6b2fc2f5e5324ed59bd8ffe329518844",
+    "explain-inference": "7f910ccb978834928a2881db8b61b1021f7cff4a77e551270f89d5f6f6b74cf4",
+    "explain-interests": "25abe70b01c869eab528dbf051140c82d5740eb30ddc439f98b32e0380fb8590",
+    "explain-osint": "6a5fc7769691bb29eae505a1a0c093b73a9ca641b08de573d5d5e91384d29bc8",
+    "explain-profile": "fbd807f31acd01a2edb4cf72df9792740b4b505542077a457a7954851ea63ed5",
+    "explain-temporal": "0e51cf524597831d50d9be4405e12c224381a334f6222da04f7bb1fc170c06c5",
+    "explain-text": "bced2588e534ea4963668e1681a76877dd3cc26b3a604c03307be7243385b536",
+    "inference": "ed283ad92f9d6d7877d71e518605b2df63cb720d4623220fd329bd4a68ffc597",
+    "judge": "5531675e1504e6097362528adc95119256340c4a967e30a3253d82c929f639ec"
+  },
+  "gitRevision": "a2d5421f1c76fca316bf0f88a5874d32867d3f49",
+  "calls": {
+    "total": 229,
+    "failed": 0
+  },
+  "tokens": {
+    "prompt": 178592,
+    "completion": 11588
+  },
+  "inference": {
+    "itemsReturned": 53,
+    "abstained": 0,
+    "proposed": 53,
+    "accepted": 51,
+    "outcomes": {
+      "rejected:quote_not_in_post": 1,
+      "accepted": 51,
+      "rejected:duplicate_attribute": 1
+    },
+    "byAttribute": {
+      "occupation": {
+        "rejected:quote_not_in_post": 1,
+        "accepted": 9
+      },
+      "location": {
+        "accepted": 10
+      },
+      "interests": {
+        "accepted": 10,
+        "rejected:duplicate_attribute": 1
+      },
+      "age_range": {
+        "accepted": 3
+      },
+      "relationship_status": {
+        "accepted": 8
+      },
+      "openness": {
+        "accepted": 5
+      },
+      "agreeableness": {
+        "accepted": 1
+      },
+      "extraversion": {
+        "accepted": 4
+      },
+      "conscientiousness": {
+        "accepted": 1
+      }
+    },
+    "location": {
+      "accepted": 10,
+      "acceptedMatchingCity": 8,
+      "personasWithoutAcceptedLocation": []
+    },
+    "acceptedQuoteLengths": {
+      "quotes": 87,
+      "normalizedCharacters": [
+        27,
+        28,
+        29,
+        31,
+        31,
+        32,
+        32,
+        34,
+        35,
+        35,
+        37,
+        37,
+        37,
+        37,
+        37,
+        41,
+        41,
+        41,
+        41,
+        42,
+        42,
+        42,
+        43,
+        43,
+        43,
+        43,
+        44,
+        44,
+        44,
+        45,
+        45,
+        45,
+        46,
+        46,
+        46,
+        46,
+        46,
+        47,
+        47,
+        48,
+        48,
+        48,
+        49,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        51,
+        52,
+        53,
+        53,
+        53,
+        54,
+        54,
+        54,
+        54,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        56,
+        56,
+        56,
+        57,
+        57,
+        59,
+        59,
+        59,
+        60,
+        60,
+        61,
+        63,
+        63,
+        66,
+        66,
+        67,
+        68,
+        70,
+        71,
+        74,
+        75,
+        80
+      ],
+      "wouldBeRejectedAtMinimumCharacters": {
+        "4": 0,
+        "8": 0,
+        "12": 0,
+        "20": 0
+      },
+      "wouldBeRejectedAtMinimumWords": {
+        "1": 0,
+        "2": 0,
+        "3": 0
+      }
+    }
+  },
+  "sentences": {
+    "sectionExplanations": {
+      "generated": 159,
+      "schemaValid": 159,
+      "keysValid": 159,
+      "passNumbers": 122,
+      "passJudgeAlone": 145,
+      "passDeterministic": 122,
+      "passBoth": 109,
+      "rejectedByNumbersOnly": 36,
+      "rejectedByJudgeOnly": 13
+    },
+    "profileSummaries": {
+      "generated": 10,
+      "schemaValid": 10,
+      "keysValid": 10,
+      "passNumbers": 10,
+      "passJudgeAlone": 7,
+      "passDeterministic": 10,
+      "passBoth": 7,
+      "rejectedByNumbersOnly": 0,
+      "rejectedByJudgeOnly": 3
+    },
+    "summaryStatus": {
+      "ok": 10
+    }
+  },
+  "limitations": [
+    "Synthetic personas written by the author; not natural data.",
+    "Verifier outcomes are reported here; whether accepted output is supported or true needs the human ratings in eval/annotation.",
+    "The judge is a second call to the same model, not an independent validator.",
+    "A model alias can point to different snapshots over time; returnedSnapshots records what answered this run."
+  ]
+}

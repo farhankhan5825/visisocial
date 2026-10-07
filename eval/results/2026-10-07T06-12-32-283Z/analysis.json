@@ -1,0 +1,471 @@
+{
+  "run": "2026-10-07T06-12-32-283Z",
+  "note": "Persona-level bootstrap: 10,000 resamples of whole personas with replacement, seed 20261007, percentile intervals. With ten clusters these intervals are approximate.",
+  "language": {
+    "overall": {
+      "correct": 190,
+      "n": 200,
+      "wilson": {
+        "estimate": 0.95,
+        "lower": 0.9104218514713903,
+        "upper": 0.972617354526543,
+        "n": 200
+      }
+    },
+    "monolingualPersonas": {
+      "correct": 160,
+      "n": 160,
+      "wilson": {
+        "estimate": 1,
+        "lower": 0.976553804467286,
+        "upper": 1,
+        "n": 160
+      }
+    },
+    "bilingualPersonas": {
+      "correct": 30,
+      "n": 40,
+      "wilson": {
+        "estimate": 0.75,
+        "lower": 0.5980603845146479,
+        "upper": 0.8581288142561201,
+        "n": 40
+      }
+    },
+    "byLanguage": {
+      "en": {
+        "correct": 133,
+        "n": 139,
+        "wilson": {
+          "estimate": 0.9568345323741008,
+          "lower": 0.9090285835185624,
+          "upper": 0.9800690285797532,
+          "n": 139
+        }
+      },
+      "es": {
+        "correct": 30,
+        "n": 30,
+        "wilson": {
+          "estimate": 1,
+          "lower": 0.886486605238548,
+          "upper": 1,
+          "n": 30
+        }
+      },
+      "ur": {
+        "correct": 27,
+        "n": 31,
+        "wilson": {
+          "estimate": 0.8709677419354839,
+          "lower": 0.7114759359315365,
+          "upper": 0.948657156610898,
+          "n": 31
+        }
+      }
+    },
+    "baselineAlwaysEnglish": {
+      "accuracy": 0.695
+    }
+  },
+  "sentiment": {
+    "construct": "Gold labels record the overall feeling the writer expresses or clearly implies about what they describe; VADER scores the wording.",
+    "labelCounts": {
+      "positive": 61,
+      "neutral": 33,
+      "negative": 39
+    },
+    "confusion": {
+      "positive": {
+        "positive": 26,
+        "neutral": 30,
+        "negative": 5
+      },
+      "neutral": {
+        "positive": 10,
+        "neutral": 21,
+        "negative": 2
+      },
+      "negative": {
+        "positive": 6,
+        "neutral": 21,
+        "negative": 12
+      }
+    },
+    "accuracy": 0.44360902255639095,
+    "macroF1": 0.4395491574601049,
+    "errors": 74,
+    "errorsPredictedNeutral": 51,
+    "baselines": {
+      "majorityClass": {
+        "label": "positive",
+        "accuracy": 0.45864661654135336,
+        "macroF1": 0.20962199312714777
+      },
+      "stratifiedRandomExpected": {
+        "accuracy": 0.3579060433037481,
+        "macroF1": 0.3333333333333333
+      }
+    }
+  },
+  "topicBaselines": {
+    "englishPosts": {
+      "topic": "work_career",
+      "precision": 0.15827338129496402,
+      "recall": 0.1456953642384106
+    },
+    "likes": {
+      "topic": "music",
+      "precision": 0.1625,
+      "recall": 0.14444444444444443
+    }
+  },
+  "perPersona": [
+    {
+      "id": "p01",
+      "languages": {
+        "en": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 20,
+      "sentimentAccuracy": 0.45,
+      "postTopics": {
+        "tp": 13,
+        "fp": 4,
+        "fn": 8,
+        "precision": 0.7647058823529411,
+        "recall": 0.6190476190476191
+      },
+      "likeTopics": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1,
+        "recall": 0.7777777777777778
+      },
+      "peakHours": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p02",
+      "languages": {
+        "en": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 20,
+      "sentimentAccuracy": 0.45,
+      "postTopics": {
+        "tp": 9,
+        "fp": 8,
+        "fn": 12,
+        "precision": 0.5294117647058824,
+        "recall": 0.42857142857142855
+      },
+      "likeTopics": {
+        "tp": 6,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0.6666666666666666
+      },
+      "peakHours": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p03",
+      "languages": {
+        "en": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 20,
+      "sentimentAccuracy": 0.55,
+      "postTopics": {
+        "tp": 7,
+        "fp": 6,
+        "fn": 13,
+        "precision": 0.5384615384615384,
+        "recall": 0.35
+      },
+      "likeTopics": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 4,
+        "precision": 1,
+        "recall": 0.5555555555555556
+      },
+      "peakHours": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p04",
+      "languages": {
+        "en": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 20,
+      "sentimentAccuracy": 0.3,
+      "postTopics": {
+        "tp": 5,
+        "fp": 3,
+        "fn": 17,
+        "precision": 0.625,
+        "recall": 0.22727272727272727
+      },
+      "likeTopics": {
+        "tp": 8,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "peakHours": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p05",
+      "languages": {
+        "es": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 0,
+      "sentimentAccuracy": null,
+      "postTopics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "likeTopics": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.875
+      },
+      "peakHours": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p06",
+      "languages": {
+        "es": 10,
+        "en": 10
+      },
+      "languageAccuracy": 0.8,
+      "sentimentScored": 6,
+      "sentimentAccuracy": 0.16666666666666666,
+      "postTopics": {
+        "tp": 2,
+        "fp": 1,
+        "fn": 11,
+        "precision": 0.6666666666666666,
+        "recall": 0.15384615384615385
+      },
+      "likeTopics": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0.7
+      },
+      "peakHours": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p07",
+      "languages": {
+        "ur": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 0,
+      "sentimentAccuracy": null,
+      "postTopics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "likeTopics": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.875
+      },
+      "peakHours": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p08",
+      "languages": {
+        "en": 9,
+        "ur": 11
+      },
+      "languageAccuracy": 0.7,
+      "sentimentScored": 7,
+      "sentimentAccuracy": 0.42857142857142855,
+      "postTopics": {
+        "tp": 6,
+        "fp": 2,
+        "fn": 4,
+        "precision": 0.75,
+        "recall": 0.6
+      },
+      "likeTopics": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0.7
+      },
+      "peakHours": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p09",
+      "languages": {
+        "en": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 20,
+      "sentimentAccuracy": 0.4,
+      "postTopics": {
+        "tp": 8,
+        "fp": 1,
+        "fn": 14,
+        "precision": 0.8888888888888888,
+        "recall": 0.36363636363636365
+      },
+      "likeTopics": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1,
+        "recall": 0.7777777777777778
+      },
+      "peakHours": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    },
+    {
+      "id": "p10",
+      "languages": {
+        "en": 20
+      },
+      "languageAccuracy": 1,
+      "sentimentScored": 20,
+      "sentimentAccuracy": 0.6,
+      "postTopics": {
+        "tp": 10,
+        "fp": 5,
+        "fn": 12,
+        "precision": 0.6666666666666666,
+        "recall": 0.45454545454545453
+      },
+      "likeTopics": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1,
+        "recall": 0.7
+      },
+      "peakHours": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    }
+  ],
+  "personaBootstrap": {
+    "languageAccuracy": {
+      "estimate": 0.95,
+      "lower": 0.88,
+      "upper": 1,
+      "resamples": 10000
+    },
+    "sentimentAccuracy": {
+      "estimate": 0.44360902255639095,
+      "lower": 0.36134453781512604,
+      "upper": 0.5148514851485149,
+      "resamples": 10000
+    },
+    "sentimentMacroF1": {
+      "estimate": 0.4395491574601049,
+      "lower": 0.34282828282828287,
+      "upper": 0.5103148150198766,
+      "resamples": 10000
+    },
+    "postTopicPrecision": {
+      "estimate": 0.6666666666666666,
+      "lower": 0.5851063829787234,
+      "upper": 0.7608695652173914,
+      "resamples": 10000
+    },
+    "postTopicRecall": {
+      "estimate": 0.3973509933774834,
+      "lower": 0.3007518796992481,
+      "upper": 0.4954128440366973,
+      "resamples": 10000
+    },
+    "likeTopicPrecision": {
+      "estimate": 1,
+      "lower": 1,
+      "upper": 1,
+      "resamples": 10000
+    },
+    "likeTopicRecall": {
+      "estimate": 0.7555555555555555,
+      "lower": 0.6881720430107527,
+      "upper": 0.8275862068965517,
+      "resamples": 10000
+    }
+  }
+}

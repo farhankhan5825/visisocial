@@ -1,7 +1,19 @@
 # Saved runs
 
-The paper uses `2026-10-06T09-30-14-475Z` for the full offline pipeline and `ocr-2026-10-06T09-12-38-727Z` for genuine local Tesseract 7 OCR. `LATEST` and `LATEST_OCR` point to these runs at this revision; later evaluations create new directories and update these pointers, without changing the paper's explicit run IDs.
+Each `npm run eval` creates a new directory named by its UTC start time. `LATEST` names the newest pipeline run and `LATEST_OCR` the newest real-OCR run. The paper cites run IDs explicitly, so later runs never change its numbers.
 
-All other directories are preliminary development runs. One has an explicit INVALIDATED note. The earlier OCR run used Tesseract 4 and is not the current result. Retaining these outputs documents changes rather than selecting a flattering result.
+| Run | Status |
+|---|---|
+| Newest directory (see `LATEST`) | Current pipeline run on a clean checkout of a public commit; the paper cites this run |
+| `2026-10-07T06-12-32-283Z` | Earlier clean run on commit 8ebee94; identical results apart from timings |
+| `2026-10-06T10-24-06-563Z` | Same results as above, but made on uncommitted code on top of commit 1d80a03 |
+| `2026-10-06T10-17-47-180Z` | Run before the keyword "book" was removed from the taxonomy (see `../README.md`) |
+| `2026-10-06T09-30-14-475Z` and earlier | Protocol 1.0.0 runs on the earlier fixtures, which were written in the vocabulary of an old word list. Superseded; kept for the record. This directory also holds the clean-install, dependency-audit and scanner records captured at that time |
+| `ocr-2026-10-06T09-12-38-727Z` | Real local Tesseract 7 OCR run cited in the paper |
+| `ocr-2026-10-06T09-07-31-641Z` | Earlier OCR run with Tesseract 4; superseded |
 
-The final pipeline directory also contains tests, coverage, a clean source-install verification, dependency audit and scanner findings with review dispositions. They were captured after the timed run; they do not change its timings or provider mode. Authored mocks are test doubles, never live API measurements. Scanner results are restricted to public app source; no private logs, credentials or uploads were scanned or released.
+A pipeline directory contains `summary.json`, `per-profile.json` (every per-post language and sentiment prediction beside its label), `timings.csv`, ten report files, `failure-injection.report.json`, and, after `npm run eval:analyze`, `analysis.json` with baselines and persona-level intervals.
+
+`summary.json` records the commit, a `gitDirty` flag (from protocol runs made after 7 October 2026), Node version, platform, CPU and a hash of every source file. The source hashes are SHA-256 digests of `JSON.stringify(text)`, where `text` is the file with CRLF line endings converted to LF (see `hash()` in `src/pipeline.js`), so they will not match `sha256sum` of the files directly.
+
+Static-scan reports for the current code are attached to each GitHub Actions run of `.github/workflows/checks.yml`. Authored mocks are test doubles, never live API measurements. Live-model runs are under `../live/`.

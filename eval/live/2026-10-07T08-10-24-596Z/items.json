@@ -1,0 +1,3569 @@
+[
+  {
+    "id": "p01",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "student",
+        "certainty": "high",
+        "outcome": "rejected:quote_not_in_post",
+        "evidence": [
+          {
+            "postId": "p01-post-1",
+            "quote": "Handed in my final year project report.",
+            "postText": "Handed in my final year project report. Running on caffeine and pure relief.",
+            "normalizedLength": 39,
+            "words": 7
+          },
+          {
+            "postId": "p01-post-11",
+            "quote": "Graduate scheme interview on Thursday, any tips appreciated",
+            "postText": "Graduate scheme interview on Thursday, any tips appreciated",
+            "normalizedLength": 59,
+            "words": 8
+          },
+          {
+            "postId": "p01-post-12",
+            "quote": "GOT THE GRAD JOB. Starting in September!",
+            "postText": "GOT THE GRAD JOB. Starting in September!",
+            "normalizedLength": 40,
+            "words": 7
+          },
+          {
+            "postId": "p01-post-16",
+            "quote": "Last lecture of uni ever. Weird feeling.",
+            "postText": "Last lecture of uni ever. Weird feeling.",
+            "normalizedLength": 40,
+            "words": 7
+          },
+          {
+            "postId": "p01-post-19",
+            "quote": "Graduation photos are in and I actually look decent for once.",
+            "postText": "Graduation photos are in and I actually look decent for once",
+            "normalizedLength": 61,
+            "words": 11
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "location",
+        "guess": "Swansea",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p01-post-13",
+            "quote": "Moving into a new flat in Swansea next month.",
+            "postText": "Moving into a new flat in Swansea next month.",
+            "normalizedLength": 45,
+            "words": 9
+          }
+        ],
+        "matchesPersonaCity": true
+      },
+      {
+        "index": 2,
+        "attribute": "interests",
+        "guess": "technology and programming",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p01-post-3",
+            "quote": "Got my Raspberry Pi weather station logging to a dashboard finally",
+            "postText": "Got my Raspberry Pi weather station logging to a dashboard finally",
+            "normalizedLength": 66,
+            "words": 11
+          },
+          {
+            "postId": "p01-post-8",
+            "quote": "Anyone used Rust for embedded stuff? Thinking of trying it over the summer",
+            "postText": "Anyone used Rust for embedded stuff? Thinking of trying it over the summer",
+            "normalizedLength": 74,
+            "words": 13
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "attribute": "age_range",
+        "guess": "18-24",
+        "certainty": "low",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p01-post-17",
+            "quote": "Happy birthday to my little brother, 18 today!",
+            "postText": "Happy birthday to my little brother, 18 today!",
+            "normalizedLength": 46,
+            "words": 8
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows a distribution of 4 positive, 12 neutral, and 4 negative posts out of a total of 20 posts, with a mean sentiment score of 0.027605000000000008.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 77.85894472361811, indicating that the text is relatively easy to read, with a total of 29 sentences and 199 words.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keywords identified include terms like \"last,\" \"today,\" and \"night,\" with varying weights indicating their significance across the posts.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The topics covered in the posts include education, work and career, and travel, with education being the most frequently mentioned topic in 6 posts.",
+        "supportedBy": [
+          "text.topics"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 21.525, based on 20 observations, as indicated by the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The peak hour for posting is identified as 21, according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 6 posts between 20:00 and 21:00, 8 posts between 21:00 and 22:00, 4 posts between 22:00 and 23:00, and 2 posts between 23:00 and 00:00, as detailed in the temporal.hourHistogram.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The analysis of posting intervals reveals a mean interval of approximately 45.456 hours, with a minimum of about 22.417 hours and a maximum of approximately 71.667 hours, as shown in the temporal.intervals feature.",
+        "supportedBy": [
+          "temporal.intervals"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "You have shown interest in 8 categories, including education, food and drink, gaming, music, news and politics, sports and fitness, and technology.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The interests were identified through page likes, with each category linked to a specific like ID.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "One of the likes did not match any category, indicating that not all likes are categorized.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to determine these interests is called 'like_page_category_then_name_taxonomy' and is version 2.0.0.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the location is Swansea, supported by the quote from postId p01-post-13, which mentions moving into a new flat in Swansea next month.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "It also guesses that the interests include technology and programming, based on quotes from postId p01-post-3 and postId p01-post-8, which discuss a Raspberry Pi weather station and using Rust for embedded projects.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "Additionally, the model guesses the age range to be 18-24, citing the quote from postId p01-post-17 that mentions a birthday for an 18-year-old.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [
+        "You appear to be engaged in education and technology, with posts reflecting your interests in programming and projects like a Raspberry Pi weather station, suggesting a hands-on approach to learning. Your posts also indicate a love for travel and outdoor activities, alongside a keen interest in music and sports. You come across as curious and proactive, often sharing your experiences and seeking advice from others."
+      ],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be engaged in education and technology, with posts reflecting your interests in programming and projects like a Raspberry Pi weather station, suggesting a hands-on approach to learning. Your posts also indicate a love for travel and outdoor activities, alongside a keen interest in music and sports. You come across as curious and proactive, often sharing your experiences and seeking advice from others.",
+          "supportedBy": [
+            "text.topics",
+            "inference.guesses"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": true,
+          "deterministicPass": true,
+          "productionAccepted": true
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 15,
+      "flagged": 5,
+      "accepted": 10
+    }
+  },
+  {
+    "id": "p02",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "healthcare worker",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p02-post-1",
+            "quote": "12 hour shift done. Three codes in one night.",
+            "postText": "12 hour shift done. Three codes in one night. Going to sleep for a year.",
+            "normalizedLength": 45,
+            "words": 9
+          },
+          {
+            "postId": "p02-post-8",
+            "quote": "My back is wrecked from lifting patients all night",
+            "postText": "My back is wrecked from lifting patients all night",
+            "normalizedLength": 50,
+            "words": 9
+          },
+          {
+            "postId": "p02-post-9",
+            "quote": "Studying for my critical care certification on days off",
+            "postText": "Studying for my critical care certification on days off",
+            "normalizedLength": 55,
+            "words": 9
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "location",
+        "guess": "Chicago",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p02-post-15",
+            "quote": "Living in Chicago eight years and I still can't handle the winters",
+            "postText": "Living in Chicago eight years and I still can't handle the winters",
+            "normalizedLength": 66,
+            "words": 12
+          }
+        ],
+        "matchesPersonaCity": true
+      },
+      {
+        "index": 2,
+        "attribute": "interests",
+        "guess": "dog ownership",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p02-post-5",
+            "quote": "Biscuit learned to sit on command!! Proudest dog mom moment",
+            "postText": "Biscuit learned to sit on command!! Proudest dog mom moment",
+            "normalizedLength": 59,
+            "words": 10
+          },
+          {
+            "postId": "p02-post-20",
+            "quote": "Came home to Biscuit asleep on my scrubs. Best welcome.",
+            "postText": "Came home to Biscuit asleep on my scrubs. Best welcome.",
+            "normalizedLength": 55,
+            "words": 10
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "attribute": "relationship_status",
+        "guess": "pet owner",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p02-post-5",
+            "quote": "Biscuit learned to sit on command!! Proudest dog mom moment",
+            "postText": "Biscuit learned to sit on command!! Proudest dog mom moment",
+            "normalizedLength": 59,
+            "words": 10
+          },
+          {
+            "postId": "p02-post-20",
+            "quote": "Came home to Biscuit asleep on my scrubs. Best welcome.",
+            "postText": "Came home to Biscuit asleep on my scrubs. Best welcome.",
+            "normalizedLength": 55,
+            "words": 10
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "attribute": "openness",
+        "guess": "curious about new experiences",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p02-post-9",
+            "quote": "Studying for my critical care certification on days off",
+            "postText": "Studying for my critical care certification on days off",
+            "normalizedLength": 55,
+            "words": 9
+          },
+          {
+            "postId": "p02-post-17",
+            "quote": "Kacey Musgraves concert tickets secured!!",
+            "postText": "Kacey Musgraves concert tickets secured!!",
+            "normalizedLength": 41,
+            "words": 5
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "attribute": "agreeableness",
+        "guess": "supportive of team members",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p02-post-2",
+            "quote": "Shoutout to the night crew, honestly the best team I've worked with",
+            "postText": "Shoutout to the night crew, honestly the best team I've worked with",
+            "normalizedLength": 67,
+            "words": 12
+          },
+          {
+            "postId": "p02-post-14",
+            "quote": "Patient's daughter brought the whole unit cookies today. Made my week.",
+            "postText": "Patient's daughter brought the whole unit cookies today. Made my week.",
+            "normalizedLength": 70,
+            "words": 11
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows that out of 20 posts, there are 9 positive, 8 neutral, and 3 negative sentiments, with a mean score of 0.16820500000000002.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 83.09903846153847, indicating that the text is quite easy to read, with a total of 32 sentences and 208 words.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The most frequent keywords include 'whole', 'days', and 'night', with weights indicating their significance across the posts.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The topics identified in the posts include health and wellbeing, family relationships, and education, with counts of 4, 3, and 2 respectively.",
+        "supportedBy": [
+          "text.topics"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 8.26, as indicated by the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There is one peak hour identified for posting, which is at 7 AM according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that the majority of posts occurred between 7 AM and 8 AM, with 13 posts during that hour, based on the temporal.hourHistogram data.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The weekday to weekend post count ratio is 3, with 15 posts made on weekdays and 5 on weekends, as shown in the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The interests categories include film and TV, health and wellbeing, music, news and politics, pets and animals, and sports and fitness.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are a total of 8 observed likes, with 6 of them matching specific categories.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to determine these interests is 'like_page_category_then_name_taxonomy' with version 2.0.0.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "It is noted that 2 of the 8 likes did not match any category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the individual may work in healthcare based on evidence from posts discussing long shifts and patient care, supported by the feature key 'occupation'.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "There is a high certainty that the individual lives in Chicago, as indicated by a post mentioning their eight years of living there, which relates to the 'location' feature key.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The individual is likely a dog owner, as suggested by multiple posts expressing pride in their dog's behavior, which corresponds to the 'interests' and 'relationship_status' feature keys.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model suggests that the individual may be curious about new experiences, as evidenced by their pursuit of a critical care certification and attending a concert, which relates to the 'openness' feature key.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [
+        "You appear to be a healthcare worker based in Chicago, as suggested by your posts about long shifts and studying for a critical care certification. Your interests include health and wellbeing, music, and pets, particularly your dog, Biscuit, whom you often mention. You come across as supportive of your team and curious about new experiences, sharing moments from both your professional and personal life."
+      ],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a healthcare worker based in Chicago, as suggested by your posts about long shifts and studying for a critical care certification. Your interests include health and wellbeing, music, and pets, particularly your dog, Biscuit, whom you often mention. You come across as supportive of your team and curious about new experiences, sharing moments from both your professional and personal life.",
+          "supportedBy": [
+            "inference.guesses",
+            "text.topics",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": true,
+          "deterministicPass": true,
+          "productionAccepted": true
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 7,
+      "accepted": 9
+    }
+  },
+  {
+    "id": "p03",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "location",
+        "guess": "Sydney, Australia",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p03-post-9",
+            "quote": "We moved to Sydney from Brisbane three years ago and still miss the warmth.",
+            "postText": "We moved to Sydney from Brisbane three years ago and still miss the warmth.",
+            "normalizedLength": 75,
+            "words": 14
+          }
+        ],
+        "matchesPersonaCity": true
+      },
+      {
+        "index": 1,
+        "attribute": "occupation",
+        "guess": "part-time worker",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p03-post-13",
+            "quote": "Back to work part time from June",
+            "postText": "Back to work part time from June",
+            "normalizedLength": 32,
+            "words": 7
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "attribute": "interests",
+        "guess": "gardening and parenting",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p03-post-1",
+            "quote": "Tomatoes are finally ripening in the back garden",
+            "postText": "Tomatoes are finally ripening in the back garden",
+            "normalizedLength": 48,
+            "words": 8
+          },
+          {
+            "postId": "p03-post-6",
+            "quote": "Both kids have gastro. Send help and disinfectant.",
+            "postText": "Both kids have gastro. Send help and disinfectant.",
+            "normalizedLength": 50,
+            "words": 8
+          },
+          {
+            "postId": "p03-post-12",
+            "quote": "Planted a lemon tree with the kids, fingers crossed it survives",
+            "postText": "Planted a lemon tree with the kids, fingers crossed it survives",
+            "normalizedLength": 63,
+            "words": 11
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "attribute": "age_range",
+        "guess": "30-40",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p03-post-14",
+            "quote": "Ten years married to my favourite person today",
+            "postText": "Ten years married to my favourite person today",
+            "normalizedLength": 46,
+            "words": 8
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "attribute": "relationship_status",
+        "guess": "married",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p03-post-14",
+            "quote": "Ten years married to my favourite person today",
+            "postText": "Ten years married to my favourite person today",
+            "normalizedLength": 46,
+            "words": 8
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "attribute": "openness",
+        "guess": "curious about new experiences",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p03-post-18",
+            "quote": "Finished a novel in one sitting for the first time since having kids",
+            "postText": "Finished a novel in one sitting for the first time since having kids",
+            "normalizedLength": 68,
+            "words": 13
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "attribute": "extraversion",
+        "guess": "enjoys social family activities",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p03-post-7",
+            "quote": "Coastal walk with the pram this morning, glorious weather",
+            "postText": "Coastal walk with the pram this morning, glorious weather",
+            "normalizedLength": 57,
+            "words": 9
+          },
+          {
+            "postId": "p03-post-16",
+            "quote": "Pho night at Mum's place, nothing beats it",
+            "postText": "Pho night at Mum's place, nothing beats it",
+            "normalizedLength": 42,
+            "words": 8
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows a distribution of 6 positive, 8 neutral, and 6 negative posts out of a total of 20 posts, with a mean score of -0.01584.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 76.54868131868133, indicating that the text is relatively easy to read, with a total of 26 sentences and 182 words.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keywords identified include terms like 'kids' with a weight of 1.8987573591603817, and 'back' with a weight of 1.1783640596221254, among others.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The topics covered in the posts include 'work_career' with 3 occurrences and 'arts_culture' with 2 occurrences, among other topics.",
+        "supportedBy": [
+          "text.topics"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 14.07, as indicated by the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There is one peak hour identified for posting, which is at 12, according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 10 posts made at 12 PM and 5 posts made at 1 PM, based on the temporal.hourHistogram data.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The ratio of weekday to weekend posts is 3, with 15 posts made on weekdays and 5 on weekends, as shown in the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "You have shown interest in the topic of film and television, as indicated by 2 likes under the category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "You also have an interest in education, with 1 like associated with that category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "Your interests include food and drink, which is represented by 1 like in that category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "Additionally, you have expressed interest in news and politics, with 1 like linked to that topic.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for location is Sydney, Australia, supported by the quote from postId p03-post-9.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for occupation is part-time worker, based on the information from postId p03-post-13.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for interests includes gardening and parenting, as indicated by quotes from postIds p03-post-1, p03-post-6, and p03-post-12.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for relationship status is married, supported by the quote from postId p03-post-14.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a part-time worker based in Sydney, Australia, with a keen interest in education and the arts. Your posts suggest you enjoy gardening and family activities, often sharing experiences like planting a lemon tree with your kids or enjoying a coastal walk. You come across as curious and engaged, seeking new experiences while balancing work and family life.",
+          "supportedBy": [
+            "inference.guesses",
+            "text.topics",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": false,
+          "deterministicPass": true,
+          "productionAccepted": false
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 6,
+      "accepted": 10
+    }
+  },
+  {
+    "id": "p04",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "senior engineer",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p04-post-18",
+            "quote": "Promotion came through! Senior engineer from next month",
+            "postText": "Promotion came through! Senior engineer from next month",
+            "normalizedLength": 55,
+            "words": 8
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "interests",
+        "guess": "open source software development",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p04-post-7",
+            "quote": "Open sourced my first library today, 30 stars already",
+            "postText": "Open sourced my first library today, 30 stars already",
+            "normalizedLength": 53,
+            "words": 9
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "attribute": "location",
+        "guess": "Bengaluru",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p04-post-4",
+            "quote": "Bengaluru traffic took 90 minutes for 8 km today",
+            "postText": "Bengaluru traffic took 90 minutes for 8 km today",
+            "normalizedLength": 48,
+            "words": 9
+          }
+        ],
+        "matchesPersonaCity": true
+      },
+      {
+        "index": 3,
+        "attribute": "relationship_status",
+        "guess": "in contact with parents",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p04-post-9",
+            "quote": "Video call with parents back in Jaipur, they finally figured out the mute button",
+            "postText": "Video call with parents back in Jaipur, they finally figured out the mute button",
+            "normalizedLength": 80,
+            "words": 14
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "attribute": "openness",
+        "guess": "curious about new technologies",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p04-post-10",
+            "quote": "Signed up for an online course on distributed systems",
+            "postText": "Signed up for an online course on distributed systems",
+            "normalizedLength": 53,
+            "words": 9
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "attribute": "conscientiousness",
+        "guess": "dedicated to work",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p04-post-11",
+            "quote": "Haven't slept properly in a week because of this release",
+            "postText": "Haven't slept properly in a week because of this release",
+            "normalizedLength": 56,
+            "words": 10
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows that out of 20 posts, there are 4 positive, 15 neutral, and 1 negative sentiment labels, with a mean score of 0.07392.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 73.08720414201186, indicating that the text is fairly easy to read, with a total of 26 sentences and 169 words.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keyword analysis identifies terms such as 'rcb', 'next', and 'starts', with varying weights indicating their significance across the posts.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The topics covered include nature and outdoors, education, film and TV, music, technology, and travel, with specific posts associated with each topic.",
+        "supportedBy": [
+          "text.topics"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is 0, with a resultant length of 0.9908615620591377, based on 20 posts.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "Peak hours for posting are identified as 0 and 23, with a total of 20 posts analyzed.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that 10 posts were made at hour 0, while no posts were made during other hours, based on 20 posts.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are 14 weekday posts and 6 weekend posts, resulting in a ratio of 2.3333333333333335, based on 20 posts.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "You have shown interest in 8 categories, including education, food and drink, gaming, music, news and politics, sports and fitness, technology, and travel.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "Each category is linked to a specific like ID, indicating your engagement with these topics.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to determine these interests is called 'like_page_category_then_name_taxonomy'.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "It is noted that 0 of the 8 likes did not match any category, suggesting all your likes are categorized.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the occupation is a senior engineer, supported by the quote from postId p04-post-18, which states, \"Promotion came through! Senior engineer from next month.\"",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "It is guessed that the individual is interested in open source software development, as indicated by the quote from postId p04-post-7, which mentions, \"Open sourced my first library today, 30 stars already.\"",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The location is guessed to be Bengaluru, based on the quote from postId p04-post-4, which notes, \"Bengaluru traffic took 90 minutes for 8 km today.\"",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model suggests that the individual is in contact with their parents, as inferred from the quote in postId p04-post-9, which says, \"Video call with parents back in Jaipur, they finally figured out the mute button.\"",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [
+        "You appear to be a senior engineer based in Bengaluru, with a strong interest in technology and open source software development. Your posts suggest you enjoy exploring nature, traveling, and keeping up with music and gaming. You come across as dedicated and curious, often sharing insights about your work and new technologies."
+      ],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a senior engineer based in Bengaluru, with a strong interest in technology and open source software development. Your posts suggest you enjoy exploring nature, traveling, and keeping up with music and gaming. You come across as dedicated and curious, often sharing insights about your work and new technologies.",
+          "supportedBy": [
+            "inference.guesses",
+            "text.topics",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": true,
+          "deterministicPass": true,
+          "productionAccepted": true
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 1,
+      "accepted": 15
+    }
+  },
+  {
+    "id": "p05",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "student",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p05-post-14",
+            "quote": "Último examen del máster el jueves",
+            "postText": "Último examen del máster el jueves",
+            "normalizedLength": 34,
+            "words": 6
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "interests",
+        "guess": "cooking and family gatherings",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p05-post-2",
+            "quote": "Hoy he hecho paella para doce personas y no sobró nada",
+            "postText": "Hoy he hecho paella para doce personas y no sobró nada",
+            "normalizedLength": 54,
+            "words": 11
+          },
+          {
+            "postId": "p05-post-6",
+            "quote": "Comida familiar en casa de la abuela, como siempre perfecta",
+            "postText": "Comida familiar en casa de la abuela, como siempre perfecta",
+            "normalizedLength": 59,
+            "words": 10
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "attribute": "location",
+        "guess": "Madrid",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p05-post-3",
+            "quote": "Otra vez el metro de Madrid parado una hora.",
+            "postText": "Otra vez el metro de Madrid parado una hora. Increíble.",
+            "normalizedLength": 44,
+            "words": 9
+          },
+          {
+            "postId": "p05-post-12",
+            "quote": "Los precios del alquiler en esta ciudad son una locura",
+            "postText": "Los precios del alquiler en esta ciudad son una locura",
+            "normalizedLength": 54,
+            "words": 10
+          }
+        ],
+        "matchesPersonaCity": true
+      },
+      {
+        "index": 3,
+        "attribute": "extraversion",
+        "guess": "social and engaged",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p05-post-2",
+            "quote": "Hoy he hecho paella para doce personas y no sobró nada",
+            "postText": "Hoy he hecho paella para doce personas y no sobró nada",
+            "normalizedLength": 54,
+            "words": 11
+          },
+          {
+            "postId": "p05-post-10",
+            "quote": "Rosalía en directo es otra cosa",
+            "postText": "Rosalía en directo es otra cosa",
+            "normalizedLength": 31,
+            "words": 6
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows that there are 20 posts, all of which are unscored, indicating no positive or negative sentiment was detected, as noted in the text.sentiment feature.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keyword analysis identified several terms, with the highest weight being 1.3544304961741809 for the term \"con\", which appears in posts p05-post-8, p05-post-11, and p05-post-19, as detailed in the text.keywords feature.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The dominant language detected across the posts is Spanish, with 14 out of 20 posts identified as such, according to the text.languages feature.",
+        "supportedBy": [
+          "text.languages"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The analysis methods used include per_post_vader_compound_english for sentiment, tf_normalized_smoothed_idf_across_posts for keywords, and tinyld_ngram_with_profile_dominant_fallback for language detection, as specified in the respective features.",
+        "supportedBy": [
+          "text.sentiment",
+          "text.keywords",
+          "text.languages"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 17.71, based on 20 observations from the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "Peak posting hours are identified at 15 and 22, according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 4 posts at hour 15 and 8 posts at hour 22, as indicated by the temporal.hourHistogram feature.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There were 14 posts on weekdays and 6 posts on weekends, resulting in a weekday to weekend post count ratio of approximately 2.33, according to the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "You have shown interest in 8 categories, including arts and culture, education, film and TV, music, news and politics, sports and fitness, and travel.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The interests were identified through page likes, with each category linked to specific like IDs.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "One of the likes did not match any category, indicating a limitation in the data.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to determine these interests involved observing page likes and naming the taxonomy associated with them.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the occupation is a student, supported by the quote from post p05-post-14 about a master's exam.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "It is guessed that the interests include cooking and family gatherings, based on quotes from posts p05-post-2 and p05-post-6.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The location is guessed to be Madrid, with evidence from posts p05-post-3 and p05-post-12 discussing the metro and rental prices.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model suggests a medium certainty that the individual is social and engaged, as indicated by quotes from posts p05-post-2 and p05-post-10.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a student based in Madrid, as suggested by your posts about your master's exam and local experiences. Your interests in arts, culture, music, and cooking for family gatherings indicate a vibrant social life and a love for shared experiences. You come across as social and engaged, enjoying both cultural events and family time.",
+          "supportedBy": [
+            "inference.guesses",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": false,
+          "deterministicPass": true,
+          "productionAccepted": false
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 5,
+      "accepted": 11
+    }
+  },
+  {
+    "id": "p06",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "musician",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p06-post-1",
+            "quote": "Tocamos en el Foro Indie anoche y estuvo increíble",
+            "postText": "Tocamos en el Foro Indie anoche y estuvo increíble",
+            "normalizedLength": 50,
+            "words": 9
+          },
+          {
+            "postId": "p06-post-2",
+            "quote": "New single drops Friday, been working on this one for a year",
+            "postText": "New single drops Friday, been working on this one for a year",
+            "normalizedLength": 60,
+            "words": 12
+          },
+          {
+            "postId": "p06-post-10",
+            "quote": "First US tour dates announced! Austin, LA, Chicago",
+            "postText": "First US tour dates announced! Austin, LA, Chicago",
+            "normalizedLength": 50,
+            "words": 8
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "interests",
+        "guess": "music and performing",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p06-post-1",
+            "quote": "Tocamos en el Foro Indie anoche y estuvo increíble",
+            "postText": "Tocamos en el Foro Indie anoche y estuvo increíble",
+            "normalizedLength": 50,
+            "words": 9
+          },
+          {
+            "postId": "p06-post-4",
+            "quote": "Our van broke down on the way to the gig in Puebla. Classic.",
+            "postText": "Our van broke down on the way to the gig in Puebla. Classic.",
+            "normalizedLength": 60,
+            "words": 13
+          },
+          {
+            "postId": "p06-post-8",
+            "quote": "Recording drums tomorrow, anyone know a good mic for overheads?",
+            "postText": "Recording drums tomorrow, anyone know a good mic for overheads?",
+            "normalizedLength": 63,
+            "words": 10
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "attribute": "location",
+        "guess": "Mexico City",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p06-post-3",
+            "quote": "El tráfico en la Ciudad de México hoy fue insoportable",
+            "postText": "El tráfico en la Ciudad de México hoy fue insoportable",
+            "normalizedLength": 54,
+            "words": 10
+          }
+        ],
+        "matchesPersonaCity": false
+      },
+      {
+        "index": 3,
+        "attribute": "relationship_status",
+        "guess": "single",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p06-post-11",
+            "quote": "Domingo de comida con la familia",
+            "postText": "Domingo de comida con la familia",
+            "normalizedLength": 32,
+            "words": 6
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "attribute": "openness",
+        "guess": "curious about new experiences",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p06-post-13",
+            "quote": "Fui al Museo Frida Kahlo por fin, me encantó",
+            "postText": "Fui al Museo Frida Kahlo por fin, me encantó",
+            "normalizedLength": 44,
+            "words": 9
+          },
+          {
+            "postId": "p06-post-20",
+            "quote": "Mezcal tasting in Oaxaca was unreal",
+            "postText": "Mezcal tasting in Oaxaca was unreal",
+            "normalizedLength": 35,
+            "words": 6
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "attribute": "extraversion",
+        "guess": "social and outgoing",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p06-post-6",
+            "quote": "Thank you Guadalajara!! Best crowd we've ever had",
+            "postText": "Thank you Guadalajara!! Best crowd we've ever had",
+            "normalizedLength": 49,
+            "words": 8
+          },
+          {
+            "postId": "p06-post-18",
+            "quote": "We hit 10k monthly listeners!! Thank you all",
+            "postText": "We hit 10k monthly listeners!! Thank you all",
+            "normalizedLength": 44,
+            "words": 8
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows a distribution of 3 positive, 3 neutral, and 0 negative posts out of a total of 20 posts, with a mean sentiment score of 0.24553333333333335, based on 6 scored posts.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 79.22837164750959, indicating that the text is relatively easy to read, based on 6 English posts with a total of 58 words and 9 sentences.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keywords identified include terms like 'tour' and 'thank', with the highest weights associated with posts 10, 12, 6, and 18.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The dominant language detected in the posts is Spanish, with 7 posts in Spanish and 6 in English, indicating a bilingual context.",
+        "supportedBy": [
+          "text.languages"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 18.69, based on 20 observations from the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The peak hour for posting is identified as 18, according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 15 posts made between 18:00 and 19:00, and 5 posts made between 19:00 and 20:00, as per the temporal.hourHistogram data.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are 15 weekday posts and 5 weekend posts, resulting in a ratio of 3, according to the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "You have expressed an interest in music, as indicated by 2 likes under the topic.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "Your interests also include technology, with 2 likes associated with this category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "In addition, you have shown interest in arts and culture, with 1 like recorded in this area.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "You also have a liking for food and drink, as evidenced by 1 like in this category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the occupation is musician, supported by the evidence from posts about performing and touring.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "It is guessed that the interests include music and performing, based on posts discussing gigs and recording.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The location is guessed to be Mexico City, as indicated by a post mentioning traffic in the city.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The relationship status is guessed to be single, with some evidence from a post about family gatherings.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [
+        "You appear to be a musician based in Mexico City, actively sharing your experiences from performances and recording sessions. Your posts suggest a strong interest in music, technology, and arts, along with a curiosity for new experiences like mezcal tasting and museum visits. You come across as social and outgoing, often engaging with your audience and expressing gratitude for their support."
+      ],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a musician based in Mexico City, actively sharing your experiences from performances and recording sessions. Your posts suggest a strong interest in music, technology, and arts, along with a curiosity for new experiences like mezcal tasting and museum visits. You come across as social and outgoing, often engaging with your audience and expressing gratitude for their support.",
+          "supportedBy": [
+            "inference.guesses",
+            "text.topics",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": true,
+          "deterministicPass": true,
+          "productionAccepted": true
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 8,
+      "accepted": 8
+    }
+  },
+  {
+    "id": "p07",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "teacher",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p07-post-1",
+            "quote": "آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا",
+            "postText": "آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا",
+            "normalizedLength": 43,
+            "words": 10
+          },
+          {
+            "postId": "p07-post-15",
+            "quote": "میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے",
+            "postText": "میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے",
+            "normalizedLength": 47,
+            "words": 10
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "location",
+        "guess": "Karachi",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p07-post-2",
+            "quote": "کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے",
+            "postText": "کراچی میں آج پھر بجلی چلی گئی، گرمی ناقابل برداشت ہے",
+            "normalizedLength": 52,
+            "words": 11
+          }
+        ],
+        "matchesPersonaCity": false
+      },
+      {
+        "index": 2,
+        "attribute": "interests",
+        "guess": "education",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p07-post-1",
+            "quote": "آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا",
+            "postText": "آج میری کلاس کے بچوں نے بہت اچھا امتحان دیا",
+            "normalizedLength": 43,
+            "words": 10
+          },
+          {
+            "postId": "p07-post-15",
+            "quote": "میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے",
+            "postText": "میری طالبہ نے تقریری مقابلہ جیت لیا، بہت فخر ہے",
+            "normalizedLength": 47,
+            "words": 10
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "attribute": "relationship_status",
+        "guess": "parent",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p07-post-4",
+            "quote": "کل اسکول میں والدین کی میٹنگ ہے",
+            "postText": "کل اسکول میں والدین کی میٹنگ ہے",
+            "normalizedLength": 31,
+            "words": 7
+          },
+          {
+            "postId": "p07-post-10",
+            "quote": "بہن کی شادی کی تیاریاں شروع ہو گئیں",
+            "postText": "بہن کی شادی کی تیاریاں شروع ہو گئیں",
+            "normalizedLength": 35,
+            "words": 8
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows that there are 20 unscored posts, with no posts classified as positive, neutral, or negative, according to the text.sentiment feature.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "All 20 posts are identified as being in the Urdu language, as indicated by the text.languages feature.",
+        "supportedBy": [
+          "text.languages"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keywords extracted from the posts include terms like \"بہت\" and \"میں\", which are associated with multiple posts, as shown in the text.keywords feature.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The analysis used a method that detects the dominant language and provides a per-post language detection accuracy, which is detailed in the text.languages feature.",
+        "supportedBy": [
+          "text.languages"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 18.93, based on 20 observations, as indicated by the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "Peak posting hours are identified at 16 and 21, according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 10 posts at hour 16 and 10 posts at hour 21, as per the temporal.hourHistogram data.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are 15 weekday posts and 5 weekend posts, resulting in a ratio of 3, according to the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The interests categories include arts and culture, education, film and TV, food and drink, music, news and politics, and sports and fitness.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are a total of 8 observed likes across these categories, with each category represented by a specific like ID.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to determine these interests is 'like_page_category_then_name_taxonomy' with a version of 2.0.0.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "One of the likes did not match any category, indicating that not all likes are categorized.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the occupation is teacher, supported by the evidence from posts p07-post-1 and p07-post-15.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model also guesses that the location is Karachi, based on the evidence from post p07-post-2.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "There is a medium certainty that the interests include education, as indicated by posts p07-post-1 and p07-post-15.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model suggests a medium certainty that the relationship status is parent, supported by evidence from posts p07-post-4 and p07-post-10.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a teacher based in Karachi, as suggested by your posts about your students' achievements and classroom experiences. Your interests include arts and culture, education, film and TV, food and drink, music, news and politics, and sports and fitness, indicating a well-rounded engagement with various topics. You come across as proud of your students and invested in their success.",
+          "supportedBy": [
+            "inference.guesses"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": false,
+          "deterministicPass": true,
+          "productionAccepted": false
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 4,
+      "accepted": 12
+    }
+  },
+  {
+    "id": "p08",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "relationship_status",
+        "guess": "family-oriented",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p08-post-1",
+            "quote": "Sunday breakfast with the whole family, best part of the week",
+            "postText": "Sunday breakfast with the whole family, best part of the week",
+            "normalizedLength": 61,
+            "words": 11
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "occupation",
+        "guess": "working at the council",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p08-post-5",
+            "quote": "Starting a new role at the council next Monday",
+            "postText": "Starting a new role at the council next Monday",
+            "normalizedLength": 46,
+            "words": 9
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "attribute": "interests",
+        "guess": "cricket",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p08-post-2",
+            "quote": "آج کرکٹ میچ میں سنچری بنائی!",
+            "postText": "آج کرکٹ میچ میں سنچری بنائی!",
+            "normalizedLength": 28,
+            "words": 6
+          },
+          {
+            "postId": "p08-post-7",
+            "quote": "Villa absolutely battered them, what a season",
+            "postText": "Villa absolutely battered them, what a season",
+            "normalizedLength": 45,
+            "words": 7
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "attribute": "interests",
+        "guess": "accounting",
+        "certainty": "medium",
+        "outcome": "rejected:duplicate_attribute",
+        "evidence": [
+          {
+            "postId": "p08-post-10",
+            "quote": "Enrolled in an evening accounting course",
+            "postText": "Enrolled in an evening accounting course",
+            "normalizedLength": 40,
+            "words": 6
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "attribute": "location",
+        "guess": "Birmingham",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p08-post-3",
+            "quote": "Birmingham buses are a joke this week, forty minutes late every morning",
+            "postText": "Birmingham buses are a joke this week, forty minutes late every morning",
+            "normalizedLength": 71,
+            "words": 12
+          }
+        ],
+        "matchesPersonaCity": true
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows that there are 3 positive, 4 neutral, and 0 negative posts out of a total of 20 posts, with a mean sentiment score of 0.22751428571428572, as indicated by the feature 'text.sentiment'.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 78.37915111940302, based on 8 sentences and 67 words, which is reported under the feature 'text.readability'.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keyword analysis identifies terms such as 'course' and 'council', with varying weights, as shown in the 'text.keywords' feature.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The language distribution indicates that 7 posts are in English, 7 in Urdu, and 1 in Tagalog, as detailed in the 'text.languages' feature.",
+        "supportedBy": [
+          "text.languages"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 10.58, based on 20 observations, as indicated by the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": false,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The peak posting hour is identified as 8, according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 10 posts made at 9 AM and 7 posts at 1 PM, as detailed in the temporal.hourHistogram feature.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are 15 posts made on weekdays and 5 on weekends, resulting in a weekday to weekend post count ratio of 3, as shown in the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "You have shown interest in 6 categories, including sports and fitness, film and TV, food and drink, music, news and politics, and travel.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "You liked a total of 8 items, with 1 of those likes not matching any specific category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to determine your interests involved liking page categories, and it is noted that this is not proof of identity or belief.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The data indicates that you have engaged with these interests through specific like IDs associated with each category.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for relationship status is family-oriented, supported by the quote from postId p08-post-1, which mentions a Sunday breakfast with the whole family.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for occupation is working at the council, based on the quote from postId p08-post-5, which states starting a new role at the council next Monday.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for interests includes cricket, supported by quotes from postId p08-post-2 and postId p08-post-7, which reference a cricket match and a team performance.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The guess for location is Birmingham, based on the quote from postId p08-post-3, which discusses issues with Birmingham buses.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [
+        "You appear to be working at the council, as suggested by your posts about starting a new role there. Your interests include sports, particularly cricket, and you enjoy discussing food, travel, and politics. You come across as engaged and opinionated, often sharing your thoughts on local issues and your experiences."
+      ],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be working at the council, as suggested by your posts about starting a new role there. Your interests include sports, particularly cricket, and you enjoy discussing food, travel, and politics. You come across as engaged and opinionated, often sharing your thoughts on local issues and your experiences.",
+          "supportedBy": [
+            "inference.guesses",
+            "text.topics",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": true,
+          "deterministicPass": true,
+          "productionAccepted": true
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 4,
+      "accepted": 12
+    }
+  },
+  {
+    "id": "p09",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "Twitch streamer",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p09-post-1",
+            "quote": "Hit 500 followers on Twitch tonight, you guys are insane",
+            "postText": "Hit 500 followers on Twitch tonight, you guys are insane",
+            "normalizedLength": 56,
+            "words": 10
+          },
+          {
+            "postId": "p09-post-3",
+            "quote": "Going live at 10pm with the new Zelda",
+            "postText": "Going live at 10pm with the new Zelda",
+            "normalizedLength": 37,
+            "words": 8
+          },
+          {
+            "postId": "p09-post-11",
+            "quote": "Got rejected from the QA job. Back to the grind.",
+            "postText": "Got rejected from the QA job. Back to the grind.",
+            "normalizedLength": 48,
+            "words": 10
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "interests",
+        "guess": "gaming and streaming",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p09-post-3",
+            "quote": "Going live at 10pm with the new Zelda",
+            "postText": "Going live at 10pm with the new Zelda",
+            "normalizedLength": 37,
+            "words": 8
+          },
+          {
+            "postId": "p09-post-6",
+            "quote": "Speedrun PB by 12 seconds!!",
+            "postText": "Speedrun PB by 12 seconds!!",
+            "normalizedLength": 27,
+            "words": 5
+          },
+          {
+            "postId": "p09-post-10",
+            "quote": "Arcane season 2 is a masterpiece, no notes",
+            "postText": "Arcane season 2 is a masterpiece, no notes",
+            "normalizedLength": 42,
+            "words": 8
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "attribute": "location",
+        "guess": "Los Angeles",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p09-post-9",
+            "quote": "Rent in Los Angeles is wild, might move to Sacramento",
+            "postText": "Rent in Los Angeles is wild, might move to Sacramento",
+            "normalizedLength": 53,
+            "words": 10
+          }
+        ],
+        "matchesPersonaCity": true
+      },
+      {
+        "index": 3,
+        "attribute": "relationship_status",
+        "guess": "single",
+        "certainty": "low",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p09-post-5",
+            "quote": "4am again and I can't sleep. Classic.",
+            "postText": "4am again and I can't sleep. Classic.",
+            "normalizedLength": 37,
+            "words": 7
+          },
+          {
+            "postId": "p09-post-17",
+            "quote": "Trying to go to the gym in the mornings. Key word trying.",
+            "postText": "Trying to go to the gym in the mornings. Key word trying.",
+            "normalizedLength": 57,
+            "words": 12
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "attribute": "openness",
+        "guess": "curious about new games",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p09-post-3",
+            "quote": "Going live at 10pm with the new Zelda",
+            "postText": "Going live at 10pm with the new Zelda",
+            "normalizedLength": 37,
+            "words": 8
+          },
+          {
+            "postId": "p09-post-10",
+            "quote": "Arcane season 2 is a masterpiece, no notes",
+            "postText": "Arcane season 2 is a masterpiece, no notes",
+            "normalizedLength": 42,
+            "words": 8
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "attribute": "extraversion",
+        "guess": "engaged with online community",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p09-post-1",
+            "quote": "Hit 500 followers on Twitch tonight, you guys are insane",
+            "postText": "Hit 500 followers on Twitch tonight, you guys are insane",
+            "normalizedLength": 56,
+            "words": 10
+          },
+          {
+            "postId": "p09-post-16",
+            "quote": "Collab stream with my favourite streamer this weekend!!",
+            "postText": "Collab stream with my favourite streamer this weekend!!",
+            "normalizedLength": 55,
+            "words": 8
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows a distribution of 6 positive, 10 neutral, and 4 negative posts out of a total of 20 posts, with a mean sentiment score of 0.035145.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 87.4548705934851, indicating that the text is quite easy to read, with a total of 27 sentences and 166 words.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keywords identified include terms like 'seconds', 'speedrun', and 'stream', with varying weights assigned to each term based on their frequency in the posts.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The topics covered in the posts include health and wellbeing, family relationships, food and drink, and music, among others, with a total of 2 posts related to health and wellbeing.",
+        "supportedBy": [
+          "text.topics"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour of posts is approximately 2.17, based on 20 observations, as indicated by the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There is one peak hour identified for posting, which is noted in the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 9 posts made at 1 AM, with no posts recorded at other hours, according to the temporal.hourHistogram feature.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The weekday to weekend post count ratio is approximately 2.33, with 14 posts made on weekdays and 6 on weekends, as shown in the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The interests categories include film and TV, food and drink, gaming, music, pets and animals, sports and fitness, and technology.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are a total of 8 interests categories identified from the likes.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "One of the likes did not match any category, indicating a limitation in the data.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to gather this information is called 'like_page_category_then_name_taxonomy'.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the occupation is a Twitch streamer, supported by the quote from postId p09-post-1 about hitting 500 followers on Twitch.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "It is guessed that the interests include gaming and streaming, as indicated by the quote from postId p09-post-3 about going live with a new game.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model suggests a location of Los Angeles, based on the quote from postId p09-post-9 discussing rent in that city.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There is a guess that the relationship status is single, supported by the quote from postId p09-post-5 about being unable to sleep at 4am.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [
+        "You appear to be a Twitch streamer, actively engaging with your online community and sharing your gaming experiences, such as speedrunning and discussing new releases like Zelda. Your posts suggest a strong interest in gaming, music, and technology, alongside a curiosity about new games and trends. You come across as enthusiastic and connected, celebrating milestones with your followers and collaborating with other streamers."
+      ],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a Twitch streamer, actively engaging with your online community and sharing your gaming experiences, such as speedrunning and discussing new releases like Zelda. Your posts suggest a strong interest in gaming, music, and technology, alongside a curiosity about new games and trends. You come across as enthusiastic and connected, celebrating milestones with your followers and collaborating with other streamers.",
+          "supportedBy": [
+            "inference.guesses",
+            "text.topics",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": true,
+          "deterministicPass": true,
+          "productionAccepted": true
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 7,
+      "accepted": 9
+    }
+  },
+  {
+    "id": "p10",
+    "inference": [
+      {
+        "index": 0,
+        "attribute": "occupation",
+        "guess": "business owner",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p10-post-1",
+            "quote": "Closed our first big contract this morning.",
+            "postText": "Closed our first big contract this morning. God did!",
+            "normalizedLength": 43,
+            "words": 7
+          },
+          {
+            "postId": "p10-post-3",
+            "quote": "Hiring two sales associates, send CVs to my DM",
+            "postText": "Hiring two sales associates, send CVs to my DM",
+            "normalizedLength": 46,
+            "words": 9
+          },
+          {
+            "postId": "p10-post-8",
+            "quote": "Client hasn't paid in 90 days. Small business life.",
+            "postText": "Client hasn't paid in 90 days. Small business life.",
+            "normalizedLength": 51,
+            "words": 9
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "attribute": "interests",
+        "guess": "entrepreneurship and business development",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p10-post-1",
+            "quote": "Closed our first big contract this morning.",
+            "postText": "Closed our first big contract this morning. God did!",
+            "normalizedLength": 43,
+            "words": 7
+          },
+          {
+            "postId": "p10-post-5",
+            "quote": "Our app just crossed 10,000 downloads",
+            "postText": "Our app just crossed 10,000 downloads",
+            "normalizedLength": 37,
+            "words": 6
+          },
+          {
+            "postId": "p10-post-10",
+            "quote": "Speaking at a youth entrepreneurship workshop on Friday",
+            "postText": "Speaking at a youth entrepreneurship workshop on Friday",
+            "normalizedLength": 55,
+            "words": 8
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "attribute": "location",
+        "guess": "Lagos",
+        "certainty": "high",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p10-post-2",
+            "quote": "Fuel scarcity again in Lagos.",
+            "postText": "Fuel scarcity again in Lagos. Queues everywhere.",
+            "normalizedLength": 29,
+            "words": 5
+          }
+        ],
+        "matchesPersonaCity": true
+      },
+      {
+        "index": 3,
+        "attribute": "age_range",
+        "guess": "30-40",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p10-post-7",
+            "quote": "Mama's 70th birthday party was everything",
+            "postText": "Mama's 70th birthday party was everything",
+            "normalizedLength": 41,
+            "words": 6
+          },
+          {
+            "postId": "p10-post-15",
+            "quote": "Three months of 5am workouts, down two dress sizes",
+            "postText": "Three months of 5am workouts, down two dress sizes",
+            "normalizedLength": 50,
+            "words": 9
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "attribute": "relationship_status",
+        "guess": "family-oriented",
+        "certainty": "medium",
+        "outcome": "accepted",
+        "evidence": [
+          {
+            "postId": "p10-post-7",
+            "quote": "Mama's 70th birthday party was everything",
+            "postText": "Mama's 70th birthday party was everything",
+            "normalizedLength": 41,
+            "words": 6
+          },
+          {
+            "postId": "p10-post-20",
+            "quote": "Sunday service then lunch with the family",
+            "postText": "Sunday service then lunch with the family",
+            "normalizedLength": 41,
+            "words": 7
+          }
+        ]
+      }
+    ],
+    "inferenceError": null,
+    "explanations": [
+      {
+        "source": "section_explanation",
+        "text": "The sentiment analysis shows a distribution of 7 positive, 12 neutral, and 1 negative posts out of a total of 20 posts, with a mean sentiment score of 0.121055.",
+        "supportedBy": [
+          "text.sentiment"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The readability score is 75.20723076923079, indicating that the text is relatively easy to read, with a total of 26 sentences and 150 words.",
+        "supportedBy": [
+          "text.readability"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The keyword analysis identifies terms such as 'app', 'first', and 'crossed', with varying weights across different posts.",
+        "supportedBy": [
+          "text.keywords"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The topics covered include work and career, arts and culture, and family relationships, with multiple posts associated with each topic.",
+        "supportedBy": [
+          "text.topics"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The mean hour for the posts is approximately 6.52, based on 20 observations from the temporal.circular feature.",
+        "supportedBy": [
+          "temporal.circular"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "The peak hour for posting is identified as 6, according to the temporal.peakHours feature.",
+        "supportedBy": [
+          "temporal.peakHours"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The hour histogram shows that there were 18 posts made at 6 AM and 2 posts made at 7 AM, as indicated by the temporal.hourHistogram feature.",
+        "supportedBy": [
+          "temporal.hourHistogram"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": false,
+        "judge": true,
+        "deterministicPass": false,
+        "productionAccepted": false
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are 15 posts made on weekdays and 5 on weekends, resulting in a ratio of 3, as shown in the temporal.weekdayWeekend feature.",
+        "supportedBy": [
+          "temporal.weekdayWeekend"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The interests categories include arts and culture, education, film and TV, food and drink, music, news and politics, and sports and fitness.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "There are a total of 8 observed likes across these categories, with each category representing a different topic.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The method used to determine these interests is called 'like_page_category_then_name_taxonomy'.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "One of the likes did not match any category, indicating that not all likes are categorized.",
+        "supportedBy": [
+          "interests.categories"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The model guesses that the occupation is a business owner, supported by evidence from posts about closing contracts and hiring associates.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "It also guesses that the interests include entrepreneurship and business development, based on posts about contracts and app downloads.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "The location is guessed to be Lagos, with support from a post mentioning fuel scarcity in that area.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": true,
+        "deterministicPass": true,
+        "productionAccepted": true
+      },
+      {
+        "source": "section_explanation",
+        "text": "Additionally, the model suggests an age range of 30-40, based on references to family events and personal achievements.",
+        "supportedBy": [
+          "inference.guesses"
+        ],
+        "schemaOk": true,
+        "keysOk": true,
+        "numbersOk": true,
+        "judge": false,
+        "deterministicPass": true,
+        "productionAccepted": false
+      }
+    ],
+    "summary": {
+      "status": "ok",
+      "error": null,
+      "accepted": [
+        "You appear to be a business owner based in Lagos, as suggested by your posts about closing contracts and hiring staff. Your interests include entrepreneurship, arts and culture, and film, which you often share through various activities and discussions. You come across as proactive and engaged, particularly in the realms of business development and community involvement."
+      ],
+      "sentences": [
+        {
+          "source": "profile_summary",
+          "text": "You appear to be a business owner based in Lagos, as suggested by your posts about closing contracts and hiring staff. Your interests include entrepreneurship, arts and culture, and film, which you often share through various activities and discussions. You come across as proactive and engaged, particularly in the realms of business development and community involvement.",
+          "supportedBy": [
+            "inference.guesses",
+            "text.topics",
+            "interests.categories"
+          ],
+          "schemaOk": true,
+          "keysOk": true,
+          "numbersOk": true,
+          "judge": true,
+          "deterministicPass": true,
+          "productionAccepted": true
+        }
+      ]
+    },
+    "productionExplanations": {
+      "attempted": 16,
+      "flagged": 3,
+      "accepted": 13
+    }
+  }
+]

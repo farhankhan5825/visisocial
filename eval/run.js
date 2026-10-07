@@ -294,9 +294,15 @@ async function run() {
     characters = ocrSum('characters'),
     wordEdits = ocrSum('wordEdits'),
     words = ocrSum('words');
-  let gitRevision = 'unavailable';
+  let gitRevision = 'unavailable',
+    gitDirty = null;
   try {
     gitRevision = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+    // Uncommitted changes outside saved results mean the run is not reproducible from the
+    // recorded commit alone; the source hashes below still identify the code.
+    gitDirty = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' })
+      .split('\n')
+      .some((line) => line.trim() && !/ eval\/(results|live)\//.test(line));
   } catch {
     /* Not required for an exported source archive. */
   }
@@ -313,7 +319,10 @@ async function run() {
   }
   const codePaths = [
     ...sourceFiles(path.join(__dirname, '../src')),
-    ...sourceFiles(__dirname).filter((p) => !p.includes(`${path.sep}results${path.sep}`)),
+    ...sourceFiles(__dirname).filter(
+      (p) =>
+        !p.includes(`${path.sep}results${path.sep}`) && !p.includes(`${path.sep}live${path.sep}`)
+    ),
   ].sort();
   const sourceHashes = Object.fromEntries(
     codePaths.map((p) => [
@@ -339,6 +348,9 @@ async function run() {
       architecture: process.arch,
       cpu: os.cpus()[0]?.model,
       gitRevision,
+      gitDirty,
+      sourceHashProcedure:
+        'SHA-256 of JSON.stringify(file text with CRLF converted to LF), via src/pipeline.js hash()',
       sourceHashes,
       lockfileHash: require('../src/pipeline').hash(
         fs.readFileSync(path.join(__dirname, '../package-lock.json'), 'utf8').replace(/\r\n/g, '\n')
